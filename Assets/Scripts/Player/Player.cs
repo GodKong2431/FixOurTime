@@ -30,6 +30,11 @@ public class Player : MonoBehaviour
 
     [Header("넉백설정")]
     [SerializeField] float _hitDuration = 0.5f;
+
+    [Header("무적시간")]
+    [SerializeField] float _invincibleDuration = 0.5f;
+    bool _isInvincible;
+    float _invincibleTimer;
    
 
     Rigidbody2D _rb;
@@ -43,6 +48,8 @@ public class Player : MonoBehaviour
     public float MaxFallSpeedForStun => _maxFallSpeedForStun;
     public float StunDuration => _stunDuration;
     public float HitDuration => _hitDuration;
+    public float InvincibleDuration => _invincibleDuration;
+    public float InvincibleTimer { get => _invincibleTimer; set => _invincibleTimer = value; }
     public float CurrentChargeTime { get => _currentChargeTime; set => _currentChargeTime = value; }
     public float CalculatedJumpForce { get => _calculatedJumpForce; set => _calculatedJumpForce = value; }
     public float JumpDirX { get => _jumpDirX; set => _jumpDirX = value; }
@@ -52,6 +59,7 @@ public class Player : MonoBehaviour
     public bool IsGrounded => _isGrounded;
     public bool IsChargeStarted { get => _isChargeStarted; set => _isChargeStarted = value; }
     public bool IsStunStarted { get => _isStunStarted; set => _isStunStarted = value; }
+    public bool IsInvincible { get => _isInvincible; set => _isInvincible = value; }
 
     private void Awake()
     {
@@ -61,12 +69,23 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
+        //땅체크
         _isGrounded = Physics2D.Raycast(
             _groundChecker.position,    //발사위치
             Vector2.down,               //발사방향
             _groundCheckDistance,       //레이저길이
             _groundLayer                //충돌대상체크
             );
+        //무적 타이머 업데이트
+        if (_isInvincible)
+        {
+            _invincibleTimer -= Time.deltaTime;
+            if (_invincibleTimer <= 0f)
+            {
+                _isInvincible = false;
+            }
+        }
+
         _currentState.Update();
     }
     public void SetState(IPlayerState newState)
@@ -95,6 +114,11 @@ public class Player : MonoBehaviour
     }
     public void TakeDamage(int damage,float knockbackForce, Vector3 hitPos )
     {
+        if (_isInvincible)
+        {
+            return;
+        }
+
         if(_currentState is HitState)
         {
             return;

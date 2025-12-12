@@ -34,6 +34,9 @@ public class HitState : IPlayerState
 
         if(_timer >= _player.HitDuration)
         {
+            _player.IsInvincible = true;
+            _player.InvincibleTimer = _player.InvincibleDuration;
+
             if (_player.IsGrounded)
             {
                 _player.Rb.linearVelocity = Vector2.zero;
