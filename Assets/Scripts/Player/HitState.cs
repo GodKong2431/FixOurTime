@@ -14,6 +14,7 @@ public class HitState : IPlayerState
     }
     public void Enter()
     {
+        Debug.Log("히트 진입");
         _timer = 0f;
 
         Vector2 knockbackVector = new Vector2(
@@ -25,6 +26,7 @@ public class HitState : IPlayerState
 
     public void Exit()
     {
+        Debug.Log("히트 나감");
         _player.Spr.color = Color.white;
     }
 

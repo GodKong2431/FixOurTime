@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class Gear : TrapBase
 {
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        Debug.Log("플레이어 접촉");
-        //플레이어한테 Transform, _trapDamage, _knockbackForce _invincibleTime
+        if(collision.transform.TryGetComponent<Player>(out Player player))
+        {
+            player.TakeDamage(_trapDamage, _knockbackForce, transform.position);
+        }
     }
 }

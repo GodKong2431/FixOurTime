@@ -9,17 +9,19 @@ public class FallState : IPlayerState
     }
     public void Enter()
     {
-        
+        Debug.Log("폴 진입");
+        _player.Rb.gravityScale = 3f;
     }
 
     public void Exit()
     {
-        
+        Debug.Log("폴 나감");
+        _player.Rb.gravityScale = 1f;
     }
 
     public void Update()
     {
-        Debug.Log($"낙하스피드: {_player.Rb.linearVelocity.y}");
+        //Debug.Log($"낙하스피드: {_player.Rb.linearVelocity.y}");
         if (_player.Rb.linearVelocity.y <= _player.MaxFallSpeedForStun)
         {
             _player.IsStunStarted = true;

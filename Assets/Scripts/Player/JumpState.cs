@@ -11,6 +11,7 @@ public class JumpState : IPlayerState
 
     public void Enter()
     {
+        Debug.Log("점프 진입");
         Vector2 velocity = _player.Rb.linearVelocity;
         //수직속도
         velocity.y = _player.CalculatedJumpForce;
