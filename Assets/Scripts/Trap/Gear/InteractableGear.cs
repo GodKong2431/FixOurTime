@@ -1,30 +1,40 @@
 using System.Collections;
 using UnityEngine;
 
+enum GearStateType
+{
+    GearIdleState,
+    GearMoveState
+}
+
 public class InteractableGear : MoveGear
 {
-    public void HitGear()
+    private GearStateType _currentState;
+
+    private bool _isTrigger = false;
+
+    protected override void Awake()
     {
-        StartCoroutine(StartMove());
-        
-        //인덱스 더하기
-        _currentIndex += _wayDir;
-
-        //마지막 인덱스에 도착했거나 처음 인덱스에 도착했으면 방향 변경
-        if (_currentIndex >= _points.Length - 1 || _currentIndex <= 0)
-            _wayDir *= -1;
-
-        //목표 포인트 변경
-        _nextPoint = _points[_currentIndex];
+        base.Awake();
+        _currentState = GearStateType.GearIdleState;
     }
 
-    IEnumerator StartMove()
+    private void Update()
     {
-        MoveNextPoint();
+        if(_currentState == GearStateType.GearMoveState)
+        {
+            MoveNextPoint();
 
-        if(ChangeNextPoint())
-            yield break;
+            if (ChangeNextPoint())
+            {
+                _isTrigger = !_isTrigger;
+                _currentState = GearStateType.GearIdleState;
+            }
+        }
+    }
 
-        yield return null;
+    public void HitGear()
+    {
+        _currentState = GearStateType.GearMoveState;
     }
 }
