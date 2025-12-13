@@ -1,8 +1,12 @@
 using System.Collections;
 using UnityEngine;
 
-public class InteractableGear : MoveGear
+public class InteractableGear : MoveGear,IDamageable
 {
+    public void TakeDamage(float damage, float KnockbackForce, Vector3 hitPos)
+    {
+        HitGear();
+    }
     public void HitGear()
     {
         StartCoroutine(StartMove());
@@ -17,6 +21,8 @@ public class InteractableGear : MoveGear
         //목표 포인트 변경
         _nextPoint = _points[_currentIndex];
     }
+
+    
 
     IEnumerator StartMove()
     {

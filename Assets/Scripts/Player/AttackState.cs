@@ -31,6 +31,19 @@ public class AttackState : IPlayerState
             Debug.Log($"이놈 공격중 : {hit.collider.name}");
             //여기에 데미지 입히는거 구현
             // 인터페이스같은거 구현해서 겟컴퍼넌트 하면 좋을듯?
+            IDamageable damageableTarget = hit.collider.GetComponent<IDamageable>();
+
+            if(damageableTarget != null)
+            {
+                //적에게 넉백 줄거면 이거쓰고, 플레이어에 따로 빼도됨
+                float attackKnockbackForce = 5f;
+
+                damageableTarget.TakeDamage(
+                    _player.AttackDamage,
+                    attackKnockbackForce,
+                    _player.transform.position
+                    );
+            }
 
         }
     

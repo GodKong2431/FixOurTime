@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour,IDamageable
 {
     [Header("상태 값 설정")]
     IPlayerState _currentState;
@@ -143,20 +143,21 @@ public class Player : MonoBehaviour
             }
         }
     }
-    public void TakeDamage(int damage,float knockbackForce, Vector3 hitPos )
+
+    public void TakeDamage(float damage, float KnockbackForce, Vector3 hitPos)
     {
         //if (_isInvincible)
         //{
         //    return;
         //}
 
-        if(_currentState is HitState)
+        if (_currentState is HitState)
         {
             return;
         }
 
         float dirX = (transform.position.x > hitPos.x) ? 1f : -1f;
 
-        SetState(new HitState(this, dirX, knockbackForce));
+        SetState(new HitState(this, dirX, KnockbackForce));
     }
 }
