@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour,IDamageable
 {
     [Header("상태 값 설정")]
     IPlayerState _currentState;
@@ -28,13 +28,20 @@ public class Player : MonoBehaviour
     [SerializeField] float _stunDuration = 1.0f;
     bool _isStunStarted;
 
-    [Header("넉백설정")]
+    [Header("넉백 설정")]
     [SerializeField] float _hitDuration = 0.5f;
 
-    [Header("무적시간")]
-    [SerializeField] float _invincibleDuration = 0.5f;
-    bool _isInvincible;
-    float _invincibleTimer;
+    [Header("공격 설정")]
+    [SerializeField] float _attackDuration = 0.3f;
+    [SerializeField] float _attackRange = 1.0f;
+    [SerializeField] float _attackDamage = 10f;
+    [SerializeField]
+    LayerMask _attackTargetLayer;
+
+    //[Header("무적시간")]
+    //[SerializeField] float _invincibleDuration = 0.5f;
+    //bool _isInvincible;
+    //float _invincibleTimer;
    
 
     Rigidbody2D _rb;
@@ -48,18 +55,22 @@ public class Player : MonoBehaviour
     public float MaxFallSpeedForStun => _maxFallSpeedForStun;
     public float StunDuration => _stunDuration;
     public float HitDuration => _hitDuration;
-    public float InvincibleDuration => _invincibleDuration;
-    public float InvincibleTimer { get => _invincibleTimer; set => _invincibleTimer = value; }
+    public float AttackDuration => _attackDuration;
+    public float AttackRange => _attackRange;
+    public float AttackDamage => _attackDamage;
+    //public float InvincibleDuration => _invincibleDuration;
+    //public float InvincibleTimer { get => _invincibleTimer; set => _invincibleTimer = value; }
     public float CurrentChargeTime { get => _currentChargeTime; set => _currentChargeTime = value; }
     public float CalculatedJumpForce { get => _calculatedJumpForce; set => _calculatedJumpForce = value; }
     public float JumpDirX { get => _jumpDirX; set => _jumpDirX = value; }
+    public LayerMask AttackTargetLayer => _attackTargetLayer;
     public Vector2 MoveInput => _moveInput;
     public Rigidbody2D Rb => _rb;
     public SpriteRenderer Spr => _spr;
     public bool IsGrounded => _isGrounded;
     public bool IsChargeStarted { get => _isChargeStarted; set => _isChargeStarted = value; }
     public bool IsStunStarted { get => _isStunStarted; set => _isStunStarted = value; }
-    public bool IsInvincible { get => _isInvincible; set => _isInvincible = value; }
+    //public bool IsInvincible { get => _isInvincible; set => _isInvincible = value; }
 
     private void Awake()
     {
@@ -77,14 +88,14 @@ public class Player : MonoBehaviour
             _groundLayer                //충돌대상체크
             );
         //무적 타이머 업데이트
-        if (_isInvincible)
-        {
-            _invincibleTimer -= Time.deltaTime;
-            if (_invincibleTimer <= 0f)
-            {
-                _isInvincible = false;
-            }
-        }
+        //if (_isInvincible)
+        //{
+        //    _invincibleTimer -= Time.deltaTime;
+        //    if (_invincibleTimer <= 0f)
+        //    {
+        //        _isInvincible = false;
+        //    }
+        //}
 
         _currentState.Update();
     }
@@ -112,20 +123,41 @@ public class Player : MonoBehaviour
             }
         }
     }
-    public void TakeDamage(int damage,float knockbackForce, Vector3 hitPos )
+    public void OnAttack(InputAction.CallbackContext ctx)
     {
-        if (_isInvincible)
+        if(ctx.started)
         {
-            return;
-        }
+            //공격 허용 안하는 상태들
+            bool _isAttackPrevent = _currentState is HitState ||
+                                 _currentState is StunState ||
+                                 _currentState is ChargeState ||
+                                 _currentState is JumpState ||
+                                 _currentState is FallState;
 
-        if(_currentState is HitState)
+            if (!_isAttackPrevent)
+            {
+                if (!(_currentState is AttackState))
+                {
+                    SetState(new AttackState(this));
+                }
+            }
+        }
+    }
+
+    public void TakeDamage(float damage, float KnockbackForce, Vector3 hitPos)
+    {
+        //if (_isInvincible)
+        //{
+        //    return;
+        //}
+
+        if (_currentState is HitState)
         {
             return;
         }
 
         float dirX = (transform.position.x > hitPos.x) ? 1f : -1f;
 
-        SetState(new HitState(this, dirX, knockbackForce));
+        SetState(new HitState(this, dirX, KnockbackForce));
     }
 }
