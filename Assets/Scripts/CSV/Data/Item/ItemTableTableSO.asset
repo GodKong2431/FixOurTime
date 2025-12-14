@@ -25,7 +25,7 @@ MonoBehaviour:
     sellable: 0
     itemname: item_powerstone_name_201012
     itemdesc: item_powerstone_desc_201012
-    itemImgresource: item_powerstone_img_201012
+    itemImgresource: z
     test: 
   - id: 201013
     itemtype: 1
