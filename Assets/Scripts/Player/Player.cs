@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,6 +10,7 @@ public class Player : MonoBehaviour,IDamageable
     [SerializeField] float _maxHp = 100;
     float _currentHp;
     Vector2 _moveInput;
+    public event Action<float, float> OnHpChanged;
 
     [Header("땅체크")]
     [SerializeField] LayerMask _groundLayer;
@@ -30,7 +32,7 @@ public class Player : MonoBehaviour,IDamageable
     [SerializeField] float _maxFallSpeedForStun = -15f;  //스턴에 빠지는 최대 하강속도
     [SerializeField] float _stunDuration = 1.0f;
     bool _isStunStarted;
-
+    
     [Header("넉백 설정")]
     [SerializeField] float _hitDuration = 0.5f;
 
@@ -194,6 +196,9 @@ public class Player : MonoBehaviour,IDamageable
         }
 
         _currentHp -= damage;
+        _currentHp = Mathf.Max(0f, _currentHp); //0이하로 떨어지기 방지
+
+        OnHpChanged?.Invoke(_currentHp, _maxHp);
 
         if( _currentHp <= 0)
         {
@@ -236,6 +241,7 @@ public class Player : MonoBehaviour,IDamageable
         GameData data = GameDataManager.Load();
 
         _currentHp = data.maxHp;
+        OnHpChanged?.Invoke(_currentHp, _maxHp);
 
         transform.position = data.playerPos;
 
