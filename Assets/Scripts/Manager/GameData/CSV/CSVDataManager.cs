@@ -4,16 +4,14 @@ using System.IO;
 using UnityEngine;
 
 
-// 데이터 가져오기 사용 방법
-// csv 통으로 가져오고 싶을 떄
-// CSVMap[가져올 데이터 csv이름] as TableSOBase<데이터 클래스> 
-// 이렇게 하면 csv 통으로 가져오기임
+// 데이터 가져오는 방법
+// 데이터 통으로 가져오고 싶으면
+// 예) Get<ItemTableData>("ItemTable")
+// Get<데이터 클래스>(csv 이름)
 
-// csv에서 id로 원하는 행 가져오고 싶을 때
-// 가져온 csv 통 정보에
-// 가져온 통 데이터.BuildIndex(); 로 자동 딕셔너리 id 맵핑 후
-// 가져온 통 데이터.GetIdRow(원하는 id(int값));
-// 이렇게 하면 id에 해당하는 행 가져와서 id에 해당하는 데이터 가져올 수 있음
+// 한 줄만 뽑고 싶으면
+// 인덱서 만들어 놔서 id만 인덱스로 넣어주면 한 줄 나옴
+// 거기에 .찍으면 데이터 종류 나옴
 
 
 public class CSVDataManager : MonoBehaviour
@@ -22,17 +20,30 @@ public class CSVDataManager : MonoBehaviour
 
     string[] _files;
 
-    public Dictionary<string, SOBase> CSVMap = new();
+    private Dictionary<string, SOBase> CSVMap = new();
 
     private void Awake()
     {
         _files = GetCSVFileNames(_csvSOPath);
         CSVSOMapping();
+
+        var a = Get<ItemTableData>("ItemTable");
+        Debug.Log(a[201011].itemdesc);
     }
 
-    private void Start()
+    public TableSOBase<T> Get<T>(string csvTableName)
+        where T : TableBase
     {
-        Debug.Log((CSVMap["ItemTable"] as TableSOBase<ItemTableData>).GetIdRow(201011));
+        if(CSVMap[csvTableName] is TableSOBase<T>)
+        {
+            TableSOBase<T> result = CSVMap[csvTableName] as TableSOBase<T>;
+            if(result.RowDict == null)
+                result.BuildIndex();
+
+            return result;
+        }
+
+        return null;
     }
 
     public string[] GetCSVFileNames(string folderPath)

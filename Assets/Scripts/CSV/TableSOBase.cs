@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class SOBase : ScriptableObject
+public abstract class SOBase : ScriptableObject
 {
-
 }
 
 
@@ -18,6 +17,7 @@ public abstract class TableSOBase<TRow> : SOBase
 
     private Dictionary<int, TRow> _rowDict;
 
+    public IReadOnlyDictionary<int, TRow> RowDict => _rowDict;
 
     public void BuildIndex()
     {
@@ -29,10 +29,11 @@ public abstract class TableSOBase<TRow> : SOBase
         }
     }
 
-    public TRow GetIdRow(int id)
+    public TRow this[int Key]
     {
-        if (_rowDict != null && _rowDict.TryGetValue(id, out TRow row))
-            return row;
-        return null;
+        get
+        {
+            return RowDict[Key];
+        }
     }
 }
