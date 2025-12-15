@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab764e990b55cd346b87bcf0faecd1d5, type: 3}
+  m_Name: StageTableTableSO
+  m_EditorClassIdentifier: Assembly-CSharp::StageTableTableSO
+  rows:
+  - id: 110101
+    worldtype: 1
+    worlddifficulty: "\uC77C\uBC18"
+    chapter: 1
+    stage: 1
+    rewardgroup: 1
+    rewardcoin: 0
+  - id: 120101
+    worldtype: 1
+    worlddifficulty: "\uC5B4\uB460"
+    chapter: 1
+    stage: 1
+    rewardgroup: 1
+    rewardcoin: 0
+  - id: 130101
+    worldtype: 1
+    worlddifficulty: "\uB9C8\uC2A4\uD130"
+    chapter: 1
+    stage: 1
+    rewardgroup: 1
+    rewardcoin: 0
+  - id: 210101
+    worldtype: 2
+    worlddifficulty: "\uC2A4\uD1A0\uB9AC"
+    chapter: 1
+    stage: 1
+    rewardgroup: 2
+    rewardcoin: 0
+  - id: 220101
+    worldtype: 2
+    worlddifficulty: "\uB178\uB9D0"
+    chapter: 1
+    stage: 1
+    rewardgroup: 2
+    rewardcoin: 0
+  - id: 230101
+    worldtype: 2
+    worlddifficulty: "\uD558\uB4DC"
+    chapter: 1
+    stage: 1
+    rewardgroup: 2
+    rewardcoin: 0
