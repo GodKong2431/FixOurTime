@@ -17,6 +17,7 @@ public class FallState : IPlayerState
     {
         Debug.Log("Æú ³ª°¨");
         _player.Rb.gravityScale = 1f;
+        _player.IsChargeStarted = false;
     }
 
     public void Update()

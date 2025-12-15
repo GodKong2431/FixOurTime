@@ -17,6 +17,9 @@ public class HitState : IPlayerState
         Debug.Log("히트 진입");
         _timer = 0f;
 
+        _player.IsChargeStarted = false;
+        _player.CurrentChargeTime = 0f;
+
         Vector2 knockbackVector = new Vector2(
             _knockbackDirX * _knockbackForce,
             _knockbackForce);

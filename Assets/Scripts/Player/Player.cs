@@ -3,9 +3,11 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour,IDamageable
 {
-    [Header("상태 값 설정")]
+    [Header("기본 상태 값 설정")]
     IPlayerState _currentState;
     [SerializeField] float _moveSpeed = 5f;
+    [SerializeField] float _maxHp = 100;
+    float _currentHp;
     Vector2 _moveInput;
 
     [Header("땅체크")]
@@ -63,6 +65,7 @@ public class Player : MonoBehaviour,IDamageable
     public float CurrentChargeTime { get => _currentChargeTime; set => _currentChargeTime = value; }
     public float CalculatedJumpForce { get => _calculatedJumpForce; set => _calculatedJumpForce = value; }
     public float JumpDirX { get => _jumpDirX; set => _jumpDirX = value; }
+    public float CurrentHp { get=>_currentHp; set => _currentHp = value; }
     public LayerMask AttackTargetLayer => _attackTargetLayer;
     public Vector2 MoveInput => _moveInput;
     public Rigidbody2D Rb => _rb;
@@ -76,6 +79,7 @@ public class Player : MonoBehaviour,IDamageable
     {
         _rb = GetComponent<Rigidbody2D>();
         _spr = GetComponent<SpriteRenderer>();
+        _currentHp = _maxHp;
         SetState(new IdleState(this));
     }
     private void Update()
@@ -107,10 +111,19 @@ public class Player : MonoBehaviour,IDamageable
     }
     public void OnMove(InputAction.CallbackContext ctx)
     {
+        if (_currentState is HitState || _currentState is DeadState)
+        {
+            _moveInput = Vector2.zero;
+            return;
+        }
         _moveInput = ctx.ReadValue<Vector2>();
     }
     public void OnJump(InputAction.CallbackContext ctx)
     {
+        if (_currentState is HitState || _currentState is DeadState || _currentState is FallState)
+        {
+            return;
+        }
         if (ctx.started)
         {
             _isChargeStarted = true;
@@ -151,13 +164,45 @@ public class Player : MonoBehaviour,IDamageable
         //    return;
         //}
 
-        if (_currentState is HitState)
+        if (_currentState is HitState || _currentState is DeadState)
         {
+            return;
+        }
+
+        _currentHp -= damage;
+
+        if( _currentHp <= 0)
+        {
+            SetState(new DeadState(this));
             return;
         }
 
         float dirX = (transform.position.x > hitPos.x) ? 1f : -1f;
 
         SetState(new HitState(this, dirX, KnockbackForce));
+    }
+    public void SavePlayerState(GameData data)
+    {
+        data.currentHp = _currentHp;
+        data.playerPos = transform.position;
+    }
+    public void LoadPlayerData(GameData data)
+    {
+        _currentHp = data.currentHp;
+
+        transform.position = data.playerPos;
+
+        _rb.linearVelocity = Vector2.zero;
+        _rb.bodyType = RigidbodyType2D.Dynamic;
+
+        SetState(new IdleState(this));
+    }
+
+    //체크포인트에서 호출시킬 메서드
+    public void CheckPoint()
+    {
+        GameData data = GameDataManager.Load();
+        SavePlayerState(data);
+        GameDataManager.Save(data);
     }
 }
