@@ -26,7 +26,7 @@ public class FallState : IPlayerState
 
     public void Update()
     {
-        //Debug.Log($"³«ÇÏ½ºÇÇµå: {_player.Rb.linearVelocity.y}");
+        Debug.Log($"³«ÇÏ½ºÇÇµå: {_player.Rb.linearVelocity.y}");
         if (_player.Rb.linearVelocity.y <= _player.MaxFallSpeedForStun)
         {
             _player.IsStunStarted = true;

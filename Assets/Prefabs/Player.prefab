@@ -256,18 +256,23 @@ MonoBehaviour:
     m_Bits: 2147483648
   _groundChecker: {fileID: 7884480922022477730}
   _groundCheckDistance: 0.1
+  _groundCheckerSize: {x: 0.8, y: 0.1}
   _minJumpForce: 5
   _maxJempForce: 15
   _maxChargeTime: 1
-  _maxFallSpeedForStun: -15
+  _maxFallSpeedForStun: -30
   _stunDuration: 1
-  _hitDuration: 0.2
+  _hitDuration: 1
   _attackDuration: 0.3
   _attackRange: 2
   _attackDamage: 10
   _attackTargetLayer:
     serializedVersion: 2
     m_Bits: 16
+  _baseTimeScale: 1
+  _currentTimeScale: 1
+  _accelerationRate: 10
+  _accelerationGravity: 1
 --- !u!50 &3781996616670612336
 Rigidbody2D:
   serializedVersion: 5
