@@ -66,7 +66,7 @@ public class CSVTableAutoBuilderWindow : EditorWindow //이걸 상속 받아야 에디터 
         // 결론적으로는 컴파일 이후에 작업해야할 목록을 저장해 놓는 것
         EditorPrefs.SetString(
             "CSV_PENDING", 
-            JsonUtility.ToJson(new PendingTableBuild{csvPath = csvPath,soClassName = soName,outputFolder = folder})
+            JsonUtility.ToJson(new PendingTableBuild{csvPath = csvPath,soClassName = soName})
             );
 
         // 이렇게도 저장이 가능함
