@@ -27,9 +27,7 @@ public class DeadState : IPlayerState
         _timer -= Time.deltaTime;
         if(_timer <= 0)
         {
-            GameData loadData = GameDataManager.Load();
-            _player.LoadPlayerData(loadData);
-            _player.SetState(new IdleState(_player));
+            _player.Respawn();
         }
     }
 }

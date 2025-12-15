@@ -185,6 +185,7 @@ public class Player : MonoBehaviour,IDamageable
     {
         data.currentHp = _currentHp;
         data.playerPos = transform.position;
+        data.maxHp = _maxHp;
     }
     public void LoadPlayerData(GameData data)
     {
@@ -204,5 +205,18 @@ public class Player : MonoBehaviour,IDamageable
         GameData data = GameDataManager.Load();
         SavePlayerState(data);
         GameDataManager.Save(data);
+    }
+
+    public void Respawn()
+    {
+        GameData data = GameDataManager.Load();
+
+        _currentHp = data.maxHp;
+
+        transform.position = data.playerPos;
+
+        _rb.linearVelocity = Vector2.zero;
+        _rb.bodyType = RigidbodyType2D.Dynamic;
+        SetState(new IdleState(this));
     }
 }
