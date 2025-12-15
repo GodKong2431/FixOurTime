@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PauseUI : MonoBehaviour
+public class PauseUiConnector : MonoBehaviour
 {
     [SerializeField] private PauseButton _pause;
     [SerializeField] private Panel _panel;
