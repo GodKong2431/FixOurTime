@@ -26,7 +26,7 @@ public class ChargeState : IPlayerState
 
     public void Update()
     {
-        _player.CurrentChargeTime += Time.deltaTime;
+        _player.CurrentChargeTime += _player.PlayerDeltaTime;
 
         float chargeRatio = Mathf.Clamp01(_player.CurrentChargeTime / _player.MaxChargeTime);
 

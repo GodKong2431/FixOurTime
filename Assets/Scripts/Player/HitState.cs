@@ -25,12 +25,15 @@ public class HitState : IPlayerState
             _knockbackForce);
         _player.Rb.AddForce(knockbackVector, ForceMode2D.Impulse);
         _player.Spr.color = Color.red;
+
+        _player.Rb.gravityScale = _player.AccelerationGravity;
     }
 
     public void Exit()
     {
         Debug.Log("히트 나감");
         _player.Spr.color = Color.white;
+        _player.Rb.gravityScale = 1f;
     }
 
     public void Update()
