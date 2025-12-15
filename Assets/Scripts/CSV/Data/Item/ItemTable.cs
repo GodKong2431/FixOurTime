@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
 [CreateAssetMenu(menuName = "TableSO/ItemTableData")]
-public class ItemTableTableSO : TableSOBase<ItemTableData>
+public class ItemTable : TableSOBase<ItemTableData>
 {
 }
