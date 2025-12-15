@@ -15,10 +15,14 @@ public class JumpState : IPlayerState
         Vector2 velocity = _player.Rb.linearVelocity;
         //수직속도
         velocity.y = _player.CalculatedJumpForce;
+        if(_player.CurrentTimeScale > 1.0f)
+        {
+            _player.Rb.gravityScale = _player.AccelerationGravity;
+        }
         //수평속도
         _jumpDirX=_player.JumpDirX;
 
-        velocity.x = _jumpDirX * _player.MoveSpeed;
+        velocity.x = _jumpDirX * _player.MoveSpeed*_player.CurrentTimeScale;
 
         _player.Rb.linearVelocity = velocity;
 

@@ -14,6 +14,7 @@ public class Player : MonoBehaviour,IDamageable
     [SerializeField] LayerMask _groundLayer;
     [SerializeField] Transform _groundChecker;
     [SerializeField] float _groundCheckDistance = 0.1f;
+    [SerializeField] Vector2 _groundCheckerSize = new Vector2(0.8f, 0.1f);
     bool _isGrounded;
 
     [Header("차지 점프 설정")]
@@ -40,6 +41,12 @@ public class Player : MonoBehaviour,IDamageable
     [SerializeField]
     LayerMask _attackTargetLayer;
 
+    [Header("가속설정")]
+    [SerializeField] float _baseTimeScale = 1.0f;
+    [SerializeField] float _currentTimeScale = 1.0f;
+    [SerializeField] float _accelerationRate = 10f;
+    [SerializeField] float _accelerationGravity = 2.0f;
+
     //[Header("무적시간")]
     //[SerializeField] float _invincibleDuration = 0.5f;
     //bool _isInvincible;
@@ -60,12 +67,16 @@ public class Player : MonoBehaviour,IDamageable
     public float AttackDuration => _attackDuration;
     public float AttackRange => _attackRange;
     public float AttackDamage => _attackDamage;
+    public float AccelerationRate => _accelerationRate;
+    public float AccelerationGravity => _accelerationGravity;
+    public float PlayerDeltaTime => Time.deltaTime * _currentTimeScale; //플레이어 전용 델타타임 가속구현용
     //public float InvincibleDuration => _invincibleDuration;
     //public float InvincibleTimer { get => _invincibleTimer; set => _invincibleTimer = value; }
     public float CurrentChargeTime { get => _currentChargeTime; set => _currentChargeTime = value; }
     public float CalculatedJumpForce { get => _calculatedJumpForce; set => _calculatedJumpForce = value; }
     public float JumpDirX { get => _jumpDirX; set => _jumpDirX = value; }
     public float CurrentHp { get=>_currentHp; set => _currentHp = value; }
+    public float CurrentTimeScale { get =>_currentTimeScale; set => _currentTimeScale = value; }
     public LayerMask AttackTargetLayer => _attackTargetLayer;
     public Vector2 MoveInput => _moveInput;
     public Rigidbody2D Rb => _rb;
@@ -75,6 +86,17 @@ public class Player : MonoBehaviour,IDamageable
     public bool IsStunStarted { get => _isStunStarted; set => _isStunStarted = value; }
     //public bool IsInvincible { get => _isInvincible; set => _isInvincible = value; }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = _isGrounded ? Color.green : Color.red; //땅에닿으면 녹, 아니면 빨
+
+        Vector3 boxChecker = (Vector2)_groundChecker.position + Vector2.down * (_groundCheckDistance + _groundCheckerSize.y / 2f);
+
+        Gizmos.DrawWireCube(boxChecker, _groundCheckerSize);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(_groundChecker.position, 0.05f);
+    }
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -85,8 +107,10 @@ public class Player : MonoBehaviour,IDamageable
     private void Update()
     {
         //땅체크
-        _isGrounded = Physics2D.Raycast(
+        _isGrounded = Physics2D.BoxCast(
             _groundChecker.position,    //발사위치
+            _groundCheckerSize,
+            0f,
             Vector2.down,               //발사방향
             _groundCheckDistance,       //레이저길이
             _groundLayer                //충돌대상체크

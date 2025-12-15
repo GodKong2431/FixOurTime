@@ -10,7 +10,11 @@ public class FallState : IPlayerState
     public void Enter()
     {
         Debug.Log("Æú ÁøÀÔ");
-        _player.Rb.gravityScale = 3f;
+        if(_player.CurrentTimeScale <= 1.0f)
+        {
+            _player.Rb.gravityScale =3f;
+        }
+       
     }
 
     public void Exit()

@@ -26,7 +26,7 @@ public class StunState : IPlayerState
 
     public void Update()
     {
-        _timer += Time.deltaTime;
+        _timer += _player.PlayerDeltaTime;
 
         if(_timer >= _player.StunDuration)
         {
