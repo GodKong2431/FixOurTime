@@ -8,6 +8,8 @@ using System.IO;
 
 public static class CSVAutoBuildPipeline
 {
+    private static string _csvSOPath = "Assets/Resources/CSV/CSVSO";
+
     // 컴파일이나 리로드 직후 자동으로 호출되는 콜백 메서드
     [DidReloadScripts]
     private static void OnScriptsReloaded()
@@ -29,7 +31,7 @@ public static class CSVAutoBuildPipeline
         ScriptableObject so = ScriptableObject.CreateInstance(soType);
 
         // 저장되어 있던 경로에 저장된 클래스이름의 SO 에셋 생성하고 경로 저장
-        string soAssetPath = Path.Combine(pending.outputFolder,pending.soClassName + ".asset");
+        string soAssetPath = Path.Combine(_csvSOPath, pending.soClassName + ".asset");
 
         // 저장된 경로에 메모리상의 인스턴스 so를 실제 에셋으로 저장
         AssetDatabase.CreateAsset(so, soAssetPath);

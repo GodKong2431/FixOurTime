@@ -12,6 +12,7 @@ public class IdleState : IPlayerState
         Vector2 velocity = _player.Rb.linearVelocity;
         velocity.x = 0f;
         _player.Rb.linearVelocity = velocity;
+        _player.Rb.gravityScale = 1f;
     }
 
     public void Exit()

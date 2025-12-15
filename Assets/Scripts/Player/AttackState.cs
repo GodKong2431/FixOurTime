@@ -29,8 +29,7 @@ public class AttackState : IPlayerState
         if (hit)
         {
             Debug.Log($"이놈 공격중 : {hit.collider.name}");
-            //여기에 데미지 입히는거 구현
-            // 인터페이스같은거 구현해서 겟컴퍼넌트 하면 좋을듯?
+            
             IDamageable damageableTarget = hit.collider.GetComponent<IDamageable>();
 
             if(damageableTarget != null)
@@ -56,7 +55,7 @@ public class AttackState : IPlayerState
 
     public void Update()
     {
-        _timer += Time.deltaTime;
+        _timer += _player.PlayerDeltaTime;
 
         if(_timer >= _player.AttackDuration)
         {

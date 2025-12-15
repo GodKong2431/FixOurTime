@@ -111,22 +111,6 @@ public static class CSVGenericTableEditor
 
         try
         {
-            // 타입이 문자열이면
-            if (targetType == typeof(string))
-            {
-                // 바로 저장후 return
-                result = raw;
-                return true;
-            }
-
-            // 타입이 int면
-            if (targetType == typeof(int))
-            {
-                // int로 변환
-                result = int.Parse(raw);
-                return true;
-            }
-
             // 타입이 bool이면
             if (targetType == typeof(bool))
             {

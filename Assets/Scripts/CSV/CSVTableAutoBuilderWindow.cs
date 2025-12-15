@@ -52,13 +52,12 @@ public class CSVTableAutoBuilderWindow : EditorWindow //이걸 상속 받아야 에디터 
 
         // class 이름과 so 이름을 정하기
         string dataName = tableName + "Data";
-        string soName = tableName + "TableSO";
 
         // csv를 읽고 정해진 위치에 헤더를 추출한 cs 생성
         CSVRowCodeGenerator.GenerateRow(csvPath, $"{folder}/{dataName}.cs", dataName);
 
         // class이름과 경로 및 so 이름으로 so class 생성
-        CSVTableSOCodeGenerator.GenerateTableSO(dataName, $"{folder}/{soName}.cs", soName);
+        CSVTableSOCodeGenerator.GenerateTableSO(dataName, $"{folder}/{tableName}.cs", tableName);
 
         // EditorPrefs은 프로젝트 리로드 및 다시 시작했을 때도 정보를 저장해 놓는 에디터 기능
         // JSON으로 저장한 이유 : 여러 데이터 저장할건데 여러 데이터 묶어서 저장할거라 문자열로 저장해야 하는데 JSON이 편함
@@ -66,7 +65,7 @@ public class CSVTableAutoBuilderWindow : EditorWindow //이걸 상속 받아야 에디터 
         // 결론적으로는 컴파일 이후에 작업해야할 목록을 저장해 놓는 것
         EditorPrefs.SetString(
             "CSV_PENDING", 
-            JsonUtility.ToJson(new PendingTableBuild{csvPath = csvPath,soClassName = soName,outputFolder = folder})
+            JsonUtility.ToJson(new PendingTableBuild{csvPath = csvPath,soClassName = tableName })
             );
 
         // 이렇게도 저장이 가능함

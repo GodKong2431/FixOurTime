@@ -10,13 +10,18 @@ public class FallState : IPlayerState
     public void Enter()
     {
         Debug.Log("폴 진입");
-        _player.Rb.gravityScale = 3f;
+        if(_player.CurrentTimeScale <= 1.0f)
+        {
+            _player.Rb.gravityScale =3f;
+        }
+       
     }
 
     public void Exit()
     {
         Debug.Log("폴 나감");
         _player.Rb.gravityScale = 1f;
+        _player.IsChargeStarted = false;
     }
 
     public void Update()
