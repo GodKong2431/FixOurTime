@@ -23,7 +23,7 @@ public class InteractableGear : MoveGear,IDamageable
             MoveNextPoint();
             if (ChangeNextPoint())
             {
-                OnOffObj.SetActive(!OnOffObj.activeSelf);
+                OnOffObj?.SetActive(!OnOffObj.activeSelf);
                 _currentState = GearStateType.GearIdleState;
             }
         }
