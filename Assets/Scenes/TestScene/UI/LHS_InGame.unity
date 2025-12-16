@@ -1687,7 +1687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e10a1d1f3761ec5468fa22ea62c9c029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerUiConnector
-  _playerHpUI: {fileID: 0}
+  _playerHpUI: {fileID: 1887246408}
   _player: {fileID: 0}
 --- !u!4 &613671966
 Transform:
@@ -3286,8 +3286,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: -5, y: 0}
-  m_SizeDelta: {x: -20, y: 0}
+  m_AnchoredPosition: {x: -0.0016021729, y: 0}
+  m_SizeDelta: {x: -10.0033, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1887246405
 GameObject:
@@ -3301,7 +3301,7 @@ GameObject:
   - component: {fileID: 1887246407}
   - component: {fileID: 1887246408}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: HPBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

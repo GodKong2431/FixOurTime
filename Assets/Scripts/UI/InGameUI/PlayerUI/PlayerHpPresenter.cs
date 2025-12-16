@@ -10,7 +10,7 @@ public class PlayerHpPresenter
         _player = player;
         _plyerHpUI = hpUI;
 
-        //_player.onHpChange += ChangeHp; //플레이어 이벤트 알림구독
+        _player.OnHpChanged += ChangeHp; //플레이어 이벤트 알림구독
     }
 
     void ChangeHp(float currentHp, float maxHp)
