@@ -7,7 +7,6 @@ public class PausePresenter
     Panel _panel;
     QuitCheckPanel _quitCheckPanel;
     MainCheckPanel _mainCheckPanel;
-    
 
     public PausePresenter(PauseButton button, Panel popUp, QuitCheckPanel quitPopUp, MainCheckPanel mainPopUp)
     {
