@@ -1977,11 +1977,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 399c980154248fc41b541233f493a29b, type: 3}
---- !u!1 &3220377407579739824 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5672251665625639765, guid: 89319606f9814d14e953787df72cf3a4, type: 3}
-  m_PrefabInstance: {fileID: 8352218092202431075}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3774943933667395844
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2112,18 +2107,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DelaySteam
       objectReference: {fileID: 0}
-    - target: {fileID: 7408606324025767553, guid: 89319606f9814d14e953787df72cf3a4, type: 3}
-      propertyPath: _delay
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7408606324025767553, guid: 89319606f9814d14e953787df72cf3a4, type: 3}
-      propertyPath: _steam
-      value: 
-      objectReference: {fileID: 3220377407579739824}
-    - target: {fileID: 7408606324025767553, guid: 89319606f9814d14e953787df72cf3a4, type: 3}
-      propertyPath: _duration
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7562908503315455041, guid: 89319606f9814d14e953787df72cf3a4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.9961
@@ -2167,26 +2150,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5672251665625639765, guid: 89319606f9814d14e953787df72cf3a4, type: 3}
-      insertIndex: 2
-      addedObject: {fileID: 9162378259147710053}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89319606f9814d14e953787df72cf3a4, type: 3}
---- !u!114 &9162378259147710053
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3220377407579739824}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37e5b31f86dcc8843a0f1a2e6f61d3d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Steam
-  _trapDamage: 20
-  _knockbackForce: 7
-  _invincibleTime: 0.5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

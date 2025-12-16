@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class MoveGear : Gear
 {
+    [Header("기어 움직임")]
     [SerializeField] protected Transform[] _points;
     [SerializeField] protected float _moveSpeed = 3f;
 

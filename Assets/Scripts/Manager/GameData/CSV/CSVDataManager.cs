@@ -12,7 +12,7 @@ using UnityEngine;
 // 인덱서 만들어 놔서 id만 인덱스로 넣어주면 한 줄 나옴
 // 거기에 .찍으면 데이터 종류 나옴
 
-public class CSVDataManager : MonoBehaviour
+public class CSVDataManager : SingleTon<CSVDataManager>
 {
     string _csvSOPath = "Assets/Resources/CSV/CSVSO";
 
@@ -20,8 +20,9 @@ public class CSVDataManager : MonoBehaviour
 
     private Dictionary<string, SOBase> CSVMap = new();
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         _files = GetCSVFileNames(_csvSOPath);
         CSVSOMapping();
 
