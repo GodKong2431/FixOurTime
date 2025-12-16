@@ -8,8 +8,8 @@ enum GearStateType
 
 public class InteractableGear : MoveGear,IDamageable
 {
+    [SerializeField] private GameObject OnOffObj;
     private GearStateType _currentState;
-    private bool _isTrigger = false;
 
     protected override void Awake()
     {
@@ -23,7 +23,7 @@ public class InteractableGear : MoveGear,IDamageable
             MoveNextPoint();
             if (ChangeNextPoint())
             {
-                _isTrigger = !_isTrigger;
+                OnOffObj.SetActive(!OnOffObj.activeSelf);
                 _currentState = GearStateType.GearIdleState;
             }
         }
