@@ -52,6 +52,7 @@ public class Player : MonoBehaviour,IDamageable
     float _baseTimeScale = 1.0f;
     float _accelerationRate = 10f;
     [SerializeField] bool _isSpeedBoostEnabled = false;
+    [SerializeField] SpeedBoostUI _boostUI; 
 
     [Header("더블점프 설정")]
     [SerializeField] int _airJumpCount = 1; //공중점프 가능횟수 (1이면 공중에서추가1회라는뜻)
@@ -78,6 +79,7 @@ public class Player : MonoBehaviour,IDamageable
     public float AttackDamage => _attackDamage;
     public float AccelerationRate => _accelerationRate;
     public float AccelerationGravity => _accelerationGravity;
+    public float BoostDuration => _boostDuration;
     public float PlayerDeltaTime => Time.deltaTime * _currentTimeScale; //플레이어 전용 델타타임, 가속구현용
     public float CurrentChargeTime { get => _currentChargeTime; set => _currentChargeTime = value; }
     public float CalculatedJumpForce { get => _calculatedJumpForce; set => _calculatedJumpForce = value; }
@@ -113,6 +115,10 @@ public class Player : MonoBehaviour,IDamageable
         _spr = GetComponent<SpriteRenderer>();
         _currentHp = _maxHp;
         _currentAirJump = _airJumpCount;
+        if(_boostUI != null)
+        {
+            _boostUI.Initialize(this);
+        }
         SetState(new IdleState(this));
     }
     private void Update()
@@ -225,6 +231,11 @@ public class Player : MonoBehaviour,IDamageable
         float timer = 0f;
         float origunalGravity = _rb.gravityScale;
 
+        if (_boostUI != null)
+        {
+            _boostUI.StartBoostIcon();
+        }
+
         _currentTimeScale = _accelerationScale;
         _rb.gravityScale = _accelerationGravity;
 
@@ -236,6 +247,11 @@ public class Player : MonoBehaviour,IDamageable
 
         _currentTimeScale = _baseTimeScale;
         _rb.gravityScale = origunalGravity;
+
+        if (_boostUI != null)
+        {
+            _boostUI.StopBoostIcon();
+        }
     }
 
     public void TakeDamage(float damage, float KnockbackForce, Vector3 hitPos)
