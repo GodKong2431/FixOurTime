@@ -8,7 +8,8 @@ enum GearStateType
 
 public class InteractableGear : MoveGear,IDamageable
 {
-    [SerializeField] private GameObject OnOffObj;
+    [Header("꺼질 오브젝트")]
+    [SerializeField] private GameObject[] _onOffObjs;
     private GearStateType _currentState;
 
     protected override void Awake()
@@ -23,7 +24,8 @@ public class InteractableGear : MoveGear,IDamageable
             MoveNextPoint();
             if (ChangeNextPoint())
             {
-                OnOffObj?.SetActive(!OnOffObj.activeSelf);
+                if (_onOffObjs != null)
+                    ObjOnOff();
                 _currentState = GearStateType.GearIdleState;
             }
         }
@@ -35,5 +37,12 @@ public class InteractableGear : MoveGear,IDamageable
     public void HitGear()
     {
         _currentState = GearStateType.GearMoveState;
+    }
+    public void ObjOnOff()
+    {
+        foreach (var obj in _onOffObjs)
+        {
+            obj.SetActive(!obj.activeSelf);
+        }
     }
 }
