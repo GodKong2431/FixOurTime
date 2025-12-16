@@ -38,6 +38,9 @@ public class FallState : IPlayerState
 
         if (_player.IsGrounded)
         {
+            _player.CurrentAirJump = _player.AirJumpCount;
+            _player.IsAirJump = true;
+
             if (_player.IsStunStarted)
             {
                 _player.IsStunStarted = false;

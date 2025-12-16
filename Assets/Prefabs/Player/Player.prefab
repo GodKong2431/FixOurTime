@@ -284,6 +284,9 @@ MonoBehaviour:
   _accelerationGravity: 3
   _boostDuration: 5
   _accelerationScale: 2
+  _isSpeedBoostEnabled: 0
+  _airJumpCount: 1
+  _isDoubleJumpEnabled: 0
 --- !u!50 &3781996616670612336
 Rigidbody2D:
   serializedVersion: 5

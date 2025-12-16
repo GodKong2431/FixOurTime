@@ -51,11 +51,21 @@ public class Player : MonoBehaviour,IDamageable
     float _currentTimeScale = 1.0f;
     float _baseTimeScale = 1.0f;
     float _accelerationRate = 10f;
+    [SerializeField] bool _isSpeedBoostEnabled = false;
+
+    [Header("더블점프 설정")]
+    [SerializeField] int _airJumpCount = 1; //공중점프 가능횟수 (1이면 공중에서추가1회라는뜻)
+    int _currentAirJump;
+    bool _isAirJump = true; //2단점프 가능여부
+    [SerializeField] bool _isDoubleJumpEnabled = false;
+
 
     Rigidbody2D _rb;
     SpriteRenderer _spr;
 
     //프로퍼티
+    public int AirJumpCount => _airJumpCount;
+    public int CurrentAirJump { get => _currentAirJump; set => _currentAirJump = value; }
     public float MoveSpeed => _moveSpeed;
     public float MinJumpForce => _minJumpForce;
     public float MaxJumpForce => _maxJempForce;
@@ -81,7 +91,10 @@ public class Player : MonoBehaviour,IDamageable
     public bool IsGrounded => _isGrounded;
     public bool IsChargeStarted { get => _isChargeStarted; set => _isChargeStarted = value; }
     public bool IsStunStarted { get => _isStunStarted; set => _isStunStarted = value; }
-    
+    public bool IsAirJump { get => _isAirJump; set => _isAirJump = value; }
+    public bool IsDoubleJumpEnabled { get => _isDoubleJumpEnabled; set => _isDoubleJumpEnabled = value; }
+    public bool IsSpeedBoostEnabled { get => _isSpeedBoostEnabled; set => _isSpeedBoostEnabled = value; }
+
 
     private void OnDrawGizmos()
     {
@@ -99,6 +112,7 @@ public class Player : MonoBehaviour,IDamageable
         _rb = GetComponent<Rigidbody2D>();
         _spr = GetComponent<SpriteRenderer>();
         _currentHp = _maxHp;
+        _currentAirJump = _airJumpCount;
         SetState(new IdleState(this));
     }
     private void Update()
@@ -139,21 +153,40 @@ public class Player : MonoBehaviour,IDamageable
     }
     public void OnJump(InputAction.CallbackContext ctx)
     {
-        if (_currentState is HitState || _currentState is DeadState || _currentState is FallState)
+        if (_currentState is HitState || _currentState is DeadState)
         {
             return;
         }
+        //공중에서 점프입력 들어왔을때 2단점프 시도
         if (ctx.started)
         {
-            _isChargeStarted = true;
-        }
-        else if (ctx.canceled)
-        {
-            if(_currentState is ChargeState currentChargeState)
+            if (_currentState is FallState || _currentState is JumpState)
             {
-                currentChargeState.ReleaseJump();
+                if (_currentAirJump > 0 && _isAirJump &&_isDoubleJumpEnabled)
+                {
+                    _jumpDirX = _moveInput.x; //이거 활성화 시키면 공중에서 더블점프로 방향전환 가능
+                    SetState(new JumpState(this, true));
+                    return;
+                }
             }
         }
+        
+        //땅에있을때
+        if (_isGrounded)
+        {
+            if (ctx.started)
+            {
+                _isChargeStarted = true;
+            }
+            else if (ctx.canceled)
+            {
+                if (_currentState is ChargeState currentChargeState)
+                {
+                    currentChargeState.ReleaseJump();
+                }
+            }
+        }
+        
     }
     public void OnAttack(InputAction.CallbackContext ctx)
     {
@@ -177,7 +210,7 @@ public class Player : MonoBehaviour,IDamageable
     }
     public void OnSpeedBoost(InputAction.CallbackContext ctx)
     {
-        if( ctx.started && _currentState is not HitState && _currentState is not StunState)
+        if( ctx.started && _isSpeedBoostEnabled && _currentState is not HitState && _currentState is not StunState)
         {
             StartCoroutine(SpeedBoostCoroutine());
         }
@@ -223,6 +256,7 @@ public class Player : MonoBehaviour,IDamageable
             SetState(new DeadState(this));
             return;
         }
+        _isAirJump = false;
 
         float dirX = (transform.position.x > hitPos.x) ? 1f : -1f;
 
@@ -268,5 +302,17 @@ public class Player : MonoBehaviour,IDamageable
         SetState(new IdleState(this));
     }
 
-    
+    //기능 해금들
+    public void UnlockDoubleJump()
+    {
+        _isDoubleJumpEnabled = true;
+        Debug.Log("더블 점프 기능이 활성화되었습니다.");
+        
+    }
+
+    public void UnlockSpeedBoost()
+    {
+        _isSpeedBoostEnabled = true;
+        Debug.Log("가속 기능이 활성화되었습니다.");
+    }
 }
