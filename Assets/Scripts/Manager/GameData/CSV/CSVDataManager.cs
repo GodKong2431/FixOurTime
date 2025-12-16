@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-
 // 데이터 가져오는 방법
 // 데이터 통으로 가져오고 싶으면
 // 예) Get<ItemTableData>("ItemTable")
@@ -12,7 +11,6 @@ using UnityEngine;
 // 한 줄만 뽑고 싶으면
 // 인덱서 만들어 놔서 id만 인덱스로 넣어주면 한 줄 나옴
 // 거기에 .찍으면 데이터 종류 나옴
-
 
 public class CSVDataManager : MonoBehaviour
 {
@@ -54,7 +52,6 @@ public class CSVDataManager : MonoBehaviour
         string[] files = Directory.GetFiles(folderPath, "*.asset");
         string[] result = new string[files.Length];
 
-
         for (int i = 0; i < files.Length; i++)
         {
             result[i] = Path.GetFileNameWithoutExtension(files[i]);
@@ -67,6 +64,7 @@ public class CSVDataManager : MonoBehaviour
     {
         if(_files == null)
             return;
+
         foreach (string file in _files)
         {
             SOBase tableSO = Resources.Load<SOBase>($"CSV/CSVSO/{file}");
