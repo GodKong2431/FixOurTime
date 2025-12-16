@@ -14,6 +14,10 @@ public class FallState : IPlayerState
         {
             _player.Rb.gravityScale =3f;
         }
+        else
+        {
+            _player.Rb.gravityScale = _player.AccelerationGravity;
+        }
        
     }
 

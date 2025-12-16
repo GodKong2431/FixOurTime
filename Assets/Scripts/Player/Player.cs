@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -44,16 +45,12 @@ public class Player : MonoBehaviour,IDamageable
     LayerMask _attackTargetLayer;
 
     [Header("가속설정")]
-    [SerializeField] float _baseTimeScale = 1.0f;
-    [SerializeField] float _currentTimeScale = 1.0f;
-    [SerializeField] float _accelerationRate = 10f;
     [SerializeField] float _accelerationGravity = 2.0f;
-
-    //[Header("무적시간")]
-    //[SerializeField] float _invincibleDuration = 0.5f;
-    //bool _isInvincible;
-    //float _invincibleTimer;
-   
+    [SerializeField] float _boostDuration = 5.0f;
+    [SerializeField] float _accelerationScale = 2.0f;
+    float _currentTimeScale = 1.0f;
+    float _baseTimeScale = 1.0f;
+    float _accelerationRate = 10f;
 
     Rigidbody2D _rb;
     SpriteRenderer _spr;
@@ -71,9 +68,7 @@ public class Player : MonoBehaviour,IDamageable
     public float AttackDamage => _attackDamage;
     public float AccelerationRate => _accelerationRate;
     public float AccelerationGravity => _accelerationGravity;
-    public float PlayerDeltaTime => Time.deltaTime * _currentTimeScale; //플레이어 전용 델타타임 가속구현용
-    //public float InvincibleDuration => _invincibleDuration;
-    //public float InvincibleTimer { get => _invincibleTimer; set => _invincibleTimer = value; }
+    public float PlayerDeltaTime => Time.deltaTime * _currentTimeScale; //플레이어 전용 델타타임, 가속구현용
     public float CurrentChargeTime { get => _currentChargeTime; set => _currentChargeTime = value; }
     public float CalculatedJumpForce { get => _calculatedJumpForce; set => _calculatedJumpForce = value; }
     public float JumpDirX { get => _jumpDirX; set => _jumpDirX = value; }
@@ -86,7 +81,7 @@ public class Player : MonoBehaviour,IDamageable
     public bool IsGrounded => _isGrounded;
     public bool IsChargeStarted { get => _isChargeStarted; set => _isChargeStarted = value; }
     public bool IsStunStarted { get => _isStunStarted; set => _isStunStarted = value; }
-    //public bool IsInvincible { get => _isInvincible; set => _isInvincible = value; }
+    
 
     private void OnDrawGizmos()
     {
@@ -109,24 +104,22 @@ public class Player : MonoBehaviour,IDamageable
     private void Update()
     {
         //땅체크
-        _isGrounded = Physics2D.BoxCast(
-            _groundChecker.position,    //발사위치
-            _groundCheckerSize,
-            0f,
-            Vector2.down,               //발사방향
-            _groundCheckDistance,       //레이저길이
-            _groundLayer                //충돌대상체크
-            );
-        //무적 타이머 업데이트
-        //if (_isInvincible)
-        //{
-        //    _invincibleTimer -= Time.deltaTime;
-        //    if (_invincibleTimer <= 0f)
-        //    {
-        //        _isInvincible = false;
-        //    }
-        //}
-
+        if(_rb.linearVelocity.y > 0.1f)
+        {
+            _isGrounded = false;
+        }
+        else
+        {
+            _isGrounded = Physics2D.BoxCast(
+                _groundChecker.position,    //발사위치
+                _groundCheckerSize,
+                0f,
+                Vector2.down,               //발사방향
+                _groundCheckDistance,       //레이저길이
+                _groundLayer                //충돌대상체크
+                );
+        }
+            
         _currentState.Update();
     }
     public void SetState(IPlayerState newState)
@@ -182,13 +175,38 @@ public class Player : MonoBehaviour,IDamageable
             }
         }
     }
+    public void OnSpeedBoost(InputAction.CallbackContext ctx)
+    {
+        if( ctx.started && _currentState is not HitState && _currentState is not StunState)
+        {
+            StartCoroutine(SpeedBoostCoroutine());
+        }
+    }
+    private IEnumerator SpeedBoostCoroutine()
+    {
+        if(_currentTimeScale > _baseTimeScale)
+        {
+            yield break;
+        }
+
+        float timer = 0f;
+        float origunalGravity = _rb.gravityScale;
+
+        _currentTimeScale = _accelerationScale;
+        _rb.gravityScale = _accelerationGravity;
+
+        while(timer < _boostDuration)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        _currentTimeScale = _baseTimeScale;
+        _rb.gravityScale = origunalGravity;
+    }
 
     public void TakeDamage(float damage, float KnockbackForce, Vector3 hitPos)
     {
-        //if (_isInvincible)
-        //{
-        //    return;
-        //}
 
         if (_currentState is HitState || _currentState is DeadState)
         {
@@ -249,4 +267,6 @@ public class Player : MonoBehaviour,IDamageable
         _rb.bodyType = RigidbodyType2D.Dynamic;
         SetState(new IdleState(this));
     }
+
+    
 }

@@ -1299,6 +1299,7 @@ MonoBehaviour:
   - {fileID: 1077969666}
   - {fileID: 701513328}
   _moveSpeed: 5
+  OnOffObj: {fileID: 0}
 --- !u!212 &1974996935
 SpriteRenderer:
   m_ObjectHideFlags: 0
