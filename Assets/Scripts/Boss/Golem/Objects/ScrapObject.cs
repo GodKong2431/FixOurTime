@@ -1,32 +1,54 @@
 using UnityEngine;
-using System.Collections;
+
 public class ScrapObject : MonoBehaviour
 {
-    [Header("Spec")]
-    [SerializeField] private float _scrapSpeed = 5.0f; // 이동 속도
+    private Vector3 _dir;
+    private float _speed;
+    private float _damage;
+    private bool _isFragment; // 파편 여부
 
-    private Vector3 _moveDirection;
-
-    // 생성 시 호출되어 날아갈 방향 설정
-    public void Initialize(Vector3 dir)
+    public void Initialize(Vector3 dir, BossData data, bool isFragment = false)
     {
-        _moveDirection = dir;
-        Destroy(gameObject, 5.0f); // 5초 뒤 자동 삭제 (맵 밖으로 나감)
+        _dir = dir;
+        _speed = data.scrapSpeed;
+        _damage = isFragment ? data.scrapFragDamage : data.scrapDamage;
+        _isFragment = isFragment;
+
+        Destroy(gameObject, 5f); // 안전장치
     }
 
     private void Update()
     {
-        // 설정된 방향으로 등속 이동
-        transform.Translate(_moveDirection * _scrapSpeed * Time.deltaTime);
+        transform.Translate(_dir * _speed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.CompareTag("Player"))
+        // 1. 플레이어 피격
+        if (collision.TryGetComponent(out IDamageable target))
         {
-            Debug.Log("플레이어 피격 (고철)");
-            // TODO: 플레이어 데미지 처리 로직 호출
+            target.TakeDamage(_damage, 1f, transform.position);
             Destroy(gameObject);
+        }
+        // 2. 벽 충돌 (파편이 아닐 때만 분열)
+        else if (collision.CompareTag("Wall") && !_isFragment)
+        {
+            Split();
+            Destroy(gameObject);
+        }
+    }
+
+    private void Split()
+    {
+        // 4방향 파편 생성 (대각선)
+        Vector3[] dirs = { new Vector3(-1, 1), new Vector3(1, 1), new Vector3(-1, -1), new Vector3(1, -1) };
+
+        foreach (var d in dirs)
+        {
+            GameObject frag = Instantiate(gameObject, transform.position, Quaternion.identity);
+            frag.transform.localScale = transform.localScale * 0.5f; // 크기 절반
+            // 무한 루프 방지를 위해 isFragment = true 설정
+            frag.GetComponent<ScrapObject>().Initialize(d.normalized, new BossData { scrapSpeed = _speed, scrapFragDamage = 5 }, true);
         }
     }
 }

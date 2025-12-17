@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8261216009859494318}
-  - component: {fileID: 6393268520223617358}
-  - component: {fileID: 4793759585175715726}
   - component: {fileID: 3328507870384160524}
   m_Layer: 0
   m_Name: BossManager
@@ -34,38 +32,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7051147591684779487}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6393268520223617358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3026520123031711801}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b72f40818583c6547b3b1a364fc219bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BossStatusManager
-  _bossId: 101
-  _bossMaxHp: 100
-  _bossCurrentHp: 0
-  _isGameClear: 0
---- !u!114 &4793759585175715726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3026520123031711801}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bf9927d0744d824fbf031894f257e1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BossObjectManager
-  _scrapPrefab: {fileID: 7145188956452611248, guid: 5e02387c94b53bb46876c1979cecf324, type: 3}
-  _concreteHorizontalPrefab: {fileID: 1523689871022744349, guid: 6aab5bdaf365b85478eed806bc60f1ff, type: 3}
-  _concreteVerticalPrefab: {fileID: 1523689871022744349, guid: 6aab5bdaf365b85478eed806bc60f1ff, type: 3}
-  _weaknessPrefab: {fileID: 4673488607674424036, guid: 4bbbffbe74326e443a6c985129a21b2f, type: 3}
 --- !u!114 &3328507870384160524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,16 +44,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 574672a6bbead16428711cc2afed85d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossController
-  _currentBossState: 0
-  _sideBossModel: {fileID: 0}
-  _bottomBossModel: {fileID: 0}
-  _sideSpawnPoint: {fileID: 0}
-  _sideRetreatPoint: {fileID: 0}
-  _bottomRetreatPoint: {fileID: 0}
-  _playerTransform: {fileID: 0}
-  _bossScrapPatternSpeed: 0.5
-  _bossConcretePatternSpeed: 1
-  _bossObjectManager: {fileID: 4793759585175715726}
+  _bossId: 101
+  player: {fileID: 0}
+  centerPoint: {fileID: 0}
+  wallBossObject: {fileID: 0}
+  floorBossObject: {fileID: 0}
+  scrapPrefab: {fileID: 7145188956452611248, guid: 5e02387c94b53bb46876c1979cecf324, type: 3}
+  concreteHPrefab: {fileID: 1523689871022744349, guid: 6aab5bdaf365b85478eed806bc60f1ff, type: 3}
+  concreteVPrefab: {fileID: 1523689871022744349, guid: 09f4c7774a68fd44d94dd0daa615e5bd, type: 3}
+  weaknessObject: {fileID: 0}
 --- !u!1 &8404700497275151832
 GameObject:
   m_ObjectHideFlags: 0
