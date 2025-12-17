@@ -1,8 +1,15 @@
 using System.Collections;
 using UnityEngine;
 
-public class AutoMoveGear : MoveGear
+public class AutoMoveGear : Gear
 {
+    PointMoveObj _move;
+
+    private void Awake()
+    {
+        _move = GetComponent<PointMoveObj>();
+    }
+
     private void Start()
     {
         StartCoroutine(AutoMove());
@@ -12,8 +19,8 @@ public class AutoMoveGear : MoveGear
     {
         while (true)
         {
-            MoveNextPoint();
-            ChangeNextPoint();
+            _move.MoveNextPoint();
+            _move.ChangeNextPoint();
 
             yield return null;
         }

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8191545205411544720}
   - component: {fileID: 6755122620350910605}
   - component: {fileID: 2927721263715831296}
+  - component: {fileID: 5622380091401863009}
   m_Layer: 0
   m_Name: AutoMoveGear
   m_TagString: Untagged
@@ -171,10 +172,22 @@ MonoBehaviour:
   _trapDamage: 20
   _knockbackForce: 7
   _invincibleTime: 0.2
+--- !u!114 &5622380091401863009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2262647233743987343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e70394c9fdd6db42a4e001a9b58fb3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PointMoveObj
   _points:
   - {fileID: 3179103578674882961}
   - {fileID: 6211667226839119704}
-  _moveSpeed: 10
+  _moveSpeed: 3
 --- !u!1 &5983245051746801164
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,7 +213,7 @@ Transform:
   m_GameObject: {fileID: 5983245051746801164}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5, y: 0, z: 0}
+  m_LocalPosition: {x: 15.18, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

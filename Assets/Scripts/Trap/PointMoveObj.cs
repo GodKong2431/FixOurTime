@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class MoveGear : Gear
+public class PointMoveObj : MonoBehaviour
 {
-    [Header("기어 움직임")]
+    [Header("움직일 포인트 및 속도")]
     [SerializeField] protected Transform[] _points;
     [SerializeField] protected float _moveSpeed = 3f;
 
@@ -16,7 +16,6 @@ public class MoveGear : Gear
         transform.position = _points[0].position;
         _nextPoint = _points[_currentIndex];
     }
-
 
     public void MoveNextPoint()
     {
@@ -34,9 +33,6 @@ public class MoveGear : Gear
         //거리가 0.05f보다 가까워 지면 방향 인덱스 변경
         if (Vector3.Distance(transform.position, _nextPoint.position) < 0.05f)
         {
-            
-            
-
             //마지막 인덱스에 도착했거나 처음 인덱스에 도착했으면 방향 변경
             if (_currentIndex >= _points.Length - 1 || _currentIndex <= 0)
                 _wayDir *= -1;

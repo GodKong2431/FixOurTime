@@ -14878,9 +14878,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BookCase
   _cooldown: 10
-  _distance: 10
   _stayTime: 2
   _speed: 10
+  _returnSpeed: 0
 --- !u!61 &891205411
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15164,17 +15164,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5877078601999890171, guid: da9c215461cc0df48be6927c44e73eb0, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 19.18
-      objectReference: {fileID: 0}
     - target: {fileID: 6424162435264945522, guid: da9c215461cc0df48be6927c44e73eb0, type: 3}
       propertyPath: m_Name
       value: InteractableGear
-      objectReference: {fileID: 0}
-    - target: {fileID: 8246120263538217136, guid: da9c215461cc0df48be6927c44e73eb0, type: 3}
-      propertyPath: _onOffObjs.Array.size
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8246120263538217136, guid: da9c215461cc0df48be6927c44e73eb0, type: 3}
       propertyPath: '_onOffObjs.Array.data[0]'
@@ -15285,6 +15277,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SavePoint
       objectReference: {fileID: 0}
+    - target: {fileID: 6886057243322465045, guid: e40ce7d4f07b8844991085eb2aaff939, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7980538125359217384, guid: e40ce7d4f07b8844991085eb2aaff939, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.53
@@ -15338,10 +15334,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2055783489}
     m_Modifications:
-    - target: {fileID: 6211667226839119704, guid: d15c22f8e030deb41b38e11b8f132724, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 15.18
-      objectReference: {fileID: 0}
     - target: {fileID: 7560958312244250066, guid: d15c22f8e030deb41b38e11b8f132724, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.161438
@@ -20775,11 +20767,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7303901205914570929, guid: 399c980154248fc41b541233f493a29b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.56
+      value: -11.9
       objectReference: {fileID: 0}
     - target: {fileID: 7303901205914570929, guid: 399c980154248fc41b541233f493a29b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 51.72
+      value: -15.4
       objectReference: {fileID: 0}
     - target: {fileID: 7303901205914570929, guid: 399c980154248fc41b541233f493a29b, type: 3}
       propertyPath: m_LocalPosition.z
