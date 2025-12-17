@@ -1,14 +1,11 @@
 using UnityEngine;
 
-public class DeadState : IPlayerState
+public class DeadState : IState<Player>
 {
-    Player _player;
+
     float _timer = 2.0f;
-    public DeadState(Player player)
-    {
-        _player = player;
-    }
-    public void Enter()
+
+    public void Enter(Player _player)
     {
         //사망 애니메이션 여기 넣기
         _player.Rb.linearVelocity = Vector2.zero;
@@ -16,13 +13,13 @@ public class DeadState : IPlayerState
         Debug.Log("사망");
     }
 
-    public void Exit()
+    public void Exit(Player _player)
     {
         _player.Rb.bodyType = RigidbodyType2D.Dynamic;
         _timer = 2.0f;
     }
 
-    public void Update()
+    public void Execute(Player _player)
     {
         _timer -= Time.deltaTime;
         if(_timer <= 0)

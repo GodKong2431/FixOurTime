@@ -1,14 +1,11 @@
 using UnityEngine;
 
-public class ChargeState : IPlayerState
+public class ChargeState : IState<Player>
 {
-    Player _player;
-    public ChargeState(Player player)
+    public void Enter(Player _player)
     {
-        _player = player;
-    }
-    public void Enter()
-    {
+        _player.SetPhysicsMaterial(false);
+
         _player.CurrentChargeTime = 0;
         _player.CalculatedJumpForce = _player.MinJumpForce;
 
@@ -19,13 +16,20 @@ public class ChargeState : IPlayerState
 
     }
 
-    public void Exit()
+    public void Exit(Player _player)
     {
         _player.IsChargeStarted = false;
     }
 
-    public void Update()
+    public void Execute(Player _player)
     {
+        if (!_player.IsGrounded)
+        {
+            _player.SetState(new FallState());
+            return;
+        }
+
+        //차지 시간 계산
         _player.CurrentChargeTime += _player.PlayerDeltaTime;
 
         float chargeRatio = Mathf.Clamp01(_player.CurrentChargeTime / _player.MaxChargeTime);
@@ -46,8 +50,11 @@ public class ChargeState : IPlayerState
             _player.Spr.flipX = true;
         }
     }
-    public void ReleaseJump()
+    public void ReleaseJump(Player _player)
     {
-        _player.SetState(new JumpState(_player));
+        if (_player.IsGrounded)
+        {
+            _player.SetState(new JumpState(false));
+        }
     }
 }

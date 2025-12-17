@@ -1,19 +1,17 @@
 using UnityEngine;
 
-public class DashAttackState : IPlayerState
+public class DashAttackState : IState<Player>
 {
-    Player _player;
+  
     float _timer;
     Vector2 _dashDir;
     Vector2 _startPos;
     bool _isBounced = false;
 
-    public DashAttackState(Player player)
+    public void Enter(Player _player)
     {
-        _player = player;
-    }
-    public void Enter()
-    {
+        _player.SetPhysicsMaterial(true);
+
         _timer = 0f;
         _isBounced = false;
         _startPos = _player.transform.position;
@@ -38,7 +36,7 @@ public class DashAttackState : IPlayerState
         _player.Rb.AddForce(_dashDir * _player.DashSpeed, ForceMode2D.Impulse);
     }
 
-    public void Exit()
+    public void Exit(Player _player)
     {
         if(_player.DashHitbox != null)
         {
@@ -47,7 +45,7 @@ public class DashAttackState : IPlayerState
         _player.Rb.gravityScale = 1f;
     }
 
-    public void Update()
+    public void Execute(Player _player)
     {
         if(_isBounced )
         {
@@ -61,11 +59,11 @@ public class DashAttackState : IPlayerState
         // [중요] 거리에 도달하거나 시간이 다 되면 상태 종료
         if (movedDistance >= _player.DashDistance || _timer >= _player.DashDuration)
         {
-            _player.SetState(new FallState(_player));
+            _player.SetState(new FallState());
         }
     }
 
-    public void HandleBounce(Vector2 hit)
+    public void HandleBounce(Player _player,Vector2 hit)
     {
         if( _isBounced )
         {
@@ -82,6 +80,6 @@ public class DashAttackState : IPlayerState
         Vector2 bounceDir = (Vector2.up + hit).normalized;
         _player.Rb.AddForce(bounceDir * _player.BounceForce, ForceMode2D.Impulse);
 
-        _player.SetState(new FallState(_player));
+        _player.SetState(new FallState());
     }
 }

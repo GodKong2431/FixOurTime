@@ -63,7 +63,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -368,6 +368,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   _moveSpeed: 5
   _maxHp: 100
+  _frictionMaterial: {fileID: 6200000, guid: b79bb05166f5b5a4aa047d3e48e5a60b, type: 2}
+  _bounceMaterial: {fileID: 6200000, guid: 5c9c767f222bc85428fd1a878f08a3bb, type: 2}
   _groundLayer:
     serializedVersion: 2
     m_Bits: 2147483648
@@ -387,7 +389,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16
   _accelerationGravity: 3
-  _boostDuration: 5
   _accelerationScale: 2
   _isSpeedBoostEnabled: 1
   _boostUI: {fileID: 6442367779953718848}
@@ -398,7 +399,7 @@ MonoBehaviour:
   _dashDistance: 3
   _dashSpeed: 20
   _dashDuration: 0.5
-  _bounceForce: 5
+  _bounceForce: 15
   _isDashAttackEnabled: 1
 --- !u!50 &3781996616670612336
 Rigidbody2D:
@@ -599,4 +600,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpeedBoostUI
   _blinkSpeed: 5
-  _blinkStartRatio: 0.7

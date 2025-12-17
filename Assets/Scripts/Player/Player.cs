@@ -6,12 +6,16 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour,IDamageable
 {
     [Header("기본 상태 값 설정")]
-    IPlayerState _currentState;
+    IState<Player> _currentState;
     [SerializeField] float _moveSpeed = 5f;
     [SerializeField] float _maxHp = 100;
     float _currentHp;
     Vector2 _moveInput;
     public event Action<float, float> OnHpChanged;
+
+    [Header("피직스 마테리얼")]
+    [SerializeField] PhysicsMaterial2D _frictionMaterial;  //마찰력1
+    [SerializeField] PhysicsMaterial2D _bounceMaterial;   //바운스1
 
     [Header("땅체크")]
     [SerializeField] LayerMask _groundLayer;
@@ -46,13 +50,13 @@ public class Player : MonoBehaviour,IDamageable
 
     [Header("가속설정")]
     [SerializeField] float _accelerationGravity = 2.0f;
-    [SerializeField] float _boostDuration = 5.0f;
     [SerializeField] float _accelerationScale = 2.0f;
     float _currentTimeScale = 1.0f;
     float _baseTimeScale = 1.0f;
     float _accelerationRate = 10f;
     [SerializeField] bool _isSpeedBoostEnabled = false;
-    [SerializeField] SpeedBoostUI _boostUI; 
+    [SerializeField] SpeedBoostUI _boostUI;
+    private Coroutine _speedBoostCoroutine;
 
     [Header("더블점프 설정")]
     [SerializeField] int _airJumpCount = 1; //공중점프 가능횟수 (1이면 공중에서추가1회라는뜻)
@@ -88,7 +92,6 @@ public class Player : MonoBehaviour,IDamageable
     public float AttackDamage => _attackDamage;
     public float AccelerationRate => _accelerationRate;
     public float AccelerationGravity => _accelerationGravity;
-    public float BoostDuration => _boostDuration;
     public float DashDistance => _dashDistance;
     public float DashDuration => _dashDuration;
     public float BounceForce => _bounceForce;
@@ -104,7 +107,7 @@ public class Player : MonoBehaviour,IDamageable
     public Vector2 MoveInput => _moveInput;
     public Rigidbody2D Rb => _rb;
     public SpriteRenderer Spr => _spr;
-    public IPlayerState CurrentState => _currentState;
+    public IState<Player> CurrentState => _currentState;
     public bool IsGrounded => _isGrounded;
     public bool IsChargeStarted { get => _isChargeStarted; set => _isChargeStarted = value; }
     public bool IsStunStarted { get => _isStunStarted; set => _isStunStarted = value; }
@@ -122,7 +125,8 @@ public class Player : MonoBehaviour,IDamageable
         {
             _boostUI.Initialize(this);
         }
-        SetState(new IdleState(this));
+        _currentState = new IdleState();
+        _currentState.Enter(this);
     }
     private void Update()
     {
@@ -143,13 +147,14 @@ public class Player : MonoBehaviour,IDamageable
                 );
         }
             
-        _currentState.Update();
+        _currentState.Execute(this);
     }
-    public void SetState(IPlayerState newState)
+    public void SetState(IState<Player> newState)
     {
-        _currentState?.Exit();
+        if (_currentState == newState) return;
+        _currentState?.Exit(this);
         _currentState = newState;
-        _currentState.Enter();
+        _currentState.Enter(this);
     }
     public void OnMove(InputAction.CallbackContext ctx)
     {
@@ -174,7 +179,7 @@ public class Player : MonoBehaviour,IDamageable
                 if (_currentAirJump > 0 && _isAirJump &&_isDoubleJumpEnabled)
                 {
                     _jumpDirX = _moveInput.x; //이거 활성화 시키면 공중에서 더블점프로 방향전환 가능
-                    SetState(new JumpState(this, true));
+                    SetState(new JumpState(true));
                     return;
                 }
             }
@@ -191,7 +196,7 @@ public class Player : MonoBehaviour,IDamageable
             {
                 if (_currentState is ChargeState currentChargeState)
                 {
-                    currentChargeState.ReleaseJump();
+                    currentChargeState.ReleaseJump(this);
                 }
             }
         }
@@ -212,7 +217,7 @@ public class Player : MonoBehaviour,IDamageable
             {
                 if (!(_currentState is AttackState))
                 {
-                    SetState(new AttackState(this));
+                    SetState(new AttackState());
                 }
             }
         }
@@ -224,26 +229,45 @@ public class Player : MonoBehaviour,IDamageable
         {
             if(_currentState is JumpState ||  _currentState is FallState)
             {
-                SetState(new DashAttackState(this));
+                SetState(new DashAttackState());
             }
         }
     }
     public void OnSpeedBoost(InputAction.CallbackContext ctx)
     {
-        if( ctx.started && _isSpeedBoostEnabled && _currentState is not HitState && _currentState is not StunState)
+        if(!_isSpeedBoostEnabled || _currentState is HitState || _currentState is StunState)
         {
-            StartCoroutine(SpeedBoostCoroutine());
+            return;
+        }
+
+        if (ctx.started)
+        {
+            if (_speedBoostCoroutine != null) StopCoroutine(_speedBoostCoroutine);
+            _speedBoostCoroutine = StartCoroutine(SpeedBoostCoroutine());
+        }
+        else if (ctx.canceled)
+        {
+            StopSpeedBoost();
+        }
+    }
+    private void StopSpeedBoost()
+    {
+        if (_speedBoostCoroutine != null)
+        {
+            StopCoroutine(_speedBoostCoroutine);
+            _speedBoostCoroutine = null;
+        }
+
+        _currentTimeScale = _baseTimeScale;
+        _rb.gravityScale = 1f;
+
+        if (_boostUI != null)
+        {
+            _boostUI.StopBoostIcon();
         }
     }
     private IEnumerator SpeedBoostCoroutine()
     {
-        if(_currentTimeScale > _baseTimeScale)
-        {
-            yield break;
-        }
-
-        float timer = 0f;
-        float origunalGravity = _rb.gravityScale;
 
         if (_boostUI != null)
         {
@@ -253,18 +277,9 @@ public class Player : MonoBehaviour,IDamageable
         _currentTimeScale = _accelerationScale;
         _rb.gravityScale = _accelerationGravity;
 
-        while(timer < _boostDuration)
+        while (true)
         {
-            timer += Time.deltaTime;
             yield return null;
-        }
-
-        _currentTimeScale = _baseTimeScale;
-        _rb.gravityScale = origunalGravity;
-
-        if (_boostUI != null)
-        {
-            _boostUI.StopBoostIcon();
         }
     }
 
@@ -275,6 +290,7 @@ public class Player : MonoBehaviour,IDamageable
         {
             return;
         }
+        StopSpeedBoost();
 
         _currentHp -= damage;
         _currentHp = Mathf.Max(0f, _currentHp); //0이하로 떨어지기 방지
@@ -283,21 +299,23 @@ public class Player : MonoBehaviour,IDamageable
 
         if( _currentHp <= 0)
         {
-            SetState(new DeadState(this));
+            SetState(new DeadState());
             return;
         }
         _isAirJump = false;
 
         float dirX = (transform.position.x > hitPos.x) ? 1f : -1f;
 
-        SetState(new HitState(this, dirX, KnockbackForce));
+        SetState(new HitState(dirX, KnockbackForce));
     }
+    //데이터 저장시키기
     public void SavePlayerState(GameData data)
     {
         data.currentHp = _currentHp;
         data.playerPos = transform.position;
         data.maxHp = _maxHp;
     }
+    //데이터 불러오기
     public void LoadPlayerData(GameData data)
     {
         _currentHp = data.currentHp;
@@ -307,7 +325,7 @@ public class Player : MonoBehaviour,IDamageable
         _rb.linearVelocity = Vector2.zero;
         _rb.bodyType = RigidbodyType2D.Dynamic;
 
-        SetState(new IdleState(this));
+        SetState(new IdleState());
     }
 
     //체크포인트에서 호출시킬 메서드
@@ -317,7 +335,7 @@ public class Player : MonoBehaviour,IDamageable
         SavePlayerState(data);
         GameDataManager.Save(data);
     }
-
+    //부활
     public void Respawn()
     {
         GameData data = GameDataManager.Load();
@@ -329,7 +347,7 @@ public class Player : MonoBehaviour,IDamageable
 
         _rb.linearVelocity = Vector2.zero;
         _rb.bodyType = RigidbodyType2D.Dynamic;
-        SetState(new IdleState(this));
+        SetState(new IdleState());
     }
 
     //기능 해금들
@@ -350,7 +368,13 @@ public class Player : MonoBehaviour,IDamageable
         _isDashAttackEnabled = true;
         Debug.Log("대시어택 기능이 활성화되었습니다.");
     }
+    //마테리얼 교체
+    public void SetPhysicsMaterial(bool isBounce)
+    {
+        _rb.sharedMaterial = isBounce ? _bounceMaterial : _frictionMaterial;
+    }
 
+    //땅체크 기즈모 그리기
     private void OnDrawGizmos()
     {
         Gizmos.color = _isGrounded ? Color.green : Color.red; //땅에닿으면 녹, 아니면 빨

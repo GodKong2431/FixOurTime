@@ -1,15 +1,13 @@
 using UnityEngine;
 
-public class StunState : IPlayerState
+public class StunState : IState<Player>
 {
-    Player _player;
     float _timer;
-    public StunState(Player player)
+
+    public void Enter(Player _player)
     {
-        _player = player;
-    }
-    public void Enter()
-    {
+        _player.SetPhysicsMaterial(false);
+
         _timer = 0f;
         _player.Rb.linearVelocity = Vector2.zero;
 
@@ -18,19 +16,19 @@ public class StunState : IPlayerState
         Debug.Log("½ºÅÏ");
     }
 
-    public void Exit()
+    public void Exit(Player _player)
     {
         _player.Rb.linearVelocity = Vector2.zero;
         _player.Spr.color = Color.white;
     }
 
-    public void Update()
+    public void Execute(Player _player)
     {
         _timer += _player.PlayerDeltaTime;
 
         if(_timer >= _player.StunDuration)
         {
-            _player.SetState(new IdleState(_player));
+            _player.SetState(new IdleState());
         }
 
     }

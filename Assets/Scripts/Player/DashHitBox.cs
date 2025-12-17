@@ -30,7 +30,7 @@ public class DashHitBox : MonoBehaviour
                 Vector2 hitNormal = (transform.position - other.transform.position).normalized;
 
                 // 대시 상태에 충돌 알림 (HandleBounce 내부에서 SetState를 호출하므로 즉시 종료됨)
-                dashState.HandleBounce(hitNormal);
+                dashState.HandleBounce(_player,hitNormal);
             }
         }
     }

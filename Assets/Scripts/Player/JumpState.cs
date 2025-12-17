@@ -1,22 +1,19 @@
 using UnityEngine;
 
-public class JumpState : IPlayerState
+public class JumpState : IState<Player>
 {
-    Player _player;
-    float _jumpDirX;
     bool _isDoubleJump;
-    public JumpState(Player player)
+    float _jumpDirX;
+
+    public JumpState(bool isDoubleJump)
     {
-        _player = player;
-    }
-    public JumpState(Player player, bool isDoubleJump)
-    {
-        _player = player;
         _isDoubleJump = isDoubleJump;
     }
 
-    public void Enter()
+    public void Enter(Player _player)
     {
+        _player.SetPhysicsMaterial(true);
+
         Debug.Log("점프 진입");
         Vector2 velocity = _player.Rb.linearVelocity;
         
@@ -75,31 +72,33 @@ public class JumpState : IPlayerState
         }
     }
 
-    public void Exit()
+    public void Exit(Player _player)
     {
         _player.Rb.gravityScale = 1f;
     }
 
-    public void Update()
+    public void Execute(Player _player)
     {
         if (_player.IsGrounded && _player.Rb.linearVelocity.y <= 0.01f)
         {
+            _player.SetPhysicsMaterial(false);
+
             _player.CurrentAirJump = _player.AirJumpCount;
             _player.IsAirJump = true;
             
             //입력값있으면 무브,아니면 대기상태로 변경
             if (_jumpDirX != 0)
             {
-                _player.SetState(new MoveState(_player));
+                _player.SetState(new MoveState());
             }
             else
             {
-                _player.SetState(new IdleState(_player));
+                _player.SetState(new IdleState());
             }
         }
         else if(_player.Rb.linearVelocity.y <= 0f && !_player.IsGrounded)
         {
-            _player.SetState(new FallState(_player));
+            _player.SetState(new FallState());
             return;
         }
     }
