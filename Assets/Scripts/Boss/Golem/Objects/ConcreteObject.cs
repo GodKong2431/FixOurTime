@@ -3,80 +3,60 @@ using System.Collections;
 
 public class ConcreteObject : MonoBehaviour
 {
-    [Header("Settings")]
-    [SerializeField] private float _concreteMoveDuration = 0.5f; // 이동 시간
-    [SerializeField] private float _concreteStayDuration = 5.0f; // 유지 시간
+    private BoxCollider2D _col;
 
-    private Vector3 _initialPos;
-    private Vector3 _targetPos;
-    private bool _isHorizontal;
-
-    // 생성 시 호출 (이동 방향 및 목표 설정)
-    public void Initialize(bool horizontal)
+    private void Awake()
     {
-        _initialPos = transform.position;
-        _isHorizontal = horizontal;
-
-        // 목표 지점 설정: 가로형이면 Y축 유지하고 X는 0(중앙), 세로형이면 반대
-        if (_isHorizontal)
-        {
-            _targetPos = new Vector3(0, transform.position.y, 0);
-        }
-        else
-        {
-            _targetPos = new Vector3(transform.position.x, 0, 0);
-        }
-
-        StartCoroutine(MoveProcess());
+        _col = GetComponent<BoxCollider2D>();
+        _col.isTrigger = true;
     }
 
-    private IEnumerator MoveProcess()
+    public void Initialize(bool isHorizontal, Vector3 mapCenter, float stayDuration, float moveDuration)
     {
-        // 1. 0.5초에 걸쳐 중앙으로 이동
-        float elapsed = 0;
+        Vector3 targetPos = transform.position;
+        if (isHorizontal) targetPos.x = 0;
+        else targetPos.y = 0;
 
-        while (elapsed < _concreteMoveDuration)
+        StartCoroutine(ProcessRoutine(targetPos, stayDuration, moveDuration));
+    }
+
+    private IEnumerator ProcessRoutine(Vector3 target, float stayDuration, float moveDuration)
+    {
+        // 1. 이동 
+        float t = 0;
+        Vector3 start = transform.position;
+        while (t < moveDuration)
         {
-            transform.position = Vector3.Lerp(_initialPos, _targetPos, elapsed / _concreteMoveDuration);
-            elapsed += Time.deltaTime;
+            t += Time.deltaTime;
+            transform.position = Vector3.Lerp(start, target, t / moveDuration);
             yield return null;
         }
-        transform.position = _targetPos;
 
-        // 2. 이동 완료 후: 플레이어가 밟을 수 있는 벽/발판으로 변경
+        // 2. 변환
+        _col.isTrigger = false;
         gameObject.layer = LayerMask.NameToLayer("Ground");
-        GetComponent<Collider2D>().isTrigger = false;
 
-        // 3. 5초간 대기 (스킬 지속 시간)
-        yield return new WaitForSeconds(_concreteStayDuration);
+        // 3. 유지
+        yield return new WaitForSeconds(stayDuration);
 
-        // 4. 복귀 시작: 다시 뚫고 지나갈 수 있게 변경
-        GetComponent<Collider2D>().isTrigger = true;
-
-        elapsed = 0;
-        float returnDuration = 1.0f; // 1초에 걸쳐서 원래 위치로
-
-        while (elapsed < returnDuration)
+        // 4. 복귀 및 소멸 
+        _col.isTrigger = true;
+        t = 0;
+        float returnTime = 1.0f; 
+        while (t < returnTime)
         {
-            transform.position = Vector3.Lerp(_targetPos, _initialPos, elapsed / returnDuration);
-            elapsed += Time.deltaTime;
+            t += Time.deltaTime;
+            transform.position = Vector3.Lerp(target, start, t / returnTime);
             yield return null;
         }
-
-        // 복귀 완료 후 소멸
         Destroy(gameObject);
     }
 
-    // 이동 중(공격 판정일 때) 충돌 처리
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (_col.isTrigger && collision.TryGetComponent(out IDamageable target))
         {
-            // 완전히 벽이 되기 전(이동 중)에는 데미지를 줌
-            if (gameObject.layer != LayerMask.NameToLayer("Ground"))
-            {
-                Debug.Log("플레이어 피격 (콘크리트 쿵)");
-            }
+            target.TakeDamage(10, 5f, transform.position);
         }
     }
 }
