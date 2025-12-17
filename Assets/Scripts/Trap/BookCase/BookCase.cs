@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEditorInternal.ReorderableList;
+using static UnityEngine.UI.Image;
 
 
 
@@ -11,20 +12,20 @@ public class BookCase : MonoBehaviour
     [Header("쿨타임")]
     [SerializeField] private float _cooldown;
 
-    [Header("감지 거리")]
-    [SerializeField] private float _distance;
-
     [Header("정지 시간")]
     [SerializeField] private float _stayTime;
     
     [Header("속도")]
     [SerializeField] private float _speed;
+    [SerializeField] private float _returnSpeed;
 
 
 
 
     public float StayTime => _stayTime;
     public float Speed => _speed;
+    public float ReturnSpeed => _returnSpeed;
+    public float Cooldown => _cooldown;
 
 
 
@@ -32,7 +33,6 @@ public class BookCase : MonoBehaviour
     public Rigidbody2D Rb { get; private set; }
     public Collider2D Col {  get; private set; }
     public Vector2 StartPos {  get; private set; }
-    public float CheckDir { get ; private set; }
     public float BookCaseBotton { get; private set; }
     public bool IsLeft { get; private set; }
 
@@ -90,11 +90,5 @@ public class BookCase : MonoBehaviour
         float distToRight = Mathf.Abs(startPos.x - platformRight);
 
         return distToLeft < distToRight;
-    }
-
-    private void OnDrawGizmos()
-    {
-        Debug.DrawLine(new Vector2(transform.position.x, BookCaseBotton), new Vector2(transform.position.x, BookCaseBotton) + Vector2.down * 1f);
-        
     }
 }

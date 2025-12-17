@@ -15,7 +15,7 @@ public class BookCaseReturnState : IState<BookCase>
     public void Execute(BookCase context)
     {
 
-        context.transform.position = Vector2.MoveTowards(context.transform.position, context.transform.position + context.MoveDir(false), context.Speed * Time.deltaTime);
+        context.transform.position = Vector2.MoveTowards(context.transform.position, context.transform.position + context.MoveDir(false), context.ReturnSpeed * Time.deltaTime);
 
         if (Vector2.Distance(context.transform.position, (Vector3)context.StartPos) <= 0.05f)
         {

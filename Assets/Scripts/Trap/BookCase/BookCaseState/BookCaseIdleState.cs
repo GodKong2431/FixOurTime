@@ -15,31 +15,18 @@ public class BookCaseIdleState : IState<BookCase>
     public void Execute(BookCase context)
     {
         Vector2 origin = new Vector2(context.Rb.position.x, context.BookCaseBotton);
+        Vector2 RaySize = new Vector2(40, 1);
 
-        RaycastHit2D[] leftHits = Physics2D.RaycastAll(origin,Vector2.right,10f,1 << 10);
-        RaycastHit2D[] rightHits = Physics2D.RaycastAll(origin,Vector2.left,10f,1 << 10);
+        RaycastHit2D[] BoxHits = Physics2D.BoxCastAll(origin, RaySize, 0f, Vector2.down, 0.2f, 1 << 10);
 
-        foreach (var hit in leftHits)
+        if (BoxHits.Length > 0)
         {
-            if (hit.collider == null)
-                continue;
-
-            if (hit.collider.attachedRigidbody == context.Rb)
-                continue;
-
-            context.SetState(new BookCasePushState());
-            return;
-        }
-        foreach (var hit in rightHits)
-        {
-            if (hit.collider == null)
-                continue;
-
-            if (hit.collider.attachedRigidbody == context.Rb)
-                continue;
-
-            context.SetState(new BookCasePushState());
-            return;
+            foreach (var hit in BoxHits)
+            {
+                if (hit.collider.bounds.min.y > context.BookCaseBotton)
+                    context.SetState(new BookCasePushState());
+                return;
+            }
         }
     }
 }
