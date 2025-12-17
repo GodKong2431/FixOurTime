@@ -131,21 +131,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 3867814398454859870, guid: 399c980154248fc41b541233f493a29b, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -8894378161134838276, guid: b698c6664e82d684ca548a6943f899e8, type: 3}
-    - target: {fileID: 3867814398454859870, guid: 399c980154248fc41b541233f493a29b, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7303901205914570929, guid: 399c980154248fc41b541233f493a29b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 11.85
       objectReference: {fileID: 0}
     - target: {fileID: 7303901205914570929, guid: 399c980154248fc41b541233f493a29b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.64
+      value: 3.53
       objectReference: {fileID: 0}
     - target: {fileID: 7303901205914570929, guid: 399c980154248fc41b541233f493a29b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -636,7 +628,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1380017429
 Transform:
   m_ObjectHideFlags: 0
@@ -1157,7 +1149,7 @@ MonoBehaviour:
   - {fileID: 1077969666}
   - {fileID: 701513328}
   _moveSpeed: 5
-  OnOffObj: {fileID: 0}
+  _onOffObjs: []
 --- !u!212 &1974996935
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1231,7 +1223,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2014572612
 Transform:
   m_ObjectHideFlags: 0
