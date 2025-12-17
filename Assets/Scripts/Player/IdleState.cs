@@ -1,40 +1,37 @@
 using UnityEngine;
 
-public class IdleState : IPlayerState
+public class IdleState : IState<Player>
 {
-    Player _player;
-    public IdleState(Player player)
+    public void Enter(Player _player)
     {
-        _player = player;
-    }
-    public void Enter()
-    {
+        _player.SetPhysicsMaterial(false);
+
         Vector2 velocity = _player.Rb.linearVelocity;
         velocity.x = 0f;
         _player.Rb.linearVelocity = velocity;
         _player.Rb.gravityScale = 1f;
     }
 
-    public void Exit()
+    public void Exit(Player _player)
     {
        
     }
 
-    public void Update()
+    public void Execute(Player _player)
     {
         if (!_player.IsGrounded)
         {
-            _player.SetState(new FallState(_player));
+            _player.SetState(new FallState());
             return;
         }
         if (_player.IsGrounded && _player.IsChargeStarted)
         {
-            _player.SetState(new ChargeState(_player));
+            _player.SetState(new ChargeState());
             return;
         }
         if(_player.MoveInput.x != 0)
         {
-            _player.SetState(new MoveState(_player));
+            _player.SetState(new MoveState());
             return;
         }
         

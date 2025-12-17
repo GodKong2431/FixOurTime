@@ -1,15 +1,10 @@
 using UnityEngine;
 
-public class AttackState : IPlayerState
+public class AttackState : IState<Player>
 {
-    Player _player;
     float _timer;
 
-    public AttackState(Player player)
-    {
-        _player = player;
-    }
-    public void Enter()
+    public void Enter(Player _player)
     {
         _timer = 0;
 
@@ -48,12 +43,12 @@ public class AttackState : IPlayerState
     
     }
 
-    public void Exit()
+    public void Exit(Player _player)
     {
         Debug.Log("°ø°Ý³¡");
     }
 
-    public void Update()
+    public void Execute(Player _player)
     {
         _timer += _player.PlayerDeltaTime;
 
@@ -63,16 +58,16 @@ public class AttackState : IPlayerState
             {
                 if(_player.MoveInput.x != 0)
                 {
-                    _player.SetState(new MoveState(_player));
+                    _player.SetState(new MoveState());
                 }
                 else
                 {
-                    _player.SetState(new IdleState(_player));
+                    _player.SetState(new IdleState());
                 }
             }
             else
             {
-                _player.SetState(new FallState(_player));
+                _player.SetState(new FallState());
             }
         }
     }
