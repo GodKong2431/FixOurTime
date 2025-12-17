@@ -25,7 +25,7 @@ public class JumpState : IPlayerState
 
         if (_isDoubleJump)
         {
-            currentJumpForce = _player.MinJumpForce;
+            currentJumpForce = _player.DoubleJumpForce;
             _player.CurrentAirJump--;
             velocity.y = 0f;
         }

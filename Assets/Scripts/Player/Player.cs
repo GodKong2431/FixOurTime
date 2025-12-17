@@ -56,10 +56,18 @@ public class Player : MonoBehaviour,IDamageable
 
     [Header("더블점프 설정")]
     [SerializeField] int _airJumpCount = 1; //공중점프 가능횟수 (1이면 공중에서추가1회라는뜻)
+    [SerializeField] float _doubleJumpForce = 5f;
     int _currentAirJump;
     bool _isAirJump = true; //2단점프 가능여부
     [SerializeField] bool _isDoubleJumpEnabled = false;
 
+    [Header("점프 대시공격 설정")]
+    [SerializeField] GameObject _dashHitbox;
+    [SerializeField] float _dashDistance = 5.0f; //대쉬거리
+    [SerializeField] float _dashSpeed = 10f; //대쉬 속도
+    [SerializeField] float _dashDuration = 0.5f; //대쉬 적용시간
+    [SerializeField] float _bounceForce = 5f; // 튕겨나가는 힘
+    [SerializeField] bool _isDashAttackEnabled = false;
 
     Rigidbody2D _rb;
     SpriteRenderer _spr;
@@ -70,6 +78,7 @@ public class Player : MonoBehaviour,IDamageable
     public float MoveSpeed => _moveSpeed;
     public float MinJumpForce => _minJumpForce;
     public float MaxJumpForce => _maxJempForce;
+    public float DoubleJumpForce => _doubleJumpForce;
     public float MaxChargeTime => _maxChargeTime;
     public float MaxFallSpeedForStun => _maxFallSpeedForStun;
     public float StunDuration => _stunDuration;
@@ -80,16 +89,22 @@ public class Player : MonoBehaviour,IDamageable
     public float AccelerationRate => _accelerationRate;
     public float AccelerationGravity => _accelerationGravity;
     public float BoostDuration => _boostDuration;
+    public float DashDistance => _dashDistance;
+    public float DashDuration => _dashDuration;
+    public float BounceForce => _bounceForce;
+    public float DashSpeed => _dashSpeed;
     public float PlayerDeltaTime => Time.deltaTime * _currentTimeScale; //플레이어 전용 델타타임, 가속구현용
     public float CurrentChargeTime { get => _currentChargeTime; set => _currentChargeTime = value; }
     public float CalculatedJumpForce { get => _calculatedJumpForce; set => _calculatedJumpForce = value; }
     public float JumpDirX { get => _jumpDirX; set => _jumpDirX = value; }
     public float CurrentHp { get=>_currentHp; set => _currentHp = value; }
     public float CurrentTimeScale { get =>_currentTimeScale; set => _currentTimeScale = value; }
+    public GameObject DashHitbox => _dashHitbox;
     public LayerMask AttackTargetLayer => _attackTargetLayer;
     public Vector2 MoveInput => _moveInput;
     public Rigidbody2D Rb => _rb;
     public SpriteRenderer Spr => _spr;
+    public IPlayerState CurrentState => _currentState;
     public bool IsGrounded => _isGrounded;
     public bool IsChargeStarted { get => _isChargeStarted; set => _isChargeStarted = value; }
     public bool IsStunStarted { get => _isStunStarted; set => _isStunStarted = value; }
@@ -97,18 +112,6 @@ public class Player : MonoBehaviour,IDamageable
     public bool IsDoubleJumpEnabled { get => _isDoubleJumpEnabled; set => _isDoubleJumpEnabled = value; }
     public bool IsSpeedBoostEnabled { get => _isSpeedBoostEnabled; set => _isSpeedBoostEnabled = value; }
 
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = _isGrounded ? Color.green : Color.red; //땅에닿으면 녹, 아니면 빨
-
-        Vector3 boxChecker = (Vector2)_groundChecker.position + Vector2.down * (_groundCheckDistance + _groundCheckerSize.y / 2f);
-
-        Gizmos.DrawWireCube(boxChecker, _groundCheckerSize);
-
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(_groundChecker.position, 0.05f);
-    }
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -211,6 +214,17 @@ public class Player : MonoBehaviour,IDamageable
                 {
                     SetState(new AttackState(this));
                 }
+            }
+        }
+    }
+
+    public void OnDashAttack(InputAction.CallbackContext ctx)
+    {
+        if(ctx.started && _isDashAttackEnabled)
+        {
+            if(_currentState is JumpState ||  _currentState is FallState)
+            {
+                SetState(new DashAttackState(this));
             }
         }
     }
@@ -330,5 +344,22 @@ public class Player : MonoBehaviour,IDamageable
     {
         _isSpeedBoostEnabled = true;
         Debug.Log("가속 기능이 활성화되었습니다.");
+    }
+    public void UnlockDashAttack()
+    {
+        _isDashAttackEnabled = true;
+        Debug.Log("대시어택 기능이 활성화되었습니다.");
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = _isGrounded ? Color.green : Color.red; //땅에닿으면 녹, 아니면 빨
+
+        Vector3 boxChecker = (Vector2)_groundChecker.position + Vector2.down * (_groundCheckDistance + _groundCheckerSize.y / 2f);
+
+        Gizmos.DrawWireCube(boxChecker, _groundCheckerSize);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(_groundChecker.position, 0.05f);
     }
 }
