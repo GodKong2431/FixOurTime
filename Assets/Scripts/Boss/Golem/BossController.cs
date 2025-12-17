@@ -71,10 +71,18 @@ public class BossController : MonoBehaviour
     {
 
         CurrentHp = Data.maxHp;
-        if (weaknessObject != null) weaknessObject.SetActive(false);
-
-        if (wallBossObject != null) wallBossObject.gameObject.SetActive(true);
-        if (floorBossObject != null) floorBossObject.gameObject.SetActive(true);
+        if (weaknessObject != null)
+        {
+            weaknessObject.SetActive(false);
+        }
+        if (wallBossObject != null)
+        {
+            wallBossObject.gameObject.SetActive(false);
+        }
+        if (floorBossObject != null)
+        {
+            floorBossObject.gameObject.SetActive(false);
+        }
     }
 
     public void ActivateBoss()

@@ -14,8 +14,14 @@ public class ConcreteObject : MonoBehaviour
     public void Initialize(bool isHorizontal, Vector3 mapCenter, float stayDuration, float moveDuration)
     {
         Vector3 targetPos = transform.position;
-        if (isHorizontal) targetPos.x = 0;
-        else targetPos.y = 0;
+        if (isHorizontal) 
+        {
+            targetPos.x = mapCenter.x;
+        }
+        else 
+        {
+            targetPos.y = mapCenter.y;
+        }
 
         StartCoroutine(ProcessRoutine(targetPos, stayDuration, moveDuration));
     }
