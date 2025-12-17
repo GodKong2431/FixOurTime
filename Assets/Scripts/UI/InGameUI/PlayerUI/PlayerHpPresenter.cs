@@ -13,7 +13,12 @@ public class PlayerHpPresenter
         _player.OnHpChanged += ChangeHp; //플레이어 이벤트 알림구독
     }
 
-    void ChangeHp(float currentHp, float maxHp)
+    public void Dispose()
+    {
+        _player.OnHpChanged -= ChangeHp;    //구독해제
+    }
+
+    public void ChangeHp(float currentHp, float maxHp)
     {
         _plyerHpUI.ChangeHpBar(currentHp, maxHp);
     }

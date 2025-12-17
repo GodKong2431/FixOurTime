@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &527863075393857817
+--- !u!1 &6106026222213838390
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2893248632187093919}
-  - component: {fileID: 6191917568365828669}
+  - component: {fileID: 3352146117357439968}
+  - component: {fileID: 1402746593958526406}
   m_Layer: 0
   m_Name: PauseUiConnector
   m_TagString: Untagged
@@ -17,13 +17,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2893248632187093919
+--- !u!4 &3352146117357439968
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 527863075393857817}
+  m_GameObject: {fileID: 6106026222213838390}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,19 +32,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6191917568365828669
+--- !u!114 &1402746593958526406
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 527863075393857817}
+  m_GameObject: {fileID: 6106026222213838390}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27a71b57324f4914d86feea98e028fd6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PauseUI
+  m_EditorClassIdentifier: Assembly-CSharp::PauseUiConnector
   _pause: {fileID: 0}
   _panel: {fileID: 0}
-  _quitCheckPanel: {fileID: 0}
-  _mainCheckPanel: {fileID: 0}
+  _resumeButton: {fileID: 0}
+  _quitGameButton: {fileID: 0}
+  _mainMenuButton: {fileID: 0}
+  _mainManuYes: {fileID: 0}
+  _quitManuYes: {fileID: 0}
+  _no: {fileID: 0}
+  _quitGameText: {fileID: 0}
+  _mainManuText: {fileID: 0}

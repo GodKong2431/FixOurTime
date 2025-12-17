@@ -7,6 +7,6 @@ public class GameStart : MonoBehaviour
     public void OnClick()
     {
         SoundManager.instance.PlayBGM(_audioClip);
-        SceneManager.LoadScene("LHS_InGame"); // 추후 인게임씬이름으로 변경
+        SceneManager.LoadScene("UITestScene"); // 추후 인게임씬이름으로 변경
     }
 }

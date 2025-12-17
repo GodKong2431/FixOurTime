@@ -9,8 +9,7 @@ public class PlayerHpUI : MonoBehaviour
     {
         _hpBar.maxValue = maxHp;
         _hpBar.value = currentHp;
-
-        _hpBar.value = (currentHp / maxHp);
+        Debug.Log($"HP UI °»½Å current:{currentHp}, max:{maxHp}, sliderMax:{_hpBar.maxValue}");
     }
 
 }
