@@ -6,23 +6,26 @@ enum GearStateType
     GearMoveState
 }
 
-public class InteractableGear : MoveGear,IDamageable
+public class InteractableGear : Gear,IDamageable
 {
     [Header("꺼질 오브젝트")]
     [SerializeField] private GameObject[] _onOffObjs;
+
+    PointMoveObj _move;
+
     private GearStateType _currentState;
 
-    protected override void Awake()
+    protected void Awake()
     {
-        base.Awake();
+        _move = GetComponent<PointMoveObj>();
         _currentState = GearStateType.GearIdleState;
     }
     private void Update()
     {
         if (_currentState == GearStateType.GearMoveState)
         {
-            MoveNextPoint();
-            if (ChangeNextPoint())
+            _move.MoveNextPoint();
+            if (_move.ChangeNextPoint())
             {
                 if (_onOffObjs != null)
                     ObjOnOff();

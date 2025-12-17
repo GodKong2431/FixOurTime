@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 488606830979603025}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5, y: 0, z: 0}
+  m_LocalPosition: {x: 19.18, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 1566518522994822555}
   - component: {fileID: 2652076450748924026}
   - component: {fileID: 8246120263538217136}
+  - component: {fileID: 8408954070895984267}
   - component: {fileID: 5749143346439996602}
   - component: {fileID: 4435028017266210922}
   m_Layer: 4
@@ -136,13 +137,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a031bbc07725f2349abec2e83b79a3cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractableGear
-  _trapDamage: 20
-  _knockbackForce: 7
-  _invincibleTime: 0.5
   _points:
   - {fileID: 3355635029241478167}
   - {fileID: 5877078601999890171}
   _moveSpeed: 5
+  _onOffObjs:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &8408954070895984267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3482024268066497130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e70394c9fdd6db42a4e001a9b58fb3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PointMoveObj
+  _points:
+  - {fileID: 3355635029241478167}
+  - {fileID: 5877078601999890171}
+  _moveSpeed: 3
 --- !u!50 &5749143346439996602
 Rigidbody2D:
   serializedVersion: 5
