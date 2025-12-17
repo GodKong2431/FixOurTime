@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class BookCaseCoolDownState : IState<BookCase>
 {
+    float t;
     public void Enter(BookCase context)
     {
         Debug.Log($"{this}¡¯¿‘");
+        t = 0;
     }
 
     public void Exit(BookCase context)
@@ -14,6 +16,10 @@ public class BookCaseCoolDownState : IState<BookCase>
 
     public void Execute(BookCase context)
     {
-        context.SetState(new BookCaseIdleState());
+        t += Time.deltaTime;
+        if (t >= context.Cooldown)
+        {
+            context.SetState(new BookCaseIdleState());
+        }
     }
 }
