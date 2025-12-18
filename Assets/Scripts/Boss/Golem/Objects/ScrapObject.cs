@@ -31,7 +31,7 @@ public class ScrapObject : MonoBehaviour
         // 1. 플레이어 피격
         if (collision.TryGetComponent(out IDamageable target))
         {
-            target.TakeDamage(_damage, 1f, transform.position);
+            target.TakeDamage(_damage, 5.0f, transform.position);
             Destroy(gameObject);
         }
         // 2. 벽 충돌 (파편이 아닐 때만 분열)
