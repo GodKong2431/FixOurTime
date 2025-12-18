@@ -10,6 +10,10 @@ public class PointMoveObj : MonoBehaviour
     protected int _currentIndex = 1;
     protected int _wayDir = 1;
 
+    public Transform[] Points => _points;
+    public int CurrentIndex { get => _currentIndex; set => _currentIndex = value; }
+    public Transform NextPoint { get => _nextPoint; set => _nextPoint = value; }
+
     protected virtual void Awake()
     {
         if (_points == null || _points.Length == 0) return;
