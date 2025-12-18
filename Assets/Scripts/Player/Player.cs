@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour,IDamageable
@@ -74,6 +76,13 @@ public class Player : MonoBehaviour,IDamageable
     [SerializeField] float _bounceForce = 5f; // 튕겨나가는 힘
     [SerializeField] bool _isDashAttackEnabled = false;
 
+    [Header("디버프 관리")]
+    List<IDebuff<Player>> _activeDebuffs = new List<IDebuff<Player>>();
+
+    [Header("이벤트 설정")]
+    [SerializeField] UnityEvent OnPlayerDead;
+    [SerializeField] UnityEvent OnPlayerRespawn;
+
     Rigidbody2D _rb;
     SpriteRenderer _spr;
 
@@ -142,6 +151,7 @@ public class Player : MonoBehaviour,IDamageable
             _groundCheckDistance,       //레이저길이
             _groundLayer                //충돌대상체크
             );
+
             
         _currentState.Execute(this);
     }
@@ -234,6 +244,8 @@ public class Player : MonoBehaviour,IDamageable
     {
         _nextAttackTime = Time.time + _attackCooldown;
     }
+
+    
     public void OnSpeedBoost(InputAction.CallbackContext ctx)
     {
         if(!_isSpeedBoostEnabled || _currentState is HitState || _currentState is StunState)
@@ -251,6 +263,8 @@ public class Player : MonoBehaviour,IDamageable
             StopSpeedBoost();
         }
     }
+
+    //가속종료
     private void StopSpeedBoost()
     {
         if (_speedBoostCoroutine != null)
@@ -272,12 +286,13 @@ public class Player : MonoBehaviour,IDamageable
 
         if (_boostUI != null)
         {
-            _boostUI.StartBoostIcon();
+            _boostUI.StartBoostIcon(); //가속 아이콘 활성화
         }
-
+        //가속적용
         _currentTimeScale = _accelerationScale;
         _rb.gravityScale = _accelerationGravity;
 
+        //누르고있는동안 가속유지
         while (true)
         {
             yield return null;
@@ -292,27 +307,37 @@ public class Player : MonoBehaviour,IDamageable
             return;
         }
 
-        _rb.linearVelocity = Vector2.zero;
-        _rb.angularVelocity = 0f;
-        SetPhysicsMaterial(false);
-
-        StopSpeedBoost();
-
         _currentHp -= damage;
         _currentHp = Mathf.Max(0f, _currentHp); //0이하로 떨어지기 방지
-
         OnHpChanged?.Invoke(_currentHp, _maxHp);
+        Debug.Log($"[ {_currentHp} / {_maxHp} ] 체력 상황");
 
+        //죽었는가 체크
         if( _currentHp <= 0)
         {
             SetState(new DeadState());
             return;
         }
-        _isAirJump = false;
+        //넉백포스가 있어야만 피격발생하게
+        if (KnockbackForce > 0f && !(_currentState is HitState))
+        {
+            // 물리 및 가속 상태 초기화
+            _rb.linearVelocity = Vector2.zero;
+            _rb.angularVelocity = 0f;
+            SetPhysicsMaterial(false);
+            StopSpeedBoost();
 
-        float dirX = (transform.position.x > hitPos.x) ? 1f : -1f;
+            _isAirJump = false; // 공중점프 기회 상실
 
-        SetState(new HitState(dirX, KnockbackForce));
+            // 방향 계산 및 상태 전환
+            float dirX = (transform.position.x > hitPos.x) ? 1f : -1f;
+            SetState(new HitState(dirX, KnockbackForce));
+        }
+    }
+    
+    public void InvokeDeadEvent()
+    {
+        OnPlayerDead?.Invoke();
     }
     //데이터 저장시키기
     public void SavePlayerState(GameData data)
@@ -353,6 +378,8 @@ public class Player : MonoBehaviour,IDamageable
 
         _rb.linearVelocity = Vector2.zero;
         _rb.bodyType = RigidbodyType2D.Dynamic;
+        Debug.Log($"부활했음 현재체력:{_currentHp}");
+        OnPlayerRespawn?.Invoke();
         SetState(new IdleState());
     }
 
