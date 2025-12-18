@@ -15309,8 +15309,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2049423822}
     - target: {fileID: 3328507870384160524, guid: de16e654e6213d74280d07fd4fe556f3, type: 3}
-      propertyPath: _data.concreteMoveTime
+      propertyPath: _data.patternWaitTime
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3328507870384160524, guid: de16e654e6213d74280d07fd4fe556f3, type: 3}
+      propertyPath: _data.concreteInterval
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3328507870384160524, guid: de16e654e6213d74280d07fd4fe556f3, type: 3}
+      propertyPath: _data.concreteMoveTime
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3328507870384160524, guid: de16e654e6213d74280d07fd4fe556f3, type: 3}
+      propertyPath: _data.bossAppearDistance
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3328507870384160524, guid: de16e654e6213d74280d07fd4fe556f3, type: 3}
       propertyPath: _data.concreteSpawnOffsetH
