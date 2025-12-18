@@ -12,7 +12,7 @@ public class HitState : IState<Player>
     }
     public void Enter(Player _player)
     {
-        Debug.Log("히트 진입");
+        //Debug.Log("히트 진입");
         _timer = 0f;
 
         _player.Rb.linearVelocity = Vector2.zero;
@@ -32,7 +32,7 @@ public class HitState : IState<Player>
 
     public void Exit(Player _player)
     {
-        Debug.Log("히트 나감");
+        //Debug.Log("히트 나감");
         _player.Spr.color = Color.white;
         _player.Rb.gravityScale = 1f;
     }

@@ -10,6 +10,9 @@ public class DeadState : IState<Player>
         //사망 애니메이션 여기 넣기
         _player.Rb.linearVelocity = Vector2.zero;
         _player.Rb.bodyType = RigidbodyType2D.Kinematic;
+
+        _player.InvokeDeadEvent();
+
         Debug.Log("사망");
     }
 
