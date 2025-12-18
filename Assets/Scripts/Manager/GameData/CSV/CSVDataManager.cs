@@ -26,8 +26,8 @@ public class CSVDataManager : SingleTon<CSVDataManager>
         _files = GetCSVFileNames(_csvSOPath);
         CSVSOMapping();
 
-        var a = Get<ItemTableData>("ItemTable");
-        Debug.Log(a[201011].itemdesc);
+        //var a = Get<ItemTableData>("ItemTable");
+        //Debug.Log(a[201011].itemdesc);
     }
 
     public TableSOBase<T> Get<T>(string csvTableName)
