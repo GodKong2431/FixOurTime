@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using NUnit.Framework;
+using System.Collections.Generic;
 
 // 인스펙터에서 수정 가능하도록 Serializable 추가
 [System.Serializable]
@@ -17,11 +19,12 @@ public class BossData
     public float concreteDuration = 5;   // 벽으로 유지되는 시간
     public float concreteMoveTime = 0.5f; // 튀어나오는 속도 (시간)
 
-    [Tooltip("가로 콘크리트 생성 위치 오프셋 (기존 -7.5)")]
-    public float concreteSpawnOffsetH = -10.0f; // 화면 밖으로 더 밀기 위해 기본값 수정 제안
+    [Tooltip("가로 콘크리트 생성 위치 오프셋")]
+    public float concreteSpawnOffsetH = -10.0f;
 
-    [Tooltip("세로 콘크리트 생성 위치 오프셋 (기존 -7.5)")]
+    [Tooltip("세로 콘크리트 생성 위치 오프셋")]
     public float concreteSpawnOffsetV = -10.0f;
+
 
     [Header("약점 패턴 설정")]
     public float weaknessDuration = 5;
@@ -62,6 +65,10 @@ public class BossController : MonoBehaviour
         get => _currentHp;
         private set => _currentHp = value;
     }
+
+    // 현재 나와있는 콘크리트 오브젝트 리스트
+     private List<ConcreteObject> _activeConcretes = new List<ConcreteObject>();
+
     public int Phase { get; private set; } = 1;
 
 
@@ -90,11 +97,8 @@ public class BossController : MonoBehaviour
         if (_isActivated) return; // 이미 시작했으면 무시
         _isActivated = true;
 
-        Debug.Log("플레이어 입장. 보스전 시작");
 
-        // 보스 모습 드러내기
-        if (wallBossObject != null) wallBossObject.gameObject.SetActive(true);
-        if (floorBossObject != null) floorBossObject.gameObject.SetActive(true);
+        Debug.Log("플레이어 입장. 보스전 시작");
 
         // 패턴 루틴 시작
         StartCoroutine(MainFlowRoutine());
@@ -102,12 +106,18 @@ public class BossController : MonoBehaviour
 
     private IEnumerator MainFlowRoutine()
     {
+
+        yield return new WaitForSeconds(3.0f);
+
         // === [인트로] ===
         Debug.Log("인트로 시작");
         yield return new WaitForSeconds(Data.patternWaitTime);
 
         Vector3 hiddenPos = wallBossObject.position;
         Vector3 appearPos = hiddenPos + Vector3.left * Data.bossAppearDistance;
+
+        if (wallBossObject != null) wallBossObject.gameObject.SetActive(true);
+        if (floorBossObject != null) floorBossObject.gameObject.SetActive(true);
 
         yield return StartCoroutine(MoveBossTo(wallBossObject, appearPos, Data.bossMoveDuration));
         yield return new WaitForSeconds(Data.patternWaitTime);
@@ -126,7 +136,7 @@ public class BossController : MonoBehaviour
         // [Phase 2 Loop]
         while (CurrentHp > 40)
         {
-            yield return ChangeState(new BossConcreteState(this, 3));
+            yield return ChangeState(new BossConcreteState(this, 3, true));
             yield return ChangeState(new BossWeaknessState(this));
         }
 
@@ -134,20 +144,37 @@ public class BossController : MonoBehaviour
         // [Phase 3 Loop]
         while (CurrentHp > 0)
         {
-            yield return ChangeState(new BossConcreteState(this, 1));
+
+            yield return ChangeState(new BossConcreteState(this, 1, false));
             yield return ChangeState(new BossScrapState(this, 2));
-            yield return ChangeState(new BossConcreteState(this, 2));
+            yield return ChangeState(new BossConcreteState(this, 2, false));
             yield return ChangeState(new BossScrapState(this, 2));
-            yield return ChangeState(new BossConcreteState(this, 2));
+            yield return ChangeState(new BossConcreteState(this, 2, false));
             yield return ChangeState(new BossScrapState(this, 2));
-            yield return ChangeState(new BossConcreteState(this, 1));
+            yield return ChangeState(new BossConcreteState(this, 1, true));
             yield return ChangeState(new BossWeaknessState(this));
         }
 
         Die();
     }
-  
-  
+
+    //콘크리트 오브젝트 등록
+    public void RegisterConcrete(ConcreteObject concrete)
+    {
+        _activeConcretes.Add(concrete);
+    }
+
+    //일괄 회수 
+    public void RetractAllConcretes()
+    {
+        foreach (var concrete in _activeConcretes)
+        {
+            if (concrete != null)
+                concrete.StartRetract();
+        }
+        _activeConcretes.Clear(); // 명단 초기화
+    }
+
     private IEnumerator ChangeState(BossState newState)
     {
         if (_currentState != null) _currentState.Exit();
@@ -187,3 +214,6 @@ public class BossController : MonoBehaviour
         bossTr.position = targetPos;
     }
 }
+
+
+
