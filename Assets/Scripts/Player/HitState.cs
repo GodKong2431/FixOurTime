@@ -15,6 +15,9 @@ public class HitState : IState<Player>
         Debug.Log("히트 진입");
         _timer = 0f;
 
+        _player.Rb.linearVelocity = Vector2.zero;
+        _player.SetPhysicsMaterial(false);
+
         _player.IsChargeStarted = false;
         _player.CurrentChargeTime = 0f;
 

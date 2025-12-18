@@ -7,11 +7,21 @@ public abstract class DamageableTrapBase : MonoBehaviour
     [SerializeField] protected float _knockbackForce = 7;
     [SerializeField] protected float _invincibleTime = 0.5f;
 
-    private void OnCollisionStay2D(Collision2D collision)
+    protected virtual void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.transform.TryGetComponent<Player>(out Player player))
+        if (collision.transform.TryGetComponent(out Player player))
         {
             player.TakeDamage(_trapDamage, _knockbackForce, transform.position);
         }
+    }
+
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
+    {
+        
+            if (collision.transform.TryGetComponent<Player>(out Player player))
+            {
+                player.TakeDamage(_trapDamage, _knockbackForce, transform.position);
+            }
+        
     }
 }

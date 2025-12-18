@@ -6,7 +6,7 @@ public class FallState : IState<Player>
     {
         _player.SetPhysicsMaterial(true);
 
-        Debug.Log("폴 진입");
+        //Debug.Log("폴 진입");
         if(_player.CurrentTimeScale <= 1.0f)
         {
             _player.Rb.gravityScale =3f;
@@ -20,7 +20,7 @@ public class FallState : IState<Player>
 
     public void Exit(Player _player)
     {
-        Debug.Log("폴 나감");
+        //Debug.Log("폴 나감");
         _player.Rb.gravityScale = 1f;
         _player.IsChargeStarted = false;
     }

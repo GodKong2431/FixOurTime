@@ -134,21 +134,14 @@ public class Player : MonoBehaviour,IDamageable
     private void Update()
     {
         //땅체크
-        if(_rb.linearVelocity.y > 0.1f)
-        {
-            _isGrounded = false;
-        }
-        else
-        {
-            _isGrounded = Physics2D.BoxCast(
-                _groundChecker.position,    //발사위치
-                _groundCheckerSize,
-                0f,
-                Vector2.down,               //발사방향
-                _groundCheckDistance,       //레이저길이
-                _groundLayer                //충돌대상체크
-                );
-        }
+        _isGrounded = Physics2D.BoxCast(
+            _groundChecker.position,    //발사위치
+            _groundCheckerSize,
+            0f,
+            Vector2.down,               //발사방향
+            _groundCheckDistance,       //레이저길이
+            _groundLayer                //충돌대상체크
+            );
             
         _currentState.Execute(this);
     }
@@ -298,6 +291,11 @@ public class Player : MonoBehaviour,IDamageable
         {
             return;
         }
+
+        _rb.linearVelocity = Vector2.zero;
+        _rb.angularVelocity = 0f;
+        SetPhysicsMaterial(false);
+
         StopSpeedBoost();
 
         _currentHp -= damage;

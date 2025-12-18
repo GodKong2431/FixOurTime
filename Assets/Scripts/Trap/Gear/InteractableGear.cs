@@ -12,6 +12,7 @@ public class InteractableGear : Gear,IDamageable
     [SerializeField] private GameObject[] _onOffObjs;
 
     PointMoveObj _move;
+    bool _isFinal = false; //마지막 인덱스인지 확인용
 
     private GearStateType _currentState;
 
@@ -38,23 +39,28 @@ public class InteractableGear : Gear,IDamageable
             {
                 transform.position = _move.NextPoint.position;
 
+                if (_move.CurrentIndex == _move.Points.Length - 1)
+                {
+                    Debug.Log("마지막 인덱스 도달 상호작용x");
+                    _isFinal = true; // 잠금 상태 활성화
+                }
+
                 if (_onOffObjs != null)
                     ObjOnOff();
+
                 _currentState = GearStateType.GearIdleState;
             }
         }
     }
     public void TakeDamage(float damage, float KnockbackForce, Vector3 hitPos)
     {
+        if (_currentState == GearStateType.GearMoveState || _isFinal) return;
         int dir = (hitPos.x < transform.position.x) ? 1 : -1;
         HitGear(dir);
     }
     public void HitGear(int direction)
     {
-        if (_currentState == GearStateType.GearMoveState)
-        {
-            return;
-        }
+        if(_isFinal) return;
         //다음이동 포인트 계산용
         int targetIndex = _move.CurrentIndex + direction;
         //인덱스가 범위 초과 하는지 체크
@@ -65,10 +71,7 @@ public class InteractableGear : Gear,IDamageable
 
             _currentState = GearStateType.GearMoveState;
         }
-        else
-        {
-            Debug.Log("이쪽방향은 포인트없음");
-        }
+        
     }
     public void ObjOnOff()
     {
@@ -77,4 +80,5 @@ public class InteractableGear : Gear,IDamageable
             obj.SetActive(!obj.activeSelf);
         }
     }
+
 }

@@ -17,6 +17,8 @@ public class BossWeaknessState : BossState
         float timer = 0;
         float startHp = _controller.CurrentHp;
 
+        float waitTime = 2.5f;
+
         while (timer < _controller.Data.weaknessDuration)
         {
             timer += Time.deltaTime;
@@ -24,8 +26,11 @@ public class BossWeaknessState : BossState
             if (_controller.CurrentHp < startHp)
             {
                 Debug.Log("약점 공략 성공 -> 패턴 종료");
+
+                yield return new WaitForSeconds(waitTime);
                 break;
             }
+
             yield return null;
         }
     }
