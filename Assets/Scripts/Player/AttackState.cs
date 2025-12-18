@@ -6,6 +6,8 @@ public class AttackState : IState<Player>
 
     public void Enter(Player _player)
     {
+        _player.ResetAttackCooldown();
+
         _timer = 0;
 
         //공격중 이동 못하게

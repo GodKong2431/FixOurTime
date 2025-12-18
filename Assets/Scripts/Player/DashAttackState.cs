@@ -10,6 +10,8 @@ public class DashAttackState : IState<Player>
 
     public void Enter(Player _player)
     {
+        _player.ResetAttackCooldown();
+
         _player.SetPhysicsMaterial(true);
 
         _timer = 0f;
