@@ -375,7 +375,7 @@ MonoBehaviour:
     m_Bits: 2147483648
   _groundChecker: {fileID: 7884480922022477730}
   _groundCheckDistance: -0.35
-  _groundCheckerSize: {x: 0.8, y: 0.9}
+  _groundCheckerSize: {x: 0.8, y: 0.25}
   _minJumpForce: 5
   _maxJempForce: 15
   _maxChargeTime: 1
@@ -475,7 +475,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7884480922022477730}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GroundChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -508,7 +508,7 @@ GameObject:
   - component: {fileID: 8244056879573130252}
   - component: {fileID: 3867814398454859870}
   - component: {fileID: 6442367779953718848}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BoostIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
