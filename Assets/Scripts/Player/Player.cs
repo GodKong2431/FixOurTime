@@ -89,7 +89,7 @@ public class Player : MonoBehaviour,IDamageable
     //프로퍼티
     public int AirJumpCount => _airJumpCount;
     public int CurrentAirJump { get => _currentAirJump; set => _currentAirJump = value; }
-    public float MoveSpeed => _moveSpeed;
+    public float MoveSpeed{ get => _moveSpeed; set => _moveSpeed = value; }
     public float MinJumpForce => _minJumpForce;
     public float MaxJumpForce => _maxJempForce;
     public float DoubleJumpForce => _doubleJumpForce;
@@ -152,7 +152,7 @@ public class Player : MonoBehaviour,IDamageable
             _groundLayer                //충돌대상체크
             );
 
-            
+        HandleDebuffs();
         _currentState.Execute(this);
     }
     public void SetState(IState<Player> newState)
@@ -334,7 +334,70 @@ public class Player : MonoBehaviour,IDamageable
             SetState(new HitState(dirX, KnockbackForce));
         }
     }
-    
+
+    private void HandleDebuffs()
+    {
+        for(int i = _activeDebuffs.Count - 1; i >= 0; i--)
+        {
+            var debuff = _activeDebuffs[i];
+            debuff.Duration -= Time.deltaTime;
+            debuff.OnExecute(this);
+
+            if(debuff.Duration <= 0f)
+            {
+                RemoveDebuff(debuff);
+            }
+        }
+    }
+    public void AddDebuff(IDebuff<Player> newDebuff)
+    {
+        // 이미 디버프가 걸려있는지 확인
+        IDebuff<Player> existing = null;
+
+        for (int i = 0; i < _activeDebuffs.Count; i++)
+        {
+            if (_activeDebuffs[i].Name == newDebuff.Name)
+            {
+                existing = _activeDebuffs[i];
+                break;
+            }
+        }
+
+        // 이미 있으면 시간만 갱신
+        if (existing != null)
+        {
+            existing.Duration = newDebuff.Duration;
+            return;
+        }
+        //없으면 새로 추가
+        _activeDebuffs.Add(newDebuff);
+        newDebuff.OnEnter(this);
+    }
+    public void RemoveDebuffByName(string debuffName)
+    {
+        IDebuff<Player> target = null;
+
+        for (int i = 0; i < _activeDebuffs.Count; i++)
+        {
+            if (_activeDebuffs[i].Name == debuffName)
+            {
+                target = _activeDebuffs[i];
+                break;
+            }
+        }
+
+        if (target != null)
+        {
+            RemoveDebuff(target);
+        }
+    }
+    private void RemoveDebuff(IDebuff<Player> debuff)
+    {
+        debuff.OnExit(this);
+        _activeDebuffs.Remove(debuff);
+    }
+
+    //죽었을때 이벤트 호출
     public void InvokeDeadEvent()
     {
         OnPlayerDead?.Invoke();

@@ -12,7 +12,8 @@ public class HotDebuff : IDebuff<Player>
 
     public void OnEnter(Player conText)
     {
-
+        Debug.Log("╢У©Р╩Себ х╧╣Ф");
+        conText.Spr.color = Color.orange;
     }
 
     public void OnExecute(Player conText)
@@ -22,6 +23,6 @@ public class HotDebuff : IDebuff<Player>
 
     public void OnExit(Player conText)
     {
-
+        conText.Spr.color = Color.white;
     }
 }
