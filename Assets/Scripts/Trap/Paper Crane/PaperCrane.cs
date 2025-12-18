@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class PaperCrane : DamageableTrapBase
+public class PaperCrane : DamageableTrapBase, IDamageable
 {
     [Header("¼Óµµ")]
     [SerializeField] private float _Speed;
@@ -27,5 +27,10 @@ public class PaperCrane : DamageableTrapBase
             player.TakeDamage(_trapDamage, _knockbackForce, transform.position);
             _paperCraneSpawner.Release(gameObject);
         }
+    }
+
+    public void TakeDamage(float damage, float KnockbackForce, Vector3 hitPos)
+    {
+        _paperCraneSpawner.Release(gameObject);
     }
 }
