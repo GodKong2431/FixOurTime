@@ -7,6 +7,7 @@ public class ConcreteObject : MonoBehaviour
     private Vector3 _startPos;
     private Vector3 _targetPos;
     private float _moveDuration;
+    private BossData _data; // 데이터를 저장해둠
 
     private bool _isMoving = false; // 움직임 여부
     private bool _hasHit = false;   // 플레이어 피격여부
@@ -17,9 +18,8 @@ public class ConcreteObject : MonoBehaviour
         _col.isTrigger = false;
     }
 
-    public void Initialize(bool isHorizontal, Vector3 mapCenter, float moveDuration)
+    public void Initialize(bool isHorizontal, Vector3 mapCenter, BossData data)
     {
-        _moveDuration = moveDuration;
         _startPos = transform.position;
         _targetPos = transform.position;
 
@@ -65,7 +65,7 @@ public class ConcreteObject : MonoBehaviour
     private IEnumerator RetractRoutine()
     {
         float t = 0;
-        float returnTime = 1.0f;
+        float returnTime = _data != null ? _data.concreteRetractDuration : 1.0f;
 
         while (t < returnTime)
         {
@@ -88,8 +88,12 @@ public class ConcreteObject : MonoBehaviour
                 // 2.매개변수 Collision2D에서 바로 GetContact를 호출
                 Vector2 hitPoint = collision.GetContact(0).point;
 
+
+                float dmg = _data != null ? _data.concreteDamage : 10f; //데미지 받아오기
+                float kb = _data != null ? _data.concreteKnockback : 5f; // 넉백 받아오기
+
                 // 3. 데미지 주기
-                target.TakeDamage(10, 5f, hitPoint);
+                target.TakeDamage(dmg, kb, hitPoint);
 
                 _hasHit = true;
             }
