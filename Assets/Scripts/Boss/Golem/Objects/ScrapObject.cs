@@ -5,17 +5,19 @@ public class ScrapObject : MonoBehaviour
     private Vector3 _dir;
     private float _speed;
     private float _damage;
+    private BossData _data; // 데이터 저장
 
     private bool _isFragment; // 파편 여부
     private int _bounceCount = 0; // 튕긴 횟수
     public void Initialize(Vector3 dir, BossData data, bool isFragment = false)
     {
+        _data = data;
         _dir = dir;
         _speed = data.scrapSpeed;
         _damage = isFragment ? data.scrapFragDamage : data.scrapDamage;
         _isFragment = isFragment;
 
-        Destroy(gameObject, 5f); // 안전장치
+        Destroy(gameObject, data.scrapLifeTime); // 안전장치
     }
 
     private void Update()
@@ -31,7 +33,8 @@ public class ScrapObject : MonoBehaviour
         // 1. 플레이어 피격
         if (collision.TryGetComponent(out IDamageable target))
         {
-            target.TakeDamage(_damage, 5.0f, transform.position);
+            float kb = _data != null ? _data.scrapKnockback : 5f; // 넉백 받아오기
+            target.TakeDamage(_damage, kb, transform.position);
             Destroy(gameObject);
         }
         // 2. 벽 충돌 (파편이 아닐 때만 분열)
@@ -91,11 +94,7 @@ public class ScrapObject : MonoBehaviour
             frag.transform.localScale = transform.localScale * 0.5f; // 크기 절반
 
             //파편 생성 
-            frag.GetComponent<ScrapObject>().Initialize(d, new BossData
-            {
-                scrapSpeed = _speed,
-                scrapFragDamage = 5.0f
-            }, true);
+            frag.GetComponent<ScrapObject>().Initialize(d, _data, true);
         }
     }
 }

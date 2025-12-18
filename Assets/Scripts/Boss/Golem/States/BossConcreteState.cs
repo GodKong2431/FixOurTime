@@ -75,13 +75,13 @@ public class BossConcreteState : BossState
             concreteObj.GetComponent<ConcreteObject>().Initialize(
                 isHorizontal,
                 _controller.centerPoint.position,
-                _controller.Data.concreteMoveTime
+                _controller.Data
             );
 
             // 컨트롤러 명단에 등록
             _controller.RegisterConcrete(concreteScript);
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(_controller.Data.concreteInterval);
 
             yield return _controller.StartCoroutine(_controller.MoveBossTo(currentBoss, startPos, _controller.Data.bossMoveDuration));
 
