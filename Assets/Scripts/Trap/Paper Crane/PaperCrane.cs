@@ -20,7 +20,7 @@ public class PaperCrane : DamageableTrapBase, IDamageable
         _paperCraneSpawner = paperCraneSpawner;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected override void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.TryGetComponent(out Player player))
         {
