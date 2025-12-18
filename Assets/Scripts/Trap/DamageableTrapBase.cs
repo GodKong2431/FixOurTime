@@ -14,4 +14,14 @@ public abstract class DamageableTrapBase : MonoBehaviour
             player.TakeDamage(_trapDamage, _knockbackForce, transform.position);
         }
     }
+
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
+    {
+        
+            if (collision.transform.TryGetComponent<Player>(out Player player))
+            {
+                player.TakeDamage(_trapDamage, _knockbackForce, transform.position);
+            }
+        
+    }
 }

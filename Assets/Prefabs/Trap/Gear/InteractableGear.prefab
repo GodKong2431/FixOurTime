@@ -137,10 +137,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a031bbc07725f2349abec2e83b79a3cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractableGear
-  _points:
-  - {fileID: 3355635029241478167}
-  - {fileID: 5877078601999890171}
-  _moveSpeed: 5
+  _trapDamage: 20
+  _knockbackForce: 7
+  _invincibleTime: 0.5
   _onOffObjs:
   - {fileID: 0}
   - {fileID: 0}
@@ -225,7 +224,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Radius: 0.71
 --- !u!1 &6424162435264945522
 GameObject:
   m_ObjectHideFlags: 0
