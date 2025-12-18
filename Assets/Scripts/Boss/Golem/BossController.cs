@@ -65,8 +65,11 @@ public class BossData
     [Tooltip("패턴 종료 후 콘크리트가 다시 들어가는 시간")]
     public float concreteRetractDuration = 1.0f;
 
-    [Tooltip("콘크리트 충돌 데미지")]
-    public float concreteDamage = 10f;
+    [Tooltip("콘크리트 앞면에 맞았을 때 데미지")]
+    public float concreteDamage = 10f; 
+
+    [Tooltip("콘크리트 옆면에 스쳤을 때 데미지")]
+    public float concreteSideDamage = 2f; 
 
     [Tooltip("콘크리트 충돌 넉백 파워")]
     public float concreteKnockback = 5f;
@@ -275,6 +278,29 @@ public class BossController : MonoBehaviour
         }
         bossTr.position = targetPos;
     }
+    public void ResetBoss()
+    {
+        // 1. 실행 중인 모든 패턴(코루틴) 정지
+        StopAllCoroutines();
+
+        // 2. 보스 오브젝트 비활성화 (숨기기)
+        if (wallBossObject) wallBossObject.gameObject.SetActive(false);
+        if (floorBossObject) floorBossObject.gameObject.SetActive(false);
+        if (weaknessObject) weaknessObject.SetActive(false);
+
+        // 3. 스탯 및 상태 초기화
+        CurrentHp = Data.maxHp; // 체력 복구
+        Phase = 1;              // 1페이즈로
+        _isActivated = false;   // 다시 ActivateBoss()가 작동하도록 플래그 해제
+        _currentState = null;   // 상태 비움
+
+        // 4. 맵에 남아있는 투사체(콘크리트, 고철) 청소
+        RetractAllConcretes(); // 콘크리트 회수
+
+
+        Debug.Log("보스 리셋 완료: 재도전 준비 끝");
+    }
+
 }
 
 

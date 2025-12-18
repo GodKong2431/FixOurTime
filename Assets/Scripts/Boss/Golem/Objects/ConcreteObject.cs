@@ -3,6 +3,9 @@ using System.Collections;
 
 public class ConcreteObject : MonoBehaviour
 {
+    [Header("충돌 설정")]
+    [SerializeField] private Collider2D _headCollider;
+
     private BoxCollider2D _col;
     private Vector3 _startPos;
     private Vector3 _targetPos;
@@ -20,6 +23,11 @@ public class ConcreteObject : MonoBehaviour
 
     public void Initialize(bool isHorizontal, Vector3 mapCenter, BossData data)
     {
+        _data = data;
+
+        _moveDuration = data.concreteMoveTime;
+
+
         _startPos = transform.position;
         _targetPos = transform.position;
 
@@ -31,6 +39,7 @@ public class ConcreteObject : MonoBehaviour
         {
             _targetPos.y = mapCenter.y;
         }
+
 
         _hasHit = false;
 
@@ -85,16 +94,15 @@ public class ConcreteObject : MonoBehaviour
             // 1. 컴포넌트 찾기
             if (collision.gameObject.TryGetComponent(out IDamageable target))
             {
-                // 2.매개변수 Collision2D에서 바로 GetContact를 호출
-                Vector2 hitPoint = collision.GetContact(0).point;
+                // collision.otherCollider : 나(Concrete)의 콜라이더 중 부딪힌 
+                bool isHeadHit = (collision.otherCollider == _headCollider);
 
+                float dmg = isHeadHit ? _data.concreteDamage : _data.concreteSideDamage;
+                float kb = _data.concreteKnockback;
 
-                float dmg = _data != null ? _data.concreteDamage : 10f; //데미지 받아오기
-                float kb = _data != null ? _data.concreteKnockback : 5f; // 넉백 받아오기
+                Debug.Log($"[충돌 발생] 맞은 부위: {(isHeadHit ? "<color=red>머리(Head)</color>" : "<color=yellow>몸통(Body)</color>")}, 데미지: {dmg}");
 
-                // 3. 데미지 주기
-                target.TakeDamage(dmg, kb, hitPoint);
-
+                target.TakeDamage(dmg, kb, collision.GetContact(0).point);
                 _hasHit = true;
             }
         }

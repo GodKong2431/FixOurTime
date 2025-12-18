@@ -19,4 +19,9 @@ public class BossZone : MonoBehaviour
             }
         }
     }
+
+    public void ResetTrigger()
+    {
+        gameObject.SetActive(true); // 다시 켜져서 플레이어를 감지할 준비
+    }
 }
