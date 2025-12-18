@@ -55,14 +55,14 @@ public class InteractableGear : Gear,IDamageable
     public void TakeDamage(float damage, float KnockbackForce, Vector3 hitPos)
     {
         if (_currentState == GearStateType.GearMoveState || _isFinal) return;
-        int dir = (hitPos.x < transform.position.x) ? 1 : -1;
+        bool dir = Mathf.Sign(hitPos.x - transform.position.x) == Mathf.Sign(_onOffObjs[1].transform.position.x - _onOffObjs[0].transform.position.x) ? false : true;
         HitGear(dir);
     }
-    public void HitGear(int direction)
+    public void HitGear(bool direction)
     {
-        if(_isFinal) return;
+        if(_isFinal || direction) return;
         //다음이동 포인트 계산용
-        int targetIndex = _move.CurrentIndex + direction;
+        int targetIndex = _move.CurrentIndex + 1;
         //인덱스가 범위 초과 하는지 체크
         if(targetIndex >= 0 && targetIndex < _move.Points.Length)
         {
