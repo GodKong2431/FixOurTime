@@ -298,6 +298,11 @@ public class Player : MonoBehaviour,IDamageable
         {
             return;
         }
+
+        _rb.linearVelocity = Vector2.zero;
+        _rb.angularVelocity = 0f;
+        SetPhysicsMaterial(false);
+
         StopSpeedBoost();
 
         _currentHp -= damage;
