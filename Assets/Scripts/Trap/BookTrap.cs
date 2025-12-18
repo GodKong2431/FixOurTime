@@ -119,6 +119,7 @@ public class BookTrap : MonoBehaviour
 
             
             _spriteRenderer.color = color;
+            
 
             // 0.2초 대기
             yield return new WaitForSeconds(0.1f);
@@ -128,9 +129,10 @@ public class BookTrap : MonoBehaviour
 
         }
 
-        //투명도 복구
-        color.a = 1f;
+        //투명도 콜라이더 끄기
+        color.a = 0f;
         _spriteRenderer.color = color;
+        _collider.enabled = false;
 
     }
 }
