@@ -45,8 +45,9 @@ public class Player : MonoBehaviour,IDamageable
     [SerializeField] float _attackDuration = 0.3f;
     [SerializeField] float _attackRange = 1.0f;
     [SerializeField] float _attackDamage = 10f;
-    [SerializeField]
-    LayerMask _attackTargetLayer;
+    [SerializeField] float _attackCooldown = 1.0f;
+    [SerializeField] LayerMask _attackTargetLayer;
+    float _nextAttackTime = 0; //다음공격 가능한 시간
 
     [Header("가속설정")]
     [SerializeField] float _accelerationGravity = 2.0f;
@@ -90,6 +91,7 @@ public class Player : MonoBehaviour,IDamageable
     public float AttackDuration => _attackDuration;
     public float AttackRange => _attackRange;
     public float AttackDamage => _attackDamage;
+    public float AttackCooldown => _attackCooldown;
     public float AccelerationRate => _accelerationRate;
     public float AccelerationGravity => _accelerationGravity;
     public float DashDistance => _dashDistance;
@@ -114,6 +116,7 @@ public class Player : MonoBehaviour,IDamageable
     public bool IsAirJump { get => _isAirJump; set => _isAirJump = value; }
     public bool IsDoubleJumpEnabled { get => _isDoubleJumpEnabled; set => _isDoubleJumpEnabled = value; }
     public bool IsSpeedBoostEnabled { get => _isSpeedBoostEnabled; set => _isSpeedBoostEnabled = value; }
+    public bool CanAttack => Time.time >= _nextAttackTime; //공격 가능한 상태인지 확인용
 
     private void Awake()
     {
@@ -204,7 +207,7 @@ public class Player : MonoBehaviour,IDamageable
     }
     public void OnAttack(InputAction.CallbackContext ctx)
     {
-        if(ctx.started)
+        if(ctx.started && CanAttack)
         {
             //공격 허용 안하는 상태들
             bool _isAttackPrevent = _currentState is HitState ||
@@ -225,13 +228,18 @@ public class Player : MonoBehaviour,IDamageable
 
     public void OnDashAttack(InputAction.CallbackContext ctx)
     {
-        if(ctx.started && _isDashAttackEnabled)
+        if(ctx.started && _isDashAttackEnabled && CanAttack)
         {
             if(_currentState is JumpState ||  _currentState is FallState)
             {
                 SetState(new DashAttackState());
             }
         }
+    }
+    //공격 시작시 쿨타임 적용시키는 메서드
+    public void ResetAttackCooldown()
+    {
+        _nextAttackTime = Time.time + _attackCooldown;
     }
     public void OnSpeedBoost(InputAction.CallbackContext ctx)
     {
