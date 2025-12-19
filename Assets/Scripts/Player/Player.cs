@@ -388,6 +388,7 @@ public class Player : MonoBehaviour,IDamageable
 
         if (target != null)
         {
+            Debug.Log(target);
             RemoveDebuff(target);
         }
     }

@@ -5,7 +5,7 @@ public class DayZone : MonoBehaviour
 {
     private Player _player;
     private bool _isPlayerInside = false;
-    private float _stayTimer = 0f;
+    public float _stayTimer = 0f;
 
     private void Update()
     {

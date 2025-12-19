@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class WindZone : MonoBehaviour
+public class WindArea : MonoBehaviour
 {
     [Header("바람 강도")]
     [SerializeField] private float _windPower = 0.001f;

@@ -9,6 +9,8 @@ public class Fountain : MonoBehaviour
     private Coroutine _removeEffectCoroutine;
     private WaitForSeconds _removeEffectDelay;
 
+    public DayZone _zone;
+
     private void Awake()
     {
         _removeEffectDelay = new WaitForSeconds(_delay);
@@ -23,7 +25,8 @@ public class Fountain : MonoBehaviour
         if (_removeEffectCoroutine == null)
         {
             Debug.Log("이펙트 제거 코루틴 실행");
-            _removeEffectCoroutine = StartCoroutine(RemoveEffectCoroutine(collision.gameObject));
+            if(collision.TryGetComponent(out Player player))
+            _removeEffectCoroutine = StartCoroutine(RemoveEffectCoroutine(player));
         }
     }
 
@@ -41,7 +44,7 @@ public class Fountain : MonoBehaviour
     }
 
     //이펙트 비활성화 0.3초마다 실행
-    private IEnumerator RemoveEffectCoroutine(GameObject player)
+    private IEnumerator RemoveEffectCoroutine(Player player)
     {
         while (true)
         {
@@ -50,12 +53,13 @@ public class Fountain : MonoBehaviour
         }
     }
 
-    //이펙트 비활성화 구현 해야됨
-    private void RemoveEffect(GameObject player)
+    private void RemoveEffect(Player player)
     {
+        player.RemoveDebuffByName("더움");
+        player.RemoveDebuffByName("탈진");
+        _zone._stayTimer = 0;
+
         Debug.Log("이펙트 제거 실행됨");
-        //‘더움’ 상태일 경우: 상태 이상 타이머를 초기화 함
-        //‘탈진‘ 상태일 경우: 상태 이상이 즉시 해제되며, 분수 효과 발둥 후 1.0초 뒤 다시 ‘더움‘ 상태로 진입
     }
     
     //분수 활성화/비활성화
