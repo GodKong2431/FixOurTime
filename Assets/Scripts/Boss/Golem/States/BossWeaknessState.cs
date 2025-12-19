@@ -3,27 +3,32 @@ using System.Collections;
 
 public class BossWeaknessState : BossState
 {
-    public BossWeaknessState(BossController controller) : base(controller) { }
+    public BossWeaknessState(Stage1Boss _boss) : base(_boss) { }
 
     public override void Enter()
     {
-        _controller.weaknessObject.SetActive(true);
-        Debug.Log("약점 노출");
+        Stage1Boss boss = _baseBoss as Stage1Boss;
+        if (boss != null && boss.WeaknessObject != null)
+        {
+            boss.WeaknessObject.SetActive(true);
+            Debug.Log("약점 노출");
+        }
     }
 
     public override IEnumerator Execute()
     {
+        Stage1Boss _boss = _baseBoss as Stage1Boss;
 
         float timer = 0;
-        float startHp = _controller.CurrentHp;
+        float startHp = _boss.CurrentHp;
 
         float waitTime = 2.5f;
 
-        while (timer < _controller.Data.weaknessDuration)
+        while (timer < _boss.BossData.WeaknessDuration)
         {
             timer += Time.deltaTime;
 
-            if (_controller.CurrentHp < startHp)
+            if (_boss.CurrentHp < startHp)
             {
                 Debug.Log("약점 공략 성공 -> 패턴 종료");
 
@@ -37,6 +42,7 @@ public class BossWeaknessState : BossState
 
     public override void Exit()
     {
-        _controller.weaknessObject.SetActive(false);
+        Stage1Boss _boss = _baseBoss as Stage1Boss;
+        _boss.WeaknessObject.SetActive(false);
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 public class BossZone : MonoBehaviour
 {
     [Header("보스 컨트롤러")]
-    [SerializeField] private BossController _bossController;
+    [SerializeField] private BossBase _boss;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -25,9 +25,9 @@ public class BossZone : MonoBehaviour
             return;
         }
 
-        if (_bossController != null)
+        if (_boss != null)
         {
-            _bossController.ActivateBoss(); // 보스 깨우기
+            _boss.ActivateBoss(); // 보스 깨우기
 
             // 더 이상 필요 없으니 트리거 끄기
             gameObject.SetActive(false);

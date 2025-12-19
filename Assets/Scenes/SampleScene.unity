@@ -4537,7 +4537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bfc83b4c67b479499af7e6161d284f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossZone
-  _bossController: {fileID: 1605766081}
+  _boss: {fileID: 1605766081}
 --- !u!61 &348792381
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15297,6 +15297,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2049423821}
     - target: {fileID: 3328507870384160524, guid: de16e654e6213d74280d07fd4fe556f3, type: 3}
+      propertyPath: _centerPoint
+      value: 
+      objectReference: {fileID: 2049423821}
+    - target: {fileID: 3328507870384160524, guid: de16e654e6213d74280d07fd4fe556f3, type: 3}
+      propertyPath: _scrapPrefab
+      value: 
+      objectReference: {fileID: 7145188956452611248, guid: 5e02387c94b53bb46876c1979cecf324, type: 3}
+    - target: {fileID: 3328507870384160524, guid: de16e654e6213d74280d07fd4fe556f3, type: 3}
+      propertyPath: _playerTarget
+      value: 
+      objectReference: {fileID: 128957300}
+    - target: {fileID: 3328507870384160524, guid: de16e654e6213d74280d07fd4fe556f3, type: 3}
       propertyPath: wallBossObject
       value: 
       objectReference: {fileID: 2049423823}
@@ -15305,7 +15317,27 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1900455617}
     - target: {fileID: 3328507870384160524, guid: de16e654e6213d74280d07fd4fe556f3, type: 3}
+      propertyPath: _wallBossObject
+      value: 
+      objectReference: {fileID: 2049423823}
+    - target: {fileID: 3328507870384160524, guid: de16e654e6213d74280d07fd4fe556f3, type: 3}
+      propertyPath: _weaknessObject
+      value: 
+      objectReference: {fileID: 1900455617}
+    - target: {fileID: 3328507870384160524, guid: de16e654e6213d74280d07fd4fe556f3, type: 3}
       propertyPath: floorBossObject
+      value: 
+      objectReference: {fileID: 2049423822}
+    - target: {fileID: 3328507870384160524, guid: de16e654e6213d74280d07fd4fe556f3, type: 3}
+      propertyPath: _concreteHPrefab
+      value: 
+      objectReference: {fileID: 1523689871022744349, guid: 6aab5bdaf365b85478eed806bc60f1ff, type: 3}
+    - target: {fileID: 3328507870384160524, guid: de16e654e6213d74280d07fd4fe556f3, type: 3}
+      propertyPath: _concreteVPrefab
+      value: 
+      objectReference: {fileID: 1523689871022744349, guid: 09f4c7774a68fd44d94dd0daa615e5bd, type: 3}
+    - target: {fileID: 3328507870384160524, guid: de16e654e6213d74280d07fd4fe556f3, type: 3}
+      propertyPath: _floorBossObject
       value: 
       objectReference: {fileID: 2049423822}
     - target: {fileID: 3328507870384160524, guid: de16e654e6213d74280d07fd4fe556f3, type: 3}
@@ -20752,6 +20784,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 2132975945158498418, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
+      propertyPath: _boss
+      value: 
+      objectReference: {fileID: 1605766081}
+    - target: {fileID: 3095071793042084986, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
+      propertyPath: _bossBase
+      value: 
+      objectReference: {fileID: 1605766081}
     - target: {fileID: 3095071793042084986, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
       propertyPath: _bossController
       value: 
@@ -20796,6 +20836,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4661409143736925193, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
+      propertyPath: _boss
+      value: 
+      objectReference: {fileID: 1605766081}
     - target: {fileID: 4673488607674424036, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
       propertyPath: m_Layer
       value: 4
