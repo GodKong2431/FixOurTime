@@ -182,7 +182,7 @@ public class Stage1Boss : BossBase
         if (_isActivated) return;
 
         _isActivated = true;
-        // Debug.Log("Stage 1 보스전 시작");
+        Debug.Log("Stage 1 보스전 시작");
         StartCoroutine(MainFlowRoutine());
     }
 
@@ -217,22 +217,38 @@ public class Stage1Boss : BossBase
         // === Phase 1 ===
         yield return ChangeState(new BossScrapState(this, 3));
 
-        _currentHp = _bossData.Phase2HpThreshold;
-        yield return new WaitForSeconds(_bossData.PhaseTransitionDelay);
+        // 1페이즈 루프: 체력이 60% 이하가 될 때까지 [콘크리트 3회 -> 약점] 반복
+        while (_currentHp > _bossData.Phase2HpThreshold)
+        {
+            Debug.Log("Phase 1 반복 시작. 현재 HP: " + _currentHp);
+            // 콘크리트 3회 (회수 포함 true)
+            yield return ChangeState(new BossConcreteState(this, 3, true));
+            // 약점 노출
+            yield return ChangeState(new BossWeaknessState(this));
+        }
         Phase = 2;
 
         // === Phase 2 Loop ===
+        Phase = 2;
+        yield return new WaitForSeconds(_bossData.PhaseTransitionDelay);
+
+        // 2페이즈 루프: 체력이 40% 이하가 될 때까지
+       
         while (_currentHp > _bossData.Phase3HpThreshold)
         {
-            yield return ChangeState(new BossConcreteState(this, 3, true));
+            Debug.Log("Phase 2 반복 시작. 현재 HP: " + _currentHp);
+            // 콘크리트 5회
+            yield return ChangeState(new BossConcreteState(this, 5, true));
+            // 약점 노출
             yield return ChangeState(new BossWeaknessState(this));
         }
-
         Phase = 3;
         // === Phase 3 Loop ===
         while (_currentHp > 0)
         {
+            Debug.Log("Phase 3 반복 시작. 현재 HP: " + _currentHp);
             yield return ChangeState(new BossConcreteState(this, 1, false));
+            yield return ChangeState(new BossScrapState(this, 2));
             yield return ChangeState(new BossConcreteState(this, 2, false));
             yield return ChangeState(new BossScrapState(this, 2));
             yield return ChangeState(new BossConcreteState(this, 2, false));

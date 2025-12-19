@@ -27,6 +27,7 @@ public class BossZone : MonoBehaviour
 
         if (_boss != null)
         {
+            Debug.Log("보스존 트리거 작동: 보스가 등장합니다.");
             _boss.ActivateBoss(); // 보스 깨우기
 
             // 더 이상 필요 없으니 트리거 끄기
