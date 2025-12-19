@@ -55,8 +55,8 @@ public class Fountain : MonoBehaviour
 
     private void RemoveEffect(Player player)
     {
-        player.RemoveDebuffByName("´õ¿ò");
-        player.RemoveDebuffByName("Å»Áø");
+        player.RemoveEffectByName("´õ¿ò");
+        player.RemoveEffectByName("Å»Áø");
         _zone._stayTimer = 0;
 
         Debug.Log("ÀÌÆåÆ® Á¦°Å ½ÇÇàµÊ");

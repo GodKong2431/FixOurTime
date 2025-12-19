@@ -11,6 +11,8 @@ public class DeadState : IState<Player>
         _player.Rb.linearVelocity = Vector2.zero;
         _player.Rb.bodyType = RigidbodyType2D.Kinematic;
 
+        _player.Anim.SetInteger(_player.animState, 4);
+
         _player.InvokeDeadEvent();
 
         Debug.Log("»ç¸Á");
@@ -19,6 +21,7 @@ public class DeadState : IState<Player>
     public void Exit(Player _player)
     {
         _player.Rb.bodyType = RigidbodyType2D.Dynamic;
+        _player.Anim.SetInteger(_player.animState, 0);
         _timer = 2.0f;
     }
 

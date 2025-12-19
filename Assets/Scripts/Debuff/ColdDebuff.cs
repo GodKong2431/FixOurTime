@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class ColdDebuff : IDebuff<Player>
+public class ColdDebuff : IStatusEffect<Player>
 {
     public string Name => "Ãß¿ò";
-
+    public bool IsPositive => false;
     public float Duration { get; set; }
     float _originalSpeed;
 

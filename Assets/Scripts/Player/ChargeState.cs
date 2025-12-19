@@ -6,6 +6,8 @@ public class ChargeState : IState<Player>
     {
         _player.SetPhysicsMaterial(false);
 
+        _player.Anim.SetInteger(_player.animState, 2);
+
         _player.CurrentChargeTime = 0;
         _player.CalculatedJumpForce = _player.MinJumpForce;
 

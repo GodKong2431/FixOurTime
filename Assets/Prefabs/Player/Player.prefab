@@ -105,6 +105,7 @@ GameObject:
   - component: {fileID: 937044888594761141}
   - component: {fileID: 3781996616670612336}
   - component: {fileID: 832915301638771748}
+  - component: {fileID: 4738367789984847550}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -177,7 +178,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Sprite: {fileID: 1502801139844560141, guid: de59c0bf210d22d4ab3c0ad19d6f31e7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -402,6 +403,12 @@ MonoBehaviour:
   _dashDuration: 0.5
   _bounceForce: 15
   _isDashAttackEnabled: 1
+  OnPlayerDead:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPlayerRespawn:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!50 &3781996616670612336
 Rigidbody2D:
   serializedVersion: 5
@@ -466,6 +473,28 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2.28}
   m_Direction: 0
+--- !u!95 &4738367789984847550
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312940663367777358}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f32fe834e79f949489fd20b21fe72037, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2076009663219324200
 GameObject:
   m_ObjectHideFlags: 0

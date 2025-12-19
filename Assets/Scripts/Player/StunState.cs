@@ -12,14 +12,15 @@ public class StunState : IState<Player>
         _player.Rb.linearVelocity = Vector2.zero;
 
         //스턴 애니메이션 재생
-        _player.Spr.color = Color.gray;
+        _player.Anim.SetInteger(_player.animState, 3);
+        //_player.Spr.color = Color.gray;
         Debug.Log("스턴");
     }
 
     public void Exit(Player _player)
     {
         _player.Rb.linearVelocity = Vector2.zero;
-        _player.Spr.color = Color.white;
+        _player.Anim.SetInteger(_player.animState, 0);
     }
 
     public void Execute(Player _player)

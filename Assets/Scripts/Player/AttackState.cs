@@ -8,6 +8,8 @@ public class AttackState : IState<Player>
     {
         _player.ResetAttackCooldown();
 
+        _player.Anim.SetTrigger(_player.animAttack);
+
         _timer = 0;
 
         //공격중 이동 못하게
