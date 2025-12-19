@@ -10,7 +10,7 @@ public class ConcreteObject : MonoBehaviour
     private Vector3 _startPos;
     private Vector3 _targetPos;
     private float _moveDuration;
-    private BossData _data; // 데이터를 저장해둠
+    private Boss1Data _data; // 데이터를 저장해둠
 
     private bool _isMoving = false; // 움직임 여부
     private bool _hasHit = false;   // 플레이어 피격여부
@@ -21,11 +21,11 @@ public class ConcreteObject : MonoBehaviour
         _col.isTrigger = false;
     }
 
-    public void Initialize(bool isHorizontal, Vector3 mapCenter, BossData data)
+    public void Initialize(bool isHorizontal, Vector3 mapCenter, Boss1Data data)
     {
         _data = data;
 
-        _moveDuration = data.concreteMoveTime;
+        _moveDuration = data.ConcreteMoveTime;
 
 
         _startPos = transform.position;
@@ -74,7 +74,7 @@ public class ConcreteObject : MonoBehaviour
     private IEnumerator RetractRoutine()
     {
         float t = 0;
-        float returnTime = _data != null ? _data.concreteRetractDuration : 1.0f;
+        float returnTime = _data != null ? _data.ConcreteRetractDuration : 1.0f;
 
         while (t < returnTime)
         {
@@ -97,8 +97,8 @@ public class ConcreteObject : MonoBehaviour
                 // collision.otherCollider : 나(Concrete)의 콜라이더 중 부딪힌 
                 bool isHeadHit = (collision.otherCollider == _headCollider);
 
-                float dmg = isHeadHit ? _data.concreteDamage : _data.concreteSideDamage;
-                float kb = _data.concreteKnockback;
+                float dmg = isHeadHit ? _data.ConcreteDamage : _data.ConcreteSideDamage;
+                float kb = _data.ConcreteKnockback;
 
                 Debug.Log($"[충돌 발생] 맞은 부위: {(isHeadHit ? "<color=red>머리(Head)</color>" : "<color=yellow>몸통(Body)</color>")}, 데미지: {dmg}");
 
