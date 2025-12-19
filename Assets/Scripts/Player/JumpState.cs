@@ -14,6 +14,9 @@ public class JumpState : IState<Player>
     {
         _player.SetPhysicsMaterial(true);
 
+        _player.Anim.SetTrigger(_player.animJump);
+        _player.Anim.SetBool(_player.animFalling, false);
+
         Debug.Log("점프 진입");
         Vector2 velocity = _player.Rb.linearVelocity;
         

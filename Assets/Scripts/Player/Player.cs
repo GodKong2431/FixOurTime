@@ -92,6 +92,12 @@ public class Player : MonoBehaviour,IDamageable
 
     Rigidbody2D _rb;
     SpriteRenderer _spr;
+    Animator _anim;
+
+    public readonly int animState = Animator.StringToHash("State");
+    public readonly int animJump = Animator.StringToHash("DoJump");
+    public readonly int animAttack = Animator.StringToHash("DoAttack");
+    public readonly int animFalling = Animator.StringToHash("IsFalling");
 
     //프로퍼티
     public int AirJumpCount => _airJumpCount;
@@ -125,6 +131,7 @@ public class Player : MonoBehaviour,IDamageable
     public Vector2 MoveInput => _moveInput;
     public Rigidbody2D Rb => _rb;
     public SpriteRenderer Spr => _spr;
+    public Animator Anim => _anim;
     public IState<Player> CurrentState => _currentState;
     public bool IsGrounded => _isGrounded;
     public bool HasAllClockHands => _hasSecondHand && _hasMinuteHand && _hasHourHand;
@@ -141,6 +148,7 @@ public class Player : MonoBehaviour,IDamageable
     {
         _rb = GetComponent<Rigidbody2D>();
         _spr = GetComponent<SpriteRenderer>();
+        _anim = GetComponent<Animator>();
         _currentHp = _maxHp;
         _currentAirJump = _airJumpCount;
         if(_boostUI != null)
