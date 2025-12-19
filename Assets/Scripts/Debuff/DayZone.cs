@@ -13,20 +13,20 @@ public class DayZone : MonoBehaviour
         if (_isPlayerInside && _player != null)
         {
             // 밤 디버프 즉시 제거
-            _player.RemoveDebuffByName("추움");
+            _player.RemoveEffectByName("추움");
 
             _stayTimer += Time.deltaTime;
 
             if (_stayTimer >= 5f)
             {
                 // 5초 경과 시 탈진 (나간 뒤에도 유지되도록 Duration을 길게 설정)
-                _player.RemoveDebuffByName("더움");
-                _player.AddDebuff(new ExhaustDebuff(9999f));
+                _player.RemoveEffectByName("더움");
+                _player.AddEffect(new ExhaustDebuff(9999f));
             }
             else
             {
                 // 5초 전에는 더움 (나간 뒤 5초 유지)
-                _player.AddDebuff(new HotDebuff(5f));
+                _player.AddEffect(new HotDebuff(5f));
             }
         }
     }

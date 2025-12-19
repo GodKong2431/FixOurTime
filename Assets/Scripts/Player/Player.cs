@@ -76,8 +76,15 @@ public class Player : MonoBehaviour,IDamageable
     [SerializeField] float _bounceForce = 5f; // 튕겨나가는 힘
     [SerializeField] bool _isDashAttackEnabled = false;
 
-    [Header("디버프 관리")]
-    List<IDebuff<Player>> _activeDebuffs = new List<IDebuff<Player>>();
+    [Header("버프/디버프 관리")]
+    List<IStatusEffect<Player>> _activeEffects = new List<IStatusEffect<Player>>();
+    bool _isInfiniteJumpEnabled = false;
+    bool _isInfiniteJumpLocked = false;
+
+    [Header("수집아이템 상태")]
+    bool _hasSecondHand = false;
+    bool _hasMinuteHand = false;
+    bool _hasHourHand = false;
 
     [Header("이벤트 설정")]
     [SerializeField] UnityEvent OnPlayerDead;
@@ -93,7 +100,7 @@ public class Player : MonoBehaviour,IDamageable
     public float MinJumpForce => _minJumpForce;
     public float MaxJumpForce => _maxJempForce;
     public float DoubleJumpForce => _doubleJumpForce;
-    public float MaxChargeTime => _maxChargeTime;
+    public float MaxChargeTime { get => _maxChargeTime; set => _maxChargeTime = value; }
     public float MaxFallSpeedForStun => _maxFallSpeedForStun;
     public float StunDuration => _stunDuration;
     public float HitDuration => _hitDuration;
@@ -120,11 +127,14 @@ public class Player : MonoBehaviour,IDamageable
     public SpriteRenderer Spr => _spr;
     public IState<Player> CurrentState => _currentState;
     public bool IsGrounded => _isGrounded;
+    public bool HasAllClockHands => _hasSecondHand && _hasMinuteHand && _hasHourHand;
     public bool IsChargeStarted { get => _isChargeStarted; set => _isChargeStarted = value; }
     public bool IsStunStarted { get => _isStunStarted; set => _isStunStarted = value; }
     public bool IsAirJump { get => _isAirJump; set => _isAirJump = value; }
     public bool IsDoubleJumpEnabled { get => _isDoubleJumpEnabled; set => _isDoubleJumpEnabled = value; }
     public bool IsSpeedBoostEnabled { get => _isSpeedBoostEnabled; set => _isSpeedBoostEnabled = value; }
+    public bool IsInfiniteJumpEnabled { get => _isInfiniteJumpEnabled; set => _isInfiniteJumpEnabled = value; }
+    public bool IsInfiniteJumpLocked { get => _isInfiniteJumpLocked; set => _isInfiniteJumpLocked = value; }
     public bool CanAttack => Time.time >= _nextAttackTime; //공격 가능한 상태인지 확인용
 
     private void Awake()
@@ -152,6 +162,13 @@ public class Player : MonoBehaviour,IDamageable
             _groundLayer                //충돌대상체크
             );
 
+        if (_isGrounded)
+        {
+            // 땅에 닿으면 무한 점프 잠금 해제
+            _isInfiniteJumpLocked = false;
+            _currentAirJump = _airJumpCount;
+        }
+
         HandleDebuffs();
         _currentState.Execute(this);
     }
@@ -177,20 +194,26 @@ public class Player : MonoBehaviour,IDamageable
         {
             return;
         }
+
         //공중에서 점프입력 들어왔을때 2단점프 시도
-        if (ctx.started)
+        if (ctx.started && (_currentState is FallState || _currentState is JumpState))
         {
-            if (_currentState is FallState || _currentState is JumpState)
+            // 조건 1: 공중 점프 횟수가 남았거나
+            // 조건 2: 무한 점프가 활성화되어 있고 + 현재 잠금 상태가 아닐 때
+            bool canInfiniteJump = _isInfiniteJumpEnabled && !_isInfiniteJumpLocked;
+
+            if ((_currentAirJump > 0 && _isAirJump && _isDoubleJumpEnabled) || canInfiniteJump)
             {
-                if (_currentAirJump > 0 && _isAirJump &&_isDoubleJumpEnabled)
-                {
-                    _jumpDirX = _moveInput.x; //이거 활성화 시키면 공중에서 더블점프로 방향전환 가능
-                    SetState(new JumpState(true));
-                    return;
-                }
+                _jumpDirX = _moveInput.x;
+                SetState(new JumpState(true)); // true는 공중 점프임을 나타냄
+
+                // 일반 공중 점프 횟수는 무한 점프가 아닐 때만 차감하게 할 수도 있습니다.
+                if (!canInfiniteJump) _currentAirJump--;
+
+                return;
             }
         }
-        
+
         //땅에있을때
         if (_isGrounded)
         {
@@ -321,6 +344,12 @@ public class Player : MonoBehaviour,IDamageable
         //넉백포스가 있어야만 피격발생하게
         if (KnockbackForce > 0f && !(_currentState is HitState))
         {
+            if (_isInfiniteJumpEnabled)
+            {
+                _isInfiniteJumpLocked = true;
+                Debug.Log("피격시 착지전까지 무한점프 잠금");
+            }
+
             // 물리 및 가속 상태 초기화
             _rb.linearVelocity = Vector2.zero;
             _rb.angularVelocity = 0f;
@@ -337,28 +366,28 @@ public class Player : MonoBehaviour,IDamageable
 
     private void HandleDebuffs()
     {
-        for(int i = _activeDebuffs.Count - 1; i >= 0; i--)
+        for(int i = _activeEffects.Count - 1; i >= 0; i--)
         {
-            var debuff = _activeDebuffs[i];
+            var debuff = _activeEffects[i];
             debuff.Duration -= Time.deltaTime;
             debuff.OnExecute(this);
 
             if(debuff.Duration <= 0f)
             {
-                RemoveDebuff(debuff);
+                RemoveEffect(debuff);
             }
         }
     }
-    public void AddDebuff(IDebuff<Player> newDebuff)
+    public void AddEffect(IStatusEffect<Player> newDebuff)
     {
         // 이미 디버프가 걸려있는지 확인
-        IDebuff<Player> existing = null;
+        IStatusEffect<Player> existing = null;
 
-        for (int i = 0; i < _activeDebuffs.Count; i++)
+        for (int i = 0; i < _activeEffects.Count; i++)
         {
-            if (_activeDebuffs[i].Name == newDebuff.Name)
+            if (_activeEffects[i].Name == newDebuff.Name)
             {
-                existing = _activeDebuffs[i];
+                existing = _activeEffects[i];
                 break;
             }
         }
@@ -370,18 +399,18 @@ public class Player : MonoBehaviour,IDamageable
             return;
         }
         //없으면 새로 추가
-        _activeDebuffs.Add(newDebuff);
+        _activeEffects.Add(newDebuff);
         newDebuff.OnEnter(this);
     }
-    public void RemoveDebuffByName(string debuffName)
+    public void RemoveEffectByName(string debuffName)
     {
-        IDebuff<Player> target = null;
+        IStatusEffect<Player> target = null;
 
-        for (int i = 0; i < _activeDebuffs.Count; i++)
+        for (int i = 0; i < _activeEffects.Count; i++)
         {
-            if (_activeDebuffs[i].Name == debuffName)
+            if (_activeEffects[i].Name == debuffName)
             {
-                target = _activeDebuffs[i];
+                target = _activeEffects[i];
                 break;
             }
         }
@@ -389,13 +418,13 @@ public class Player : MonoBehaviour,IDamageable
         if (target != null)
         {
             Debug.Log(target);
-            RemoveDebuff(target);
+            RemoveEffect(target);
         }
     }
-    private void RemoveDebuff(IDebuff<Player> debuff)
+    private void RemoveEffect(IStatusEffect<Player> debuff)
     {
         debuff.OnExit(this);
-        _activeDebuffs.Remove(debuff);
+        _activeEffects.Remove(debuff);
     }
 
     //죽었을때 이벤트 호출
@@ -482,5 +511,15 @@ public class Player : MonoBehaviour,IDamageable
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(_groundChecker.position, 0.05f);
+    }
+    //클리어를 위한 아이템 다 모았는가 확인용
+    public void CollectItem(ItemObject.ItemType type)
+    {
+        switch (type)
+        {
+            case ItemObject.ItemType.SecondHand: _hasSecondHand = true; break;
+            case ItemObject.ItemType.MinuteHand: _hasMinuteHand = true; break;
+            case ItemObject.ItemType.HourHand: _hasHourHand = true; break;
+        }
     }
 }

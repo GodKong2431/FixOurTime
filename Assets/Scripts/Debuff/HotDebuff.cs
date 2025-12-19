@@ -1,9 +1,10 @@
 using UnityEngine;
 
-public class HotDebuff : IDebuff<Player>
+public class HotDebuff : IStatusEffect<Player>
 {
     public string Name => "´õ¿ò";
     public float Duration { get; set; }
+    public bool IsPositive => false;
 
     public HotDebuff(float duration)
     {
