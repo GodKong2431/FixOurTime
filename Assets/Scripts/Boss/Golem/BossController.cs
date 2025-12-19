@@ -139,8 +139,15 @@ public class BossController : MonoBehaviour
 
     private bool _isActivated = false;
 
+    private Vector3 _originWallPos;
+    private Vector3 _originFloorPos;
+
+
     private void Start()
     {
+
+        if (wallBossObject) _originWallPos = wallBossObject.position;
+        if (floorBossObject) _originFloorPos = floorBossObject.position;
 
         CurrentHp = Data.maxHp;
         if (weaknessObject != null)
@@ -280,27 +287,37 @@ public class BossController : MonoBehaviour
     }
     public void ResetBoss()
     {
-        // 1. 실행 중인 모든 패턴(코루틴) 정지
+
+        Debug.Log("보스 리셋 시작...");
+
+        // 1. 실행 중인 모든 패턴(코루틴) 강제 정지
         StopAllCoroutines();
 
         // 2. 보스 오브젝트 비활성화 (숨기기)
-        if (wallBossObject) wallBossObject.gameObject.SetActive(false);
-        if (floorBossObject) floorBossObject.gameObject.SetActive(false);
-        if (weaknessObject) weaknessObject.SetActive(false);
-
+        if (wallBossObject)
+        {
+            wallBossObject.gameObject.SetActive(false);
+            wallBossObject.position = _originWallPos;
+        }
+        if (floorBossObject)
+        {
+            floorBossObject.position = _originFloorPos;
+            floorBossObject.gameObject.SetActive(false);
+        }
+        if (weaknessObject)
+        {
+            weaknessObject.SetActive(false);
+        }
         // 3. 스탯 및 상태 초기화
-        CurrentHp = Data.maxHp; // 체력 복구
-        Phase = 1;              // 1페이즈로
-        _isActivated = false;   // 다시 ActivateBoss()가 작동하도록 플래그 해제
-        _currentState = null;   // 상태 비움
+        CurrentHp = Data.maxHp;
+        Phase = 1;
+        _isActivated = false;   
+        _currentState = null;
 
         // 4. 맵에 남아있는 투사체(콘크리트, 고철) 청소
-        RetractAllConcretes(); // 콘크리트 회수
+        RetractAllConcretes();
 
-
-        Debug.Log("보스 리셋 완료: 재도전 준비 끝");
     }
-
 }
 
 
