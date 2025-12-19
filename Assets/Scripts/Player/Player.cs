@@ -90,6 +90,10 @@ public class Player : MonoBehaviour,IDamageable
     [SerializeField] UnityEvent OnPlayerDead;
     [SerializeField] UnityEvent OnPlayerRespawn;
 
+    [Header("차지 시각 효과")]
+    [SerializeField] private Color _startColor = new Color(1, 1, 1, 0);
+    [SerializeField] Color _fullChargeColor = Color.green;
+
     Rigidbody2D _rb;
     SpriteRenderer _spr;
     Animator _anim;
@@ -529,5 +533,34 @@ public class Player : MonoBehaviour,IDamageable
             case ItemObject.ItemType.MinuteHand: _hasMinuteHand = true; break;
             case ItemObject.ItemType.HourHand: _hasHourHand = true; break;
         }
+    }
+
+    public void ChargeVisual(float ratio)
+    {
+
+        float delayedRatio = Mathf.Pow(ratio, 3f);
+
+        //보간 이용해서 시작색에서 풀차지색까지 부드럽게 전환
+        Color currentColor = Color.Lerp(_startColor, _fullChargeColor, delayedRatio);
+
+        //깜박임 속도 차지완료되면 15, 차지중엔 5
+        float blinkSpeed = (ratio >= 1f) ? 15.0f : 5.0f;
+
+        //핑퐁 - 0~1사이 무한왕복
+        float pingPong = Mathf.PingPong(Time.time * blinkSpeed, 1.0f);
+
+        //차지완료되면 목표색이랑 노란색이랑 왔다갔다하게
+        if (ratio >= 1f)
+        {
+            currentColor = Color.Lerp(_fullChargeColor, Color.yellow, pingPong);
+        }
+
+        // 차지될수록 밝아지고 핑퐁값에 의해 밝기가 출렁이게
+        float intensity = 1.0f + (ratio * 4.0f * (1.0f + pingPong * 0.5f));
+
+        //셰이더에 계산된 색이랑 강도를 곱해서 효과적용
+        Spr.material.SetColor("_OutlineColor", currentColor * intensity);
+        //두께 차징정도에따라  0.02f까지 키우기
+        Spr.material.SetFloat("_OutlineWidth", ratio * 0.02f);
     }
 }
