@@ -12,7 +12,11 @@ public class WeaknessObject : MonoBehaviour, IDamageable
         // 실제 HP 깎는 건 컨트롤러에게 위임
         if (_bossBase != null)
         {
+           
             _bossBase.TakeDamage(damage);
+
+
+            Debug.Log($"<color=red>[약점 격파]</color> 보스 남은 체력: {_bossBase.CurrentHp}");
         }
 
         // 맞았으니 약점 패턴 종료를 위해 비활성화
