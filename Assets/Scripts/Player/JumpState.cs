@@ -17,6 +17,12 @@ public class JumpState : IState<Player>
         _player.Anim.SetTrigger(_player.animJump);
         _player.Anim.SetBool(_player.animFalling, false);
 
+        //카메라 테스트용 코드
+        //if(CinemachinCamManager.Instance != null)
+        //{
+        //    CinemachinCamManager.Instance.Shake(5.0f,2.0f, 1f);
+        //}
+
         Debug.Log("점프 진입");
         Vector2 velocity = _player.Rb.linearVelocity;
         
