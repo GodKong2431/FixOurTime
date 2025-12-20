@@ -62,7 +62,6 @@ public class Laser : DamageableTrapBase, IDamageable
         dir.Normalize();
 
         box.size = new Vector2(distance, 0.2f);
-
         box.offset = Vector2.right * distance * 0.5f;
 
         transform.position = _firePoint.position;
@@ -103,12 +102,9 @@ public class Laser : DamageableTrapBase, IDamageable
 
     private void UpdateLineRenderer(LineRenderer line)
     {
-        Vector2 origin = _firePoint.position;
-        Vector2 endPoint = EndPoint;
-
         line.positionCount = 2;
-        line.SetPosition(0, origin);
-        line.SetPosition(1, endPoint);
+        line.SetPosition(0, _firePoint.position);
+        line.SetPosition(1, EndPoint);
     }
 
     public void TakeDamage(float damage, float KnockbackForce, Vector3 hitPos)
