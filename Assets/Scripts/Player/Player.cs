@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour,IDamageable
 {
@@ -450,6 +451,7 @@ public class Player : MonoBehaviour,IDamageable
         data.currentHp = _currentHp;
         data.playerPos = transform.position;
         data.maxHp = _maxHp;
+        data.sceneName = SceneManager.GetActiveScene().name;
     }
     //데이터 불러오기
     public void LoadPlayerData(GameData data)
