@@ -12,13 +12,10 @@ public class GameData
     // 사망시에 풀피로 로드하기 위한 최대 체력값
     public float maxHp;
 
-    //기본 생성자, 데이터 파일이없을때 사용될 기본값 일단임시로 위치 제로로했는데 시작포인트 정하면 거기로수정바람
-    public GameData()
-    {
-        currentHp = 100f;
-        maxHp = 100f;
-        playerPos = Vector2.zero;
-    }
+    //씬 정보
+    public string sceneName;
+
+
 
     //마지막 저장 씬 넣을거면 추가
 

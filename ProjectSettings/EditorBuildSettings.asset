@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestScene/UI/LHS_Main.unity
     guid: f48e03b313ffc9047a4ffa2249b4e8b8
+  - enabled: 1
+    path: Assets/Scenes/TestScene/UI/UITestScene.unity
+    guid: 8ed70259083e7fd418f81a9214e11d76
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: e7fd5fceb63e1b7468480b309cf22d3e, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
