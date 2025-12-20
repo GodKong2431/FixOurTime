@@ -4,7 +4,6 @@ public class DestroyArea : MonoBehaviour
 {
     [Header("Move")]
     [SerializeField] float _riseSpeed = 2f;
-    [SerializeField] float _zoneHeight = 2f;
 
     [Header("References")]
     public Transform _destroyLine;
