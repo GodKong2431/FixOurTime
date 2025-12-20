@@ -14,6 +14,7 @@ public static class GameDataManager
     {
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(savePath, json);
+        Debug.Log(Application.persistentDataPath);
     }
 
     //파일 로드

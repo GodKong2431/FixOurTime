@@ -1,12 +1,22 @@
+using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameStart : MonoBehaviour
-{    
-    [SerializeField] private AudioClip _audioClip;
-    public void OnClick()
+{
+    public event Action _onGameStart;
+
+    public void Show()
     {
-        SoundManager.instance.PlayBGM(_audioClip);
-        SceneManager.LoadScene("UITestScene"); // 추후 인게임씬이름으로 변경
+        gameObject.SetActive(true); //씬 기본값으로 비활성화시켜둔 팝업 켜기
+    }
+
+    public void Hide()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void OnClik()
+    {
+        _onGameStart?.Invoke();
     }
 }

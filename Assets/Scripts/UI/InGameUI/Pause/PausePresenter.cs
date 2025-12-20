@@ -76,13 +76,15 @@ public class PausePresenter
     // 우측상단 Pause 버튼
     void Pause()
     {
-            Time.timeScale = 0f;    //게임 일시정지
-            _pauseButton.gameObject.SetActive(false);    //퍼즈버튼 비활성화
-            _panel.Show();   //Panel.cs 에 있는 팝업창 활성화 함수
-            _resumeButton.Show();
-            _quitButton.Show();
-            _mainButton.Show();
-            Debug.Log($"TimeScale :" + Time.timeScale);
+        Time.timeScale = 0f;    //게임 일시정지
+        _pauseButton.gameObject.SetActive(false);    //퍼즈버튼 비활성화
+
+        //Panel.cs 에 있는 팝업창 활성화 함수
+        _panel.Show();
+        _resumeButton.Show();
+        _quitButton.Show();
+        _mainButton.Show();
+        Debug.Log($"TimeScale :" + Time.timeScale);
     }
 
 
