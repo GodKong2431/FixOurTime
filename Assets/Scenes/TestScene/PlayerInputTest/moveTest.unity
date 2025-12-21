@@ -5026,30 +5026,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
-      propertyPath: _Ora
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
-      propertyPath: _startColor.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
-      propertyPath: _fullChargeColor.b
-      value: 0.84621763
-      objectReference: {fileID: 0}
-    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
-      propertyPath: _fullChargeColor.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
-      propertyPath: _fullChargeColor.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5708065389392750430, guid: 399c980154248fc41b541233f493a29b, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 9bb0d0dd77626664ca8365a71e38a3e5, type: 2}
     - target: {fileID: 7303901205914570929, guid: 399c980154248fc41b541233f493a29b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.86

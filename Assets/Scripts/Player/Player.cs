@@ -45,6 +45,7 @@ public class Player : MonoBehaviour,IDamageable
     [SerializeField] float _hitDuration = 0.5f;
 
     [Header("공격 설정")]
+    [SerializeField] AttackHitBox _attackHitBox;
     [SerializeField] float _attackDuration = 0.3f;
     [SerializeField] float _attackRange = 1.0f;
     [SerializeField] float _attackDamage = 10f;
@@ -262,6 +263,33 @@ public class Player : MonoBehaviour,IDamageable
                     SetState(new AttackState());
                 }
             }
+        }
+    }
+
+    public void StartAttack()
+    {
+        if(_attackHitBox != null)
+        {
+            float offsetDir = _spr.flipX ? -1f : 1f;
+            Vector3 newPos = _attackHitBox.transform.localPosition;
+            newPos.x = Mathf.Abs(newPos.x) * offsetDir;
+            _attackHitBox.transform.localPosition = newPos;
+            Vector2 attSize = GetComponent<CapsuleCollider2D>().size;
+            _attackHitBox.Activate(_attackDamage, attSize);
+        }
+    }
+    public void UpdateAttackProgress(float progress)
+    {
+        if(_attackHitBox != null)
+        {
+            _attackHitBox.UpdateEffect(progress);
+        }
+    }
+    public void EndAttack()
+    {
+        if( _attackHitBox != null)
+        {
+            _attackHitBox.Deactivate();
         }
     }
 
@@ -565,4 +593,6 @@ public class Player : MonoBehaviour,IDamageable
         //두께 차징정도에따라  0.02f까지 키우기
         Spr.material.SetFloat("_OutlineWidth", ratio * 0.02f);
     }
+
+
 }
