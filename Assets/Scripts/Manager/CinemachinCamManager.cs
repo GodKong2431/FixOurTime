@@ -20,8 +20,12 @@ public class CinemachinCamManager : SingleTon<CinemachinCamManager>
         _mainCam = Camera.main;
         _noise = _activeCam.GetComponent<CinemachineBasicMultiChannelPerlin>();
         _screenHeight = _activeCam.Lens.OrthographicSize * 2f;
+        
     }
-
+    private void Start()
+    {
+        Shake(5, 5, 5);
+    }
     void LateUpdate()
     {
         
