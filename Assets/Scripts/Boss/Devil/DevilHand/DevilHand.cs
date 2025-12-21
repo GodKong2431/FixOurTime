@@ -7,10 +7,13 @@ public class DevilHand : MonoBehaviour
     [Header("이동 속도")]
     [SerializeField] private float _moveSpeed = 18f;
 
+    [Header("공격 속도")]
+    [SerializeField] private float _attackSpeed = 18f;
+
     private Transform _boss;
 
-    private Vector2 _startPos;        // 패턴 시작 연출 위치
-    private Vector2 _returnPos;     // 패턴 시작 전 실제 위치
+    private Vector2 _startPos;
+    private Vector2 _returnPos;
 
     private Coroutine _routine;
     private bool _hitGround;
@@ -120,7 +123,7 @@ public class DevilHand : MonoBehaviour
     {
         while (!_hitGround)
         {
-            transform.position += (Vector3)(dir * _moveSpeed * Time.deltaTime);
+            transform.position += (Vector3)(dir * _attackSpeed * Time.deltaTime);
             yield return null;
         }
     }
