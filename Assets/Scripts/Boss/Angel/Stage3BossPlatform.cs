@@ -89,7 +89,7 @@ public class Stage3BossPlatform : MonoBehaviour
     private void CallJudgment()
     {
         Vector2 worldPos = (Vector2)transform.position + _lastPos;
-        _judgment.StartJudgment(worldPos);
+        _judgment.StartJudgment(worldPos + new Vector2(0, -1f));
     }
 
     private IEnumerator MovePlatform()

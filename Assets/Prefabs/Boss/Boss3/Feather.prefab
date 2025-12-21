@@ -108,10 +108,10 @@ MonoBehaviour:
   _trapDamage: 20
   _knockbackForce: 7
   _invincibleTime: 0.5
-  speed: 30
-  AngleOffset: 10
+  _speed: 15
+  _angleOffset: 10
   _moveDelay: 1
-  lifeTime: 5
+  _lifeTime: 3
 --- !u!70 &-2900290711438393807
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
