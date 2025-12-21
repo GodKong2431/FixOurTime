@@ -4,15 +4,15 @@ using UnityEngine;
 public class FeatherSpawner : MonoBehaviour
 {
     [Header("스폰 설정")]
-    [SerializeField] private GameObject featherPrefab;
+    [SerializeField] private GameObject _featherPrefab;
+    [SerializeField] private int _featherCount = 25;
 
-    [SerializeField] private float offset = 5f;
+    [Header("스폰 오프셋")]
+    [SerializeField] private float _offsetX = 5f;
+    [SerializeField] private float _rnadomOffsetX = 1f;
+    [SerializeField] private float _rnadomOffsetY = 1f;
 
-    [SerializeField] private int featherCount = 25;
-
-    [SerializeField] private float randomXOffset = 1f;
-
-    [Header("스폰 설정")]
+    [Header("쿨타임")]
     [SerializeField] private float _coolTime;
 
     private WaitForSeconds _cool;
@@ -30,23 +30,24 @@ public class FeatherSpawner : MonoBehaviour
 
     public IEnumerator SpawnFeather()
     {
-        if (featherCount <= 1) yield break;
+        if (_featherCount <= 1) yield break;
 
         while(true)
         {
             yield return _cool;
 
-            float minX = transform.position.x - offset;
-            float maxX = transform.position.x + offset;
-            float interval = (maxX - minX) / (featherCount - 1);
+            float minX = transform.position.x - _offsetX;
+            float maxX = transform.position.x + _offsetX;
+            float interval = (maxX - minX) / (_featherCount - 1);
 
-            for (int i = 0; i < featherCount; i++)
+            for (int i = 0; i < _featherCount; i++)
             {
                 float x = minX + interval * i;
-                x += Random.Range(-randomXOffset, randomXOffset);
+                x += Random.Range(-_rnadomOffsetX, _rnadomOffsetX);
+                float y = transform.position.y + Random.Range(-_rnadomOffsetY, _rnadomOffsetY);
 
-                Vector2 spawnPos = new Vector2(x, transform.position.y);
-                Instantiate(featherPrefab, spawnPos, Quaternion.identity);
+                Vector2 spawnPos = new Vector2(x, y);
+                Instantiate(_featherPrefab, spawnPos, Quaternion.identity);
             }
         }
     }

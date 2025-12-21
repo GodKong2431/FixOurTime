@@ -1302,6 +1302,10 @@ PrefabInstance:
       value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2570053252600128156, guid: 6f146865416256c4084d008681c2041a, type: 3}
+      propertyPath: _offsetX
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2570053252600128156, guid: 6f146865416256c4084d008681c2041a, type: 3}
       propertyPath: _coolTime
       value: 5
       objectReference: {fileID: 0}
@@ -1313,6 +1317,14 @@ PrefabInstance:
       propertyPath: featherPrefab
       value: 
       objectReference: {fileID: 2330953687364659708, guid: 3fa1b5ed14419d349a5d7213c6f392d4, type: 3}
+    - target: {fileID: 2570053252600128156, guid: 6f146865416256c4084d008681c2041a, type: 3}
+      propertyPath: _featherPrefab
+      value: 
+      objectReference: {fileID: 2330953687364659708, guid: 3fa1b5ed14419d349a5d7213c6f392d4, type: 3}
+    - target: {fileID: 2570053252600128156, guid: 6f146865416256c4084d008681c2041a, type: 3}
+      propertyPath: _rnadomOffsetY
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4771043238695290433, guid: 6f146865416256c4084d008681c2041a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.91
