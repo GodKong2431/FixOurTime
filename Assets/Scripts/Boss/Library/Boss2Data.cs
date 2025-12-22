@@ -4,11 +4,11 @@ using UnityEngine;
 public class Boss2Data : BossCommonData
 {
     [Header("=== Paper Crane (종이학) ===")]
-    [Tooltip("종이학 생성 주기 (10초)")]
-    [SerializeField] private float _craneSpawnInterval = 10.0f;
+    [Tooltip("종이학 생성 주기 (5초)")]
+    [SerializeField] private float _craneSpawnInterval = 5.0f;
 
-    [Tooltip("플레이어 속도 배율 (1.0)")]
-    [SerializeField] private float _craneSpeedMultiplier = 1.0f;
+    [Tooltip("플레이어 속도 배율 (1.2배)")]
+    [SerializeField] private float _craneSpeedMultiplier = 1.2f;
 
     [Tooltip("기본 플레이어 속도 (기준값)")]
     [SerializeField] private float _basePlayerSpeed = 5.0f;
@@ -30,6 +30,8 @@ public class Boss2Data : BossCommonData
     [SerializeField] private float _bookDirectDamage = 100f;
     [Tooltip("전공책 주변 도트 데미지 (초당 20)")]
     [SerializeField] private float _bookDotDamage = 20f;
+    [Tooltip("벽이나 바닥 충돌 후 유지 시간 (3초)")]
+    [SerializeField] private float _bookDurationAfterHit = 3.0f;
 
     [Header("=== Fox (여우) ===")]
     [Tooltip("여우의 이동 속도(6.0)")]
@@ -58,7 +60,6 @@ public class Boss2Data : BossCommonData
     [SerializeField] private float _gimmickInterval = 5.0f;
 
     // 프로퍼티 (외부 공개)
-    public float FoxMoveSpeed => _foxMoveSpeed;
     public float CraneSpawnInterval => _craneSpawnInterval;
     public float CraneSpeedMultiplier => _craneSpeedMultiplier;
     public float BasePlayerSpeed => _basePlayerSpeed;
@@ -71,7 +72,9 @@ public class Boss2Data : BossCommonData
     public float BookKnockback => _bookKnockback;
     public float BookDirectDamage => _bookDirectDamage;
     public float BookDotDamage => _bookDotDamage;
+    public float BookDurationAfterHit => _bookDurationAfterHit;
 
+    public float FoxMoveSpeed => _foxMoveSpeed;
     public float FoxSpawnDelay => _foxSpawnDelay;
     public float FoxEatDuration => _foxEatDuration;
     public float FoxBiteDamage => _foxBiteDamage;

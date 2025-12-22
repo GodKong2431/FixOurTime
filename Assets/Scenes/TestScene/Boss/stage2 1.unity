@@ -16216,6 +16216,7 @@ MonoBehaviour:
     _bookKnockback: 5
     _bookDirectDamage: 100
     _bookDotDamage: 20
+    _bookDurationAfterHit: 3
     _foxMoveSpeed: 6
     _foxSpawnDelay: 5
     _foxEatDuration: 1
@@ -16251,7 +16252,7 @@ MonoBehaviour:
   - {fileID: 4849458643107157719, guid: d40b1d42cf73bf54491598c13fa43eec, type: 3}
   - {fileID: -4983775450821821238, guid: d40b1d42cf73bf54491598c13fa43eec, type: 3}
   - {fileID: 7732937558637356469, guid: d40b1d42cf73bf54491598c13fa43eec, type: 3}
-  _cranePrefab: {fileID: 0}
+  _cranePrefab: {fileID: 509177672557854420, guid: 305cb7c34c8dc9243894dd86d155ab0a, type: 3}
   _majorBookPrefab: {fileID: 2506951940077100621, guid: 087d391616b229149b6ae308b5ac23c0, type: 3}
   _gimmickItemPrefab: {fileID: 5426099278519353138, guid: 9095a77be3b66e94ebc01291261fe8cd, type: 3}
 --- !u!4 &1597531385
@@ -21557,6 +21558,62 @@ PrefabInstance:
     - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
       propertyPath: _groundCheckDistance
       value: -0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
+      propertyPath: OnPlayerDead.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
+      propertyPath: OnPlayerRespawn.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
+      propertyPath: OnPlayerDead.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
+      propertyPath: OnPlayerDead.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1597531384}
+    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
+      propertyPath: OnPlayerRespawn.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
+      propertyPath: OnPlayerDead.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
+      propertyPath: OnPlayerRespawn.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 797971907}
+    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
+      propertyPath: OnPlayerDead.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ResetBoss
+      objectReference: {fileID: 0}
+    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
+      propertyPath: OnPlayerRespawn.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
+      propertyPath: OnPlayerRespawn.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ResetTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
+      propertyPath: OnPlayerDead.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Stage2Boss, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
+      propertyPath: OnPlayerRespawn.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: BossZone, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
+      propertyPath: OnPlayerDead.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
+      propertyPath: OnPlayerRespawn.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2076009663219324200, guid: 399c980154248fc41b541233f493a29b, type: 3}
       propertyPath: m_Layer

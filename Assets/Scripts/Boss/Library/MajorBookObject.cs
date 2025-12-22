@@ -8,6 +8,7 @@ public class MajorBookObject : MonoBehaviour
     private Stage2Boss _boss;
     private Transform _target;
     private Vector3 _direction;
+    private bool _isMoving = false; // 이동 중 여부
     #endregion
 
     #region Public Methods
@@ -16,6 +17,9 @@ public class MajorBookObject : MonoBehaviour
         _boss = boss;
         _target = target;
         StartCoroutine(AttackRoutine());
+
+        // 생성 직후부터 도트 데미지 장판 가동
+        StartCoroutine(DotDamageRoutine());
     }
     #endregion
 
@@ -25,13 +29,20 @@ public class MajorBookObject : MonoBehaviour
         // 1. 조준 단계
         yield return StartCoroutine(AimRoutine());
 
-        // 2. 발사 준비 (방향 고정 및 대기)
+        // 2. 발사 준비
         Debug.Log("전공책 조준 고정");
-
         yield return new WaitForSeconds(_boss.Data.BookFireDelay);
 
-        // 3. 발사 (직진)
-        yield return StartCoroutine(FireRoutine());
+        // 3. 발사
+        _isMoving = true;
+        float speed = _boss.Data.BookMoveSpeed;
+
+        while (_isMoving)
+        {
+            // 설정된 방향으로 직진
+            transform.position += _direction * speed * Time.deltaTime;
+            yield return null;
+        }
     }
 
     private IEnumerator AimRoutine()
@@ -42,7 +53,6 @@ public class MajorBookObject : MonoBehaviour
         while (aimTimer < duration)
         {
             aimTimer += Time.deltaTime;
-
             if (_target != null)
             {
                 UpdateRotationToTarget();
@@ -58,26 +68,19 @@ public class MajorBookObject : MonoBehaviour
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
-    private IEnumerator FireRoutine()
+    // 책 주변 도트 데미지 처리
+    private IEnumerator DotDamageRoutine()
     {
-        float speed = _boss.Data.BookMoveSpeed;
-
-        // 도트 데미지 관련 변수
         float dotDamage = _boss.Data.BookDotDamage;
-        float dotRange = 3.0f; // 책 주변 3m
-        float dotInterval = 1.0f; // 1초 주기
+        float dotRange = 3.0f; // 범위 3m
+        float dotInterval = 1.0f;
         float dotTimer = 0f;
 
         while (true)
         {
-            // 방향대로 직진
-            transform.position += _direction * speed * Time.deltaTime;
-
-            // 주변 플레이어 체크 및 도트 데미지
             if (_target != null)
             {
                 float dist = Vector3.Distance(transform.position, _target.position);
-
                 if (dist <= dotRange)
                 {
                     dotTimer += Time.deltaTime;
@@ -86,34 +89,44 @@ public class MajorBookObject : MonoBehaviour
                         dotTimer = 0f;
                         if (_target.TryGetComponent(out IDamageable target))
                         {
-                            // 도트 데미지는 넉백 없음
                             target.TakeDamage(dotDamage, 0f, transform.position);
                         }
                     }
                 }
                 else
                 {
-                    dotTimer = 0f; // 범위 밖으로 나가면 타이머 초기화
+                    dotTimer = 0f;
                 }
             }
-
             yield return null;
         }
+    }
+
+    // 충돌 후 유지하다가 소멸
+    private IEnumerator StopAndPersist()
+    {
+        _isMoving = false; // 이동 정지
+
+        // 충돌 지점에서 대기 (장판 역할)
+        yield return new WaitForSeconds(_boss.Data.BookDurationAfterHit);
+
+        Destroy(gameObject);
     }
     #endregion
 
     #region Collision Handling
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // 벽 충돌 시 소멸
-        if (collision.CompareTag("Wall"))
+        if (!_isMoving) return;
+
+        // 벽이나 바닥 충돌 시 정지
+        if (collision.CompareTag("Wall") || collision.CompareTag("Ground"))
         {
-            Destroy(gameObject);
+            StartCoroutine(StopAndPersist());
         }
-        // 플레이어 직격
+        // 플레이어 직격 시 데미지 및 소멸
         else if (collision.CompareTag("Player") && collision.TryGetComponent(out IDamageable target))
         {
-            // BossData 값 사용
             target.TakeDamage(_boss.Data.BookDirectDamage, _boss.Data.BookKnockback, transform.position);
             Destroy(gameObject);
         }

@@ -37,7 +37,7 @@ public class BossUIManager : MonoBehaviour
         }
     }
 
-    // [Fix] 단순 카운트가 아니라, 획득한 아이템의 이미지(Sprite)를 받아와서 해당 슬롯을 끔
+    // 획득한 아이템의 이미지(Sprite)를 받아와서 해당 슬롯 비활성화
     public void MarkItemAsCollected(Sprite collectedSprite)
     {
         foreach (var slot in _targetItemSlots)

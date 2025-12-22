@@ -129,10 +129,10 @@ public class Stage2Boss : BossBase
         // 미니언 리스트에 추가
         _activeMinions.Add(craneObj);
 
-        //if (craneObj.TryGetComponent(out PaperCraneObject craneScript))
-        //{
-        //    craneScript.Initialize(this, _playerTarget);
-        //}
+        if (craneObj.TryGetComponent(out PaperCraneObject craneScript))
+        {
+            craneScript.Initialize(this, _playerTarget);
+        }
     }
 
     private void SpawnFox()
