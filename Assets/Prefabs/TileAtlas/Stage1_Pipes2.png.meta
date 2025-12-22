@@ -490,7 +490,7 @@ TextureImporter:
         width: 101
         height: 45
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -499,6 +499,50 @@ TextureImporter:
       bones: []
       spriteID: 2186f6005f6e1454c8229f4fb650d1ea
       internalID: -1545426696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage1_Pipes2_0
+      rect:
+        serializedVersion: 2
+        x: 632
+        y: 735
+        width: 269
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e829715eeaa98ea44b47af26154de393
+      internalID: 2059488717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage1_Pipes2_1
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 96
+        width: 184
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e228bda2de40c8478bd2fade8e2161c
+      internalID: -1762433215
       vertices: []
       indices: 
       edges: []
@@ -531,6 +575,8 @@ TextureImporter:
       Pipe_RemoveBG2_7: -529074715458277996
       Pipe_RemoveBG2_8: -7647360650193038238
       Pipe_RemoveBG2_9: 303992199227779262
+      Stage1_Pipes2_0: 2059488717
+      Stage1_Pipes2_1: -1762433215
       Stage2_Pipes2_0: 1077985687
       Stage2_Pipes2_1: -1545426696
   mipmapLimitGroupName: 
