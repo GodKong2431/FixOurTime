@@ -1,0 +1,690 @@
+fileFormatVersion: 2
+guid: 0e0cce22aafa66c48acb713e71d346d4
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1250904637297369349
+    second: Stage1_Pipes_0
+  - first:
+      213: -8104456306867400915
+    second: Stage1_Pipes_1
+  - first:
+      213: -4090119988038576397
+    second: Stage1_Pipes_2
+  - first:
+      213: -6767272727471588353
+    second: Stage1_Pipes_3
+  - first:
+      213: 7081502184284584308
+    second: Stage1_Pipes_4
+  - first:
+      213: 1129488242403065638
+    second: Stage1_Pipes_5
+  - first:
+      213: -5327674392344566993
+    second: Stage1_Pipes_6
+  - first:
+      213: -1219372426064713067
+    second: Stage1_Pipes_7
+  - first:
+      213: -6026794264013340506
+    second: Stage1_Pipes_8
+  - first:
+      213: 4154653124775583408
+    second: Stage1_Pipes_9
+  - first:
+      213: 376460642265347131
+    second: Stage1_Pipes_10
+  - first:
+      213: -6189922591015376453
+    second: Stage1_Pipes_11
+  - first:
+      213: 7830710646155227289
+    second: Stage1_Pipes_12
+  - first:
+      213: -8588590864774231885
+    second: Stage1_Pipes_13
+  - first:
+      213: -6260328529805900871
+    second: Stage1_Pipes_14
+  - first:
+      213: -4731759071454056511
+    second: Stage1_Pipes_15
+  - first:
+      213: 2309465311422003322
+    second: Stage1_Pipes_16
+  - first:
+      213: -8319942657025566862
+    second: Stage1_Pipes_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Stage1_Pipes_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 847
+        width: 1152
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfe50062cd4e3aee0800000000000000
+      internalID: -1250904637297369349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage1_Pipes_1
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 699
+        width: 606
+        height: 140
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2f8e7b9def278f80800000000000000
+      internalID: -8104456306867400915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage1_Pipes_2
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 721
+        width: 441
+        height: 124
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f65c309a89fc37c0800000000000000
+      internalID: -4090119988038576397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage1_Pipes_3
+      rect:
+        serializedVersion: 2
+        x: 1084
+        y: 771
+        width: 68
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffbfdd41f41d512a0800000000000000
+      internalID: -6767272727471588353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage1_Pipes_4
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 564
+        width: 435
+        height: 123
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4797f6a97bc864260800000000000000
+      internalID: 7081502184284584308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage1_Pipes_5
+      rect:
+        serializedVersion: 2
+        x: 489
+        y: 397
+        width: 119
+        height: 286
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62f3a6a729fbcaf00800000000000000
+      internalID: 1129488242403065638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage1_Pipes_6
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 0
+        width: 174
+        height: 719
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f236b5d0e5c4016b0800000000000000
+      internalID: -5327674392344566993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage1_Pipes_7
+      rect:
+        serializedVersion: 2
+        x: 881
+        y: 437
+        width: 127
+        height: 251
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59aa18f2d3be31fe0800000000000000
+      internalID: -1219372426064713067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage1_Pipes_8
+      rect:
+        serializedVersion: 2
+        x: 1018
+        y: 437
+        width: 121
+        height: 138
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a08f175c868c5ca0800000000000000
+      internalID: -6026794264013340506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage1_Pipes_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 431
+        width: 317
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0be1733310b48a930800000000000000
+      internalID: 4154653124775583408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage1_Pipes_10
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 219
+        width: 117
+        height: 288
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b343426a5f4793500800000000000000
+      internalID: 376460642265347131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage1_Pipes_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 219
+        width: 319
+        height: 203
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb9ec57f23af81aa0800000000000000
+      internalID: -6189922591015376453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage1_Pipes_12
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 209
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 990b3f208d54cac60800000000000000
+      internalID: 7830710646155227289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage1_Pipes_13
+      rect:
+        serializedVersion: 2
+        x: 890
+        y: 226
+        width: 256
+        height: 195
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b887ffdc123fc880800000000000000
+      internalID: -8588590864774231885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage1_Pipes_14
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 0
+        width: 248
+        height: 202
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b30dabee58de19a0800000000000000
+      internalID: -6260328529805900871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage1_Pipes_15
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 0
+        width: 218
+        height: 188
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cfaf37c13a655eb0800000000000000
+      internalID: -4731759071454056511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage1_Pipes_16
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 0
+        width: 171
+        height: 174
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a783564f67edc0020800000000000000
+      internalID: 2309465311422003322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage1_Pipes_17
+      rect:
+        serializedVersion: 2
+        x: 874
+        y: 18
+        width: 241
+        height: 194
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2771f500c30a98c80800000000000000
+      internalID: -8319942657025566862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage1_Pipes_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 219
+        width: 228
+        height: 203
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f3a549db76ec2040912f74453f993be
+      internalID: 1451191903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage1_Pipes_19
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 219
+        width: 110
+        height: 203
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ad2a88a9fb82cf479e5f0f54e13ecb8
+      internalID: -1421745587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage1_Pipes_20
+      rect:
+        serializedVersion: 2
+        x: 997
+        y: 18
+        width: 118
+        height: 194
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 767820d8a17e2184d9d62ab1bd4bc320
+      internalID: -1675990613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage1_Pipes_21
+      rect:
+        serializedVersion: 2
+        x: 874
+        y: 18
+        width: 123
+        height: 194
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 146ac24dda834174cb0f6d335ade251a
+      internalID: 570208521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 304e2c90072f2e7478b00c4c29d846ae
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Stage1_Pipes_0: -1250904637297369349
+      Stage1_Pipes_1: -8104456306867400915
+      Stage1_Pipes_10: 376460642265347131
+      Stage1_Pipes_11: -6189922591015376453
+      Stage1_Pipes_12: 7830710646155227289
+      Stage1_Pipes_13: -8588590864774231885
+      Stage1_Pipes_14: -6260328529805900871
+      Stage1_Pipes_15: -4731759071454056511
+      Stage1_Pipes_16: 2309465311422003322
+      Stage1_Pipes_17: -8319942657025566862
+      Stage1_Pipes_18: 1451191903
+      Stage1_Pipes_19: -1421745587
+      Stage1_Pipes_2: -4090119988038576397
+      Stage1_Pipes_20: -1675990613
+      Stage1_Pipes_21: 570208521
+      Stage1_Pipes_3: -6767272727471588353
+      Stage1_Pipes_4: 7081502184284584308
+      Stage1_Pipes_5: 1129488242403065638
+      Stage1_Pipes_6: -5327674392344566993
+      Stage1_Pipes_7: -1219372426064713067
+      Stage1_Pipes_8: -6026794264013340506
+      Stage1_Pipes_9: 4154653124775583408
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
