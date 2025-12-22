@@ -14982,17 +14982,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5877078601999890171, guid: da9c215461cc0df48be6927c44e73eb0, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 19.18
-      objectReference: {fileID: 0}
     - target: {fileID: 6424162435264945522, guid: da9c215461cc0df48be6927c44e73eb0, type: 3}
       propertyPath: m_Name
       value: InteractableGear
-      objectReference: {fileID: 0}
-    - target: {fileID: 8246120263538217136, guid: da9c215461cc0df48be6927c44e73eb0, type: 3}
-      propertyPath: _onOffObjs.Array.size
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8246120263538217136, guid: da9c215461cc0df48be6927c44e73eb0, type: 3}
       propertyPath: '_onOffObjs.Array.data[0]'
@@ -15156,10 +15148,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2055783489}
     m_Modifications:
-    - target: {fileID: 6211667226839119704, guid: d15c22f8e030deb41b38e11b8f132724, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 15.18
-      objectReference: {fileID: 0}
     - target: {fileID: 7560958312244250066, guid: d15c22f8e030deb41b38e11b8f132724, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.161438
@@ -15948,7 +15936,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1697603481}
   - component: {fileID: 1697603480}
-  - component: {fileID: 1697603479}
+  - component: {fileID: 1697603482}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -15956,23 +15944,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1697603479
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1697603478}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineBasicMultiChannelPerlin
-  NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
-  PivotOffset: {x: 0, y: 0, z: 0}
-  AmplitudeGain: 1
-  FrequencyGain: 1
-  m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!114 &1697603480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16031,6 +16002,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1697603482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697603478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineBasicMultiChannelPerlin
+  NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  PivotOffset: {x: 0, y: 0, z: 0}
+  AmplitudeGain: 0
+  FrequencyGain: 0
+  m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &1854653355
 GameObject:
   m_ObjectHideFlags: 0
