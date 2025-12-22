@@ -21,7 +21,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 2e2fe96fb3619d14ea8fffdf157e5c7f, type: 2}
+  m_Motion: {fileID: 7400000, guid: 9b809738ee4ee8b4aad937f3eba6a8a2, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -173,7 +173,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 72a715b424405c941890cc0c5fdf90b2, type: 2}
+  m_Motion: {fileID: 7400000, guid: 503a7aca301d70040921ab02d4838573, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -281,7 +281,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 03c11d65fdc24dc429472320b9f1a6a7, type: 2}
+  m_Motion: {fileID: 7400000, guid: bcffff1d39a08b646bb531af43f56f66, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -363,6 +363,12 @@ AnimatorController:
     m_Controller: {fileID: 9100000}
   - m_Name: IsFalling
     m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: Blend
+    m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -479,7 +485,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 4316d4a6bf098724495baecadb6e2bd2, type: 2}
+  m_Motion: {fileID: 7400000, guid: 51b31f1ab3f96004d95f573080eb311e, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -632,7 +638,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: e727c3918fb877f4c9699d81b45c7815, type: 2}
+  m_Motion: {fileID: 7400000, guid: a32695e9b6053414888ae13f61a444a8, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
