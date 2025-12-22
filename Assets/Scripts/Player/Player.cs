@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Player : MonoBehaviour,IDamageable
 {
@@ -99,6 +100,7 @@ public class Player : MonoBehaviour,IDamageable
     Rigidbody2D _rb;
     SpriteRenderer _spr;
     Animator _anim;
+    SpriteRenderer _attackHitBoxSpriteRenderer;
 
     public readonly int animState = Animator.StringToHash("State");
     public readonly int animJump = Animator.StringToHash("DoJump");
@@ -164,6 +166,12 @@ public class Player : MonoBehaviour,IDamageable
         _currentState = new IdleState();
         _currentState.Enter(this);
     }
+
+    private void Start()
+    {
+        _attackHitBoxSpriteRenderer = _attackHitBox.GetComponent<SpriteRenderer>();
+    }
+
     private void Update()
     {
         //¶¥Ã¼Å©
@@ -268,7 +276,9 @@ public class Player : MonoBehaviour,IDamageable
 
     public void StartAttack()
     {
-        if(_attackHitBox != null)
+        _attackHitBoxSpriteRenderer.flipX = _spr.flipX == false ? false : true;
+
+        if (_attackHitBox != null)
         {
             float offsetDir = _spr.flipX ? -1f : 1f;
             Vector3 newPos = _attackHitBox.transform.localPosition;
