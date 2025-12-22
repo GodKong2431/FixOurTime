@@ -5,7 +5,7 @@ public class BossScrapState : BossState
 {
     private int _count;
 
-    public BossScrapState(BossController controller, int count) : base(controller)
+    public BossScrapState(Stage1Boss _boss, int count) : base(_boss)
     {
         _count = count;
     }
@@ -15,32 +15,35 @@ public class BossScrapState : BossState
 
     public override IEnumerator Execute()
     {
-        Transform currentBoss = _controller.wallBossObject;
+        Stage1Boss _boss = _baseBoss as Stage1Boss;
+        if (_boss == null) yield break;
+
+        Transform currentBoss = _boss.WallBossObject;
 
         for (int i = 0; i < _count; i++)
         {
             Vector3 startPos = currentBoss.position;
-            startPos.y = _controller.player.position.y;
+            startPos.y = _boss.PlayerTarget.position.y;
             currentBoss.position = startPos;
 
             
-            Vector3 appearPos = startPos + Vector3.left * _controller.Data.bossAppearDistance;
+            Vector3 appearPos = startPos + Vector3.left * _boss.BossData.BossAppearDistance;
 
             // 1. 등장
-            yield return _controller.StartCoroutine(_controller.MoveBossTo(currentBoss, appearPos, _controller.Data.bossMoveDuration));
+            yield return _boss.StartCoroutine(_boss.MoveBossTo(currentBoss, appearPos, _boss.BossData.BossMoveDuration));
 
-            yield return new WaitForSeconds(_controller.Data.scrapAimDelay); // 조준 시간
+            yield return new WaitForSeconds(_boss.BossData.ScrapAimDelay); // 조준 시간
 
             // 2. 발사
-            GameObject scrap = Object.Instantiate(_controller.scrapPrefab, currentBoss.position, Quaternion.identity);
-            scrap.GetComponent<ScrapObject>().Initialize(Vector3.left, _controller.Data);
+            GameObject scrap = Object.Instantiate(_boss.ScrapPrefab, currentBoss.position, Quaternion.identity);
+            scrap.GetComponent<ScrapObject>().Initialize(Vector3.left, _boss.BossData);
 
-            yield return new WaitForSeconds(_controller.Data.scrapFireDelay); // 발사 후 딜레이
+            yield return new WaitForSeconds(_boss.BossData.ScrapFireDelay); // 발사 후 딜레이
 
             // 3. 퇴장
-            yield return _controller.StartCoroutine(_controller.MoveBossTo(currentBoss, startPos, _controller.Data.bossMoveDuration));
+            yield return _boss.StartCoroutine(_boss.MoveBossTo(currentBoss, startPos, _boss.BossData.BossMoveDuration));
 
-            yield return new WaitForSeconds(_controller.Data.scrapCycleWaitTime); // 다음 발사 대기
+            yield return new WaitForSeconds(_boss.BossData.ScrapCycleWaitTime); // 다음 발사 대기
         }
     }
 }

@@ -6,6 +6,8 @@ public class MoveState : IState<Player>
     public void Enter(Player _player)
     {
         _player.SetPhysicsMaterial(false);
+
+        _player.Anim.SetInteger(_player.animState, 1);
     }
 
     public void Exit(Player _player)

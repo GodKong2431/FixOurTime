@@ -1,10 +1,11 @@
 using UnityEngine;
 
-public class ExhaustDebuff : IDebuff<Player>
+public class ExhaustDebuff : IStatusEffect<Player>
 {
     public string Name => "Å»Áø";
 
     public float Duration { get; set; }
+    public bool IsPositive => false;
 
     float _timer = 0f;
     float _damageCooldown = 1.0f;

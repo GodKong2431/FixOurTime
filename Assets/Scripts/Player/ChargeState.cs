@@ -6,6 +6,8 @@ public class ChargeState : IState<Player>
     {
         _player.SetPhysicsMaterial(false);
 
+        _player.Anim.SetInteger(_player.animState, 2);
+
         _player.CurrentChargeTime = 0;
         _player.CalculatedJumpForce = _player.MinJumpForce;
 
@@ -19,6 +21,7 @@ public class ChargeState : IState<Player>
     public void Exit(Player _player)
     {
         _player.IsChargeStarted = false;
+        _player.ChargeVisual(0f);
     }
 
     public void Execute(Player _player)
@@ -35,6 +38,8 @@ public class ChargeState : IState<Player>
         float chargeRatio = Mathf.Clamp01(_player.CurrentChargeTime / _player.MaxChargeTime);
 
         _player.CalculatedJumpForce = Mathf.Lerp(_player.MinJumpForce,_player.MaxJumpForce,chargeRatio);
+
+        _player.ChargeVisual(chargeRatio);
 
         //충전중 방향 입력감지
         Vector2 moveInput = _player.MoveInput;

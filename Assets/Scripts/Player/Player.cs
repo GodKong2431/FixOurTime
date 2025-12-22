@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Player : MonoBehaviour,IDamageable
 {
@@ -44,6 +46,7 @@ public class Player : MonoBehaviour,IDamageable
     [SerializeField] float _hitDuration = 0.5f;
 
     [Header("공격 설정")]
+    [SerializeField] AttackHitBox _attackHitBox;
     [SerializeField] float _attackDuration = 0.3f;
     [SerializeField] float _attackRange = 1.0f;
     [SerializeField] float _attackDamage = 10f;
@@ -76,24 +79,42 @@ public class Player : MonoBehaviour,IDamageable
     [SerializeField] float _bounceForce = 5f; // 튕겨나가는 힘
     [SerializeField] bool _isDashAttackEnabled = false;
 
-    [Header("디버프 관리")]
-    List<IDebuff<Player>> _activeDebuffs = new List<IDebuff<Player>>();
+    [Header("버프/디버프 관리")]
+    List<IStatusEffect<Player>> _activeEffects = new List<IStatusEffect<Player>>();
+    bool _isInfiniteJumpEnabled = false;
+    bool _isInfiniteJumpLocked = false;
+
+    [Header("수집아이템 상태")]
+    bool _hasSecondHand = false;
+    bool _hasMinuteHand = false;
+    bool _hasHourHand = false;
 
     [Header("이벤트 설정")]
     [SerializeField] UnityEvent OnPlayerDead;
     [SerializeField] UnityEvent OnPlayerRespawn;
 
+    [Header("차지 시각 효과")]
+    [SerializeField] private Color _startColor = new Color(1, 1, 1, 0);
+    [SerializeField] Color _fullChargeColor = Color.green;
+
     Rigidbody2D _rb;
     SpriteRenderer _spr;
+    Animator _anim;
+    SpriteRenderer _attackHitBoxSpriteRenderer;
+
+    public readonly int animState = Animator.StringToHash("State");
+    public readonly int animJump = Animator.StringToHash("DoJump");
+    public readonly int animAttack = Animator.StringToHash("DoAttack");
+    public readonly int animFalling = Animator.StringToHash("IsFalling");
 
     //프로퍼티
     public int AirJumpCount => _airJumpCount;
     public int CurrentAirJump { get => _currentAirJump; set => _currentAirJump = value; }
-    public float MoveSpeed => _moveSpeed;
+    public float MoveSpeed{ get => _moveSpeed; set => _moveSpeed = value; }
     public float MinJumpForce => _minJumpForce;
     public float MaxJumpForce => _maxJempForce;
     public float DoubleJumpForce => _doubleJumpForce;
-    public float MaxChargeTime => _maxChargeTime;
+    public float MaxChargeTime { get => _maxChargeTime; set => _maxChargeTime = value; }
     public float MaxFallSpeedForStun => _maxFallSpeedForStun;
     public float StunDuration => _stunDuration;
     public float HitDuration => _hitDuration;
@@ -118,19 +139,24 @@ public class Player : MonoBehaviour,IDamageable
     public Vector2 MoveInput => _moveInput;
     public Rigidbody2D Rb => _rb;
     public SpriteRenderer Spr => _spr;
+    public Animator Anim => _anim;
     public IState<Player> CurrentState => _currentState;
     public bool IsGrounded => _isGrounded;
+    public bool HasAllClockHands => _hasSecondHand && _hasMinuteHand && _hasHourHand;
     public bool IsChargeStarted { get => _isChargeStarted; set => _isChargeStarted = value; }
     public bool IsStunStarted { get => _isStunStarted; set => _isStunStarted = value; }
     public bool IsAirJump { get => _isAirJump; set => _isAirJump = value; }
     public bool IsDoubleJumpEnabled { get => _isDoubleJumpEnabled; set => _isDoubleJumpEnabled = value; }
     public bool IsSpeedBoostEnabled { get => _isSpeedBoostEnabled; set => _isSpeedBoostEnabled = value; }
+    public bool IsInfiniteJumpEnabled { get => _isInfiniteJumpEnabled; set => _isInfiniteJumpEnabled = value; }
+    public bool IsInfiniteJumpLocked { get => _isInfiniteJumpLocked; set => _isInfiniteJumpLocked = value; }
     public bool CanAttack => Time.time >= _nextAttackTime; //공격 가능한 상태인지 확인용
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _spr = GetComponent<SpriteRenderer>();
+        _anim = GetComponent<Animator>();
         _currentHp = _maxHp;
         _currentAirJump = _airJumpCount;
         if(_boostUI != null)
@@ -140,6 +166,12 @@ public class Player : MonoBehaviour,IDamageable
         _currentState = new IdleState();
         _currentState.Enter(this);
     }
+
+    private void Start()
+    {
+        _attackHitBoxSpriteRenderer = _attackHitBox.GetComponent<SpriteRenderer>();
+    }
+
     private void Update()
     {
         //땅체크
@@ -152,7 +184,14 @@ public class Player : MonoBehaviour,IDamageable
             _groundLayer                //충돌대상체크
             );
 
-            
+        if (_isGrounded)
+        {
+            // 땅에 닿으면 무한 점프 잠금 해제
+            _isInfiniteJumpLocked = false;
+            _currentAirJump = _airJumpCount;
+        }
+
+        HandleDebuffs();
         _currentState.Execute(this);
     }
     public void SetState(IState<Player> newState)
@@ -177,20 +216,26 @@ public class Player : MonoBehaviour,IDamageable
         {
             return;
         }
+
         //공중에서 점프입력 들어왔을때 2단점프 시도
-        if (ctx.started)
+        if (ctx.started && (_currentState is FallState || _currentState is JumpState))
         {
-            if (_currentState is FallState || _currentState is JumpState)
+            // 조건 1: 공중 점프 횟수가 남았거나
+            // 조건 2: 무한 점프가 활성화되어 있고 + 현재 잠금 상태가 아닐 때
+            bool canInfiniteJump = _isInfiniteJumpEnabled && !_isInfiniteJumpLocked;
+
+            if ((_currentAirJump > 0 && _isAirJump && _isDoubleJumpEnabled) || canInfiniteJump)
             {
-                if (_currentAirJump > 0 && _isAirJump &&_isDoubleJumpEnabled)
-                {
-                    _jumpDirX = _moveInput.x; //이거 활성화 시키면 공중에서 더블점프로 방향전환 가능
-                    SetState(new JumpState(true));
-                    return;
-                }
+                _jumpDirX = _moveInput.x;
+                SetState(new JumpState(true)); // true는 공중 점프임을 나타냄
+
+                // 일반 공중 점프 횟수는 무한 점프가 아닐 때만 차감하게 할 수도 있습니다.
+                if (!canInfiniteJump) _currentAirJump--;
+
+                return;
             }
         }
-        
+
         //땅에있을때
         if (_isGrounded)
         {
@@ -226,6 +271,35 @@ public class Player : MonoBehaviour,IDamageable
                     SetState(new AttackState());
                 }
             }
+        }
+    }
+
+    public void StartAttack()
+    {
+        _attackHitBoxSpriteRenderer.flipX = _spr.flipX == false ? false : true;
+
+        if (_attackHitBox != null)
+        {
+            float offsetDir = _spr.flipX ? -1f : 1f;
+            Vector3 newPos = _attackHitBox.transform.localPosition;
+            newPos.x = Mathf.Abs(newPos.x) * offsetDir;
+            _attackHitBox.transform.localPosition = newPos;
+            Vector2 attSize = GetComponent<CapsuleCollider2D>().size;
+            _attackHitBox.Activate(_attackDamage, attSize);
+        }
+    }
+    public void UpdateAttackProgress(float progress)
+    {
+        if(_attackHitBox != null)
+        {
+            _attackHitBox.UpdateEffect(progress);
+        }
+    }
+    public void EndAttack()
+    {
+        if( _attackHitBox != null)
+        {
+            _attackHitBox.Deactivate();
         }
     }
 
@@ -321,6 +395,12 @@ public class Player : MonoBehaviour,IDamageable
         //넉백포스가 있어야만 피격발생하게
         if (KnockbackForce > 0f && !(_currentState is HitState))
         {
+            if (_isInfiniteJumpEnabled)
+            {
+                _isInfiniteJumpLocked = true;
+                Debug.Log("피격시 착지전까지 무한점프 잠금");
+            }
+
             // 물리 및 가속 상태 초기화
             _rb.linearVelocity = Vector2.zero;
             _rb.angularVelocity = 0f;
@@ -334,7 +414,71 @@ public class Player : MonoBehaviour,IDamageable
             SetState(new HitState(dirX, KnockbackForce));
         }
     }
-    
+
+    private void HandleDebuffs()
+    {
+        for(int i = _activeEffects.Count - 1; i >= 0; i--)
+        {
+            var debuff = _activeEffects[i];
+            debuff.Duration -= Time.deltaTime;
+            debuff.OnExecute(this);
+
+            if(debuff.Duration <= 0f)
+            {
+                RemoveEffect(debuff);
+            }
+        }
+    }
+    public void AddEffect(IStatusEffect<Player> newDebuff)
+    {
+        // 이미 디버프가 걸려있는지 확인
+        IStatusEffect<Player> existing = null;
+
+        for (int i = 0; i < _activeEffects.Count; i++)
+        {
+            if (_activeEffects[i].Name == newDebuff.Name)
+            {
+                existing = _activeEffects[i];
+                break;
+            }
+        }
+
+        // 이미 있으면 시간만 갱신
+        if (existing != null)
+        {
+            existing.Duration = newDebuff.Duration;
+            return;
+        }
+        //없으면 새로 추가
+        _activeEffects.Add(newDebuff);
+        newDebuff.OnEnter(this);
+    }
+    public void RemoveEffectByName(string debuffName)
+    {
+        IStatusEffect<Player> target = null;
+
+        for (int i = 0; i < _activeEffects.Count; i++)
+        {
+            if (_activeEffects[i].Name == debuffName)
+            {
+                target = _activeEffects[i];
+                break;
+            }
+        }
+
+        if (target != null)
+        {
+            Debug.Log(target);
+            RemoveEffect(target);
+        }
+    }
+    private void RemoveEffect(IStatusEffect<Player> debuff)
+    {
+        debuff.OnExit(this);
+        _activeEffects.Remove(debuff);
+    }
+
+    //죽었을때 이벤트 호출
     public void InvokeDeadEvent()
     {
         OnPlayerDead?.Invoke();
@@ -345,6 +489,7 @@ public class Player : MonoBehaviour,IDamageable
         data.currentHp = _currentHp;
         data.playerPos = transform.position;
         data.maxHp = _maxHp;
+        data.sceneName = SceneManager.GetActiveScene().name;
     }
     //데이터 불러오기
     public void LoadPlayerData(GameData data)
@@ -419,4 +564,45 @@ public class Player : MonoBehaviour,IDamageable
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(_groundChecker.position, 0.05f);
     }
+    //클리어를 위한 아이템 다 모았는가 확인용
+    public void CollectItem(ItemObject.ItemType type)
+    {
+        switch (type)
+        {
+            case ItemObject.ItemType.SecondHand: _hasSecondHand = true; break;
+            case ItemObject.ItemType.MinuteHand: _hasMinuteHand = true; break;
+            case ItemObject.ItemType.HourHand: _hasHourHand = true; break;
+        }
+    }
+
+    public void ChargeVisual(float ratio)
+    {
+
+        float delayedRatio = Mathf.Pow(ratio, 3f);
+
+        //보간 이용해서 시작색에서 풀차지색까지 부드럽게 전환
+        Color currentColor = Color.Lerp(_startColor, _fullChargeColor, delayedRatio);
+
+        //깜박임 속도 차지완료되면 15, 차지중엔 5
+        float blinkSpeed = (ratio >= 1f) ? 15.0f : 5.0f;
+
+        //핑퐁 - 0~1사이 무한왕복
+        float pingPong = Mathf.PingPong(Time.time * blinkSpeed, 1.0f);
+
+        //차지완료되면 목표색이랑 노란색이랑 왔다갔다하게
+        if (ratio >= 1f)
+        {
+            currentColor = Color.Lerp(_fullChargeColor, Color.yellow, pingPong);
+        }
+
+        // 차지될수록 밝아지고 핑퐁값에 의해 밝기가 출렁이게
+        float intensity = 1.0f + (ratio * 4.0f * (1.0f + pingPong * 0.5f));
+
+        //셰이더에 계산된 색이랑 강도를 곱해서 효과적용
+        Spr.material.SetColor("_OutlineColor", currentColor * intensity);
+        //두께 차징정도에따라  0.02f까지 키우기
+        Spr.material.SetFloat("_OutlineWidth", ratio * 0.02f);
+    }
+
+
 }

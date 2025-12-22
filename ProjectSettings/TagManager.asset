@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayerAttack
   - Wall
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -37,7 +38,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Wall
   - Ground
   m_SortingLayers:
   - name: Default
