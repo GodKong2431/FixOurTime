@@ -262,6 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eeabfeed61a35a4a97cefcd31f88b1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneInitializer
+  introVideoPlayer: {fileID: 0}
   nextSceneName: Title
 --- !u!4 &422969153
 Transform:
@@ -443,7 +444,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1359744711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -456,8 +457,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0798401d2854574c99c3cec9c125326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CinemachinCamManager
-  _activeCam: {fileID: 0}
-  _player: {fileID: 0}
   _moveDuration: 0.8
 --- !u!4 &1359744712
 Transform:
