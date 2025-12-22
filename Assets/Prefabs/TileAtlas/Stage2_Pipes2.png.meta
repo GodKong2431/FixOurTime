@@ -1,0 +1,540 @@
+fileFormatVersion: 2
+guid: ab681896418f7e4409cf72b4703298e3
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8199676806576929023
+    second: Pipe_RemoveBG2_0
+  - first:
+      213: -1990843505138285940
+    second: Pipe_RemoveBG2_1
+  - first:
+      213: -2340881627316166516
+    second: Pipe_RemoveBG2_2
+  - first:
+      213: -9073437580767587300
+    second: Pipe_RemoveBG2_3
+  - first:
+      213: -4975912365306106016
+    second: Pipe_RemoveBG2_4
+  - first:
+      213: 3128828519517330838
+    second: Pipe_RemoveBG2_5
+  - first:
+      213: 3032370928380722980
+    second: Pipe_RemoveBG2_6
+  - first:
+      213: -529074715458277996
+    second: Pipe_RemoveBG2_7
+  - first:
+      213: -7647360650193038238
+    second: Pipe_RemoveBG2_8
+  - first:
+      213: 303992199227779262
+    second: Pipe_RemoveBG2_9
+  - first:
+      213: -3746738187504754252
+    second: Pipe_RemoveBG2_10
+  - first:
+      213: -8079568137818396953
+    second: Pipe_RemoveBG2_11
+  - first:
+      213: 3662663249302684655
+    second: Pipe_RemoveBG2_12
+  - first:
+      213: 4961477761578417793
+    second: Pipe_RemoveBG2_13
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Pipe_RemoveBG2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 846
+        width: 1152
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff8f601ac9a1bc170800000000000000
+      internalID: 8199676806576929023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pipe_RemoveBG2_1
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 695
+        width: 607
+        height: 145
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c82c6d8416a1f54e0800000000000000
+      internalID: -1990843505138285940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pipe_RemoveBG2_2
+      rect:
+        serializedVersion: 2
+        x: 632
+        y: 735
+        width: 504
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c80e49eff84838fd0800000000000000
+      internalID: -2340881627316166516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pipe_RemoveBG2_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 430
+        width: 313
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c141baae79ca41280800000000000000
+      internalID: -9073437580767587300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pipe_RemoveBG2_4
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 562
+        width: 296
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06fa478311202fab0800000000000000
+      internalID: -4975912365306106016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pipe_RemoveBG2_5
+      rect:
+        serializedVersion: 2
+        x: 661
+        y: 0
+        width: 176
+        height: 719
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69d11f416f4db6b20800000000000000
+      internalID: 3128828519517330838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pipe_RemoveBG2_6
+      rect:
+        serializedVersion: 2
+        x: 837
+        y: 480
+        width: 295
+        height: 188
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42fba5d0b45251a20800000000000000
+      internalID: 3032370928380722980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pipe_RemoveBG2_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 191
+        width: 247
+        height: 176
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49de775795958a8f0800000000000000
+      internalID: -529074715458277996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pipe_RemoveBG2_8
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 206
+        width: 125
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26491ff810e1fd590800000000000000
+      internalID: -7647360650193038238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pipe_RemoveBG2_9
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 268
+        width: 238
+        height: 195
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb826796b4ff73400800000000000000
+      internalID: 303992199227779262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pipe_RemoveBG2_10
+      rect:
+        serializedVersion: 2
+        x: 855
+        y: 214
+        width: 227
+        height: 185
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b163633879e00cc0800000000000000
+      internalID: -3746738187504754252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pipe_RemoveBG2_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 424
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e625c6069b9fdf80800000000000000
+      internalID: -8079568137818396953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pipe_RemoveBG2_12
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 0
+        width: 218
+        height: 201
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe38092d1d464d230800000000000000
+      internalID: 3662663249302684655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pipe_RemoveBG2_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 434
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18eb1e3bcb5bad440800000000000000
+      internalID: 4961477761578417793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage2_Pipes2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 560
+        width: 313
+        height: 135
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f09b7867d7a7c004e92a5473fc8fe444
+      internalID: 1077985687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage2_Pipes2_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 374
+        width: 101
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2186f6005f6e1454c8229f4fb650d1ea
+      internalID: -1545426696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: a47e99f4c119071409213d9a6487ded8
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Pipe_RemoveBG2_0: 8199676806576929023
+      Pipe_RemoveBG2_1: -1990843505138285940
+      Pipe_RemoveBG2_10: -3746738187504754252
+      Pipe_RemoveBG2_11: -8079568137818396953
+      Pipe_RemoveBG2_12: 3662663249302684655
+      Pipe_RemoveBG2_13: 4961477761578417793
+      Pipe_RemoveBG2_2: -2340881627316166516
+      Pipe_RemoveBG2_3: -9073437580767587300
+      Pipe_RemoveBG2_4: -4975912365306106016
+      Pipe_RemoveBG2_5: 3128828519517330838
+      Pipe_RemoveBG2_6: 3032370928380722980
+      Pipe_RemoveBG2_7: -529074715458277996
+      Pipe_RemoveBG2_8: -7647360650193038238
+      Pipe_RemoveBG2_9: 303992199227779262
+      Stage2_Pipes2_0: 1077985687
+      Stage2_Pipes2_1: -1545426696
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
