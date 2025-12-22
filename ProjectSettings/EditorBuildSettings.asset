@@ -6,20 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
-    path: Assets/Scenes/TestMainScene.unity
+    path: Assets/Scenes/Title.unity
     guid: a4f03ca17bc851e4f81978c6a4d9b6fe
   - enabled: 1
-    path: Assets/Scenes/TestScene/UI/LHS_InGame.unity
-    guid: 2217954471ead734f981bfdd5aa83705
+    path: Assets/Scenes/stage1.unity
+    guid: 561a20c489b722b4aa5b0c775ed61c9f
   - enabled: 1
-    path: Assets/Scenes/TestScene/UI/LHS_Main.unity
-    guid: f48e03b313ffc9047a4ffa2249b4e8b8
+    path: Assets/Scenes/stage2.unity
+    guid: a0c81f7db6fdb6846b763438ac01dc98
   - enabled: 1
-    path: Assets/Scenes/TestScene/UI/UITestScene.unity
-    guid: 8ed70259083e7fd418f81a9214e11d76
+    path: Assets/Scenes/stage3.unity
+    guid: 80f1035ebf436e447be616819e98c0e8
+  - enabled: 1
+    path: Assets/Scenes/stage4.unity
+    guid: 83b26759888dd0b40819d3b7363e5ef3
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: e7fd5fceb63e1b7468480b309cf22d3e, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
