@@ -179,12 +179,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1502801139844560141, guid: de59c0bf210d22d4ab3c0ad19d6f31e7, type: 3}
+  m_Sprite: {fileID: -2460178907694950649, guid: 94f3df7df637ca84f9e0ff29d84925f4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 1.42, y: 2.52}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -385,7 +385,7 @@ MonoBehaviour:
   _stunDuration: 1
   _hitDuration: 1
   _attackHitBox: {fileID: 3821669099503789512}
-  _attackDuration: 0.2
+  _attackDuration: 0.5
   _attackRange: 2
   _attackDamage: 10
   _attackCooldown: 1
@@ -411,7 +411,7 @@ MonoBehaviour:
   OnPlayerRespawn:
     m_PersistentCalls:
       m_Calls: []
-  _startColor: {r: 1, g: 1, b: 1, a: 0}
+  _startColor: {r: 0, g: 0, b: 0, a: 0}
   _fullChargeColor: {r: 0, g: 1, b: 0.84621763, a: 1}
 --- !u!50 &3781996616670612336
 Rigidbody2D:
@@ -715,7 +715,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -4392718514036286872, guid: b37dd7330c051f14aaab49188dcb6335, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -764,7 +764,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.63, y: 0.64}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
