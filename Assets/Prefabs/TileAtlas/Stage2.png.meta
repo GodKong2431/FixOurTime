@@ -142,11 +142,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 24
-        y: 201
+        y: 202
         width: 119
-        height: 506
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 505
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -167,8 +167,8 @@ TextureImporter:
         y: 539
         width: 465
         height: 40
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -189,8 +189,8 @@ TextureImporter:
         y: 367
         width: 526
         height: 93
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -210,9 +210,9 @@ TextureImporter:
         x: 175
         y: 201
         width: 756
-        height: 117
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 116
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -230,11 +230,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 25
-        y: 44
-        width: 901
+        y: 43
+        width: 866
         height: 124
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -243,6 +243,72 @@ TextureImporter:
       bones: []
       spriteID: 8cbf4a8b0ca128d40800000000000000
       internalID: 5585055902926699464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage2_0
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 201
+        width: 86
+        height: 116
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e81a10682be0d144295efabfa1e0d9ef
+      internalID: 77667060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage2_1
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 43
+        width: 124
+        height: 124
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01dfe5797d1acf34cbd622b355ac91e4
+      internalID: 856449262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage2_2
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 541
+        width: 74
+        height: 37
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c49e595ad225cc94f9fc8a268c2b74c9
+      internalID: 1841437810
       vertices: []
       indices: 
       edges: []
@@ -261,6 +327,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+      Stage2_0: 77667060
+      Stage2_1: 856449262
+      Stage2_2: 1841437810
       stage02_tilemapatlas_0: -2303039017794419047
       stage02_tilemapatlas_1: -2826448016689060134
       stage02_tilemapatlas_2: -8638039270762163155
