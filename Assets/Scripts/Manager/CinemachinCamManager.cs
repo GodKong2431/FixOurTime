@@ -22,10 +22,6 @@ public class CinemachinCamManager : SingleTon<CinemachinCamManager>
         _screenHeight = _activeCam.Lens.OrthographicSize * 2f;
         
     }
-    private void Start()
-    {
-        Shake(5, 5, 5);
-    }
     void LateUpdate()
     {
         
