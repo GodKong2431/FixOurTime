@@ -5,7 +5,7 @@ public class PausePresenter
 {
     PauseButton _pauseButton;
     Panel _panel;
-    ResumeButton _resumeButton;
+    ToMainYesBtn _resumeButton;
     QuitGameButton _quitButton;
     MainMenuButton _mainButton;
     MainManuYes _mainManuYes;
@@ -19,7 +19,7 @@ public class PausePresenter
     public PausePresenter(
         PauseButton button,
         Panel popUp,
-        ResumeButton resumeButton,
+        ToMainYesBtn resumeButton,
         QuitGameButton quitButton,
         MainMenuButton mainButton,
         MainManuYes mainManuYes,
@@ -44,8 +44,8 @@ public class PausePresenter
 
 
         //PauseButton.cs  에 있는 함수들 구독
-        _pauseButton._onPauseClicked += Pause;
-        _pauseButton._onResume += Resume;
+        //_pauseButton._onPauseClicked += Pause;
+        //_pauseButton._onResume += Resume;
         
         //Panel.cs 
         _panel._onResume += Resume;
@@ -60,8 +60,8 @@ public class PausePresenter
 
     public void Dispose()   //구독해제 함수
     {
-        _pauseButton._onPauseClicked -= Pause;
-        _pauseButton._onResume -= Resume;
+        //_pauseButton._onPauseClicked -= Pause;
+        //_pauseButton._onResume -= Resume;
 
         _panel._onResume -= Resume;
         //_panel._onMainManu -= MainMenu;
@@ -81,7 +81,7 @@ public class PausePresenter
 
         //Panel.cs 에 있는 팝업창 활성화 함수
         _panel.Show();
-        _resumeButton.Show();
+        //_resumeButton.Show();
         _quitButton.Show();
         _mainButton.Show();
         Debug.Log($"TimeScale :" + Time.timeScale);
@@ -93,7 +93,7 @@ public class PausePresenter
     {        
         Time.timeScale = 1f;
         _panel.Hide();
-        _resumeButton.Hide();
+        //_resumeButton.Hide();
         _quitButton.Hide();
         _mainButton.Hide();
         _mainManuYes.Hide();
@@ -151,7 +151,7 @@ public class PausePresenter
     void CheckNo()
     {
         //아니오 누르면 원상복귀
-        _resumeButton.Show();
+        //_resumeButton.Show();
         _quitButton.Show();
         _mainButton.Show();
     }

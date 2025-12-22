@@ -4,7 +4,7 @@ public class PauseUiConnector : MonoBehaviour
 {
     [SerializeField] private PauseButton _pause;
     [SerializeField] private Panel _panel;
-    [SerializeField] private ResumeButton _resumeButton;
+    [SerializeField] private ToMainYesBtn _resumeButton;
     [SerializeField] private QuitGameButton _quitGameButton;
     [SerializeField] private MainMenuButton _mainMenuButton;
     [SerializeField] private MainManuYes _mainManuYes;
