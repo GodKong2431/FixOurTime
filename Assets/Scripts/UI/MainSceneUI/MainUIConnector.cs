@@ -5,7 +5,7 @@ public class MainUIConnector : MonoBehaviour
     [SerializeField] private GameStart _newGameButton;
     [SerializeField] private LoadButton _loadSavePointButton;
     [SerializeField] private MainPanel _mainPanel;
-    [SerializeField] private LoadCheckYes _loadCheckYes;
+    [SerializeField] private NewGameYesBtn _loadCheckYes;
     [SerializeField] private LoadCheckNo _loadCheckNo;
 
 

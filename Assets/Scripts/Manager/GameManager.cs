@@ -1,51 +1,51 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager : SingleTon<GameManager>
 {
-    public static GameManager _instance;
-    private Player _player;
-    private GameData _gameData;
-    private void Awake()
+    [Header("플레이어 관리")]
+    Player _player;
+    public Player Player
     {
-        if (_instance == null)
+        get
         {
-            _instance = this;
-            DontDestroyOnLoad(gameObject);
+            if (_player == null) _player = FindAnyObjectByType<Player>();
+            return _player;
+        }
+    }
+
+    [Header("멈춤관리")]
+    bool _isPaused = false;
+    public bool IsPaused => _isPaused;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        //필요시 게임시작후 플레이어 참조
+    }
+
+    public void TogglePause()
+    {
+        _isPaused = !_isPaused;
+
+        if(_isPaused)
+        {
+            Time.timeScale = 0f;
+            Debug.Log("일시정지");
         }
         else
         {
-            Destroy(gameObject);
-        }
+            Time.timeScale = 1f;
 
-        //씬로드함수 구독
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    //파괴될때 구독해제
-    private void OnDestroy()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-         //인게임 씬이 로드되었을 때 Player를 찾아서 참조
-        //_player = FindObjectOfType<Player>(); (끝까지 다 찾아봄)
-
-        //유니티 버전업하면서 최적화된 함수 (플레이어 찾으면 검색중단함)
-        _player = FindFirstObjectByType<Player>();
-        Debug.Log(_player == null ? "Player 없음" : "Player 찾음");
-
-        _gameData = GameDataManager.Load();
-
-        if (_player != null)
-        {
-             //저장된 데이터를 Player에게 로드            
-            _player.LoadPlayerData(_gameData);
         }
     }
 
+    public void QuitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+    Application.Quit();
+#endif
+    }
 
 }

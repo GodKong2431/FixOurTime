@@ -6,7 +6,7 @@ public class MainUIPresenter : MonoBehaviour
     MainPanel _mainPanel;
     GameStart _newGameButton;
     LoadButton _loadSavePointButton;
-    LoadCheckYes _loadCheckYes;
+    NewGameYesBtn _loadCheckYes;
     LoadCheckNo _loadCheckNo;
 
 
@@ -16,7 +16,7 @@ public class MainUIPresenter : MonoBehaviour
         MainPanel panel,
         GameStart button,
         LoadButton popUp,
-        LoadCheckYes yes,
+        NewGameYesBtn yes,
         LoadCheckNo no
         )
 
@@ -34,13 +34,13 @@ public class MainUIPresenter : MonoBehaviour
         _newGameButton._onGameStart += GameStart;
 
         //Load.cs
-        _loadSavePointButton._onLoad += Load;
+        //_loadSavePointButton._onLoad += Load;
 
         //LoadCheckNo.cs
         _loadCheckNo._onLoadNo += CheckNo;
 
         //LoadCheckYes.cs
-        _loadCheckYes._onLoadYes += CheckYes;
+        //_loadCheckYes._onLoadYes += CheckYes;
     }
 
     public void Dispose()   //구독해제 함수
@@ -58,7 +58,7 @@ public class MainUIPresenter : MonoBehaviour
         {
             //메인버튼들 비활성화
             _newGameButton.Hide();
-            _loadSavePointButton.Hide();
+            //_loadSavePointButton.Hide();
 
             //확인창 패널 표시
             _mainPanel.Show();
@@ -88,7 +88,7 @@ public class MainUIPresenter : MonoBehaviour
             //데이터가 없다면 원상복귀
             _mainPanel.Hide();
             _newGameButton.Show();
-            _loadSavePointButton.Show();
+            //_loadSavePointButton.Show();
         }
     }
 
@@ -112,7 +112,7 @@ public class MainUIPresenter : MonoBehaviour
         //아니오 누르면 원상복귀
         _mainPanel.Hide();
         _newGameButton.Show();
-        _loadSavePointButton.Show();
+        //_loadSavePointButton.Show();
         
     }
 
