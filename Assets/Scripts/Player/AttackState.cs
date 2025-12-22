@@ -16,14 +16,14 @@ public class AttackState : IState<Player>
         _player.Rb.linearVelocity = Vector2.zero;
 
 
-        _player.StartAttack();
+        //_player.StartAttack();
 
 
     }
 
     public void Exit(Player _player)
     {
-        _player.EndAttack();
+        //_player.EndAttack();
         Debug.Log("°ø°Ý³¡");
     }
 
