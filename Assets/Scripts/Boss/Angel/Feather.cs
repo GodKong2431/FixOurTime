@@ -4,16 +4,16 @@ using UnityEngine;
 public class Feather : DamageableTrapBase
 {
     [Header("이동")]
-    [SerializeField] private float speed = 15f;
+    [SerializeField] private float _speed = 15f;
 
     [Header("각도 오프셋")]
-    [SerializeField] private float AngleOffset = 30f;
+    [SerializeField] private float _angleOffset = 30f;
 
     [Header("움직임 딜레이")]
     [SerializeField] private float _moveDelay  = 1f;
 
     [Header("생명 주기")]
-    [SerializeField] private float lifeTime = 3f;
+    [SerializeField] private float _lifeTime = 3f;
 
     
     private bool _stuck;
@@ -62,30 +62,25 @@ public class Feather : DamageableTrapBase
 
     void SetRandomDirection()
     {
-        float angleOffset = Random.Range(-AngleOffset, AngleOffset);
+        float angleOffset = Random.Range(-_angleOffset, _angleOffset);
 
         _direction = Quaternion.Euler(0f, 0f, angleOffset) * Vector2.down;
-        SetRotation(_direction);
+
+        transform.rotation = Quaternion.Euler(0f, 0f, angleOffset);
     }
 
     private IEnumerator MoveDelay()
     {
         yield return new WaitForSeconds(_moveDelay);
-        Destroy(gameObject, lifeTime);
+        Destroy(gameObject, _lifeTime);
         while (true)
         {
             if (_stuck) yield break;
 
-            transform.position += (Vector3)(_direction * speed * Time.deltaTime);
+            transform.position += (Vector3)(_direction * _speed * Time.deltaTime);
             yield return null;
         }
 
-    }
-
-    void SetRotation(Vector2 dir)
-    {
-        float angle = Vector2.SignedAngle(Vector2.down, dir);
-        transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
 
     void Stick(Transform target)
@@ -100,14 +95,13 @@ public class Feather : DamageableTrapBase
         float elapse = 0f;
         Color color =_spriteRenderer.color;
 
-        while(elapse < lifeTime)
+        while(elapse < _lifeTime)
         {
             elapse += Time.deltaTime;
-            float alpha = Mathf.Lerp(1f, 0f, elapse / lifeTime);
+            float alpha = Mathf.Lerp(1f, 0f, elapse / _lifeTime);
             _spriteRenderer.color = new Color(color.r, color.g, color.b, alpha);
             yield return null;
         }
         Destroy(gameObject);
     }
-
 }
