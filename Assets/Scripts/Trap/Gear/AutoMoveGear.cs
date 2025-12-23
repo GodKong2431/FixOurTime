@@ -20,7 +20,10 @@ public class AutoMoveGear : Gear
         while (true)
         {
             _move.MoveNextPoint();
-            _move.ChangeNextPoint();
+            if(_move.ChangeNextPoint())
+            {
+                _rotateSpeed = -_rotateSpeed;
+            }
 
             yield return null;
         }

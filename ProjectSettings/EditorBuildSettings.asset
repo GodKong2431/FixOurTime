@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/TestScene/UI/LHS_InGame.unity
+    guid: 2217954471ead734f981bfdd5aa83705
+  - enabled: 1
     path: Assets/Scenes/Init.unity
     guid: a1e0856ace9dcbe44b72498da7506ceb
   - enabled: 1

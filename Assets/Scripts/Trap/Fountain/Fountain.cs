@@ -3,17 +3,19 @@ using UnityEngine;
 
 public class Fountain : MonoBehaviour
 {
-    [Header("Effect Interval")]
+    [Header("이펙트 제거 주기")]
     [SerializeField] private float _delay = 0.3f;
+    [SerializeField] private DayZone _zone;
 
     private Coroutine _removeEffectCoroutine;
     private WaitForSeconds _removeEffectDelay;
 
-    public DayZone _zone;
+    private Animator _anim;
 
     private void Awake()
     {
         _removeEffectDelay = new WaitForSeconds(_delay);
+        _anim = GetComponent<Animator>();
     }
 
     //콜라이더 들어올 시 실행
@@ -65,6 +67,6 @@ public class Fountain : MonoBehaviour
     //분수 활성화/비활성화
     public void ChangeActiveFountain()
     {
-        gameObject.SetActive(!gameObject.activeSelf);
+        _anim.SetBool("On", !_anim.GetBool("On"));
     }
 }
