@@ -1,35 +1,46 @@
-using Unity.Cinemachine;
-using UnityEngine;
 using System.Collections;
+using Unity.Cinemachine;
+using Unity.VisualScripting;
+using UnityEngine;
 
 public class CinemachinCamManager : SingleTon<CinemachinCamManager>
 {
     [Header("기본 설정")]
-    [SerializeField] CinemachineCamera _activeCam;
-    [SerializeField] Transform _player;
     [SerializeField] float _moveDuration = 0.8f;
 
+    CinemachineCamera _activeCam;
+    Transform _player;
     CinemachineBasicMultiChannelPerlin _noise;
+    Camera _mainCam;
+
     float _screenHeight;
     bool _isMoving;
-    Camera _mainCam;
 
     protected override void Awake()
     {
         base.Awake();
-        _mainCam = Camera.main;
-        _noise = _activeCam.GetComponent<CinemachineBasicMultiChannelPerlin>();
-        _screenHeight = _activeCam.Lens.OrthographicSize * 2f;
-        
     }
-    private void Start()
+
+    public void Reconnect()
     {
-        Shake(5, 5, 5);
+        _mainCam = Camera.main;
+        _activeCam = FindAnyObjectByType<CinemachineCamera>();
+
+        if(GameManager.Instance != null)
+        {
+            _player = GameManager.Instance.Player.transform;
+        }
+
+        if(_activeCam != null)
+        {
+            _noise = _activeCam.GetComponent<CinemachineBasicMultiChannelPerlin>();
+            _screenHeight = _activeCam.Lens.OrthographicSize * 2f;
+        }
     }
     void LateUpdate()
     {
         
-        if (_isMoving || _player == null) return;
+        if (_isMoving || _player == null || _activeCam == null || _mainCam == null) return;
 
         
         Vector3 vp = _mainCam.WorldToViewportPoint(_player.position);

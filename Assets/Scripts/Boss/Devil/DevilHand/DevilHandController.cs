@@ -24,6 +24,10 @@ public class DevilHandController : MonoBehaviour
     [SerializeField] private float _spiralDuration = 3f;
     
 
+    /// <summary>
+    /// 11자 내려찍기 패턴
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator VerticalPattern()
     {
         _leftHand.BeginPattern(new Vector2(-_verticalStartOffset.x, _verticalStartOffset.y));
@@ -43,6 +47,10 @@ public class DevilHandController : MonoBehaviour
         _rightHand.MoveToReturnPos();
     }
 
+    /// <summary>
+    /// X자 내려찍기 패턴
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator CrossPattern()
     {
         _leftHand.BeginPattern(new Vector2(-_crossStartOffset.x, _crossStartOffset.y));
@@ -66,6 +74,10 @@ public class DevilHandController : MonoBehaviour
         _rightHand.MoveToReturnPos();
     }
 
+    /// <summary>
+    /// 스파이럴 패턴
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator SpiralPattern()
     {
         _leftHand.BeginPattern(new Vector2(-_spiralStartOffsetX.x, _spiralStartOffsetX.y - 10));

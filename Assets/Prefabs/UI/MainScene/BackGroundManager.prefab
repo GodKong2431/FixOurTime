@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5267068749159976457}
-  - component: {fileID: 6170887580491290193}
+  - component: {fileID: 7350416329445360393}
   m_Layer: 0
   m_Name: BackGroundManager
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6170887580491290193
+--- !u!114 &7350416329445360393
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,9 +41,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6431316506229234352}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18de5c847768fe240a41d89186402251, type: 3}
+  m_Script: {fileID: 11500000, guid: ae80a3f53a88bfe49959ad060a6e58b5, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BackGround
+  m_EditorClassIdentifier: Assembly-CSharp::BGManager
   _image:
   - {fileID: 0}
   - {fileID: 0}

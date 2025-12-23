@@ -54,6 +54,11 @@ public class SceneChanger : SingleTon<SceneChanger>
                 Debug.LogWarning("플레이어없음");
             }
         }
+
+        if (CinemachinCamManager.Instance != null)
+        {
+            CinemachinCamManager.Instance.Reconnect();
+        }
     }
 
     public void ChangeSceneFromButton(string sceneName)
