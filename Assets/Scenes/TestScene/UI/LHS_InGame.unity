@@ -256,6 +256,128 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &28356858
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 28356859}
+  - component: {fileID: 28356862}
+  - component: {fileID: 28356861}
+  - component: {fileID: 28356860}
+  - component: {fileID: 28356863}
+  m_Layer: 5
+  m_Name: StartScene
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &28356859
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28356858}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1025025049}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!328 &28356860
+VideoPlayer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28356858}
+  m_Enabled: 1
+  m_VideoClip: {fileID: 32900000, guid: e2c8f61bc0ec8af429117c7157a7cc43, type: 3}
+  m_TargetCameraAlpha: 1
+  m_TargetCamera3DLayout: 0
+  m_TargetCamera: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: 14a70a3cc54d7bd4ca01d5e3db08be79, type: 2}
+  m_TimeReference: 0
+  m_TargetMaterialRenderer: {fileID: 0}
+  m_TargetMaterialProperty: <noninit>
+  m_RenderMode: 2
+  m_AspectRatio: 2
+  m_DataSource: 0
+  m_TimeUpdateMode: 2
+  m_PlaybackSpeed: 1
+  m_AudioOutputMode: 2
+  m_TargetAudioSources:
+  - {fileID: 0}
+  m_DirectAudioVolumes:
+  - 1
+  m_Url: 
+  m_EnabledAudioTracks: 01
+  m_DirectAudioMutes: 00
+  m_ControlledAudioTrackCount: 1
+  m_PlayOnAwake: 0
+  m_SkipOnDrop: 1
+  m_Looping: 0
+  m_WaitForFirstFrame: 1
+  m_FrameReadyEventEnabled: 0
+  m_VideoShaders: []
+--- !u!114 &28356861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28356858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RawImage
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 8400000, guid: 14a70a3cc54d7bd4ca01d5e3db08be79, type: 2}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!222 &28356862
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28356858}
+  m_CullTransparentMesh: 1
+--- !u!114 &28356863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28356858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0aa8801a629058d4bbf268c63cd8adb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StartSceneManager
 --- !u!114 &752971701 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
@@ -267,6 +389,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8a033cf4d2fa44cb914114bf43e5a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+--- !u!224 &1025025049 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5266555570961692217, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
+  m_PrefabInstance: {fileID: 2611958951971591155}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1282273747
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -518,17 +645,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 399c980154248fc41b541233f493a29b, type: 3}
---- !u!114 &1041895317828268989 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7668091395959848743, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
-  m_PrefabInstance: {fileID: 2611958951971591155}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 712354be90d794b45a17596ab57999d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MainMenuButton
 --- !u!114 &1375310445641859983 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5196565642780918592, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
@@ -711,42 +827,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 5266555570961692217, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 28356859}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
---- !u!114 &2778587856393407635 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7372083926868731388, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
-  m_PrefabInstance: {fileID: 2611958951971591155}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 833d7eaf87e27c24e9f4bbc4fec35a78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::No
---- !u!114 &4058099783661739604 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2870370632373649499, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
-  m_PrefabInstance: {fileID: 2611958951971591155}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4009424e94b92d499589d87ceb7b302, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MainManuText
---- !u!114 &4438771635342111293 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3970415394861358303, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
-  m_PrefabInstance: {fileID: 2611958951971591155}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43572326a61d6be44b527e37477876cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MainManuYes
 --- !u!1001 &5020968842829656902
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -804,28 +890,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc69d37bbf3821d44beaa5bfb18a090f, type: 3}
---- !u!114 &5796459633414044091 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3581432976510953147, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
-  m_PrefabInstance: {fileID: 2611958951971591155}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 370af9262bc02774faa223903fbfb4b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ResumeButton
---- !u!114 &6948962904391781730 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4186872959123046857, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
-  m_PrefabInstance: {fileID: 2611958951971591155}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a00745994b262045a23ad99598e55e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Panel
 --- !u!1001 &7060062436142604033
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -841,11 +905,11 @@ PrefabInstance:
     - target: {fileID: 1402746593958526406, guid: de9c55d28f0d6cd4db33281bf39db2bd, type: 3}
       propertyPath: _no
       value: 
-      objectReference: {fileID: 2778587856393407635}
+      objectReference: {fileID: 0}
     - target: {fileID: 1402746593958526406, guid: de9c55d28f0d6cd4db33281bf39db2bd, type: 3}
       propertyPath: _panel
       value: 
-      objectReference: {fileID: 6948962904391781730}
+      objectReference: {fileID: 0}
     - target: {fileID: 1402746593958526406, guid: de9c55d28f0d6cd4db33281bf39db2bd, type: 3}
       propertyPath: _pause
       value: 
@@ -853,31 +917,31 @@ PrefabInstance:
     - target: {fileID: 1402746593958526406, guid: de9c55d28f0d6cd4db33281bf39db2bd, type: 3}
       propertyPath: _mainManuYes
       value: 
-      objectReference: {fileID: 4438771635342111293}
+      objectReference: {fileID: 0}
     - target: {fileID: 1402746593958526406, guid: de9c55d28f0d6cd4db33281bf39db2bd, type: 3}
       propertyPath: _quitManuYes
       value: 
-      objectReference: {fileID: 7234580460982169339}
+      objectReference: {fileID: 0}
     - target: {fileID: 1402746593958526406, guid: de9c55d28f0d6cd4db33281bf39db2bd, type: 3}
       propertyPath: _mainManuText
       value: 
-      objectReference: {fileID: 4058099783661739604}
+      objectReference: {fileID: 0}
     - target: {fileID: 1402746593958526406, guid: de9c55d28f0d6cd4db33281bf39db2bd, type: 3}
       propertyPath: _quitGameText
       value: 
-      objectReference: {fileID: 7398552125392461551}
+      objectReference: {fileID: 0}
     - target: {fileID: 1402746593958526406, guid: de9c55d28f0d6cd4db33281bf39db2bd, type: 3}
       propertyPath: _resumeButton
       value: 
-      objectReference: {fileID: 5796459633414044091}
+      objectReference: {fileID: 0}
     - target: {fileID: 1402746593958526406, guid: de9c55d28f0d6cd4db33281bf39db2bd, type: 3}
       propertyPath: _mainMenuButton
       value: 
-      objectReference: {fileID: 1041895317828268989}
+      objectReference: {fileID: 0}
     - target: {fileID: 1402746593958526406, guid: de9c55d28f0d6cd4db33281bf39db2bd, type: 3}
       propertyPath: _quitGameButton
       value: 
-      objectReference: {fileID: 8867326726357635308}
+      objectReference: {fileID: 0}
     - target: {fileID: 2893248632187093919, guid: de9c55d28f0d6cd4db33281bf39db2bd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -950,39 +1014,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51216c8df3b20b148bf1622768ba7816, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseButton
---- !u!114 &7234580460982169339 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5968618333362006753, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
-  m_PrefabInstance: {fileID: 2611958951971591155}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 620dafabcb8c4d3449fedfdceb1fc3c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::QuitManuYes
---- !u!114 &7398552125392461551 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3144417684956085522, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
-  m_PrefabInstance: {fileID: 2611958951971591155}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 814f9cacc095c6847a81d7120fee0ffe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::QuitGameText
---- !u!114 &8867326726357635308 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8886613480202791302, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
-  m_PrefabInstance: {fileID: 2611958951971591155}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f2757330fbe6a14690665e9259fb965, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::QuitGameButton
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

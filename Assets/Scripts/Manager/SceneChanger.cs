@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : SingleTon<SceneChanger>
 {
+    public bool _videoPlay = false; //영상 초기셋팅 꺼두기
     protected override void Awake()
     {
         base.Awake();
@@ -15,12 +16,14 @@ public class SceneChanger : SingleTon<SceneChanger>
 
         if (string.IsNullOrEmpty(data.sceneName))
         {
-            Debug.Log("저장된 데이터없음 스테이지1시작");
-            ChangeScene("Stage1", false);
+            Debug.Log("저장된 데이터없음 스테이지1시작");            
+            ChangeScene("stage1", false);
+            _videoPlay = true;
         }
         else
         {
             StartCoroutine(LoadStageCoroutine(data.sceneName, true));
+            _videoPlay = false;
         }
     }
 
@@ -31,6 +34,7 @@ public class SceneChanger : SingleTon<SceneChanger>
 
     private IEnumerator LoadStageCoroutine(string sceneName,bool useSavePos)
     {
+        _videoPlay = true;
         //비동기 불러오기
         AsyncOperation op = SceneManager.LoadSceneAsync(sceneName);
         //로딩 100퍼된건지 확인용
