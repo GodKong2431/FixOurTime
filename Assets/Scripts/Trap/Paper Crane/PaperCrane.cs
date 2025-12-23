@@ -1,3 +1,4 @@
+using NUnit.Framework.Internal.Builders;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -8,6 +9,11 @@ public class PaperCrane : DamageableTrapBase, IDamageable
 
     PaperCraneSpawner _paperCraneSpawner;
     GameObject _player;
+
+    private void Start()
+    {
+        _player = GameManager.Instance.Player.gameObject;
+    }
 
     private void FixedUpdate()
     {
