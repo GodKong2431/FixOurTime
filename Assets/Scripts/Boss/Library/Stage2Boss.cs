@@ -2,7 +2,6 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-// [Stage2Boss.cs]
 // 2스테이지 보스 메인 로직 클래스
 public class Stage2Boss : BossBase
 {
@@ -15,9 +14,9 @@ public class Stage2Boss : BossBase
     [Tooltip("보스 기믹 관리 UI 매니저 (정답 아이템 표시)")]
     [SerializeField] private BossUIManager _uiManager;
 
-    //[Header("Sub-Systems")]
-    //[Tooltip("보스전 소환 여우(Fox) 컨트롤러")]
-    //[SerializeField] private FoxController _foxController;
+    [Header("Sub-Systems")]
+    [Tooltip("보스전 소환 여우(Fox) 컨트롤러")]
+    [SerializeField] private FoxController _foxController;
 
     [Tooltip("종이학 생성 위치 배열")]
     [SerializeField] private Transform[] _craneSpawnPoints;
@@ -40,24 +39,24 @@ public class Stage2Boss : BossBase
     [SerializeField] private GameObject _gimmickItemPrefab;
     #endregion
 
+    #region Public Properties
+    public Transform[] SpawnPoints => _itemSpawnPoints;
+    public Boss2Data Data => _bossData;
+    public Transform CenterPoint => transform;
+    #endregion
+
     #region Private Fields
     // 로직 제어 변수
     private bool _isActivated = false;
-
-    // 기믹 진행 중인지 확인하는 플래그 (자동 리셋 방지용)
     private bool _isGimmickRunning = false;
 
-    // 생성된 오브젝트 관리용 리스트 (리셋 시 제거 위함)
+    // 생성된 오브젝트 관리용 리스트
     private List<GimmickItemObject> _activeItems = new List<GimmickItemObject>();
-    private List<GameObject> _activeMinions = new List<GameObject>(); // 종이학, 전공책 등
+    private List<GameObject> _activeMinions = new List<GameObject>();
 
     // 기믹 카운트
     private int _collectedCount = 0;
-    private const int TARGET_COUNT = 4; // 정답 개수 상수화
-
-    // 데이터 접근 프로퍼티
-    public Boss2Data Data => _bossData;
-    public Transform CenterPoint => transform;
+    private const int TARGET_COUNT = 4;
     #endregion
 
     #region Unity Lifecycle
@@ -66,25 +65,32 @@ public class Stage2Boss : BossBase
         if (_isActivated) return;
         _isActivated = true;
 
-        // 시작 시 혹시 남아있는 오브젝트 정리
         ClearStageObjects();
-
         StartCoroutine(CraneSpawnRoutine());
         StartCoroutine(MainGimmickRoutine());
+    }
 
-        // 여우 소환 예약
-        Invoke(nameof(SpawnFox), _bossData.FoxSpawnDelay);
+    public override void ResetBoss()
+    {
+        base.ResetBoss();
+
+        StopAllCoroutines();
+        CancelInvoke(nameof(SpawnFox));
+
+        ClearStageObjects();
+
+        _isActivated = false;
+        _isGimmickRunning = false;
+
+        Debug.Log("Stage 2 리셋 완료");
     }
 
     protected override void Die()
     {
         StopAllCoroutines();
-        CancelInvoke(); // 예약된 Fox 소환 등 취소
-
-        // 스테이지 오브젝트 전체 클리어 
+        CancelInvoke(nameof(SpawnFox));
         ClearStageObjects();
 
-        //  상태 초기화
         _isActivated = false;
         _isGimmickRunning = false;
 
@@ -107,28 +113,19 @@ public class Stage2Boss : BossBase
         while (_currentHp > 0)
         {
             StartGimmickRound();
-
-            // 단순히 시간만 기다리는 게 아니라, 기믹이 끝날 때(성공/실패)까지 대기
             yield return new WaitUntil(() => _isGimmickRunning == false);
-
-            // 기믹 종료 후 다음 기믹까지 대기 시간 (휴식 텀)
             yield return new WaitForSeconds(_bossData.GimmickInterval);
         }
     }
     #endregion
 
     #region Helper Methods (Spawn & Gimmick)
-
     private void SpawnPaperCrane()
     {
         if (_craneSpawnPoints.Length == 0) return;
-
         int randIdx = Random.Range(0, _craneSpawnPoints.Length);
         GameObject craneObj = Instantiate(_cranePrefab, _craneSpawnPoints[randIdx].position, Quaternion.identity);
-
-        // 미니언 리스트에 추가
         _activeMinions.Add(craneObj);
-
         if (craneObj.TryGetComponent(out PaperCraneObject craneScript))
         {
             craneScript.Initialize(this, _playerTarget);
@@ -137,43 +134,33 @@ public class Stage2Boss : BossBase
 
     private void SpawnFox()
     {
-        //if (_foxController != null)
-        //{
-        //    _foxController.ActivateFox(this, _playerTarget);
-        //}
+        if (!_isGimmickRunning) return;
+        if (_foxController != null)
+        {
+            _foxController.ActivateFox(this, _playerTarget);
+        }
     }
 
     private void StartGimmickRound()
     {
-        Debug.Log(">>> 기믹 시작: 중복 없는 정답 4개 생성");
-
-        // 기믹 시작 플래그 ON
         _isGimmickRunning = true;
-
-        // 1. 상태 초기화
         _collectedCount = 0;
-        ClearAllItems(); // 이전 기믹 아이템만 정리
+        ClearAllItems(false);
 
-        // 2. 스프라이트 풀 및 정답/함정 선정
         List<Sprite> spritePool = new List<Sprite>(_itemSprites);
         List<Sprite> targetSprites = SelectTargetSprites(spritePool);
         List<Sprite> trapSprites = SelectTrapSprites(spritePool, targetSprites.Count);
 
-        // UI 표시
-        if (_uiManager != null)
-        {
-            _uiManager.ShowTargetItems(targetSprites);
-        }
+        if (_uiManager != null) _uiManager.ShowTargetItems(targetSprites);
 
-        // 3. 생성 데이터 병합 및 셔플
         List<ItemSetupData> spawnList = new List<ItemSetupData>();
         foreach (var s in targetSprites) spawnList.Add(new ItemSetupData(s, true));
         foreach (var s in trapSprites) spawnList.Add(new ItemSetupData(s, false));
-
         ShuffleList(spawnList);
-
-        // 4. 오브젝트 배치
         PlaceGimmickItems(spawnList);
+
+        CancelInvoke(nameof(SpawnFox));
+        Invoke(nameof(SpawnFox), _bossData.FoxSpawnDelay);
     }
 
     private List<Sprite> SelectTargetSprites(List<Sprite> pool)
@@ -181,10 +168,8 @@ public class Stage2Boss : BossBase
         List<Sprite> targets = new List<Sprite>();
         for (int i = 0; i < TARGET_COUNT; i++)
         {
-            if (i < pool.Count)
-                targets.Add(pool[i]);
-            else
-                targets.Add(pool[0]); // 예외 처리: 리소스 부족 시 0번 재사용
+            if (i < pool.Count) targets.Add(pool[i]);
+            else targets.Add(pool[0]);
         }
         return targets;
     }
@@ -192,89 +177,61 @@ public class Stage2Boss : BossBase
     private List<Sprite> SelectTrapSprites(List<Sprite> pool, int offset)
     {
         List<Sprite> traps = new List<Sprite>();
-        int trapCount = 6; // 함정 개수
-
-        if (pool.Count >= offset + trapCount)
+        int trapCount = 6;
+        for (int i = 0; i < trapCount; i++)
         {
-            // 정답 인덱스 이후의 것들을 사용
-            for (int i = 0; i < trapCount; i++)
-            {
-                traps.Add(pool[offset + i]);
-            }
-        }
-        else
-        {
-            // 리소스 부족 시 랜덤
-            for (int i = 0; i < trapCount; i++)
-            {
-                traps.Add(_itemSprites[Random.Range(0, _itemSprites.Length)]);
-            }
+            if (pool.Count >= offset + trapCount) traps.Add(pool[offset + i]);
+            else traps.Add(_itemSprites[Random.Range(0, _itemSprites.Length)]);
         }
         return traps;
     }
 
-    private void PlaceGimmickItems(List<ItemSetupData> spawnList)
+    private void PlaceGimmickItems(List<ItemSetupData> list)
     {
-        for (int i = 0; i < _itemSpawnPoints.Length; i++)
+        for (int i = 0; i < _itemSpawnPoints.Length && i < list.Count; i++)
         {
-            if (i >= spawnList.Count) break;
-
-            GameObject obj = Instantiate(_gimmickItemPrefab, _itemSpawnPoints[i].position, Quaternion.identity);
-            if (obj.TryGetComponent(out GimmickItemObject script))
+            GameObject o = Instantiate(_gimmickItemPrefab, _itemSpawnPoints[i].position, Quaternion.identity);
+            if (o.TryGetComponent(out GimmickItemObject s))
             {
-                script.Initialize(this, spawnList[i].Sprite, spawnList[i].IsTarget);
-                _activeItems.Add(script);
+                s.Initialize(this, list[i].Sprite, list[i].IsTarget);
+                _activeItems.Add(s);
             }
         }
     }
 
-    // 제네릭 셔플 메서드
     private void ShuffleList<T>(List<T> list)
     {
         for (int i = 0; i < list.Count; i++)
         {
-            T temp = list[i];
-            int randomIndex = Random.Range(i, list.Count);
-            list[i] = list[randomIndex];
-            list[randomIndex] = temp;
+            T t = list[i];
+            int r = Random.Range(i, list.Count);
+            list[i] = list[r];
+            list[r] = t;
         }
     }
     #endregion
 
     #region Event Handlers (Public)
-
-    // 플레이어가 아이템 획득 시 호출
     public void OnPlayerCollectItem(bool isTarget, Sprite itemSprite = null)
     {
         if (isTarget)
         {
             _collectedCount++;
-            Debug.Log($"정답 획득 ({_collectedCount}/{TARGET_COUNT})");
-
-            if (_uiManager != null)
-            {
-                _uiManager.MarkItemAsCollected(itemSprite);
-            }
-
-            if (_collectedCount >= TARGET_COUNT)
-            {
-                GimmickSuccess();
-            }
+            if (_uiManager != null) _uiManager.MarkItemAsCollected(itemSprite);
+            if (_collectedCount >= TARGET_COUNT) GimmickSuccess();
         }
         else
         {
-            Debug.Log("<color=red>오답 획득 (함정)</color>");
-            GimmickFail();
+            GimmickFail(keepFox: false);
         }
     }
 
-    // 여우가 아이템 섭취 시 호출
     public void OnFoxEatItem(bool isTarget)
     {
         if (isTarget)
         {
-            Debug.Log("<color=red>여우가 정답 아이템을 먹어버렸습니다</color>");
-            GimmickFail();
+            Debug.Log("여우가 정답 아이템을 먹었습니다.");
+            GimmickFail(keepFox: true);
         }
         else
         {
@@ -289,19 +246,20 @@ public class Stage2Boss : BossBase
         Debug.Log("기믹 성공. 보스 데미지");
         TakeDamage(_bossData.GimmickSuccessDamage);
 
-        ClearAllItems();
+        // 성공 시에도 여우가 벽으로 도망가도록 keepFox=true 전달 후 강제 퇴장 명령
+        ClearAllItems(true);
+        if (_foxController != null && _foxController.gameObject.activeSelf)
+        {
+            _foxController.ForceRetreat();
+        }
 
-        // 기믹 종료 처리
         _isGimmickRunning = false;
     }
 
-    private void GimmickFail()
+    private void GimmickFail(bool keepFox)
     {
-        Debug.Log("기믹 실패. 전공책 발사");
-        ClearAllItems();
+        ClearAllItems(keepFox);
         FireMajorBook();
-
-        // 기믹 종료 처리
         _isGimmickRunning = false;
     }
 
@@ -309,69 +267,54 @@ public class Stage2Boss : BossBase
     {
         Vector3 spawnPos = transform.position + Vector3.up * 5;
         GameObject bookObj = Instantiate(_majorBookPrefab, spawnPos, Quaternion.identity);
-
-        //  미니언 리스트에 추가
         _activeMinions.Add(bookObj);
-
         if (bookObj.TryGetComponent(out MajorBookObject bookScript))
         {
             bookScript.Initialize(this, _playerTarget);
         }
     }
 
-    private void ClearAllItems()
+    private void ClearAllItems(bool keepFox)
     {
-        // 기믹 아이템(책) 정리
+        CancelInvoke(nameof(SpawnFox));
+
+        if (!keepFox && _foxController != null && _foxController.gameObject.activeSelf)
+        {
+            _foxController.StopAllCoroutines();
+            _foxController.gameObject.SetActive(false);
+        }
+
         foreach (var item in _activeItems)
         {
             if (item != null) Destroy(item.gameObject);
         }
         _activeItems.Clear();
 
-        if (_uiManager != null)
-        {
-            _uiManager.HideUI();
-        }
+        if (_uiManager != null) _uiManager.HideUI();
     }
 
-    // 스테이지 전체 정리 메서드 (리셋용)
     private void ClearStageObjects()
     {
-        // 1. 기믹 아이템 정리
-        ClearAllItems();
-
-        // 2. 소환된 미니언(종이학, 전공책) 정리
+        ClearAllItems(false);
         foreach (var minion in _activeMinions)
         {
             if (minion != null) Destroy(minion);
         }
         _activeMinions.Clear();
-
-        //// 3. 여우 비활성화
-        //if (_foxController != null)
-        //{
-        //    _foxController.StopAllCoroutines();
-        //    _foxController.gameObject.SetActive(false);
-        //}
     }
 
     public List<GimmickItemObject> GetActiveItems()
     {
-        // null이 된 항목(파괴됨) 정리 후 반환
         _activeItems.RemoveAll(item => item == null);
         return _activeItems;
     }
 
     public void RemoveItemFromList(GimmickItemObject item)
     {
-        if (_activeItems.Contains(item))
-        {
-            _activeItems.Remove(item);
-        }
+        if (_activeItems.Contains(item)) _activeItems.Remove(item);
     }
     #endregion
 
-    // 데이터 전달용 내부 구조체
     private struct ItemSetupData
     {
         public Sprite Sprite;

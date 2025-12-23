@@ -36,10 +36,18 @@ public class Boss2Data : BossCommonData
     [Header("=== Fox (여우) ===")]
     [Tooltip("여우의 이동 속도(6.0)")]
     [SerializeField] private float _foxMoveSpeed = 6.0f;
+
+    [Tooltip("그림자 상태 이동 속도 배율 (1.5배)")]
+    [SerializeField] private float _foxShadowSpeedMultiplier = 1.5f;
+
     [Tooltip("기믹 시작 후 여우 등장 시간 (5초)")]
     [SerializeField] private float _foxSpawnDelay = 5.0f;
-    [Tooltip("책 먹는 시간 (1초)")]
-    [SerializeField] private float _foxEatDuration = 1.0f;
+    [Tooltip("책 먹는 시간 (3초)")]
+    [SerializeField] private float _foxEatDuration = 3.0f;
+
+    [Tooltip("책 먹을 때 플레이어 감지 거리 (4.0)")]
+    [SerializeField] private float _foxDetectRange = 4.0f;
+
     [Tooltip("물기 데미지 (5)")]
     [SerializeField] private float _foxBiteDamage = 5f;
     [Tooltip("물린 후 도트 데미지 (초당 5)")]
@@ -59,7 +67,7 @@ public class Boss2Data : BossCommonData
     [Tooltip("기믹 한 사이클 종료 후 다음 기믹까지 대기 시간")]
     [SerializeField] private float _gimmickInterval = 5.0f;
 
-    // 프로퍼티 (외부 공개)
+    // 프로퍼티
     public float CraneSpawnInterval => _craneSpawnInterval;
     public float CraneSpeedMultiplier => _craneSpeedMultiplier;
     public float BasePlayerSpeed => _basePlayerSpeed;
@@ -75,8 +83,11 @@ public class Boss2Data : BossCommonData
     public float BookDurationAfterHit => _bookDurationAfterHit;
 
     public float FoxMoveSpeed => _foxMoveSpeed;
+    public float FoxShadowSpeedMultiplier => _foxShadowSpeedMultiplier;
+
     public float FoxSpawnDelay => _foxSpawnDelay;
     public float FoxEatDuration => _foxEatDuration;
+    public float FoxDetectRange => _foxDetectRange;
     public float FoxBiteDamage => _foxBiteDamage;
     public float FoxBiteDotDamage => _foxBiteDotDamage;
     public float FoxAoeDamage => _foxAoeDamage;

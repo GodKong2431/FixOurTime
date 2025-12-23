@@ -1,7 +1,8 @@
 using UnityEngine;
 using System.Collections;
 
-public class GimmickItemObject : MonoBehaviour
+// 플레이어 공격에 반응하여 획득되는 아이템
+public class GimmickItemObject : MonoBehaviour, IDamageable
 {
     [SerializeField] private SpriteRenderer _renderer;
 
@@ -10,6 +11,9 @@ public class GimmickItemObject : MonoBehaviour
 
     private Stage2Boss _boss;
     private bool _canInteract = false;
+
+    // 공격 판정을 위한 콜라이더
+    [SerializeField] private BoxCollider2D _collider;
 
     public void Initialize(Stage2Boss boss, Sprite sprite, bool isTarget)
     {
@@ -20,29 +24,25 @@ public class GimmickItemObject : MonoBehaviour
         _renderer.enabled = true;
         _canInteract = true;
 
-        // 2초 뒤 투명화 -> 테스트를 위해 주석 처리
-        // StartCoroutine(HideRoutine());
+        if (_collider == null) _collider = GetComponent<BoxCollider2D>();
+        if (_collider != null) _collider.enabled = true;
     }
 
-    private IEnumerator HideRoutine()
-    {
-        yield return new WaitForSeconds(_boss.Data.ItemHideDelay);
-        _renderer.enabled = false; // 안 보이게 (충돌은 유지)
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    // 플레이어가 공격하면 아이템 획득
+    public void TakeDamage(float damage, float knockback, Vector3 hitPos)
     {
         if (!_canInteract) return;
+        CollectItem();
+    }
 
-        if (collision.CompareTag("Player"))
-        {
-            _canInteract = false;
+    private void CollectItem()
+    {
+        _canInteract = false;
 
-            // 플레이어가 먹음 -> 보스에게 결과 보고
-            _boss.OnPlayerCollectItem(IsTarget, _renderer.sprite);
+        // 플레이어가 먹음 -> 보스에게 결과 보고
+        _boss.OnPlayerCollectItem(IsTarget, _renderer.sprite);
 
-            // 먹으면 즉시 사라짐
-            Destroy(gameObject);
-        }
+        // 먹으면 즉시 사라짐
+        Destroy(gameObject);
     }
 }
