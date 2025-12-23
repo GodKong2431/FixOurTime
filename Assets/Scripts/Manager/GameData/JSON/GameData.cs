@@ -15,8 +15,7 @@ public class GameData
     //씬 정보
     public string sceneName;
 
-
-
-    //마지막 저장 씬 넣을거면 추가
+    //카메라 위치 저장
+    public Vector3 cameraPos; 
 
 }

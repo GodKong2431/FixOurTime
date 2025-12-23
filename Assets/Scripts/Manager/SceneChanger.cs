@@ -38,7 +38,7 @@ public class SceneChanger : SingleTon<SceneChanger>
         {
             yield return null;
         }
-        yield return new WaitForEndOfFrame(); //로드후 한프레임 더 대기
+        yield return new WaitForSeconds(0.5f); //로드후 0.5초 여유
 
 
         if (useSavePos)

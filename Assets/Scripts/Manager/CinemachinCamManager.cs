@@ -1,6 +1,5 @@
 using System.Collections;
 using Unity.Cinemachine;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CinemachinCamManager : SingleTon<CinemachinCamManager>
@@ -31,10 +30,19 @@ public class CinemachinCamManager : SingleTon<CinemachinCamManager>
             _player = GameManager.Instance.Player.transform;
         }
 
-        if(_activeCam != null)
+        if (_activeCam != null)
         {
             _noise = _activeCam.GetComponent<CinemachineBasicMultiChannelPerlin>();
-            _screenHeight = _activeCam.Lens.OrthographicSize * 2f;
+
+            // Lens가 null일 수도 있으므로 확인 후 할당
+            if (_activeCam.Lens.OrthographicSize > 0)
+            {
+                _screenHeight = _activeCam.Lens.OrthographicSize * 2f;
+            }
+        }
+        else
+        {
+            Debug.LogWarning("씬에서 CinemachineCamera를 찾을 수 없습니다!");
         }
     }
     void LateUpdate()
@@ -110,5 +118,19 @@ public class CinemachinCamManager : SingleTon<CinemachinCamManager>
             yield return null;
         }
         _activeCam.Lens.OrthographicSize = targetSize;
+    }
+
+    public Vector3 GetCameraPosition()
+    {
+        return _activeCam != null ? _activeCam.transform.position : Vector3.zero;
+    }
+    public void SetCameraPosition(Vector3 savedPos)
+    {
+        if (_activeCam != null)
+        {
+            // 시네머신 브레인이 혼란을 겪지 않도록 강제로 위치를 고정합니다.
+            _activeCam.OnTargetObjectWarped(_activeCam.transform, savedPos - _activeCam.transform.position);
+            _activeCam.transform.position = savedPos;
+        }
     }
 }

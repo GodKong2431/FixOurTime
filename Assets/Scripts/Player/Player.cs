@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using static UnityEditor.Experimental.GraphView.GraphView;
+
 
 public class Player : MonoBehaviour,IDamageable
 {
@@ -490,6 +490,10 @@ public class Player : MonoBehaviour,IDamageable
         data.playerPos = transform.position;
         data.maxHp = _maxHp;
         data.sceneName = SceneManager.GetActiveScene().name;
+        if (CinemachinCamManager.Instance != null)
+        {
+            data.cameraPos = CinemachinCamManager.Instance.GetCameraPosition();
+        }
     }
     //데이터 불러오기
     public void LoadPlayerData(GameData data)
@@ -500,7 +504,10 @@ public class Player : MonoBehaviour,IDamageable
 
         _rb.linearVelocity = Vector2.zero;
         _rb.bodyType = RigidbodyType2D.Dynamic;
-
+        if (CinemachinCamManager.Instance != null && data.cameraPos != Vector3.zero)
+        {
+            CinemachinCamManager.Instance.SetCameraPosition(data.cameraPos);
+        }
         SetState(new IdleState());
     }
 
