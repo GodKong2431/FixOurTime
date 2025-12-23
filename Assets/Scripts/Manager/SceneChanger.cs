@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Utilities;
 using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 
@@ -13,14 +15,12 @@ public class SceneChanger : SingleTon<SceneChanger>
     [SerializeField] private VideoPlayer _newGamePlayer;
     [SerializeField] Canvas _videoCanvas;
 
-
+    private bool _isSkipTriggered = false;
     public bool _videoPlay = false; //영상 초기셋팅 꺼두기
     protected override void Awake()
     {
         base.Awake();
 
-        if (_fadeCanvas == null)
-            _fadeCanvas = GetComponentInChildren<CanvasGroup>(true);
         if (_fadeCanvas != null)
         {
             _fadeCanvas.alpha = 0f;
@@ -29,8 +29,12 @@ public class SceneChanger : SingleTon<SceneChanger>
     }
     public void StartNewGame(string sceneName)
     {
+        GameDataManager.DeleteSaveData();
+
+        if (_fadeCanvas != null) { _fadeCanvas.alpha = 1f; _fadeCanvas.gameObject.SetActive(true); }
+        if (_videoCanvas != null) _videoCanvas.gameObject.SetActive(false);
+
         StartCoroutine(LoadStageCoroutine(sceneName, false, true));
-        _videoCanvas.gameObject.SetActive(true);
     }
     public void LoadGameFromSave()
     {
@@ -49,45 +53,54 @@ public class SceneChanger : SingleTon<SceneChanger>
 
     private IEnumerator LoadStageCoroutine(string sceneName, bool useSavePos, bool playVideo)
     {
-        // 1. 페이드 아웃 (검은 화면으로)
-        yield return StartCoroutine(Co_Fade(0f, 1f));
+        _fadeCanvas.alpha = 1f;
+        _fadeCanvas.gameObject.SetActive(true);
 
-        // 2. 비디오 재생 (playVideo 매개변수에 의해 결정)
+        // 비디오 재생
         if (playVideo && _newGamePlayer != null)
         {
-            _newGamePlayer.time = 0;
+            _isSkipTriggered = false;
+            var token = InputSystem.onAnyButtonPress.Call(ctrl => _isSkipTriggered = true);
+            
+
+            _newGamePlayer.Prepare();
+
+            yield return new WaitUntil(() => _newGamePlayer.isPrepared);
+
+            if (_videoCanvas != null) _videoCanvas.gameObject.SetActive(true);
+
             _newGamePlayer.Play();
 
-            // 비디오가 실제로 재생 시작될 때까지 대기
-            yield return new WaitUntil(() => _newGamePlayer.isPlaying);
-
-            // 비디오가 보이게 페이드 알파만 0으로 (캔버스는 켜진 상태)
+            yield return new WaitForSecondsRealtime(0.1f);
             _fadeCanvas.alpha = 0f;
 
-            // 영상이 끝날 때까지 대기
             while (_newGamePlayer.isPlaying)
             {
-                // 스킵 기능: 아무 키나 누르면 영상 정지
-                //if (Input.anyKeyDown) _newGamePlayer.Stop();
+                if (_isSkipTriggered)
+                {
+                    Debug.Log("전역 인풋에 의해 영상 스킵");
+                    _newGamePlayer.Stop();
+                    break;
+                }
                 yield return null;
             }
+            token.Dispose();
 
-            // 영상 종료 후 다시 페이드 알파 1 (씬 로딩 중 화면 가림)
-            _fadeCanvas.alpha = 1f;
-            _videoCanvas.gameObject.SetActive(false);
+            _fadeCanvas.alpha = 1f; // 영상 끝난 후 다시 암전
+            if (_videoCanvas != null) _videoCanvas.gameObject.SetActive(false);
         }
 
-        // 3. 비동기 씬 로드
+        //비동기 씬 로드
         AsyncOperation op = SceneManager.LoadSceneAsync(sceneName);
         while (!op.isDone)
         {
             yield return null;
         }
 
-        // 로드 후 1초 대기 (안정화 시간)
+        // 로드 후 1초 대기
         yield return new WaitForSecondsRealtime(1f);
 
-        // 4. 리커넥트 및 데이터 복구
+        // 리커넥트 및 데이터 복구
         if (CinemachinCamManager.Instance != null)
             CinemachinCamManager.Instance.Reconnect();
 
@@ -98,7 +111,8 @@ public class SceneChanger : SingleTon<SceneChanger>
             if (player != null) player.LoadPlayerData(data);
         }
 
-        // 5. 페이드 인 (화면 밝아짐)
+        yield return new WaitForSecondsRealtime(2f);
+        //페이드 인 
         yield return StartCoroutine(Co_Fade(1f, 0f));
     }
     private IEnumerator Co_Fade(float start, float end)

@@ -1,6 +1,5 @@
 using System.Collections;
 using Unity.Cinemachine;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CinemachinCamManager : SingleTon<CinemachinCamManager>
@@ -24,6 +23,7 @@ public class CinemachinCamManager : SingleTon<CinemachinCamManager>
 
     public void Reconnect()
     {
+        StopAllCoroutines();
         _mainCam = Camera.main;
         _activeCam = FindAnyObjectByType<CinemachineCamera>();
 
@@ -78,7 +78,13 @@ public class CinemachinCamManager : SingleTon<CinemachinCamManager>
         while (t < _moveDuration)
         {
             t += Time.deltaTime;
-            
+
+            if (_activeCam == null)
+            {
+                _isMoving = false;
+                yield break;
+            }
+
             _activeCam.transform.position = Vector3.Lerp(startPos, targetPos, t / _moveDuration);
             yield return null;
         }
@@ -103,11 +109,18 @@ public class CinemachinCamManager : SingleTon<CinemachinCamManager>
 
     private IEnumerator Co_Shake(float intensity, float frequency, float duration)
     {
+        if (_noise == null) yield break;
+
         _noise.AmplitudeGain = intensity;
         _noise.FrequencyGain = frequency;
+
         yield return new WaitForSeconds(duration);
-        _noise.AmplitudeGain = 0f;
-        _noise.FrequencyGain = 0f;
+
+        if (_noise != null)
+        {
+            _noise.AmplitudeGain = 0f;
+            _noise.FrequencyGain = 0f;
+        }
     }
 
     public void ZoomTarget(float targetSize, float duration)

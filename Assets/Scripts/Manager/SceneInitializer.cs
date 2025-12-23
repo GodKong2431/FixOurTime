@@ -2,10 +2,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 
+
 public class SceneInitializer : MonoBehaviour
 {
     [SerializeField] private VideoPlayer introVideoPlayer;
     [SerializeField] private string nextSceneName = "Title";
+    
 
     void Start()
     {
@@ -13,6 +15,7 @@ public class SceneInitializer : MonoBehaviour
         {
             // 영상 재생이 끝났을 때 실행될 이벤트 연결
             introVideoPlayer.loopPointReached += OnVideoFinished;
+
         }
         else
         {
@@ -25,6 +28,7 @@ public class SceneInitializer : MonoBehaviour
     void OnVideoFinished(VideoPlayer vp)
     {
         Debug.Log("인트로 영상 종료, 타이틀로 이동합니다.");
+        introVideoPlayer.loopPointReached -= OnVideoFinished;
         MoveToTitle();
     }
 
@@ -32,13 +36,4 @@ public class SceneInitializer : MonoBehaviour
     {
         SceneManager.LoadScene(nextSceneName);
     }
-
-    // 스킵버튼
-    //void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
-    //    {
-    //        MoveToTitle();
-    //    }
-    //}
 }
