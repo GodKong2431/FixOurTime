@@ -1,0 +1,1625 @@
+fileFormatVersion: 2
+guid: 690059002fc8f37488e6d6767b1ee84a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6914269112754051120
+    second: FixOurTime_4StageTileSet 1_0
+  - first:
+      213: -5392828618855990409
+    second: FixOurTime_4StageTileSet 1_1
+  - first:
+      213: -6119181500711968657
+    second: FixOurTime_4StageTileSet 1_2
+  - first:
+      213: -6611747891821399586
+    second: FixOurTime_4StageTileSet 1_3
+  - first:
+      213: -1696298672897860225
+    second: FixOurTime_4StageTileSet 1_4
+  - first:
+      213: -4398745068671141179
+    second: FixOurTime_4StageTileSet 1_5
+  - first:
+      213: -6230834953072428621
+    second: FixOurTime_4StageTileSet 1_6
+  - first:
+      213: 5188530826888407715
+    second: FixOurTime_4StageTileSet 1_7
+  - first:
+      213: 8623623225155251654
+    second: FixOurTime_4StageTileSet 1_8
+  - first:
+      213: 8779221876060198254
+    second: FixOurTime_4StageTileSet 1_9
+  - first:
+      213: 8523597510393289232
+    second: FixOurTime_4StageTileSet 1_10
+  - first:
+      213: 7516152944096835846
+    second: FixOurTime_4StageTileSet 1_11
+  - first:
+      213: -7333564504159746473
+    second: FixOurTime_4StageTileSet 1_12
+  - first:
+      213: 3696707145232804940
+    second: FixOurTime_4StageTileSet 1_13
+  - first:
+      213: -6785715746933325333
+    second: FixOurTime_4StageTileSet 1_14
+  - first:
+      213: 6637681893679260445
+    second: FixOurTime_4StageTileSet 1_15
+  - first:
+      213: 4239185999683001437
+    second: FixOurTime_4StageTileSet 1_16
+  - first:
+      213: -5652164726638417367
+    second: FixOurTime_4StageTileSet 1_17
+  - first:
+      213: 7470058064353863668
+    second: FixOurTime_4StageTileSet 1_18
+  - first:
+      213: 2074933617816231734
+    second: FixOurTime_4StageTileSet 1_19
+  - first:
+      213: 123031924134712978
+    second: FixOurTime_4StageTileSet 1_20
+  - first:
+      213: 1032870062274408461
+    second: FixOurTime_4StageTileSet 1_21
+  - first:
+      213: -3867909919576352283
+    second: FixOurTime_4StageTileSet 1_22
+  - first:
+      213: 3014533063334989856
+    second: FixOurTime_4StageTileSet 1_23
+  - first:
+      213: 8576036955410931981
+    second: FixOurTime_4StageTileSet 1_24
+  - first:
+      213: 8266048807467378696
+    second: FixOurTime_4StageTileSet 1_25
+  - first:
+      213: -315881673764298678
+    second: FixOurTime_4StageTileSet 1_26
+  - first:
+      213: -9222343935622186805
+    second: FixOurTime_4StageTileSet 1_27
+  - first:
+      213: 6530259376349513418
+    second: FixOurTime_4StageTileSet 1_28
+  - first:
+      213: 4037291968284631749
+    second: FixOurTime_4StageTileSet 1_29
+  - first:
+      213: 1513256286778446407
+    second: FixOurTime_4StageTileSet 1_30
+  - first:
+      213: 2595214897699729308
+    second: FixOurTime_4StageTileSet 1_31
+  - first:
+      213: 8979998084825576570
+    second: FixOurTime_4StageTileSet 1_32
+  - first:
+      213: 1077212470099915908
+    second: FixOurTime_4StageTileSet 1_33
+  - first:
+      213: -1481516192046278227
+    second: FixOurTime_4StageTileSet 1_34
+  - first:
+      213: -630899708617262544
+    second: FixOurTime_4StageTileSet 1_35
+  - first:
+      213: -1766537383173102522
+    second: FixOurTime_4StageTileSet 1_36
+  - first:
+      213: 7327087858305158209
+    second: FixOurTime_4StageTileSet 1_37
+  - first:
+      213: -8056866456263062288
+    second: FixOurTime_4StageTileSet 1_38
+  - first:
+      213: -3302140306516422768
+    second: FixOurTime_4StageTileSet 1_39
+  - first:
+      213: 4866610908324603794
+    second: FixOurTime_4StageTileSet 1_40
+  - first:
+      213: -411091196923507015
+    second: FixOurTime_4StageTileSet 1_41
+  - first:
+      213: 236564888312656748
+    second: FixOurTime_4StageTileSet 1_42
+  - first:
+      213: -6961599793028887103
+    second: FixOurTime_4StageTileSet 1_43
+  - first:
+      213: -8533963272206260685
+    second: FixOurTime_4StageTileSet 1_44
+  - first:
+      213: 9024933871168138596
+    second: FixOurTime_4StageTileSet 1_45
+  - first:
+      213: 1316345522841238876
+    second: FixOurTime_4StageTileSet 1_46
+  - first:
+      213: 7950126993844093748
+    second: FixOurTime_4StageTileSet 1_47
+  - first:
+      213: -3565830289557830354
+    second: FixOurTime_4StageTileSet 1_48
+  - first:
+      213: 8603544878789393717
+    second: FixOurTime_4StageTileSet 1_49
+  - first:
+      213: 2800233644893267630
+    second: FixOurTime_4StageTileSet 1_50
+  - first:
+      213: -1046390257478344104
+    second: FixOurTime_4StageTileSet 1_51
+  - first:
+      213: 8601106125254702277
+    second: FixOurTime_4StageTileSet 1_52
+  - first:
+      213: -3215453742526459857
+    second: FixOurTime_4StageTileSet 1_53
+  - first:
+      213: -7474923606060054896
+    second: FixOurTime_4StageTileSet 1_54
+  - first:
+      213: -8227001488843749466
+    second: FixOurTime_4StageTileSet 1_55
+  - first:
+      213: 2368850025872555062
+    second: FixOurTime_4StageTileSet 1_56
+  - first:
+      213: 3877376351762667356
+    second: FixOurTime_4StageTileSet 1_57
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 150
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_0
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 560
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d7e6d410e49b00a0800000000000000
+      internalID: -6914269112754051120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_1
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 607
+        width: 84
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77b378e81f2d825b0800000000000000
+      internalID: -5392828618855990409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_2
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 607
+        width: 84
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f60ebed88dc441ba0800000000000000
+      internalID: -6119181500711968657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_3
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 607
+        width: 83
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed13c8ba25a5e34a0800000000000000
+      internalID: -6611747891821399586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_4
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 527
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7dd4f828598578e0800000000000000
+      internalID: -1696298672897860225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_5
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 607
+        width: 246
+        height: 83
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cafa546aa484f2c0800000000000000
+      internalID: -4398745068671141179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_6
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 527
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b9b7006f90a789a0800000000000000
+      internalID: -6230834953072428621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_7
+      rect:
+        serializedVersion: 2
+        x: 556
+        y: 526
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3aae8da0c4d510840800000000000000
+      internalID: 5188530826888407715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_8
+      rect:
+        serializedVersion: 2
+        x: 634
+        y: 525
+        width: 85
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6cdef2422a34da770800000000000000
+      internalID: 8623623225155251654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_9
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 527
+        width: 168
+        height: 163
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6518ee28cf06d970800000000000000
+      internalID: 8779221876060198254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_10
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 477
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01a556796c6e94670800000000000000
+      internalID: 8523597510393289232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_11
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 528
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 609f566c74dbe4860800000000000000
+      internalID: 7516152944096835846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_12
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 477
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 756052830f1f93a90800000000000000
+      internalID: -7333564504159746473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_13
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 527
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4cef3600975d4330800000000000000
+      internalID: 3696707145232804940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_14
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 442
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be1c34dfa7b44d1a0800000000000000
+      internalID: -6785715746933325333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_15
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 444
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d136bcca388cd1c50800000000000000
+      internalID: 6637681893679260445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_16
+      rect:
+        serializedVersion: 2
+        x: 556
+        y: 444
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5c1aefd43d94da30800000000000000
+      internalID: 4239185999683001437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_17
+      rect:
+        serializedVersion: 2
+        x: 639
+        y: 444
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92a69b8a02a7f81b0800000000000000
+      internalID: -5652164726638417367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_18
+      rect:
+        serializedVersion: 2
+        x: 722
+        y: 444
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f7aa514b3afaa760800000000000000
+      internalID: 7470058064353863668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_19
+      rect:
+        serializedVersion: 2
+        x: 804
+        y: 443
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63fd376c125abcc10800000000000000
+      internalID: 2074933617816231734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_20
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 441
+        width: 83
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 296151612e815b100800000000000000
+      internalID: 123031924134712978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_21
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 360
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d00700969dd755e00800000000000000
+      internalID: 1032870062274408461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_22
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 443
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e91174db6c625ac0800000000000000
+      internalID: -3867909919576352283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_23
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 360
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02090c379d5c5d920800000000000000
+      internalID: 3014533063334989856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_24
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 440
+        width: 84
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0124e35c24340770800000000000000
+      internalID: 8576036955410931981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_25
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 360
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80862215897e6b270800000000000000
+      internalID: 8266048807467378696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_26
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 441
+        width: 82
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4029349a43cd9bf0800000000000000
+      internalID: -315881673764298678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_27
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 360
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc8f2c87d07a30080800000000000000
+      internalID: -9222343935622186805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_28
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 360
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac60a72dd4420aa50800000000000000
+      internalID: 6530259376349513418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_29
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 359
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c2a42897a7570830800000000000000
+      internalID: 4037291968284631749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_30
+      rect:
+        serializedVersion: 2
+        x: 556
+        y: 359
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7425e83439a200510800000000000000
+      internalID: 1513256286778446407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_31
+      rect:
+        serializedVersion: 2
+        x: 637
+        y: 28
+        width: 243
+        height: 413
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9fa13d033e040420800000000000000
+      internalID: 2595214897699729308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_32
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 277
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7477b91eac5f9c70800000000000000
+      internalID: 8979998084825576570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_33
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 277
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4843de3c80703fe00800000000000000
+      internalID: 1077212470099915908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_34
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 277
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da9971c6fd8907be0800000000000000
+      internalID: -1481516192046278227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_35
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 276
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03a78f2ce089e37f0800000000000000
+      internalID: -630899708617262544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_36
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 275
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 644e4890c9ffb77e0800000000000000
+      internalID: -1766537383173102522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_37
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 276
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14c4b58269b0fa560800000000000000
+      internalID: 7327087858305158209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_38
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 194
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fc0ea725a2403090800000000000000
+      internalID: -8056866456263062288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_39
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 273
+        width: 73
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09fc69ff2e07c22d0800000000000000
+      internalID: -3302140306516422768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_40
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 190
+        width: 75
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 297aab236dca98340800000000000000
+      internalID: 4866610908324603794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_41
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 189
+        width: 166
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9be85150cb28b4af0800000000000000
+      internalID: -411091196923507015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_42
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 193
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c63b4363382784300800000000000000
+      internalID: 236564888312656748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_43
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 192
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cd84145fdd636f90800000000000000
+      internalID: -6961599793028887103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_44
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 191
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3366ae96e95419980800000000000000
+      internalID: -8533963272206260685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_45
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 122
+        width: 73
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46d2e582a810f3d70800000000000000
+      internalID: 9024933871168138596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_46
+      rect:
+        serializedVersion: 2
+        x: 805
+        y: 191
+        width: 76
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5db0aa5749944210800000000000000
+      internalID: 1316345522841238876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_47
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 22
+        width: 166
+        height: 167
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 433425b1166845e60800000000000000
+      internalID: 7950126993844093748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_48
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 109
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e25c3958e30a38ec0800000000000000
+      internalID: -3565830289557830354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_49
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 25
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53d7f55db7ee56770800000000000000
+      internalID: 8603544878789393717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_50
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 109
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea6e5fbe9ad6cd620800000000000000
+      internalID: 2800233644893267630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_51
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 108
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 852e296da997a71f0800000000000000
+      internalID: -1046390257478344104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_52
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 109
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c43e3743744d5770800000000000000
+      internalID: 8601106125254702277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_53
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 16
+        width: 49
+        height: 93
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f20920d7bd96063d0800000000000000
+      internalID: -3215453742526459857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_54
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 25
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 096cb99859cb34890800000000000000
+      internalID: -7474923606060054896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_55
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 23
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a7cbd20cb1d3dd80800000000000000
+      internalID: -8227001488843749466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_56
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 25
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63cfe4e3c88dfd020800000000000000
+      internalID: 2368850025872555062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FixOurTime_4StageTileSet 1_57
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 25
+        width: 75
+        height: 75
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c57505baf353fc530800000000000000
+      internalID: 3877376351762667356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 82c14d775f282254d9b38eeeffcfe068
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      FixOurTime_4StageTileSet 1_0: -6914269112754051120
+      FixOurTime_4StageTileSet 1_1: -5392828618855990409
+      FixOurTime_4StageTileSet 1_10: 8523597510393289232
+      FixOurTime_4StageTileSet 1_11: 7516152944096835846
+      FixOurTime_4StageTileSet 1_12: -7333564504159746473
+      FixOurTime_4StageTileSet 1_13: 3696707145232804940
+      FixOurTime_4StageTileSet 1_14: -6785715746933325333
+      FixOurTime_4StageTileSet 1_15: 6637681893679260445
+      FixOurTime_4StageTileSet 1_16: 4239185999683001437
+      FixOurTime_4StageTileSet 1_17: -5652164726638417367
+      FixOurTime_4StageTileSet 1_18: 7470058064353863668
+      FixOurTime_4StageTileSet 1_19: 2074933617816231734
+      FixOurTime_4StageTileSet 1_2: -6119181500711968657
+      FixOurTime_4StageTileSet 1_20: 123031924134712978
+      FixOurTime_4StageTileSet 1_21: 1032870062274408461
+      FixOurTime_4StageTileSet 1_22: -3867909919576352283
+      FixOurTime_4StageTileSet 1_23: 3014533063334989856
+      FixOurTime_4StageTileSet 1_24: 8576036955410931981
+      FixOurTime_4StageTileSet 1_25: 8266048807467378696
+      FixOurTime_4StageTileSet 1_26: -315881673764298678
+      FixOurTime_4StageTileSet 1_27: -9222343935622186805
+      FixOurTime_4StageTileSet 1_28: 6530259376349513418
+      FixOurTime_4StageTileSet 1_29: 4037291968284631749
+      FixOurTime_4StageTileSet 1_3: -6611747891821399586
+      FixOurTime_4StageTileSet 1_30: 1513256286778446407
+      FixOurTime_4StageTileSet 1_31: 2595214897699729308
+      FixOurTime_4StageTileSet 1_32: 8979998084825576570
+      FixOurTime_4StageTileSet 1_33: 1077212470099915908
+      FixOurTime_4StageTileSet 1_34: -1481516192046278227
+      FixOurTime_4StageTileSet 1_35: -630899708617262544
+      FixOurTime_4StageTileSet 1_36: -1766537383173102522
+      FixOurTime_4StageTileSet 1_37: 7327087858305158209
+      FixOurTime_4StageTileSet 1_38: -8056866456263062288
+      FixOurTime_4StageTileSet 1_39: -3302140306516422768
+      FixOurTime_4StageTileSet 1_4: -1696298672897860225
+      FixOurTime_4StageTileSet 1_40: 4866610908324603794
+      FixOurTime_4StageTileSet 1_41: -411091196923507015
+      FixOurTime_4StageTileSet 1_42: 236564888312656748
+      FixOurTime_4StageTileSet 1_43: -6961599793028887103
+      FixOurTime_4StageTileSet 1_44: -8533963272206260685
+      FixOurTime_4StageTileSet 1_45: 9024933871168138596
+      FixOurTime_4StageTileSet 1_46: 1316345522841238876
+      FixOurTime_4StageTileSet 1_47: 7950126993844093748
+      FixOurTime_4StageTileSet 1_48: -3565830289557830354
+      FixOurTime_4StageTileSet 1_49: 8603544878789393717
+      FixOurTime_4StageTileSet 1_5: -4398745068671141179
+      FixOurTime_4StageTileSet 1_50: 2800233644893267630
+      FixOurTime_4StageTileSet 1_51: -1046390257478344104
+      FixOurTime_4StageTileSet 1_52: 8601106125254702277
+      FixOurTime_4StageTileSet 1_53: -3215453742526459857
+      FixOurTime_4StageTileSet 1_54: -7474923606060054896
+      FixOurTime_4StageTileSet 1_55: -8227001488843749466
+      FixOurTime_4StageTileSet 1_56: 2368850025872555062
+      FixOurTime_4StageTileSet 1_57: 3877376351762667356
+      FixOurTime_4StageTileSet 1_6: -6230834953072428621
+      FixOurTime_4StageTileSet 1_7: 5188530826888407715
+      FixOurTime_4StageTileSet 1_8: 8623623225155251654
+      FixOurTime_4StageTileSet 1_9: 8779221876060198254
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
