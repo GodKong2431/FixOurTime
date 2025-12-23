@@ -147,15 +147,26 @@ public class Stage2Boss : BossBase
         _collectedCount = 0;
         ClearAllItems(false);
 
+        // 1. 전체 스프라이트 목록 복사
         List<Sprite> spritePool = new List<Sprite>(_itemSprites);
+
+        // [Fix] 2. 정답을 선정하기 전에 리스트를 무작위로 섞음 (이 코드가 없어서 매번 똑같은게 나왔음)
+        ShuffleList(spritePool);
+
+        // 3. 섞인 리스트의 앞쪽 4개를 정답으로 사용
         List<Sprite> targetSprites = SelectTargetSprites(spritePool);
+
+        // 4. 그 뒤의 리스트를 함정으로 사용 (정답과 겹치지 않게 됨)
         List<Sprite> trapSprites = SelectTrapSprites(spritePool, targetSprites.Count);
 
         if (_uiManager != null) _uiManager.ShowTargetItems(targetSprites);
 
+        // 5. 맵에 생성할 데이터 구성
         List<ItemSetupData> spawnList = new List<ItemSetupData>();
         foreach (var s in targetSprites) spawnList.Add(new ItemSetupData(s, true));
         foreach (var s in trapSprites) spawnList.Add(new ItemSetupData(s, false));
+
+        // 6. 생성 위치도 랜덤하게 섞기
         ShuffleList(spawnList);
         PlaceGimmickItems(spawnList);
 

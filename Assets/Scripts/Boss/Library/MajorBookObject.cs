@@ -8,7 +8,11 @@ public class MajorBookObject : MonoBehaviour
     private Stage2Boss _boss;
     private Transform _target;
     private Vector3 _direction;
-    private bool _isMoving = false; // 이동 중 여부
+    private bool _isMoving = false;
+
+    // 접촉 데미지 쿨타임 관리
+    private float _contactDamageTimer = 0f;
+    private const float CONTACT_DAMAGE_INTERVAL = 0.5f;
     #endregion
 
     #region Public Methods
@@ -17,8 +21,6 @@ public class MajorBookObject : MonoBehaviour
         _boss = boss;
         _target = target;
         StartCoroutine(AttackRoutine());
-
-        // 생성 직후부터 도트 데미지 장판 가동
         StartCoroutine(DotDamageRoutine());
     }
     #endregion
@@ -26,20 +28,16 @@ public class MajorBookObject : MonoBehaviour
     #region Main Logic
     private IEnumerator AttackRoutine()
     {
-        // 1. 조준 단계
         yield return StartCoroutine(AimRoutine());
 
-        // 2. 발사 준비
         Debug.Log("전공책 조준 고정");
         yield return new WaitForSeconds(_boss.Data.BookFireDelay);
 
-        // 3. 발사
         _isMoving = true;
         float speed = _boss.Data.BookMoveSpeed;
 
         while (_isMoving)
         {
-            // 설정된 방향으로 직진
             transform.position += _direction * speed * Time.deltaTime;
             yield return null;
         }
@@ -53,10 +51,7 @@ public class MajorBookObject : MonoBehaviour
         while (aimTimer < duration)
         {
             aimTimer += Time.deltaTime;
-            if (_target != null)
-            {
-                UpdateRotationToTarget();
-            }
+            if (_target != null) UpdateRotationToTarget();
             yield return null;
         }
     }
@@ -68,11 +63,11 @@ public class MajorBookObject : MonoBehaviour
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
-    // 책 주변 도트 데미지 처리
+    // 책 주변 도트 데미지 (범위 내 접근 시)
     private IEnumerator DotDamageRoutine()
     {
         float dotDamage = _boss.Data.BookDotDamage;
-        float dotRange = 3.0f; // 범위 3m
+        float dotRange = 3.0f;
         float dotInterval = 1.0f;
         float dotTimer = 0f;
 
@@ -93,23 +88,16 @@ public class MajorBookObject : MonoBehaviour
                         }
                     }
                 }
-                else
-                {
-                    dotTimer = 0f;
-                }
+                else dotTimer = 0f;
             }
             yield return null;
         }
     }
 
-    // 충돌 후 유지하다가 소멸
     private IEnumerator StopAndPersist()
     {
-        _isMoving = false; // 이동 정지
-
-        // 충돌 지점에서 대기 (장판 역할)
+        _isMoving = false;
         yield return new WaitForSeconds(_boss.Data.BookDurationAfterHit);
-
         Destroy(gameObject);
     }
     #endregion
@@ -119,16 +107,36 @@ public class MajorBookObject : MonoBehaviour
     {
         if (!_isMoving) return;
 
-        // 벽이나 바닥 충돌 시 정지
         if (collision.CompareTag("Wall") || collision.CompareTag("Ground"))
         {
             StartCoroutine(StopAndPersist());
         }
-        // 플레이어 직격 시 데미지 및 소멸
         else if (collision.CompareTag("Player") && collision.TryGetComponent(out IDamageable target))
         {
+            // 이동 중 직격 데미지
             target.TakeDamage(_boss.Data.BookDirectDamage, _boss.Data.BookKnockback, transform.position);
             Destroy(gameObject);
+        }
+    }
+
+    // 멈춰있을 때 접촉 데미지 처리
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (_isMoving) return;
+
+        if (collision.CompareTag("Player"))
+        {
+            _contactDamageTimer += Time.deltaTime;
+            if (_contactDamageTimer >= CONTACT_DAMAGE_INTERVAL)
+            {
+                if (collision.TryGetComponent(out IDamageable target))
+                {
+                    // 멈춰있어도 이동 충돌과 동일한 데미지 적용
+                    float damage = _boss.Data.BookDirectDamage;
+                    target.TakeDamage(damage, 0f, transform.position);
+                }
+                _contactDamageTimer = 0f;
+            }
         }
     }
     #endregion
