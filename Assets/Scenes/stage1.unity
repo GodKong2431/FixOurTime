@@ -219,9 +219,9 @@ GameObject:
   m_Component:
   - component: {fileID: 20195958}
   - component: {fileID: 20195959}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Pipe_RemoveBG2_2 (15)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1005,9 +1005,9 @@ GameObject:
   m_Component:
   - component: {fileID: 55397771}
   - component: {fileID: 55397770}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Pipe_RemoveBG2_1 (2)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1185,9 +1185,9 @@ GameObject:
   m_Component:
   - component: {fileID: 71495925}
   - component: {fileID: 71495924}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Pipe_RemoveBG2_1 (5)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1275,9 +1275,9 @@ GameObject:
   m_Component:
   - component: {fileID: 71682172}
   - component: {fileID: 71682171}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Pipe_RemoveBG2_1
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2125,9 +2125,9 @@ GameObject:
   m_Component:
   - component: {fileID: 130678059}
   - component: {fileID: 130678058}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: stage01_tilemapatlas_1 (17)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2941,6 +2941,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 2026742097}
     m_Modifications:
     - target: {fileID: 5015636998581198513, guid: 2e22d5d46fbab694fb0ec4c2734dd097, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5015636998581198513, guid: 2e22d5d46fbab694fb0ec4c2734dd097, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 11.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 5015636998581198513, guid: 2e22d5d46fbab694fb0ec4c2734dd097, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.39
       objectReference: {fileID: 0}
@@ -2999,6 +3007,10 @@ PrefabInstance:
     - target: {fileID: 5370077750895079961, guid: 2e22d5d46fbab694fb0ec4c2734dd097, type: 3}
       propertyPath: m_Name
       value: Wall (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5370077750895079961, guid: 2e22d5d46fbab694fb0ec4c2734dd097, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3110,9 +3122,9 @@ GameObject:
   m_Component:
   - component: {fileID: 245235741}
   - component: {fileID: 245235740}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: stage01_tilemapatlas_1 (16)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3190,6 +3202,16 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1844172396}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &256341307 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4673488607674424036, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
+  m_PrefabInstance: {fileID: 1944892750}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &265796024 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5446055221539526156, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
+  m_PrefabInstance: {fileID: 1944892750}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &267328425
 GameObject:
   m_ObjectHideFlags: 0
@@ -3280,6 +3302,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1844172396}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &268143193 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6781982583512702132, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
+  m_PrefabInstance: {fileID: 1944892750}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &273831003
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4569,6 +4596,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1844172396}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &346197129 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3328507870384160524, guid: de16e654e6213d74280d07fd4fe556f3, type: 3}
+  m_PrefabInstance: {fileID: 1271832865}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 574672a6bbead16428711cc2afed85d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossController
 --- !u!1 &357262932
 GameObject:
   m_ObjectHideFlags: 0
@@ -4678,7 +4716,7 @@ PrefabInstance:
     - target: {fileID: 6493955315868154070, guid: d1ca0e87cc4b7864598ef5d095f5c01a, type: 3}
       propertyPath: _playerHpUI
       value: 
-      objectReference: {fileID: 676258091}
+      objectReference: {fileID: 0}
     - target: {fileID: 9110122852796830231, guid: d1ca0e87cc4b7864598ef5d095f5c01a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.93572
@@ -4937,6 +4975,75 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1844172396}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &399848921
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1476934364991690043, guid: 18b7c2da9728b8145b7d026fd577e14b, type: 3}
+      propertyPath: _boss
+      value: 
+      objectReference: {fileID: 346197129}
+    - target: {fileID: 2370957167332371213, guid: 18b7c2da9728b8145b7d026fd577e14b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2370957167332371213, guid: 18b7c2da9728b8145b7d026fd577e14b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 54.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2370957167332371213, guid: 18b7c2da9728b8145b7d026fd577e14b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2370957167332371213, guid: 18b7c2da9728b8145b7d026fd577e14b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2370957167332371213, guid: 18b7c2da9728b8145b7d026fd577e14b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2370957167332371213, guid: 18b7c2da9728b8145b7d026fd577e14b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2370957167332371213, guid: 18b7c2da9728b8145b7d026fd577e14b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2370957167332371213, guid: 18b7c2da9728b8145b7d026fd577e14b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2370957167332371213, guid: 18b7c2da9728b8145b7d026fd577e14b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2370957167332371213, guid: 18b7c2da9728b8145b7d026fd577e14b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418503290436706959, guid: 18b7c2da9728b8145b7d026fd577e14b, type: 3}
+      propertyPath: m_Name
+      value: BossZone
+      objectReference: {fileID: 0}
+    - target: {fileID: 7496274896065253977, guid: 18b7c2da9728b8145b7d026fd577e14b, type: 3}
+      propertyPath: m_Size.x
+      value: 33
+      objectReference: {fileID: 0}
+    - target: {fileID: 7496274896065253977, guid: 18b7c2da9728b8145b7d026fd577e14b, type: 3}
+      propertyPath: m_Size.y
+      value: 16
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 18b7c2da9728b8145b7d026fd577e14b, type: 3}
 --- !u!1 &408100985
 GameObject:
   m_ObjectHideFlags: 0
@@ -5173,6 +5280,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1844172396}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &422251255 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1476934364991690043, guid: 18b7c2da9728b8145b7d026fd577e14b, type: 3}
+  m_PrefabInstance: {fileID: 399848921}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bfc83b4c67b479499af7e6161d284f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossZone
 --- !u!1 &427294120
 GameObject:
   m_ObjectHideFlags: 0
@@ -5531,9 +5649,9 @@ GameObject:
   m_Component:
   - component: {fileID: 468351437}
   - component: {fileID: 468351438}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Pipe_RemoveBG2_1 (13)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5699,9 +5817,9 @@ GameObject:
   m_Component:
   - component: {fileID: 480124903}
   - component: {fileID: 480124902}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: stage01_tilemapatlas_1 (14)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7215,7 +7333,7 @@ GameObject:
   - component: {fileID: 592601206}
   m_Layer: 0
   m_Name: Pipe_RemoveBG2_2 (18)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7582,6 +7700,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 2026742097}
     m_Modifications:
     - target: {fileID: 5015636998581198513, guid: 2e22d5d46fbab694fb0ec4c2734dd097, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5015636998581198513, guid: 2e22d5d46fbab694fb0ec4c2734dd097, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 11.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 5015636998581198513, guid: 2e22d5d46fbab694fb0ec4c2734dd097, type: 3}
       propertyPath: m_LocalPosition.x
       value: -12.299
       objectReference: {fileID: 0}
@@ -7639,6 +7765,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5370077750895079961, guid: 2e22d5d46fbab694fb0ec4c2734dd097, type: 3}
       propertyPath: m_Name
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 5370077750895079961, guid: 2e22d5d46fbab694fb0ec4c2734dd097, type: 3}
+      propertyPath: m_TagString
       value: Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -8098,7 +8228,7 @@ GameObject:
   m_Component:
   - component: {fileID: 653168931}
   - component: {fileID: 653168930}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Pipe_RemoveBG2_1 (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8366,6 +8496,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1430670768976944946, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430670768976944946, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1461792702037911778, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -8381,6 +8519,10 @@ PrefabInstance:
     - target: {fileID: 2729002147636574598, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 2729002147636574598, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 5266555570961692217, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
       propertyPath: m_Pivot.x
@@ -8467,17 +8609,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
---- !u!114 &676258091 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5196565642780918592, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
-  m_PrefabInstance: {fileID: 676258090}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16f9b96eab61c4642ab429ac7bac9398, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerHpUI
 --- !u!1 &679596390
 GameObject:
   m_ObjectHideFlags: 0
@@ -8727,7 +8858,7 @@ GameObject:
   - component: {fileID: 711186805}
   m_Layer: 0
   m_Name: Pipe_RemoveBG2_2 (15)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9085,9 +9216,9 @@ GameObject:
   m_Component:
   - component: {fileID: 720252195}
   - component: {fileID: 720252196}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Pipe_RemoveBG2_2 (19)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9265,9 +9396,9 @@ GameObject:
   m_Component:
   - component: {fileID: 734822003}
   - component: {fileID: 734822002}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Pipe_RemoveBG2_1 (4)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10567,6 +10698,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8506907562405525540, guid: a3e9fb6b1b88750429127089fc31e997, type: 3}
   m_PrefabInstance: {fileID: 828941640}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &830666032 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7246249300971532040, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
+  m_PrefabInstance: {fileID: 1944892750}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &841191014
 GameObject:
   m_ObjectHideFlags: 0
@@ -11156,9 +11292,9 @@ GameObject:
   m_Component:
   - component: {fileID: 916882425}
   - component: {fileID: 916882426}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Pipe_RemoveBG2_1 (12)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12102,9 +12238,9 @@ GameObject:
   m_Component:
   - component: {fileID: 970068477}
   - component: {fileID: 970068476}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: stage01_tilemapatlas_1 (7)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12273,6 +12409,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 2026742097}
     m_Modifications:
     - target: {fileID: 5015636998581198513, guid: 2e22d5d46fbab694fb0ec4c2734dd097, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5015636998581198513, guid: 2e22d5d46fbab694fb0ec4c2734dd097, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 11.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 5015636998581198513, guid: 2e22d5d46fbab694fb0ec4c2734dd097, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.55
       objectReference: {fileID: 0}
@@ -12331,6 +12475,10 @@ PrefabInstance:
     - target: {fileID: 5370077750895079961, guid: 2e22d5d46fbab694fb0ec4c2734dd097, type: 3}
       propertyPath: m_Name
       value: Wall (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5370077750895079961, guid: 2e22d5d46fbab694fb0ec4c2734dd097, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13352,9 +13500,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1093633961}
   - component: {fileID: 1093633960}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: stage01_tilemapatlas_1 (10)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13442,9 +13590,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1093785189}
   - component: {fileID: 1093785188}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: stage01_tilemapatlas_1 (9)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13712,9 +13860,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1104368782}
   - component: {fileID: 1104368781}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: stage01_tilemapatlas_1 (15)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13804,7 +13952,7 @@ GameObject:
   - component: {fileID: 1106963828}
   m_Layer: 0
   m_Name: Pipe_RemoveBG2_2 (16)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15045,9 +15193,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1202868176}
   - component: {fileID: 1202868175}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: stage01_tilemapatlas_1 (11)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15486,6 +15634,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 2026742097}
     m_Modifications:
     - target: {fileID: 5015636998581198513, guid: 2e22d5d46fbab694fb0ec4c2734dd097, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5015636998581198513, guid: 2e22d5d46fbab694fb0ec4c2734dd097, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 11.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 5015636998581198513, guid: 2e22d5d46fbab694fb0ec4c2734dd097, type: 3}
       propertyPath: m_LocalPosition.x
       value: 20.685
       objectReference: {fileID: 0}
@@ -15544,6 +15700,10 @@ PrefabInstance:
     - target: {fileID: 5370077750895079961, guid: 2e22d5d46fbab694fb0ec4c2734dd097, type: 3}
       propertyPath: m_Name
       value: Wall (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5370077750895079961, guid: 2e22d5d46fbab694fb0ec4c2734dd097, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15835,9 +15995,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1226478436}
   - component: {fileID: 1226478437}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Pipe_RemoveBG2_2 (18)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16263,6 +16423,95 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1844172396}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1271832865
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3328507870384160524, guid: de16e654e6213d74280d07fd4fe556f3, type: 3}
+      propertyPath: _centerPoint
+      value: 
+      objectReference: {fileID: 265796024}
+    - target: {fileID: 3328507870384160524, guid: de16e654e6213d74280d07fd4fe556f3, type: 3}
+      propertyPath: _scrapPrefab
+      value: 
+      objectReference: {fileID: 7145188956452611248, guid: 5e02387c94b53bb46876c1979cecf324, type: 3}
+    - target: {fileID: 3328507870384160524, guid: de16e654e6213d74280d07fd4fe556f3, type: 3}
+      propertyPath: _playerTarget
+      value: 
+      objectReference: {fileID: 1643571693}
+    - target: {fileID: 3328507870384160524, guid: de16e654e6213d74280d07fd4fe556f3, type: 3}
+      propertyPath: _wallBossObject
+      value: 
+      objectReference: {fileID: 830666032}
+    - target: {fileID: 3328507870384160524, guid: de16e654e6213d74280d07fd4fe556f3, type: 3}
+      propertyPath: _weaknessObject
+      value: 
+      objectReference: {fileID: 256341307}
+    - target: {fileID: 3328507870384160524, guid: de16e654e6213d74280d07fd4fe556f3, type: 3}
+      propertyPath: _concreteHPrefab
+      value: 
+      objectReference: {fileID: 1523689871022744349, guid: 6aab5bdaf365b85478eed806bc60f1ff, type: 3}
+    - target: {fileID: 3328507870384160524, guid: de16e654e6213d74280d07fd4fe556f3, type: 3}
+      propertyPath: _concreteVPrefab
+      value: 
+      objectReference: {fileID: 1523689871022744349, guid: 09f4c7774a68fd44d94dd0daa615e5bd, type: 3}
+    - target: {fileID: 3328507870384160524, guid: de16e654e6213d74280d07fd4fe556f3, type: 3}
+      propertyPath: _floorBossObject
+      value: 
+      objectReference: {fileID: 268143193}
+    - target: {fileID: 7051147591684779487, guid: de16e654e6213d74280d07fd4fe556f3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.98147774
+      objectReference: {fileID: 0}
+    - target: {fileID: 7051147591684779487, guid: de16e654e6213d74280d07fd4fe556f3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 63.209984
+      objectReference: {fileID: 0}
+    - target: {fileID: 7051147591684779487, guid: de16e654e6213d74280d07fd4fe556f3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7051147591684779487, guid: de16e654e6213d74280d07fd4fe556f3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7051147591684779487, guid: de16e654e6213d74280d07fd4fe556f3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7051147591684779487, guid: de16e654e6213d74280d07fd4fe556f3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7051147591684779487, guid: de16e654e6213d74280d07fd4fe556f3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7051147591684779487, guid: de16e654e6213d74280d07fd4fe556f3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7051147591684779487, guid: de16e654e6213d74280d07fd4fe556f3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7051147591684779487, guid: de16e654e6213d74280d07fd4fe556f3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8404700497275151832, guid: de16e654e6213d74280d07fd4fe556f3, type: 3}
+      propertyPath: m_Name
+      value: Managers
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: de16e654e6213d74280d07fd4fe556f3, type: 3}
 --- !u!1 &1272366342
 GameObject:
   m_ObjectHideFlags: 0
@@ -17018,9 +17267,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1340858730}
   - component: {fileID: 1340858729}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: stage01_tilemapatlas_1 (8)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18539,9 +18788,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1491175617}
   - component: {fileID: 1491175618}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Pipe_RemoveBG2_2 (17)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19096,9 +19345,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1525193528}
   - component: {fileID: 1525193529}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Pipe_RemoveBG2_2 (16)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20129,6 +20378,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 2026742097}
     m_Modifications:
     - target: {fileID: 5015636998581198513, guid: 2e22d5d46fbab694fb0ec4c2734dd097, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5015636998581198513, guid: 2e22d5d46fbab694fb0ec4c2734dd097, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 11.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 5015636998581198513, guid: 2e22d5d46fbab694fb0ec4c2734dd097, type: 3}
       propertyPath: m_LocalPosition.x
       value: 17.01
       objectReference: {fileID: 0}
@@ -20188,6 +20445,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 5370077750895079961, guid: 2e22d5d46fbab694fb0ec4c2734dd097, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20215,7 +20476,7 @@ GameObject:
   - component: {fileID: 1635868258}
   m_Layer: 0
   m_Name: Pipe_RemoveBG2_2 (19)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20395,6 +20656,62 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
+      propertyPath: OnPlayerDead.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
+      propertyPath: OnPlayerRespawn.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
+      propertyPath: OnPlayerDead.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
+      propertyPath: OnPlayerDead.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 346197129}
+    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
+      propertyPath: OnPlayerRespawn.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
+      propertyPath: OnPlayerDead.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
+      propertyPath: OnPlayerRespawn.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 422251255}
+    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
+      propertyPath: OnPlayerDead.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ResetBoss
+      objectReference: {fileID: 0}
+    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
+      propertyPath: OnPlayerRespawn.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
+      propertyPath: OnPlayerRespawn.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ResetTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
+      propertyPath: OnPlayerDead.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Stage1Boss, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
+      propertyPath: OnPlayerRespawn.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: BossZone, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
+      propertyPath: OnPlayerDead.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
+      propertyPath: OnPlayerRespawn.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7303901205914570929, guid: 399c980154248fc41b541233f493a29b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -16.257574
@@ -20451,6 +20768,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8a033cf4d2fa44cb914114bf43e5a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+--- !u!4 &1643571693 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7303901205914570929, guid: 399c980154248fc41b541233f493a29b, type: 3}
+  m_PrefabInstance: {fileID: 1643571691}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1646191016
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21772,9 +22094,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1821162053}
   - component: {fileID: 1821162052}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: stage01_tilemapatlas_1 (12)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22117,9 +22439,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1838014793}
   - component: {fileID: 1838014792}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Pipe_RemoveBG2_1 (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22207,9 +22529,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1841492369}
   - component: {fileID: 1841492368}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Pipe_RemoveBG2_1 (8)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23272,9 +23594,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1872234279}
   - component: {fileID: 1872234278}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Pipe_RemoveBG2_1 (10)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23361,6 +23683,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 2026742097}
     m_Modifications:
     - target: {fileID: 5015636998581198513, guid: 2e22d5d46fbab694fb0ec4c2734dd097, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5015636998581198513, guid: 2e22d5d46fbab694fb0ec4c2734dd097, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 11.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 5015636998581198513, guid: 2e22d5d46fbab694fb0ec4c2734dd097, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.082
       objectReference: {fileID: 0}
@@ -23419,6 +23749,10 @@ PrefabInstance:
     - target: {fileID: 5370077750895079961, guid: 2e22d5d46fbab694fb0ec4c2734dd097, type: 3}
       propertyPath: m_Name
       value: Wall (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5370077750895079961, guid: 2e22d5d46fbab694fb0ec4c2734dd097, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -24576,6 +24910,115 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1844172396}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1944892750
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 397114069549689832, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
+      propertyPath: m_Name
+      value: Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 1078216960777308679, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1078216960777308679, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -6.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 2132975945158498418, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
+      propertyPath: _boss
+      value: 
+      objectReference: {fileID: 346197129}
+    - target: {fileID: 2469700520736066136, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 16.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2469700520736066136, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 3095071793042084986, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
+      propertyPath: _bossBase
+      value: 
+      objectReference: {fileID: 346197129}
+    - target: {fileID: 3244494443211372358, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 3244494443211372358, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 62.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 3244494443211372358, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3244494443211372358, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3244494443211372358, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3244494443211372358, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3244494443211372358, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3244494443211372358, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3244494443211372358, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3244494443211372358, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4661409143736925193, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
+      propertyPath: _boss
+      value: 
+      objectReference: {fileID: 346197129}
+    - target: {fileID: 5446055221539526156, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5446055221539526156, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7246249300971532040, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 18.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 7246249300971532040, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 8639833542105503681, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8639833542105503681, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -7.29
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
 --- !u!1 &1945613500
 GameObject:
   m_ObjectHideFlags: 0
@@ -25692,7 +26135,7 @@ GameObject:
   - component: {fileID: 2026742097}
   m_Layer: 0
   m_Name: WallCol
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25895,7 +26338,7 @@ GameObject:
   - component: {fileID: 2033391878}
   m_Layer: 0
   m_Name: Pipe_RemoveBG2_2 (17)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26016,9 +26459,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2046395826}
   - component: {fileID: 2046395825}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Pipe_RemoveBG2_1 (3)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26802,9 +27245,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2088564253}
   - component: {fileID: 2088564252}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: stage01_tilemapatlas_1 (13)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27255,3 +27698,6 @@ SceneRoots:
   - {fileID: 548013182}
   - {fileID: 374499935}
   - {fileID: 1503716231}
+  - {fileID: 1944892750}
+  - {fileID: 1271832865}
+  - {fileID: 399848921}
