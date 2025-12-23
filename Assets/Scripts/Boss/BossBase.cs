@@ -32,7 +32,7 @@ public abstract class BossBase : MonoBehaviour
     public virtual void TakeDamage(float damage)
     {
         _currentHp -= damage;
-        // Debug.Log($"[{gameObject.name}] HP: {_currentHp}");
+        Debug.Log($"[{gameObject.name}] HP: {_currentHp}");
 
         if (_currentHp <= 0)
         {

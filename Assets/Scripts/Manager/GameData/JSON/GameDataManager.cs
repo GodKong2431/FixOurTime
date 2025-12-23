@@ -28,4 +28,13 @@ public static class GameDataManager
         string json = File.ReadAllText(savePath);
         return JsonUtility.FromJson<GameData>(json);
     }
+
+    public static void DeleteSaveData()
+    {
+        if (File.Exists(savePath))
+        {
+            File.Delete(savePath);
+            Debug.Log("기존 세이브데이터 삭제");
+        }
+    }
 }

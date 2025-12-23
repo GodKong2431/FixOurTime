@@ -8,7 +8,7 @@ public class ToMainYesBtn : MonoBehaviour
     private void Start()
     {
         GetComponent<Button>().onClick.AddListener(() => {
-            SceneChanger.Instance.ChangeScene(targetScene, true);
+            SceneChanger.Instance.ChangeScene(targetScene, false,false);
         });
     }
 }

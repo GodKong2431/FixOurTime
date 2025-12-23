@@ -1,8 +1,7 @@
 using System.Collections;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
-public class Stage3BossPlatform : MonoBehaviour
+public class Stage3AngelPlatform : MonoBehaviour
 {
     [Header("시간 제한")]
     [SerializeField] private float _stayTime;

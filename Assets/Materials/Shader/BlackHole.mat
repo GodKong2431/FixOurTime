@@ -77,7 +77,7 @@ Material:
     - _ZWrite: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Effect_Color: {r: 2.412047, g: 3.7790475, b: 3.9094338, a: 1}
+    - _Effect_Color: {r: 0.9355532, g: 0.9355532, b: 0.9355532, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
