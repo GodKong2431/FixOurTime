@@ -21083,63 +21083,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &720199303
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 312940663367777358, guid: 399c980154248fc41b541233f493a29b, type: 3}
-      propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303901205914570929, guid: 399c980154248fc41b541233f493a29b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -16.72
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303901205914570929, guid: 399c980154248fc41b541233f493a29b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -18.24
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303901205914570929, guid: 399c980154248fc41b541233f493a29b, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303901205914570929, guid: 399c980154248fc41b541233f493a29b, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303901205914570929, guid: 399c980154248fc41b541233f493a29b, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303901205914570929, guid: 399c980154248fc41b541233f493a29b, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303901205914570929, guid: 399c980154248fc41b541233f493a29b, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303901205914570929, guid: 399c980154248fc41b541233f493a29b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303901205914570929, guid: 399c980154248fc41b541233f493a29b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303901205914570929, guid: 399c980154248fc41b541233f493a29b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 399c980154248fc41b541233f493a29b, type: 3}
 --- !u!1 &720894113
 GameObject:
   m_ObjectHideFlags: 0
@@ -30903,30 +30846,6 @@ PrefabInstance:
     - target: {fileID: 1383446662183809203, guid: 3085df4e48e32cd468a525d3b81d299a, type: 3}
       propertyPath: m_Name
       value: Paper Crane Spawner
-      objectReference: {fileID: 0}
-    - target: {fileID: 1383446662183809203, guid: 3085df4e48e32cd468a525d3b81d299a, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1639966765603488423, guid: 3085df4e48e32cd468a525d3b81d299a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 7.997
-      objectReference: {fileID: 0}
-    - target: {fileID: 2684155456990430430, guid: 3085df4e48e32cd468a525d3b81d299a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.002
-      objectReference: {fileID: 0}
-    - target: {fileID: 3932417107980113865, guid: 3085df4e48e32cd468a525d3b81d299a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 13.002
-      objectReference: {fileID: 0}
-    - target: {fileID: 5807713669108583440, guid: 3085df4e48e32cd468a525d3b81d299a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5837585001423901358, guid: 3085df4e48e32cd468a525d3b81d299a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -13
       objectReference: {fileID: 0}
     - target: {fileID: 7926591432957656165, guid: 3085df4e48e32cd468a525d3b81d299a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -48558,11 +48477,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4996361996812643629, guid: e2df9b0689a06774c9303e0fa4466d5a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.9939995
+      value: -11.665
       objectReference: {fileID: 0}
     - target: {fileID: 4996361996812643629, guid: e2df9b0689a06774c9303e0fa4466d5a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 38.506
+      value: 37.475
       objectReference: {fileID: 0}
     - target: {fileID: 4996361996812643629, guid: e2df9b0689a06774c9303e0fa4466d5a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -49054,8 +48973,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0798401d2854574c99c3cec9c125326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CinemachinCamManager
-  _activeCam: {fileID: 479095748}
-  _player: {fileID: 1880803664}
   _moveDuration: 0.8
 --- !u!1 &1609972313
 GameObject:
@@ -55662,11 +55579,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4996361996812643629, guid: e2df9b0689a06774c9303e0fa4466d5a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -23.491001
+      value: -22.84
       objectReference: {fileID: 0}
     - target: {fileID: 4996361996812643629, guid: e2df9b0689a06774c9303e0fa4466d5a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.009046
+      value: 10.962
       objectReference: {fileID: 0}
     - target: {fileID: 4996361996812643629, guid: e2df9b0689a06774c9303e0fa4466d5a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -55975,11 +55892,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!4 &1880803664 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7303901205914570929, guid: 399c980154248fc41b541233f493a29b, type: 3}
-  m_PrefabInstance: {fileID: 720199303}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1880809905
 GameObject:
   m_ObjectHideFlags: 0
@@ -65188,5 +65100,4 @@ SceneRoots:
   - {fileID: 1607995769}
   - {fileID: 619394802}
   - {fileID: 1034972351}
-  - {fileID: 720199303}
   - {fileID: 479095749}
