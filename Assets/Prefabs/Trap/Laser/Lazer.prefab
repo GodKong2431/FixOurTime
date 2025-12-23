@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6647745164461359404}
   - component: {fileID: 2878662788321110689}
   - component: {fileID: 1070301869298309687}
+  - component: {fileID: 8585446003811918402}
   m_Layer: 0
   m_Name: Lazer
   m_TagString: Untagged
@@ -82,7 +83,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_Sprite: {fileID: -3967958881609581363, guid: 347d72770f992d5408fd1ee63ae1739e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -105,6 +106,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af99eddbab7bfd9458d005ae5b5b85d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Laser
+  _trapDamage: 20
+  _knockbackForce: 7
+  _invincibleTime: 0.5
   _cooldown: 5
   _warningTime: 1
   _fireTime: 1
@@ -112,6 +116,52 @@ MonoBehaviour:
   _firePoint: {fileID: 207615410107145364}
   _warningLine: {fileID: 9045707398622379404}
   _laserLine: {fileID: 6293473541359672952}
+--- !u!61 &8585446003811918402
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2200172785831301045}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.006194353, y: 0.016216755}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.57, y: 1.34}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 2.585713, y: 1.390233}
+  m_EdgeRadius: 0
 --- !u!1 &2215298213230536296
 GameObject:
   m_ObjectHideFlags: 0

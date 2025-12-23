@@ -1,0 +1,678 @@
+fileFormatVersion: 2
+guid: 315df7d5d244a954ebe7c987bb848e1d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7916264478402732902
+    second: Stage01_tilemapatlas2_0
+  - first:
+      213: 474592832280620473
+    second: Stage01_tilemapatlas2_1
+  - first:
+      213: 6369712189131246947
+    second: Stage01_tilemapatlas2_2
+  - first:
+      213: -254910773724150094
+    second: Stage01_tilemapatlas2_3
+  - first:
+      213: -6293808517092803017
+    second: Stage01_tilemapatlas2_4
+  - first:
+      213: -6577580387051110832
+    second: Stage01_tilemapatlas2_5
+  - first:
+      213: -2645416719824224512
+    second: Stage01_tilemapatlas2_6
+  - first:
+      213: 759535811728897926
+    second: Stage01_tilemapatlas2_7
+  - first:
+      213: -9133280230762354564
+    second: Stage01_tilemapatlas2_8
+  - first:
+      213: 1708472129981622349
+    second: Stage01_tilemapatlas2_9
+  - first:
+      213: 6180795575844345224
+    second: Stage01_tilemapatlas2_10
+  - first:
+      213: 1215727101368370298
+    second: Stage01_tilemapatlas2_11
+  - first:
+      213: -6569337931050982972
+    second: Stage01_tilemapatlas2_12
+  - first:
+      213: 1148215643640994008
+    second: Stage01_tilemapatlas2_13
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Stage01_tilemapatlas2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 846
+        width: 1152
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 663ec37d9983cdd60800000000000000
+      internalID: 7916264478402732902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage01_tilemapatlas2_1
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 695
+        width: 607
+        height: 145
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bd680d9aa7169600800000000000000
+      internalID: 474592832280620473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage01_tilemapatlas2_2
+      rect:
+        serializedVersion: 2
+        x: 632
+        y: 735
+        width: 504
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36dc4a2ec73c56850800000000000000
+      internalID: 6369712189131246947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage01_tilemapatlas2_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 430
+        width: 313
+        height: 129
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b680ca7000667cf0800000000000000
+      internalID: -254910773724150094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage01_tilemapatlas2_4
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 562
+        width: 296
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73efa5eef76e7a8a0800000000000000
+      internalID: -6293808517092803017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage01_tilemapatlas2_5
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 0
+        width: 176
+        height: 719
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05efd3ccc7db7b4a0800000000000000
+      internalID: -6577580387051110832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage01_tilemapatlas2_6
+      rect:
+        serializedVersion: 2
+        x: 835
+        y: 481
+        width: 295
+        height: 188
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00f7ff36287994bd0800000000000000
+      internalID: -2645416719824224512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage01_tilemapatlas2_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 191
+        width: 247
+        height: 176
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 687f94cebc96a8a00800000000000000
+      internalID: 759535811728897926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage01_tilemapatlas2_8
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 206
+        width: 125
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c78ef433502104180800000000000000
+      internalID: -9133280230762354564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage01_tilemapatlas2_9
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 268
+        width: 238
+        height: 195
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d48a530b956b5b710800000000000000
+      internalID: 1708472129981622349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage01_tilemapatlas2_10
+      rect:
+        serializedVersion: 2
+        x: 855
+        y: 214
+        width: 227
+        height: 185
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 885128734d896c550800000000000000
+      internalID: 6180795575844345224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage01_tilemapatlas2_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 424
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7480e48b512fd010800000000000000
+      internalID: 1215727101368370298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage01_tilemapatlas2_12
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 0
+        width: 218
+        height: 201
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c1e43225f505d4a0800000000000000
+      internalID: -6569337931050982972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage01_tilemapatlas2_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 434
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d894cc5b084fef00800000000000000
+      internalID: 1148215643640994008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage01_tilemapatlas2_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 559
+        width: 313
+        height: 136
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 653a2ff8311130d4f9d82220c2972c4a
+      internalID: 965504850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage01_tilemapatlas2_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 372
+        width: 101
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b5cab6825e26d54fb6e47436519b2fe
+      internalID: 668381903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage01_tilemapatlas2_16
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 96
+        width: 184
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04f0212b7688c1241b89208496e1771a
+      internalID: -98720469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage01_tilemapatlas2_17
+      rect:
+        serializedVersion: 2
+        x: 637
+        y: 735
+        width: 264
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1eae3103f075b34ab80dff347b0fb02
+      internalID: 1258953146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage01_tilemapatlas2_18
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 327
+        width: 125
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cbad08e2220f7347b71d236327ba606
+      internalID: 436967453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage01_tilemapatlas2_19
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 268
+        width: 82
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e43aa58f4db25b5469e3dccec1fdb1de
+      internalID: -382841568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage01_tilemapatlas2_20
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 238
+        width: 96
+        height: 105
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b43c39fa18de8f44ea25c639eafed391
+      internalID: 1849712214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage01_tilemapatlas2_21
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 206
+        width: 125
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 324d4d3da73b6644dac97c1e7cf64d46
+      internalID: 2010119267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: dfa60d3f2b5dfd14294104327eb4b803
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Stage01_tilemapatlas2_0: 7916264478402732902
+      Stage01_tilemapatlas2_1: 474592832280620473
+      Stage01_tilemapatlas2_10: 6180795575844345224
+      Stage01_tilemapatlas2_11: 1215727101368370298
+      Stage01_tilemapatlas2_12: -6569337931050982972
+      Stage01_tilemapatlas2_13: 1148215643640994008
+      Stage01_tilemapatlas2_14: 965504850
+      Stage01_tilemapatlas2_15: 668381903
+      Stage01_tilemapatlas2_16: -98720469
+      Stage01_tilemapatlas2_17: 1258953146
+      Stage01_tilemapatlas2_18: 436967453
+      Stage01_tilemapatlas2_19: -382841568
+      Stage01_tilemapatlas2_2: 6369712189131246947
+      Stage01_tilemapatlas2_20: 1849712214
+      Stage01_tilemapatlas2_21: 2010119267
+      Stage01_tilemapatlas2_3: -254910773724150094
+      Stage01_tilemapatlas2_4: -6293808517092803017
+      Stage01_tilemapatlas2_5: -6577580387051110832
+      Stage01_tilemapatlas2_6: -2645416719824224512
+      Stage01_tilemapatlas2_7: 759535811728897926
+      Stage01_tilemapatlas2_8: -9133280230762354564
+      Stage01_tilemapatlas2_9: 1708472129981622349
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
