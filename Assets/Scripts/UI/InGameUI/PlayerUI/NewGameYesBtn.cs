@@ -7,6 +7,6 @@ public class NewGameYesBtn : MonoBehaviour
     
     public void GoStage1()
     {
-        SceneChanger.Instance.ChangeScene("stage1", false);
+        SceneChanger.Instance.StartNewGame("stage1");
     }
 }
