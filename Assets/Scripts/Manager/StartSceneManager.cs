@@ -9,7 +9,19 @@ public class StartSceneManager : MonoBehaviour
     {
         _video = GetComponent<VideoPlayer>();
     }
-
+    private void Start()
+    {
+        //씬체인저가 존재하면서 비디오플레이어불값이 참이라면 (새게임시작으로옴)
+        if (SceneChanger.Instance != null && SceneChanger.Instance._videoPlay == true)
+        {
+            gameObject.SetActive(true);
+            _video.Play();
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
+    }
     void OnEnable()
     {
         _video.loopPointReached += OnVideoFinished;
