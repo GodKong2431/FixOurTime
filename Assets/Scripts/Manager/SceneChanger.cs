@@ -42,8 +42,12 @@ public class SceneChanger : SingleTon<SceneChanger>
         {
             yield return null;
         }
-        yield return new WaitForEndOfFrame(); //로드후 한프레임 더 대기
+        yield return new WaitForSeconds(1f); //로드1초대기
 
+        if (CinemachinCamManager.Instance != null)
+        {
+            CinemachinCamManager.Instance.Reconnect();
+        }
 
         if (useSavePos)
         {
@@ -59,16 +63,12 @@ public class SceneChanger : SingleTon<SceneChanger>
             }
         }
 
-        if (CinemachinCamManager.Instance != null)
-        {
-            CinemachinCamManager.Instance.Reconnect();
-        }
+        
     }
 
+    //버튼용
     public void ChangeSceneFromButton(string sceneName)
     {
-        // 버튼으로 씬을 바꿀 때는 보통 처음부터 시작하는 경우가 많으므로 false 전달
-        // 혹은 상황에 따라 true를 넣고 싶다면 메서드를 하나 더 만듭니다.
         ChangeScene(sceneName, false);
     }
     public void ChangeSceneFromButtonWithSave(string sceneName)

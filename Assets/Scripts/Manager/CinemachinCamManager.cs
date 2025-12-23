@@ -19,7 +19,7 @@ public class CinemachinCamManager : SingleTon<CinemachinCamManager>
     protected override void Awake()
     {
         base.Awake();
-        Reconnect();
+        //Reconnect();
     }
 
     public void Reconnect()

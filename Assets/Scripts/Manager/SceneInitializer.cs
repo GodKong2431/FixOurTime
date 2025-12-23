@@ -34,11 +34,11 @@ public class SceneInitializer : MonoBehaviour
     }
 
     // ½ºÅµ¹öÆ°
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
-        {
-            MoveToTitle();
-        }
-    }
+    //void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+    //    {
+    //        MoveToTitle();
+    //    }
+    //}
 }
