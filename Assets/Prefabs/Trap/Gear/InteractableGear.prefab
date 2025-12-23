@@ -140,6 +140,7 @@ MonoBehaviour:
   _trapDamage: 20
   _knockbackForce: 7
   _invincibleTime: 0.5
+  _rotateSpeed: -180
   _onOffObjs:
   - {fileID: 0}
   - {fileID: 0}
