@@ -8,8 +8,8 @@ public class CinemachinCamManager : SingleTon<CinemachinCamManager>
     [Header("기본 설정")]
     [SerializeField] float _moveDuration = 0.8f;
 
-    CinemachineCamera _activeCam;
-    Transform _player;
+    [SerializeField]CinemachineCamera _activeCam;
+    [SerializeField]Transform _player;
     CinemachineBasicMultiChannelPerlin _noise;
     Camera _mainCam;
 
@@ -19,6 +19,7 @@ public class CinemachinCamManager : SingleTon<CinemachinCamManager>
     protected override void Awake()
     {
         base.Awake();
+        Reconnect();
     }
 
     public void Reconnect()
@@ -31,10 +32,25 @@ public class CinemachinCamManager : SingleTon<CinemachinCamManager>
             _player = GameManager.Instance.Player.transform;
         }
 
-        if(_activeCam != null)
+        if (_activeCam != null)
         {
+            // 노이즈 컴포넌트 가져오기
             _noise = _activeCam.GetComponent<CinemachineBasicMultiChannelPerlin>();
+
             _screenHeight = _activeCam.Lens.OrthographicSize * 2f;
+
+            // 플레이어 참조
+            if (GameManager.Instance != null && GameManager.Instance.Player != null)
+            {
+                _player = GameManager.Instance.Player.transform;
+            }
+
+            Debug.Log($"카메라 재연결완료 화면높이: {_screenHeight}");
+        }
+        else
+        {
+            // 씬에 카메라가 없는 경우 경고 출력 (디버깅용)
+            Debug.LogWarning("Reconnect 실패.");
         }
     }
     void LateUpdate()
@@ -110,5 +126,14 @@ public class CinemachinCamManager : SingleTon<CinemachinCamManager>
             yield return null;
         }
         _activeCam.Lens.OrthographicSize = targetSize;
+    }
+
+    public Vector3 GetCamPos()
+    {
+        return _activeCam.transform.position;
+    }
+    public void LoadCamPos(Vector3 savedPos)
+    {
+        _activeCam.transform.position = savedPos;
     }
 }

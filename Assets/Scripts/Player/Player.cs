@@ -490,6 +490,7 @@ public class Player : MonoBehaviour,IDamageable
         data.playerPos = transform.position;
         data.maxHp = _maxHp;
         data.sceneName = SceneManager.GetActiveScene().name;
+        data.camPos = CinemachinCamManager.Instance.GetCamPos();
     }
     //데이터 불러오기
     public void LoadPlayerData(GameData data)
@@ -500,6 +501,8 @@ public class Player : MonoBehaviour,IDamageable
 
         _rb.linearVelocity = Vector2.zero;
         _rb.bodyType = RigidbodyType2D.Dynamic;
+
+        CinemachinCamManager.Instance.LoadCamPos(data.camPos);
 
         SetState(new IdleState());
     }
