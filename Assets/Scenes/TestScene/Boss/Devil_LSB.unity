@@ -587,6 +587,31 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &1088721009 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8270420990446805351, guid: b43b754f486bc59499ed62cf67420903, type: 3}
+  m_PrefabInstance: {fileID: 5095734711364518048}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1088721015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088721009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d13f5f55e9d37547b6569ec010fab8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DevilBlackHoleController
+  blackHolePrefab: {fileID: 200342055332908596, guid: f8fb91bcf20b9224fbe0ddb0b69be7c4, type: 3}
+  spawnPoint: {fileID: 1940411205}
+  duration: 5
+  minScale: 0.5
+  maxScale: 30
+  growTime: 1.5
+  shrinkTime: 1
+  pullForce: 20
 --- !u!1001 &1295858824
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -601,11 +626,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7303901205914570929, guid: 399c980154248fc41b541233f493a29b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.68
+      value: 0.27
       objectReference: {fileID: 0}
     - target: {fileID: 7303901205914570929, guid: 399c980154248fc41b541233f493a29b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.29
+      value: -7.44
       objectReference: {fileID: 0}
     - target: {fileID: 7303901205914570929, guid: 399c980154248fc41b541233f493a29b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -921,6 +946,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3433816918273136691, guid: b43b754f486bc59499ed62cf67420903, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 7320808865579211157, guid: b43b754f486bc59499ed62cf67420903, type: 3}
       propertyPath: boxPos
       value: 
@@ -936,7 +965,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8270420990446805351, guid: b43b754f486bc59499ed62cf67420903, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1088721015}
   m_SourcePrefab: {fileID: 100100000, guid: b43b754f486bc59499ed62cf67420903, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

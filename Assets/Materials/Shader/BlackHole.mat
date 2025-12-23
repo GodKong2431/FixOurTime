@@ -49,7 +49,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Noise_Texture:
-        m_Texture: {fileID: 2800000, guid: 3a0a97088b873c04daff1fcb0e91ad59, type: 3}
+        m_Texture: {fileID: 2800000, guid: d6cd4852e880d1c4b982c6fa7cacb521, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
@@ -71,13 +71,13 @@ Material:
     m_Ints: []
     m_Floats:
     - _EnableExternalAlpha: 0
-    - _Hole_Size: 0.36
+    - _Hole_Size: 0.3
     - _Rotation_Speed: 1
     - _Twirl_Strength: 10
     - _ZWrite: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Effect_Color: {r: 0.9355532, g: 0.9355532, b: 0.9355532, a: 1}
+    - _Effect_Color: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
