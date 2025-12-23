@@ -46,7 +46,7 @@ public class AttackHitBox : MonoBehaviour
         IDamageable target = collision.GetComponent<IDamageable>();
         if(target != null)
         {
-            target.TakeDamage(_damage, 5f, transform.position);
+            target.TakeDamage(_damage, 5f, transform.parent.position);
 
             //흔들림넣을거면 매니저호출
         }

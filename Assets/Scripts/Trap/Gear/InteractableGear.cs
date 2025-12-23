@@ -61,7 +61,7 @@ public class InteractableGear : Gear,IDamageable
     public void TakeDamage(float damage, float KnockbackForce, Vector3 hitPos)
     {
         if (_currentState == GearStateType.GearMoveState || _isFinal) return;
-        bool dir = Mathf.Sign(hitPos.x - transform.position.x) == Mathf.Sign(_onOffObjs[1].transform.position.x - _onOffObjs[0].transform.position.x) ? false : true;
+        bool dir = Mathf.Sign(hitPos.x - transform.position.x) == Mathf.Sign(_move.Points[0].transform.position.x - _move.Points[1].transform.position.x) ? false : true;
         HitGear(dir);
     }
     public void HitGear(bool direction)
