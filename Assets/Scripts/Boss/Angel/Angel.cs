@@ -3,9 +3,9 @@ using UnityEngine;
 public class Angel : MonoBehaviour
 {
     Coroutine _staytimeCoroutine;
-    Stage3BossPlatform _platform = null;
+    Stage3AngelPlatform _platform = null;
 
-    public void StayTimeController(Stage3BossPlatform platform)
+    public void StayTimeController(Stage3AngelPlatform platform)
     {
         if(_platform == platform) return;
 
