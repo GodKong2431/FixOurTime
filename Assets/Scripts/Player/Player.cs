@@ -116,6 +116,11 @@ public class Player : MonoBehaviour,IDamageable,IBindable
     public readonly int animAttack = Animator.StringToHash("DoAttack");
     public readonly int animFalling = Animator.StringToHash("IsFalling");
 
+    //코루틴용 변수
+    private Coroutine _activeCoroutine;
+    //현재속도 저장용 변수
+    private float _currentMoveSpeed;
+
     //프로퍼티
     public int AirJumpCount => _airJumpCount;
     public int CurrentAirJump { get => _currentAirJump; set => _currentAirJump = value; }
@@ -686,21 +691,15 @@ public class Player : MonoBehaviour,IDamageable,IBindable
     {
         StartCoroutine(BindCoroutine(duration));
     }
-
-    public void Bind(bool Isbind)
+    public void Unbind()
     {
-        
-    }
-
-    public void Unbind(bool Isbind)
-    {
-        
+        MoveSpeed = _currentMoveSpeed;
     }
 
     private IEnumerator BindCoroutine(float duration)
     {
         //원래 이속값 저장
-        float currentMoveSpeed = MoveSpeed;
+        _currentMoveSpeed = MoveSpeed;
 
         MoveSpeed = 0f;
         
@@ -708,9 +707,6 @@ public class Player : MonoBehaviour,IDamageable,IBindable
 
         yield return new WaitForSeconds(duration);
 
-        MoveSpeed = currentMoveSpeed;
-        
-        
-        
+        MoveSpeed = _currentMoveSpeed;
     }
 }

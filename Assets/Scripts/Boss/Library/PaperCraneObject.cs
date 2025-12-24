@@ -79,7 +79,9 @@ public class PaperCraneObject : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damage, float knockback, Vector3 hitPos)
     {
+        Player player = _target.GetComponent<Player>();
         Debug.Log("Á¾ÀÌÇÐ ÆÄ±«");
+        player.Unbind();
         Destroy(gameObject);
     }
     #endregion
