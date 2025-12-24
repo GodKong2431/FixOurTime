@@ -22,7 +22,7 @@ public class Player : MonoBehaviour,IDamageable
     [SerializeField] PhysicsMaterial2D _bounceMaterial;   //바운스1
 
     [Header("땅체크")]
-    [SerializeField] LayerMask _groundLayer;
+    [SerializeField] LayerMask[] _groundLayer;
     [SerializeField] Transform _groundChecker;
     [SerializeField] float _groundCheckDistance = 0.1f;
     [SerializeField] Vector2 _groundCheckerSize = new Vector2(0.8f, 0.1f);
@@ -102,6 +102,8 @@ public class Player : MonoBehaviour,IDamageable
     Animator _anim;
     SpriteRenderer _attackHitBoxSpriteRenderer;
 
+    private LayerMask _sortGroundLayer;
+
     public readonly int animState = Animator.StringToHash("State");
     public readonly int animJump = Animator.StringToHash("DoJump");
     public readonly int animAttack = Animator.StringToHash("DoAttack");
@@ -170,6 +172,11 @@ public class Player : MonoBehaviour,IDamageable
     private void Start()
     {
         _attackHitBoxSpriteRenderer = _attackHitBox.GetComponent<SpriteRenderer>();
+
+        foreach(LayerMask layer in _groundLayer)
+        {
+            _sortGroundLayer += layer;
+        }
     }
 
     private void Update()
@@ -181,7 +188,7 @@ public class Player : MonoBehaviour,IDamageable
             0f,
             Vector2.down,               //발사방향
             _groundCheckDistance,       //레이저길이
-            _groundLayer                //충돌대상체크
+            _sortGroundLayer                //충돌대상체크
             );
 
         if (_isGrounded)

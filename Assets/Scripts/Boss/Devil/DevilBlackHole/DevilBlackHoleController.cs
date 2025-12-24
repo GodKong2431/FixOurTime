@@ -17,8 +17,7 @@ public class DevilBlackHoleController : MonoBehaviour
     [SerializeField] private float _shrinkTime = 1f;
 
     [Header("»¡¾ÆµéÀÌ´Â Èû")]
-    [SerializeField] private float _minPullForce = 5f;   // ¿Ü°û ÃÖ¼Ò Èû
-    [SerializeField] private float _maxPullForce = 50f;  // Áß½É ÃÖ´ë Èû
+    [SerializeField] private float _pullSpeed = 5f;   // ¿Ü°û ÃÖ¼Ò Èû
 
     private DevilBlackHole currentBlackHole;
 
@@ -26,7 +25,7 @@ public class DevilBlackHoleController : MonoBehaviour
     {
         currentBlackHole = Instantiate(_blackHolePrefab,_spawnPoint.position,Quaternion.identity);
 
-        currentBlackHole.Initialize(_minScale,_maxScale,_growTime,_shrinkTime,_minPullForce,_maxPullForce);
+        currentBlackHole.Initialize(_minScale,_maxScale,_growTime,_shrinkTime, _pullSpeed);
 
         currentBlackHole.Activate();
 

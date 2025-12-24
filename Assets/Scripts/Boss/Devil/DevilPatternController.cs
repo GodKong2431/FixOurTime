@@ -24,7 +24,7 @@ public class DevilPatternController : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(PatternC());
+        StartCoroutine(PatternA());
     }
 
     public void StartPattern()
