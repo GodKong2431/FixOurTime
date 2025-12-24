@@ -37,7 +37,7 @@ public class BossUIManager : MonoBehaviour
         }
     }
 
-    // 획득한 아이템의 이미지(Sprite)를 받아와서 해당 슬롯 비활성화
+    // 획득한 아이템의 이미지를 받아와서 해당 슬롯 비활성화
     public void MarkItemAsCollected(Sprite collectedSprite)
     {
         foreach (var slot in _targetItemSlots)

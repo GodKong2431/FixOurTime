@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -150,7 +151,7 @@ public class Stage2Boss : BossBase
         // 1. 전체 스프라이트 목록 복사
         List<Sprite> spritePool = new List<Sprite>(_itemSprites);
 
-        // [Fix] 2. 정답을 선정하기 전에 리스트를 무작위로 섞음 (이 코드가 없어서 매번 똑같은게 나왔음)
+        // 2. 정답을 선정하기 전에 리스트를 무작위로 섞음 (이 코드가 없어서 매번 똑같은게 나왔음)
         ShuffleList(spritePool);
 
         // 3. 섞인 리스트의 앞쪽 4개를 정답으로 사용
@@ -233,7 +234,12 @@ public class Stage2Boss : BossBase
         }
         else
         {
-            GimmickFail(keepFox: false);
+            GimmickFail(keepFox: true);
+
+            if (_foxController != null && _foxController.gameObject.activeSelf)
+            {
+                _foxController.ForceRetreat();
+            }
         }
     }
 
