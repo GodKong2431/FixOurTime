@@ -7,7 +7,12 @@ public class WindArea : MonoBehaviour
     [SerializeField] private float _accelerationDuraition = 1;
     [SerializeField] private float _maxAcceleration = 2;
 
+    [Header("바람 방향")]
+    [SerializeField] private bool _windDir = true; 
+
     private float _windSpeed;
+
+    
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -15,15 +20,20 @@ public class WindArea : MonoBehaviour
         {
             if(!_player.IsGrounded)
             {
-                float maxWindSpeed = _windPower * _maxAcceleration;
+                float targetWindForce = _windPower * _maxAcceleration;
 
-                float accelPerFixedFrame = maxWindSpeed / _accelerationDuraition * Time.fixedDeltaTime;
+                _windSpeed = Mathf.MoveTowards(_windSpeed,targetWindForce,(_maxAcceleration / _accelerationDuraition) * Time.fixedDeltaTime);
 
-                _windSpeed = Mathf.MoveTowards(_windSpeed, maxWindSpeed, accelPerFixedFrame);
+                Vector2 windForce = new Vector2(_windSpeed, 0f);
 
-                _player.Rb.linearVelocity = new Vector2(_windSpeed, _player.Rb.linearVelocity.y);
-
-                Debug.Log(_windSpeed);
+                if (_windDir == true)
+                {
+                    _player.Rb.AddForce(windForce, ForceMode2D.Force);
+                }
+                else
+                {
+                    _player.Rb.AddForce(-windForce, ForceMode2D.Force);
+                }
             }
             else
             {

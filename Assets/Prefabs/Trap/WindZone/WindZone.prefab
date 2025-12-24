@@ -4850,7 +4850,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c155e84b36fd86439d78f9eb3e2a4b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WindZone
-  _windPower: 0.5
+  _windPower: 2
   _accelerationDuraition: 1
   _maxAcceleration: 2
 --- !u!61 &4907431984573589779
