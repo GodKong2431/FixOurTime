@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class DevilCore : MonoBehaviour, IDamageable
 {
-    [SerializeField] private float _centerDamageRadius = 0.3f;
-
     private bool _blackHoleActive;
     private bool _damageRunning;
 
