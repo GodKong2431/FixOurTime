@@ -3,6 +3,11 @@ using UnityEngine;
 
 public class Fountain : MonoBehaviour
 {
+    [Header("활성화 시간 설정")]
+    [SerializeField] float _activeDuration = 8f;
+    [SerializeField] float _deactDuration = 8f;
+    [SerializeField] float _startDelay = 0f;
+
     [Header("이펙트 제거 주기")]
     [SerializeField] private float _delay = 0.3f;
     [SerializeField] private DayZone _zone;
@@ -17,6 +22,33 @@ public class Fountain : MonoBehaviour
         _removeEffectDelay = new WaitForSeconds(_delay);
         _anim = GetComponent<Animator>();
     }
+
+    private void Start()
+    {
+        StartCoroutine(FountainActiveRoutine());
+    }
+    IEnumerator FountainActiveRoutine()
+    {
+        if(_startDelay > 0)
+        {
+            yield return new WaitForSeconds(_startDelay);
+        }
+
+        while (true)
+        {
+            SetFountainActive(true);
+            yield return new WaitForSeconds(_activeDuration);
+
+            SetFountainActive(false);
+            yield return new WaitForSeconds(_deactDuration);
+        }
+    }
+    private void SetFountainActive(bool isAct)
+    {
+        _anim.SetBool("On", isAct);
+        GetComponent<BoxCollider2D>().enabled = isAct;
+    }
+
 
     //콜라이더 들어올 시 실행
     private void OnTriggerEnter2D(Collider2D collision)
@@ -64,9 +96,4 @@ public class Fountain : MonoBehaviour
         Debug.Log("이펙트 제거 실행됨");
     }
     
-    //분수 활성화/비활성화
-    public void ChangeActiveFountain()
-    {
-        _anim.SetBool("On", !_anim.GetBool("On"));
-    }
 }

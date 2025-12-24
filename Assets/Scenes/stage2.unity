@@ -22376,7 +22376,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -22414,7 +22414,7 @@ Transform:
   m_GameObject: {fileID: 860501789}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.92, y: 70.62, z: 0}
+  m_LocalPosition: {x: -3.92, y: 67.7, z: 0}
   m_LocalScale: {x: 32.36, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
