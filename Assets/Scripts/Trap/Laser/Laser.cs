@@ -53,9 +53,9 @@ public class Laser : DamageableTrapBase, IDamageable
         float leftDist = leftHit ? leftHit.distance : _maxDistance;
 
         if (rightDist >= leftDist)
-            EndPoint = rightHit ? rightHit.point : origin + Vector2.right * _maxDistance;
+            EndPoint = origin + Vector2.right * _maxDistance;
         else
-            EndPoint = leftHit ? leftHit.point : origin + Vector2.left * _maxDistance;
+            EndPoint = origin + Vector2.left * _maxDistance;
 
         Vector2 dir = EndPoint - (Vector2)_firePoint.position;
         float distance = dir.magnitude;
