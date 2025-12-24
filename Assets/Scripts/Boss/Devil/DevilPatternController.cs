@@ -9,6 +9,7 @@ public class DevilPatternController : MonoBehaviour
 
     private DevilHandController _handPattern;
     private DevilDarkSpearController _darkSpearController;
+    private DevilBlackHoleController _blackHoleController;
 
     private Coroutine _patternCoroutine;
     private WaitForSeconds _delay;
@@ -17,10 +18,15 @@ public class DevilPatternController : MonoBehaviour
     {
         _handPattern = GetComponent<DevilHandController>();
         _darkSpearController = GetComponent<DevilDarkSpearController>();
+        _blackHoleController = GetComponent<DevilBlackHoleController>();
         _delay = new WaitForSeconds(_patternDelay);
-
-
     }
+
+    private void Start()
+    {
+        StartCoroutine(PatternC());
+    }
+
     public void StartPattern()
     {
         if (_patternCoroutine != null) StopCoroutine(_patternCoroutine);
@@ -43,7 +49,7 @@ public class DevilPatternController : MonoBehaviour
     IEnumerator PatternA()
     {
         Debug.Log("패턴 A");
-        // 리턴 있는 플랙홀 자리
+        yield return StartCoroutine(_blackHoleController.BlackHoleCoroutine());
         yield return _delay;
         yield return StartCoroutine(_handPattern.CrossPattern());
         yield return _delay;
@@ -79,8 +85,9 @@ public class DevilPatternController : MonoBehaviour
     IEnumerator PatternC()
     {
         Debug.Log("패턴 C");
+        StartCoroutine(_blackHoleController.BlackHoleCoroutine());
         StartCoroutine(_darkSpearController.CallDarkSpear());
-        //블랙홀 자리
+        
         yield break;
     }
 }

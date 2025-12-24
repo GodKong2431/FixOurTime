@@ -11,13 +11,13 @@ public class DevilDarkSpear : MonoBehaviour
 
     private Coroutine _moveCoroutine;
 
-    private void Start()
+    private void Awake()
     {
         _startPos = transform.position;
         float height = GetHeight();
         _endPos = _startPos + Vector3.up * height;
     }
-
+   
     private float GetHeight()
     {
         TryGetComponent<SpriteRenderer>(out var sr);

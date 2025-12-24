@@ -23,8 +23,6 @@ public class DevilDarkSpearController : MonoBehaviour
         StartCoroutine(CheckStayTime());
     }
 
-    
-
     public IEnumerator CheckStayTime()
     {
         Debug.Log("시작");
@@ -48,7 +46,6 @@ public class DevilDarkSpearController : MonoBehaviour
             }
             else
             {
-                // 범위 벗어나면 종료 or 리셋
                 Debug.Log("나감");
                 _currentStayTime = 0f;
             }
