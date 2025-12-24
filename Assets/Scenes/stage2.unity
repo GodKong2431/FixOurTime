@@ -22447,7 +22447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b026940b8623434eb3b4d9439f022aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoveNextStage
-  _nextStageName: stage3
+  _nextStageName: stage4
 --- !u!4 &860501792
 Transform:
   m_ObjectHideFlags: 0
