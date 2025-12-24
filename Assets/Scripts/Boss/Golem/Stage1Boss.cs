@@ -279,7 +279,7 @@ public class Stage1Boss : BossBase
     {
         base.ResetBoss(); // 부모의 HP 리셋, 코루틴 정지 실행
 
-        // === 1스테이지 전용 초기화 (원본 로직 복구) ===
+        // === 1스테이지 전용 초기화  ===
 
         // 1. 위치 원위치 및 비활성화
         if (_wallBossObject)

@@ -339,7 +339,7 @@ public class FoxController : MonoBehaviour, IDamageable
         _state = FoxState.ShadowChargingExplosion;
         _rb.linearVelocity = Vector2.zero;
 
-        Debug.Log($"FoxController: 공격 준비. {_shadowExplosionDelay}초 뒤 발동!");
+        Debug.Log($"FoxController: 공격 준비. {_shadowExplosionDelay}초 뒤 발동");
 
         Vector3 spawnPosition = GetGroundPosition(transform.position);
 
@@ -507,13 +507,7 @@ public class FoxController : MonoBehaviour, IDamageable
     private void MoveToTarget(Vector3 targetPos, float speed)
     {
         if (!CheckGrounded()) return;
-
-        // 중간 발판 탐색
-        if (targetPos.y - transform.position.y > 3.0f)
-        {
-            Vector3? intermediate = GetIntermediatePlatform(targetPos);
-            if (intermediate.HasValue) targetPos = intermediate.Value;
-        }
+        
 
         float xDiff = targetPos.x - transform.position.x;
         float yDiff = targetPos.y - transform.position.y;
@@ -613,24 +607,6 @@ public class FoxController : MonoBehaviour, IDamageable
         return !Physics2D.Raycast(origin, Vector2.down, 4.0f, _groundLayer);
     }
 
-    private Vector3? GetIntermediatePlatform(Vector3 finalTarget)
-    {
-        if (_boss == null || _boss.SpawnPoints == null) return null;
-        Vector3 currentPos = transform.position;
-        Vector3? bestPoint = null;
-        float closestDist = float.MaxValue;
-        foreach (Transform point in _boss.SpawnPoints)
-        {
-            if (point == null) continue;
-            Vector3 pos = point.position;
-            if (pos.y > currentPos.y + 1.0f && pos.y < finalTarget.y - 0.5f)
-            {
-                float dist = Vector2.Distance(currentPos, pos);
-                if (dist < closestDist) { closestDist = dist; bestPoint = pos + Vector3.up * 1.0f; }
-            }
-        }
-        return bestPoint;
-    }
 
     private void HandleRetreat()
     {
@@ -648,7 +624,7 @@ public class FoxController : MonoBehaviour, IDamageable
     private Vector2 CalculateJumpVelocity(Vector3 start, Vector3 end)
     {
         float gravity = Mathf.Abs(Physics2D.gravity.y * _rb.gravityScale);
-        float apexY = Mathf.Max(start.y, end.y) + 2.5f;
+        float apexY = Mathf.Max(start.y, end.y);
         float dy = apexY - start.y;
         float vy = Mathf.Sqrt(2 * gravity * dy);
         float tUp = vy / gravity;

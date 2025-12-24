@@ -133,7 +133,7 @@ public class PaperCraneObject : MonoBehaviour, IDamageable
             if (_target != null)
             {
                 // transform.position 대신 MovePosition 사용
-                // 물리 엔진에게 "순간이동이 아니라 이동 중"임을 알려 충돌 판정을 유지함
+                // 물리 엔진에게 순간이동이 아니라 이동 중임을 알려 충돌 판정을 유지함
                 Vector3 destPos = GetTargetFrontPosition();
 
                 if (_rb != null) _rb.MovePosition(destPos);
