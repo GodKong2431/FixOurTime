@@ -373,8 +373,10 @@ MonoBehaviour:
   _frictionMaterial: {fileID: 6200000, guid: b79bb05166f5b5a4aa047d3e48e5a60b, type: 2}
   _bounceMaterial: {fileID: 6200000, guid: 5c9c767f222bc85428fd1a878f08a3bb, type: 2}
   _groundLayer:
-    serializedVersion: 2
+  - serializedVersion: 2
     m_Bits: 2147483648
+  - serializedVersion: 2
+    m_Bits: 536870912
   _groundChecker: {fileID: 7884480922022477730}
   _groundCheckDistance: -0.35
   _groundCheckerSize: {x: 0.8, y: 0.9}
