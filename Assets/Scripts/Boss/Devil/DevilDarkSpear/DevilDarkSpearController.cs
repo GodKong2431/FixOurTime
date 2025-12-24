@@ -15,8 +15,30 @@ public class DevilDarkSpearController : MonoBehaviour
     [SerializeField] private Vector2 boxOffset;
 
     private float _currentStayTime = 0f;
+    private bool _isAttacking = false;
 
     public Coroutine _checkCoroutine;
+
+    private Boss3DevilData _data;
+
+    public void Initialize(Stage3DevilBoss boss)
+    {
+        _data = boss.Data;
+        if (_data != null)
+        {
+            _stayTime = _data.SpearStayTime;
+            _devilDarkSpear.Configure(_data.SpearMoveSpeed, _data.SpearDamage);
+        }
+    }
+
+    private void Awake()
+    {
+        var boss = GetComponentInParent<Stage3DevilBoss>();
+        if (boss != null)
+        {
+            Initialize(boss);
+        }
+    }
 
     private void Start()
     {
@@ -29,7 +51,13 @@ public class DevilDarkSpearController : MonoBehaviour
 
         while (true)
         {
-            RaycastHit2D hit = Physics2D.BoxCast(boxPos.position + (Vector3)boxOffset,boxSize,0f,Vector2.zero,0f,1 << 10);
+            if (_isAttacking)
+            {
+                yield return null;
+                continue;
+            }
+
+            RaycastHit2D hit = Physics2D.BoxCast(boxPos.position + (Vector3)boxOffset, boxSize, 0f, Vector2.zero, 0f, 1 << 10);
 
             if (hit.collider != null)
             {
@@ -37,8 +65,7 @@ public class DevilDarkSpearController : MonoBehaviour
 
                 if (_currentStayTime >= _stayTime)
                 {
-                    if (_checkCoroutine != null) yield return null;
-                    yield return _checkCoroutine = StartCoroutine(CallDarkSpear());
+                    yield return StartCoroutine(CallDarkSpear());
                     _currentStayTime = 0f;
                 }
             }
@@ -53,14 +80,24 @@ public class DevilDarkSpearController : MonoBehaviour
 
     public IEnumerator CallDarkSpear()
     {
+        if (_isAttacking) yield break;
+        _isAttacking = true;
+
         _devilDarkSpear.AttackSpear();
-        yield return new WaitForSeconds(3);
+
+        float delay = (_data != null) ? _data.SpearReturnDelay : 3.0f;
+        yield return new WaitForSeconds(delay);
+
         _devilDarkSpear.ReturnSpear();
+        _isAttacking = false;
     }
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(boxPos.position + (Vector3)boxOffset, boxSize);
+        if (boxPos != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireCube(boxPos.position + (Vector3)boxOffset, boxSize);
+        }
     }
 }

@@ -1,8 +1,12 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.iOS;
 
 public class DevilBlackHole : MonoBehaviour
 {
+    [SerializeField] private string _playerLayerName = "Player"; 
+    [SerializeField] private string _groundLayerName = "Ground";
+
     private float _minScale;
     private float _maxScale;
     private float _growTime;
@@ -21,12 +25,17 @@ public class DevilBlackHole : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("BlackHole Trigger Enter");
         if (other.CompareTag("Player"))
         {
-            Physics2D.IgnoreLayerCollision(10, 31, true);
+            // 이름으로 번호를 찾아옴 (만약 없으면 -1 반환)
+            int playerLayer = LayerMask.NameToLayer(_playerLayerName);
+            int groundLayer = LayerMask.NameToLayer(_groundLayerName);
+
+            // 레이어 충돌 끄기
+            Physics2D.IgnoreLayerCollision(playerLayer, groundLayer, true);
         }
     }
-
     private void OnTriggerStay2D(Collider2D other)
     {
         if (!_isActive) return;
@@ -43,9 +52,14 @@ public class DevilBlackHole : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        Debug.Log("BlackHole Trigger Exit");
         if (other.CompareTag("Player"))
         {
-            Physics2D.IgnoreLayerCollision(10, 31, false);
+            int playerLayer = LayerMask.NameToLayer(_playerLayerName);
+            int groundLayer = LayerMask.NameToLayer(_groundLayerName);
+
+            // 레이어 충돌 다시 켜기
+            Physics2D.IgnoreLayerCollision(playerLayer, groundLayer, false);
         }
     }
 

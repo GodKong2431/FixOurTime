@@ -13,11 +13,19 @@ public class DevilDarkSpear : DamageableTrapBase
 
     private bool _spearActive;
 
+
     private void Awake()
     {
         _startPos = transform.position;
         float height = GetHeight();
         _endPos = _startPos + Vector3.up * height;
+    }
+    public void Configure(float speed, int damage)
+    {
+        _moveSpeed = speed;
+
+        // 부모 클래스 데미지 설정
+        this._trapDamage = damage;
     }
 
     protected override void OnCollisionEnter2D(Collision2D collision)
