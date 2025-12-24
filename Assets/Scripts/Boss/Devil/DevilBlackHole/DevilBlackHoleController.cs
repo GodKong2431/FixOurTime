@@ -6,6 +6,9 @@ public class DevilBlackHoleController : MonoBehaviour
     [Header("블랙홀")]
     [SerializeField] private DevilBlackHole _blackHolePrefab;
 
+    [Header("코어")]
+    [SerializeField] private DevilCore _devilCore;
+
     [Header("스폰 설정")]
     [SerializeField] private Transform _spawnPoint;
     [SerializeField] private float _duration = 5f;
@@ -23,6 +26,7 @@ public class DevilBlackHoleController : MonoBehaviour
 
     public IEnumerator BlackHoleCoroutine()
     {
+        _devilCore.SetBlackHoleActive(true);
         currentBlackHole = Instantiate(_blackHolePrefab,_spawnPoint.position,Quaternion.identity);
 
         currentBlackHole.Initialize(_minScale,_maxScale,_growTime,_shrinkTime, _pullSpeed);
@@ -31,6 +35,7 @@ public class DevilBlackHoleController : MonoBehaviour
 
         yield return new WaitForSeconds(_duration);
 
+        _devilCore.SetBlackHoleActive(false);
         currentBlackHole.Deactivate();
         currentBlackHole = null;
     }
