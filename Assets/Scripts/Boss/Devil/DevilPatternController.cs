@@ -48,13 +48,13 @@ public class DevilPatternController : MonoBehaviour
 
     IEnumerator PatternA()
     {
-        Debug.Log("패턴 A");
         yield return StartCoroutine(_blackHoleController.BlackHoleCoroutine());
         yield return _delay;
         yield return StartCoroutine(_handPattern.CrossPattern());
         yield return _delay;
         StartCoroutine(_handPattern.VerticalPattern());
-        StartCoroutine(_darkSpearController.CallDarkSpear());
+        yield return StartCoroutine(_darkSpearController.CallDarkSpear());
+
     }
     private void PatternB()
     {
@@ -70,24 +70,19 @@ public class DevilPatternController : MonoBehaviour
     }
     IEnumerator PatternB_1()
     {
-        Debug.Log("패턴 B-1");
         yield return StartCoroutine(_handPattern.CrossPattern());
         yield return _delay;
         yield return StartCoroutine(_handPattern.SpiralPattern());
     }
     IEnumerator PatternB_2()
     {
-        Debug.Log("패턴 B-2");
         yield return StartCoroutine(_handPattern.VerticalPattern());
         yield return _delay;
         yield return StartCoroutine(_handPattern.SpiralPattern());
     }
     IEnumerator PatternC()
     {
-        Debug.Log("패턴 C");
         StartCoroutine(_blackHoleController.BlackHoleCoroutine());
-        StartCoroutine(_darkSpearController.CallDarkSpear());
-        
-        yield break;
+        yield return StartCoroutine(_darkSpearController.CallDarkSpear());
     }
 }

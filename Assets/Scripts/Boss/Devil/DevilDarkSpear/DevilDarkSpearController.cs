@@ -25,7 +25,6 @@ public class DevilDarkSpearController : MonoBehaviour
 
     public IEnumerator CheckStayTime()
     {
-        Debug.Log("시작");
         _currentStayTime = 0f;
 
         while (true)
@@ -34,7 +33,6 @@ public class DevilDarkSpearController : MonoBehaviour
 
             if (hit.collider != null)
             {
-                Debug.Log(_currentStayTime);
                 _currentStayTime += Time.deltaTime;
 
                 if (_currentStayTime >= _stayTime)
@@ -46,7 +44,6 @@ public class DevilDarkSpearController : MonoBehaviour
             }
             else
             {
-                Debug.Log("나감");
                 _currentStayTime = 0f;
             }
 
