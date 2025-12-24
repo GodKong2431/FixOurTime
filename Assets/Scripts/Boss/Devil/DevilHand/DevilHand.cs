@@ -193,7 +193,7 @@ public class DevilHand : DamageableTrapBase
     protected override void OnTriggerEnter2D(Collider2D other)
     {
         base.OnTriggerEnter2D(other);
-        if (other.CompareTag("Ground"))
+        if (other.CompareTag("BossGround"))
         {
             _hitGround = true;
         }
