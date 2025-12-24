@@ -7,8 +7,7 @@ public class DevilBlackHole : MonoBehaviour
     private float _maxScale;
     private float _growTime;
     private float _shrinkTime;
-    private float _minPullForce;
-    private float _maxPullForce;
+    private float _pullSpeed;
 
     private bool _isActive;
 
@@ -20,39 +19,43 @@ public class DevilBlackHole : MonoBehaviour
         _col = GetComponent<CircleCollider2D>();
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!_isActive) return;
-
         if (other.CompareTag("Player"))
         {
-            Rigidbody2D rb = other.attachedRigidbody;
-            if (rb == null) return;
-
-            Vector2 center = transform.position;
-            Vector2 playerPos = rb.position;
-
-            Vector2 direction = center - playerPos;
-            float distance = direction.magnitude;
-
-            float radius = _col.radius * transform.localScale.x;
-
-            float normalizedDistance = Mathf.Clamp01(distance / radius);
-
-            float currentForce = Mathf.Lerp(_maxPullForce, _minPullForce, normalizedDistance);
-
-            rb.AddForce(direction.normalized * currentForce * Time.deltaTime, ForceMode2D.Impulse);
+            Physics2D.IgnoreLayerCollision(10, 31, true);
         }
     }
 
-    public void Initialize(float minScale,float maxScale,float growTime,float shrinkTime,float minPullForce, float maxPullForce)
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (!_isActive) return;
+        if (!other.CompareTag("Player")) return;
+
+        Rigidbody2D rb = other.attachedRigidbody;
+        if (rb == null) return;
+
+        Vector2 direction = ((Vector2)transform.position - rb.position).normalized;
+
+        rb.linearVelocity = direction * _pullSpeed;
+
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Physics2D.IgnoreLayerCollision(10, 31, false);
+        }
+    }
+
+    public void Initialize(float minScale,float maxScale,float growTime,float shrinkTime,float pullSpeed)
     {
         _minScale = minScale;
         _maxScale = maxScale;
         _growTime = growTime;
         _shrinkTime = shrinkTime;
-        _minPullForce = minPullForce;
-        _maxPullForce = maxPullForce;
+        _pullSpeed = pullSpeed;
 
         transform.localScale = Vector3.one * minScale;
     }
