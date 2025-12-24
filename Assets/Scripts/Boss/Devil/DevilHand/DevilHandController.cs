@@ -56,6 +56,7 @@ public class DevilHandController : MonoBehaviour
     public IEnumerator VerticalPattern()
     {
         _leftHand.BeginPattern(new Vector2(-_verticalStartOffset.x, _verticalStartOffset.y));
+        _rightHand.BeginPattern(_verticalStartOffset);
         yield return new WaitForSeconds(_verticalReadyTime);
 
         // 시작 위치로 이동 완료할 때까지 대기
