@@ -1,11 +1,10 @@
 using UnityEngine;
-using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class VolumeSlider : MonoBehaviour
 {
-    [SerializeField] enum _sliderType { BGM, SFX }
-    private _sliderType _type;
+    enum _sliderType { BGM, SFX }
+    [SerializeField] private _sliderType _type;
 
     private Slider _slider;
 
@@ -26,19 +25,12 @@ public class VolumeSlider : MonoBehaviour
             _slider.value = SoundManager.instance._sfxVolume;
         }
     }
-    //public void SetLevel(float sliderVal)
-    //{
-    //    _mixer.SetFloat("Volume", Mathf.Log10(sliderVal) * 20);
-    //
-    //    if (this.gameObject.name == "BgmSlider")
-    //    {
-    //        SoundManager.instance._bgmVolume = sliderVal;
-    //    }
-    //
-    //    if (this.gameObject.name == "SfxSlider")
-    //    {
-    //        SoundManager.instance._sfxVolume = sliderVal;
-    //    }
-    //}
+    public void SetLevel(float value)
+    {
+        if (_type == _sliderType.BGM)
+            SoundManager.instance.UpdateBgmVolume(value);
+        else
+            SoundManager.instance.UpdateSfxVolume(value);
+    }
 
 }
