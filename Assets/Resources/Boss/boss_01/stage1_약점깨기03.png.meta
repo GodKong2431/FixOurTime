@@ -1,0 +1,285 @@
+fileFormatVersion: 2
+guid: ca906fbe3f2d5974b9902cec7fac0a7a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2171343595091126445
+    second: "stage1_\uC57D\uC810\uAE68\uAE3003_0"
+  - first:
+      213: 6071027168863699770
+    second: "stage1_\uC57D\uC810\uAE68\uAE3003_1"
+  - first:
+      213: 8835649123291713334
+    second: "stage1_\uC57D\uC810\uAE68\uAE3003_2"
+  - first:
+      213: -1503994829580619127
+    second: "stage1_\uC57D\uC810\uAE68\uAE3003_3"
+  - first:
+      213: 3230248753161132621
+    second: "stage1_\uC57D\uC810\uAE68\uAE3003_4"
+  - first:
+      213: -2560677391904223738
+    second: "stage1_\uC57D\uC810\uAE68\uAE3003_5"
+  - first:
+      213: -4508138019475583675
+    second: "stage1_\uC57D\uC810\uAE68\uAE3003_6"
+  - first:
+      213: -1971762467678882596
+    second: "stage1_\uC57D\uC810\uAE68\uAE3003_7"
+  - first:
+      213: -1037688986360222446
+    second: "stage1_\uC57D\uC810\uAE68\uAE3003_8"
+  - first:
+      213: 29203164974421616
+    second: "stage1_\uC57D\uC810\uAE68\uAE3003_9"
+  - first:
+      213: 7317609995979326107
+    second: "stage1_\uC57D\uC810\uAE68\uAE3003_10"
+  - first:
+      213: -5316477635406448368
+    second: "stage1_\uC57D\uC810\uAE68\uAE3003_11"
+  - first:
+      213: -97292697071056468
+    second: "stage1_\uC57D\uC810\uAE68\uAE3003_12"
+  - first:
+      213: -2616868885646690204
+    second: "stage1_\uC57D\uC810\uAE68\uAE3003_13"
+  - first:
+      213: 7111855008089986999
+    second: "stage1_\uC57D\uC810\uAE68\uAE3003_14"
+  - first:
+      213: -8615744423597974628
+    second: "stage1_\uC57D\uC810\uAE68\uAE3003_15"
+  - first:
+      213: 2607318770408523725
+    second: "stage1_\uC57D\uC810\uAE68\uAE3003_16"
+  - first:
+      213: -8196619052823651476
+    second: "stage1_\uC57D\uC810\uAE68\uAE3003_17"
+  - first:
+      213: 2275180177453619978
+    second: "stage1_\uC57D\uC810\uAE68\uAE3003_18"
+  - first:
+      213: -3825867116698941268
+    second: "stage1_\uC57D\uC810\uAE68\uAE3003_19"
+  - first:
+      213: -6635843175693425200
+    second: "stage1_\uC57D\uC810\uAE68\uAE3003_20"
+  - first:
+      213: -2499460251446976341
+    second: "stage1_\uC57D\uC810\uAE68\uAE3003_21"
+  - first:
+      213: 7114647590388110787
+    second: "stage1_\uC57D\uC810\uAE68\uAE3003_22"
+  - first:
+      213: -230048784360122560
+    second: "stage1_\uC57D\uC810\uAE68\uAE3003_23"
+  - first:
+      213: 3087097416812981716
+    second: "stage1_\uC57D\uC810\uAE68\uAE3003_24"
+  - first:
+      213: -1094462086727261536
+    second: "stage1_\uC57D\uC810\uAE68\uAE3003_25"
+  - first:
+      213: 5332327735945374942
+    second: "stage1_\uC57D\uC810\uAE68\uAE3003_26"
+  - first:
+      213: 3175150243609449964
+    second: "stage1_\uC57D\uC810\uAE68\uAE3003_27"
+  - first:
+      213: 8712683197046998376
+    second: "stage1_\uC57D\uC810\uAE68\uAE3003_28"
+  - first:
+      213: -1515929170440219770
+    second: "stage1_\uC57D\uC810\uAE68\uAE3003_29"
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "stage1_\uC57D\uC810\uAE68\uAE3003_0"
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 25
+        width: 705
+        height: 681
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35716492186ddd1e0800000000000000
+      internalID: -2171343595091126445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 25ba0b70d509b4f4590e3f14f867f1f5
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      "stage1_\uC57D\uC810\uAE68\uAE3003_0": -2171343595091126445
+      "stage1_\uC57D\uC810\uAE68\uAE3003_1": 6071027168863699770
+      "stage1_\uC57D\uC810\uAE68\uAE3003_10": 7317609995979326107
+      "stage1_\uC57D\uC810\uAE68\uAE3003_11": -5316477635406448368
+      "stage1_\uC57D\uC810\uAE68\uAE3003_12": -97292697071056468
+      "stage1_\uC57D\uC810\uAE68\uAE3003_13": -2616868885646690204
+      "stage1_\uC57D\uC810\uAE68\uAE3003_14": 7111855008089986999
+      "stage1_\uC57D\uC810\uAE68\uAE3003_15": -8615744423597974628
+      "stage1_\uC57D\uC810\uAE68\uAE3003_16": 2607318770408523725
+      "stage1_\uC57D\uC810\uAE68\uAE3003_17": -8196619052823651476
+      "stage1_\uC57D\uC810\uAE68\uAE3003_18": 2275180177453619978
+      "stage1_\uC57D\uC810\uAE68\uAE3003_19": -3825867116698941268
+      "stage1_\uC57D\uC810\uAE68\uAE3003_2": 8835649123291713334
+      "stage1_\uC57D\uC810\uAE68\uAE3003_20": -6635843175693425200
+      "stage1_\uC57D\uC810\uAE68\uAE3003_21": -2499460251446976341
+      "stage1_\uC57D\uC810\uAE68\uAE3003_22": 7114647590388110787
+      "stage1_\uC57D\uC810\uAE68\uAE3003_23": -230048784360122560
+      "stage1_\uC57D\uC810\uAE68\uAE3003_24": 3087097416812981716
+      "stage1_\uC57D\uC810\uAE68\uAE3003_25": -1094462086727261536
+      "stage1_\uC57D\uC810\uAE68\uAE3003_26": 5332327735945374942
+      "stage1_\uC57D\uC810\uAE68\uAE3003_27": 3175150243609449964
+      "stage1_\uC57D\uC810\uAE68\uAE3003_28": 8712683197046998376
+      "stage1_\uC57D\uC810\uAE68\uAE3003_29": -1515929170440219770
+      "stage1_\uC57D\uC810\uAE68\uAE3003_3": -1503994829580619127
+      "stage1_\uC57D\uC810\uAE68\uAE3003_4": 3230248753161132621
+      "stage1_\uC57D\uC810\uAE68\uAE3003_5": -2560677391904223738
+      "stage1_\uC57D\uC810\uAE68\uAE3003_6": -4508138019475583675
+      "stage1_\uC57D\uC810\uAE68\uAE3003_7": -1971762467678882596
+      "stage1_\uC57D\uC810\uAE68\uAE3003_8": -1037688986360222446
+      "stage1_\uC57D\uC810\uAE68\uAE3003_9": 29203164974421616
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
