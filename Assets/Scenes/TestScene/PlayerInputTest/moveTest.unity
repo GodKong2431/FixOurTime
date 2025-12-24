@@ -1453,6 +1453,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7741458656593364288, guid: a0aedb82f1d5264428a41db79655f9de, type: 3}
       insertIndex: 3
       addedObject: {fileID: 3978936127874607546}
+    - targetCorrespondingSourceObject: {fileID: 7741458656593364288, guid: a0aedb82f1d5264428a41db79655f9de, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3978936127874607551}
   m_SourcePrefab: {fileID: 100100000, guid: a0aedb82f1d5264428a41db79655f9de, type: 3}
 --- !u!114 &3978936127874607546
 MonoBehaviour:
@@ -1470,6 +1473,26 @@ MonoBehaviour:
   _minAlpha: 0.2
   _maxAlpha: 1
   _rotationSpeed: 30
+  _floatingDistance: 0.2
+  _floatingSpeed: 2
+--- !u!114 &3978936127874607551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90593936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e44dda4000fcaa44a3d25dfc29819d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuffItemOra
+  _flickerSpeed: 2
+  _minAlpha: 0.2
+  _maxAlpha: 1
+  _rotationSpeed: 30
+  _floatingDistance: 0.2
+  _floatingSpeed: 2
 --- !u!1001 &6554438805712721422
 PrefabInstance:
   m_ObjectHideFlags: 0
