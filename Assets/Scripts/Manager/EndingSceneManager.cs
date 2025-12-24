@@ -38,7 +38,7 @@ public class EndingSceneManager : MonoBehaviour
             if (_creditText.anchoredPosition.y > 2000f)
             {
                 _isCreditStarting = false;
-                SceneChanger.Instance.ChangeScene("Init", false);
+                SceneChanger.Instance.ChangeScene("Title", false);
             }
         }
     }
