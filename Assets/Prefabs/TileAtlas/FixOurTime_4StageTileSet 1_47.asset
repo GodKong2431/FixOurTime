@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FixOurTime_4StageTileSet 1_47
   m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.Tilemaps.Tile
   m_Sprite: {fileID: 7950126993844093748, guid: 690059002fc8f37488e6d6767b1ee84a, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.99215686, g: 0.6862745, b: 0.6392157, a: 1}
   m_Transform:
     e00: 1
     e01: 0
