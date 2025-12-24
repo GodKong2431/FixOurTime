@@ -14407,6 +14407,7 @@ GameObject:
   m_Component:
   - component: {fileID: 479095749}
   - component: {fileID: 479095748}
+  - component: {fileID: 479095750}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -14472,6 +14473,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &479095750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479095747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineBasicMultiChannelPerlin
+  NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  PivotOffset: {x: 0, y: 0, z: 0}
+  AmplitudeGain: 0
+  FrequencyGain: 0
+  m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &479153998
 GameObject:
   m_ObjectHideFlags: 0
@@ -48936,7 +48954,6 @@ GameObject:
   - component: {fileID: 1607995768}
   - component: {fileID: 1607995767}
   - component: {fileID: 1607995766}
-  - component: {fileID: 1607995771}
   - component: {fileID: 1607995770}
   m_Layer: 0
   m_Name: Camera
@@ -49095,21 +49112,6 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
---- !u!114 &1607995771
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1607995765}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0798401d2854574c99c3cec9c125326, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CinemachinCamManager
-  _moveDuration: 0.8
-  _activeCam: {fileID: 0}
-  _player: {fileID: 0}
 --- !u!1 &1609972313
 GameObject:
   m_ObjectHideFlags: 0
