@@ -3,86 +3,120 @@ using UnityEngine;
 
 public class DevilPatternController : MonoBehaviour
 {
-    [Header("패턴 사이 딜레이")]
-    [SerializeField] private float _patternDelay = 1.0f;
-
-
     private DevilHandController _handPattern;
     private DevilDarkSpearController _darkSpearController;
     private DevilBlackHoleController _blackHoleController;
 
-    private Coroutine _patternCoroutine;
+    private Stage3DevilBoss _boss;
+    private Boss3DevilData _data;
+
+    private Coroutine _patternLoopCoroutine;
     private WaitForSeconds _delay;
+
+    public void Initialize(Stage3DevilBoss boss)
+    {
+        _boss = boss;
+        _data = boss != null ? boss.Data : null;
+
+        float delay = 1.0f;
+        if (_data != null)
+        {
+            delay = _data.PatternDelay;
+        }
+
+        _delay = new WaitForSeconds(delay);
+    }
 
     private void Awake()
     {
         _handPattern = GetComponent<DevilHandController>();
         _darkSpearController = GetComponent<DevilDarkSpearController>();
         _blackHoleController = GetComponent<DevilBlackHoleController>();
-        _delay = new WaitForSeconds(_patternDelay);
-    }
 
-    private void Start()
-    {
-        StartCoroutine(PatternA());
+        if (_boss == null)
+        {
+            _boss = GetComponent<Stage3DevilBoss>();
+            if (_boss != null)
+            {
+                Initialize(_boss);
+            }
+        }
     }
 
     public void StartPattern()
     {
-        if (_patternCoroutine != null) StopCoroutine(_patternCoroutine);
+        StopPattern();
+        _patternLoopCoroutine = StartCoroutine(ProcessPatternLoop());
+    }
 
-        switch(Random.Range(0, 3))
+    public void StopPattern()
+    {
+        if (_patternLoopCoroutine != null) StopCoroutine(_patternLoopCoroutine);
+        StopAllCoroutines();
+    }
+
+    private IEnumerator ProcessPatternLoop()
+    {
+        yield return new WaitForSeconds(1.0f);
+
+        while (true)
         {
-            case 0:
-                _patternCoroutine = StartCoroutine(PatternA());
-                break;
-            case 1:
-                PatternB();
-                break;
-            case 2:
-                _patternCoroutine = StartCoroutine(PatternC());
-                break;
+            switch (Random.Range(0, 3))
+            {
+                case 0:
+                    yield return StartCoroutine(PatternA());
+                    break;
+                case 1:
+                    yield return StartCoroutine(PatternB());
+                    break;
+                case 2:
+                    yield return StartCoroutine(PatternC());
+                    break;
+            }
+
+            yield return _delay;
         }
     }
 
-
     IEnumerator PatternA()
     {
+        Debug.Log("패턴 A");
         yield return StartCoroutine(_blackHoleController.BlackHoleCoroutine());
         yield return _delay;
         yield return StartCoroutine(_handPattern.CrossPattern());
         yield return _delay;
-        StartCoroutine(_handPattern.VerticalPattern());
-        yield return StartCoroutine(_darkSpearController.CallDarkSpear());
 
+        Coroutine hand = StartCoroutine(_handPattern.VerticalPattern());
+        Coroutine spear = StartCoroutine(_darkSpearController.CallDarkSpear());
+
+        yield return hand;
     }
-    private void PatternB()
+
+    IEnumerator PatternB()
     {
         switch (Random.Range(0, 2))
         {
             case 0:
-                _patternCoroutine = StartCoroutine(PatternB_1());
+                Debug.Log("패턴 B-1");
+                yield return StartCoroutine(_handPattern.CrossPattern());
+                yield return _delay;
+                yield return StartCoroutine(_handPattern.SpiralPattern());
                 break;
             case 1:
-                _patternCoroutine = StartCoroutine(PatternB_2());
+                Debug.Log("패턴 B-2");
+                yield return StartCoroutine(_handPattern.VerticalPattern());
+                yield return _delay;
+                yield return StartCoroutine(_handPattern.SpiralPattern());
                 break;
         }
     }
-    IEnumerator PatternB_1()
-    {
-        yield return StartCoroutine(_handPattern.CrossPattern());
-        yield return _delay;
-        yield return StartCoroutine(_handPattern.SpiralPattern());
-    }
-    IEnumerator PatternB_2()
-    {
-        yield return StartCoroutine(_handPattern.VerticalPattern());
-        yield return _delay;
-        yield return StartCoroutine(_handPattern.SpiralPattern());
-    }
+
     IEnumerator PatternC()
     {
-        StartCoroutine(_blackHoleController.BlackHoleCoroutine());
-        yield return StartCoroutine(_darkSpearController.CallDarkSpear());
+        Debug.Log("패턴 C");
+        Coroutine bh = StartCoroutine(_blackHoleController.BlackHoleCoroutine());
+        Coroutine spear = StartCoroutine(_darkSpearController.CallDarkSpear());
+
+        yield return bh;
     }
 }

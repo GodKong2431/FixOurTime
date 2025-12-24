@@ -11,7 +11,7 @@ public class DevilBlackHoleController : MonoBehaviour
 
     [Header("스폰 설정")]
     [SerializeField] private Transform _spawnPoint;
-    [SerializeField] private float _duration = 5f;
+    [SerializeField] private float _defaultDuration = 5f;
 
     [Header("크기 설정")]
     [SerializeField] private float _minScale = 0.5f;
@@ -24,6 +24,17 @@ public class DevilBlackHoleController : MonoBehaviour
 
     private DevilBlackHole currentBlackHole;
 
+    private Boss3DevilData _data;
+
+    private void Awake()
+    {
+        var boss = GetComponentInParent<Stage3DevilBoss>();
+        if (boss != null)
+        {
+            _data = boss.Data;
+        }
+    }
+
     public IEnumerator BlackHoleCoroutine()
     {
         _devilCore.SetBlackHoleActive(true);
@@ -33,10 +44,21 @@ public class DevilBlackHoleController : MonoBehaviour
 
         currentBlackHole.Activate();
 
-        yield return new WaitForSeconds(_duration);
+        float duration = _data != null ? _data.BlackHoleDuration : _defaultDuration;
+        yield return new WaitForSeconds(duration);
 
         _devilCore.SetBlackHoleActive(false);
         currentBlackHole.Deactivate();
         currentBlackHole = null;
+    }
+
+    private void OnDisable()
+    {
+        // 보스가 죽으면 소환해둔 블랙홀도 같이 삭제
+        if (currentBlackHole != null)
+        {
+            Destroy(currentBlackHole.gameObject);
+            currentBlackHole = null;
+        }
     }
 }

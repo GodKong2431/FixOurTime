@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 
-
 public class DevilHand : DamageableTrapBase
 {
     [Header("이동 속도")]
@@ -10,88 +9,92 @@ public class DevilHand : DamageableTrapBase
     [Header("공격 속도")]
     [SerializeField] private float _attackSpeed = 18f;
 
-    private Transform _boss;
-
-    private Vector2 _startPos;
-    private Vector2 _returnPos;
+    private Transform _bossTransform; // 보스 위치 참조
+    private Vector2 _startOffset;     // 보스 기준 시작 위치 (오프셋)
+    private Vector2 _returnPos;  // 초기 로컬 위치 (복귀용)
 
     private Coroutine _moveCoroutine;
     private bool _hitGround;
 
+    // 외부에서 손이 움직이는 중인지 확인하는 프로퍼티
+    public bool IsBusy => _moveCoroutine != null;
+
     private void Awake()
     {
-        _boss = transform.parent;
-        _returnPos = transform.position;
-    }
-
-    /// <summary>
-    /// 시작 포지션을 설정하고 다른 코루틴이 실행중이라면 종료
-    /// 부모에서 떨어짐
-    /// </summary>s
-    /// <param name="stratPos">시작 위치</param>
-    public void BeginPattern(Vector2 stratPos)
-    {
-        _startPos = stratPos;
-        _hitGround = false;
-
-        if (_moveCoroutine != null)
-            StopCoroutine(_moveCoroutine);
-
-        transform.SetParent(null);
-    }
-
-    /// <summary>
-    /// 실행중인 코루틴이 있다면 종료하고 시작지점으로 가게하는 코루틴
-    /// </summary>
-    public void MoveToStartPos()
-    {
-        if (_moveCoroutine != null)
-            StopCoroutine(_moveCoroutine);
-
-        _moveCoroutine = StartCoroutine(MoveToStartPosCoroutine());
-    }
-    /// <summary>
-    /// 시작지점으로 가는 코루틴
-    /// </summary>
-    /// <returns></returns>
-    private IEnumerator MoveToStartPosCoroutine()
-    {
-        while (true)
+        if (transform.parent != null)
         {
-            Vector2 target = (Vector2)_boss.position + _startPos;
-
-            transform.position = Vector2.MoveTowards(
-                transform.position,
-                target,
-                _moveSpeed * Time.deltaTime
-            );
-
-            if (Vector2.Distance(transform.position, target) < 0.05f)
-                break;
-
-            yield return null;
+            _bossTransform = transform.parent;
+            _returnPos = transform.localPosition;
         }
     }
 
+    public void Configure(float moveSpeed, float attackSpeed, int damage)
+    {
+        _moveSpeed = moveSpeed;
+        _attackSpeed = attackSpeed;
+        this._trapDamage = damage;
+    }
+
     /// <summary>
-    /// 기존 코루틴을 제거하고 받아온 방향벡터로 공격 코루틴 실행
+    /// 패턴 시작: 부모 해제하고 시작 위치로 '이동' 시작 (순간이동 X)
     /// </summary>
-    /// <param name="direction">방향 벡터</param>
+    public void BeginPattern(Vector2 startOffset)
+    {
+        _startOffset = startOffset;
+        _hitGround = false;
+
+        StopCurrentCoroutine(); // 기존 동작 정지
+
+        transform.SetParent(null); // 부모에서 분리
+
+  
+        // 부드럽게 이동하는 코루틴 시작
+        MoveToStartPos();
+    }
+
+    /// <summary>
+    /// 시작 위치(보스 + 오프셋)로 부드럽게 이동
+    /// </summary>
+    public void MoveToStartPos()
+    {
+        StopCurrentCoroutine();
+        _moveCoroutine = StartCoroutine(MoveToStartPosCoroutine());
+    }
+
+    private IEnumerator MoveToStartPosCoroutine()
+    {
+        // 보스가 살아있는 동안 목표 위치로 계속 이동
+        while (_bossTransform != null)
+        {
+            Vector2 targetPos = (Vector2)_bossTransform.position + _startOffset;
+
+            transform.position = Vector2.MoveTowards(
+                transform.position,
+                targetPos,
+                _moveSpeed * Time.deltaTime
+            );
+
+            // 도착 판정
+            if (Vector2.Distance(transform.position, targetPos) < 0.05f)
+            {
+                transform.position = targetPos; // 오차 보정
+                break;
+            }
+            yield return null;
+        }
+        _moveCoroutine = null; // 이동 끝
+    }
+
+    /// <summary>
+    /// 공격 수행
+    /// </summary>
     public void Attack(Vector2 direction)
     {
         _hitGround = false;
-
-        if (_moveCoroutine != null)
-            StopCoroutine(_moveCoroutine);
-
+        StopCurrentCoroutine();
         _moveCoroutine = StartCoroutine(AttackCoroutine(direction.normalized));
     }
-    /// <summary>
-    /// 공격 코루틴 땅에 닿지 않았다면 계속 실행
-    /// 받아온 방향값으로 이동
-    /// </summary>
-    /// <param name="dir"></param>
-    /// <returns></returns>
+
     private IEnumerator AttackCoroutine(Vector2 dir)
     {
         while (!_hitGround)
@@ -99,33 +102,21 @@ public class DevilHand : DamageableTrapBase
             transform.position += (Vector3)(dir * _attackSpeed * Time.deltaTime);
             yield return null;
         }
+        _moveCoroutine = null; // 공격 끝
     }
+
     /// <summary>
-    /// 기존 실행중이던 코루틴 종료 시키고 시작점과 끝점을 체크해 베이어 곡선으로
-    /// 스파이럴 공격 코루틴을 실행
+    /// 스파이럴(회전) 공격
     /// </summary>
-    /// <param name="center"></param>
-    /// <param name="offset"></param>
-    /// <param name="duration"></param>
     public void SpiralAttack(Vector2 center, float offset, float duration)
     {
-        if (_moveCoroutine != null)
-            StopCoroutine(_moveCoroutine);
-
+        StopCurrentCoroutine();
         Vector2 start = transform.position;
         Vector2 end = center;
-
         _moveCoroutine = StartCoroutine(SpiralAttackCoroutine(start, end, offset, duration));
     }
-    /// <summary>
-    /// 세가지 포인트로 Lerp를 이용해 이동해 곡선의 형태를 나타내게 이동
-    /// </summary>
-    /// <param name="start"></param>
-    /// <param name="end"></param>
-    /// <param name="offset"></param>
-    /// <param name="duration"></param>
-    /// <returns></returns>
-    IEnumerator SpiralAttackCoroutine(Vector2 start,Vector2 end, float offset,float duration)
+
+    IEnumerator SpiralAttackCoroutine(Vector2 start, Vector2 end, float offset, float duration)
     {
         Vector2 center = (start + end) * 0.5f;
 
@@ -136,7 +127,6 @@ public class DevilHand : DamageableTrapBase
         Vector2 offsetPos = center + Vector2.right * dir * xDist * offset;
 
         float time = 0f;
-
         while (time < duration)
         {
             time += Time.deltaTime;
@@ -149,53 +139,79 @@ public class DevilHand : DamageableTrapBase
             transform.position = pos;
             yield return null;
         }
-
         transform.position = end;
+        _moveCoroutine = null; 
     }
 
     /// <summary>
-    /// 기존 코루틴 종료하고 복귀 코루틴 실행
+    /// 복귀
     /// </summary>
     public void MoveToReturnPos()
     {
         _hitGround = false;
-
-        if (_moveCoroutine != null)
-            StopCoroutine(_moveCoroutine);
-
+        StopCurrentCoroutine();
         _moveCoroutine = StartCoroutine(ReturnCoroutine());
     }
 
-    /// <summary>
-    /// 시작했던 위치로 돌아가는 코루틴
-    /// 다시 보스의 자식이 됨
-    /// </summary>
-    /// <returns></returns>
     private IEnumerator ReturnCoroutine()
     {
-        while (Vector2.Distance(transform.position, _returnPos) > 0.05f)
+        while (_bossTransform != null)
         {
+            // 로컬 좌표(_returnPos)를 월드 좌표로 변환하여 이동
+            Vector2 targetWorldPos = _bossTransform.TransformPoint(_returnPos);
+
             transform.position = Vector2.MoveTowards(
                 transform.position,
-                _returnPos,
+                targetWorldPos,
                 _moveSpeed * Time.deltaTime
             );
+
+            if (Vector2.Distance(transform.position, targetWorldPos) < 0.05f)
+            {
+                transform.position = targetWorldPos;
+                break;
+            }
             yield return null;
         }
 
-        transform.SetParent(_boss);
+        // 도착하면 다시 자식으로 붙임
+        if (_bossTransform != null)
+        {
+            transform.SetParent(_bossTransform);
+            transform.localPosition = _returnPos;
+        }
+        _moveCoroutine = null; 
     }
 
-    /// <summary>
-    /// 땅인지 체크하고 _hitGround 켜줌
-    /// </summary>
-    /// <param name="other"></param>
+    private void StopCurrentCoroutine()
+    {
+        if (_moveCoroutine != null)
+        {
+            StopCoroutine(_moveCoroutine);
+            _moveCoroutine = null;
+        }
+    }
+
     protected override void OnTriggerEnter2D(Collider2D other)
     {
         base.OnTriggerEnter2D(other);
         if (other.CompareTag("BossGround"))
         {
             _hitGround = true;
+        }
+    }
+
+    public void ForceReturn()
+    {
+        StopCurrentCoroutine();
+        if (_bossTransform != null)
+        {
+            transform.SetParent(_bossTransform);
+            transform.localPosition = _returnPos;
+        }
+        if (_bossTransform != null && !_bossTransform.gameObject.activeInHierarchy)
+        {
+            gameObject.SetActive(false);
         }
     }
 }
