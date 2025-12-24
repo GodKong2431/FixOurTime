@@ -20656,6 +20656,14 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
+      propertyPath: _groundLayer.Array.data[0].m_Bits
+      value: 2147483648
+      objectReference: {fileID: 0}
+    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
+      propertyPath: _groundLayer.Array.data[1].m_Bits
+      value: 536870912
+      objectReference: {fileID: 0}
+    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
       propertyPath: OnPlayerDead.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
