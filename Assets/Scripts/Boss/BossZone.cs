@@ -10,27 +10,32 @@ public class BossZone : MonoBehaviour
     [SerializeField] private float _requiredTime = 2.0f;
 
     private float _stayTimer = 0f;
+    private bool _isPlayerInside = false; // 플레이어가 안에 있는지 여부
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void Update()
     {
-        // 1. 플레이어 태그 확인
-        if (collision.CompareTag("Player"))
+        // 물리 엔진 상태와 상관없이 매 프레임 검사
+        if (_isPlayerInside)
         {
-            // 2. 머무르는 동안 시간 증가
             _stayTimer += Time.deltaTime;
 
-            // 3. 일정 시간이 지나면 보스 활성화
             if (_stayTimer >= _requiredTime)
             {
                 if (_boss != null)
                 {
                     Debug.Log("보스존 진입 확인: 보스 등장!");
                     _boss.ActivateBoss();
-
-                    // 보스가 켜졌으므로 이 트리거는 비활성화 
-                    gameObject.SetActive(false);
+                    gameObject.SetActive(false); // 보스 등장 후 트리거 비활성화
                 }
             }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            _isPlayerInside = true; // 들어왔음 체크
         }
     }
 
