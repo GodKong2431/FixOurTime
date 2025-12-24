@@ -160,6 +160,9 @@ public class Player : MonoBehaviour,IDamageable,IBindable
     public bool IsInfiniteJumpEnabled { get => _isInfiniteJumpEnabled; set => _isInfiniteJumpEnabled = value; }
     public bool IsInfiniteJumpLocked { get => _isInfiniteJumpLocked; set => _isInfiniteJumpLocked = value; }
     public bool CanAttack => Time.time >= _nextAttackTime; //공격 가능한 상태인지 확인용
+    public bool HasSecondHand => _hasSecondHand;
+    public bool HasMinuteHand => _hasMinuteHand;
+    public bool HasHourHand => _hasHourHand;
 
     private void Awake()
     {
@@ -545,16 +548,24 @@ public class Player : MonoBehaviour,IDamageable,IBindable
         data.maxHp = _maxHp;
         data.sceneName = SceneManager.GetActiveScene().name;
         data.camPos = CinemachinCamManager.Instance.GetCamPos();
+
+        // 아이템 상태 저장
+        data.hasSecondHand = _hasSecondHand;
+        data.hasMinuteHand = _hasMinuteHand;
+        data.hasHourHand = _hasHourHand;
     }
     //데이터 불러오기
     public void LoadPlayerData(GameData data)
     {
         _currentHp = data.currentHp;
-
         transform.position = data.playerPos;
-
         _rb.linearVelocity = Vector2.zero;
         _rb.bodyType = RigidbodyType2D.Dynamic;
+
+        // 아이템 상태 복구
+        _hasSecondHand = data.hasSecondHand;
+        _hasMinuteHand = data.hasMinuteHand;
+        _hasHourHand = data.hasHourHand;
 
         CinemachinCamManager.Instance.LoadCamPos(data.camPos);
 
@@ -562,10 +573,21 @@ public class Player : MonoBehaviour,IDamageable,IBindable
     }
 
     //체크포인트에서 호출시킬 메서드
-    public void CheckPoint()
+    public void CheckPoint(Vector3 savePos)
     {
         GameData data = GameDataManager.Load();
-        SavePlayerState(data);
+
+        data.currentHp = _currentHp;
+        data.playerPos = savePos;
+        data.maxHp = _maxHp;
+        data.sceneName = SceneManager.GetActiveScene().name;
+        data.camPos = CinemachinCamManager.Instance.GetCamPos();
+
+        // 아이템 수집 정보도 함께 저장
+        data.hasSecondHand = _hasSecondHand;
+        data.hasMinuteHand = _hasMinuteHand;
+        data.hasHourHand = _hasHourHand;
+
         GameDataManager.Save(data);
     }
     //부활

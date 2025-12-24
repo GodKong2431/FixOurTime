@@ -17,6 +17,9 @@ public class GameData
 
     public Vector3 camPos;
 
-    //마지막 저장 씬 넣을거면 추가
+    //엔딩 아이템 수집여부
+    public bool hasSecondHand;
+    public bool hasMinuteHand;
+    public bool hasHourHand;
 
 }

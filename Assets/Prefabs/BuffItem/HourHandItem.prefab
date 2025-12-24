@@ -107,6 +107,8 @@ MonoBehaviour:
   _minAlpha: 0.2
   _maxAlpha: 1
   _rotationSpeed: 30
+  _floatingDistance: 0.2
+  _floatingSpeed: 2
 --- !u!1 &7741458656593364288
 GameObject:
   m_ObjectHideFlags: 0
