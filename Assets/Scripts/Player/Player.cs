@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
-public class Player : MonoBehaviour,IDamageable
+public class Player : MonoBehaviour,IDamageable,IBindable
 {
     [Header("기본 상태 값 설정")]
     IState<Player> _currentState;
@@ -219,6 +219,10 @@ public class Player : MonoBehaviour,IDamageable
     }
     public void OnJump(InputAction.CallbackContext ctx)
     {
+        if (MoveSpeed <= 0f)
+        {
+            return;
+        }
         if (_currentState is HitState || _currentState is DeadState)
         {
             return;
@@ -613,6 +617,35 @@ public class Player : MonoBehaviour,IDamageable
         //두께 차징정도에따라  0.02f까지 키우기
         Spr.material.SetFloat("_OutlineWidth", ratio * 0.02f);
     }
+    public void SetBind(float duration)
+    {
+        StartCoroutine(BindCoroutine(duration));
+    }
 
+    public void Bind(bool Isbind)
+    {
+        
+    }
 
+    public void Unbind(bool Isbind)
+    {
+        
+    }
+
+    private IEnumerator BindCoroutine(float duration)
+    {
+        //원래 이속값 저장
+        float currentMoveSpeed = MoveSpeed;
+
+        MoveSpeed = 0f;
+        
+        _rb.linearVelocity = new Vector2(0, 0);
+
+        yield return new WaitForSeconds(duration);
+
+        MoveSpeed = currentMoveSpeed;
+        
+        
+        
+    }
 }

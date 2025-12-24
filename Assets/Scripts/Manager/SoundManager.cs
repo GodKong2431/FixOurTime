@@ -9,9 +9,9 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource _sfxSource;
 
     [Header("배경음볼륨")]
-    [SerializeField] private float _bgmVolume = 1.0f;
+    [SerializeField] public float _bgmVolume = 1.0f;
     [Header("효과음볼륨")]
-    [SerializeField] private float _sfxVolume = 1.0f;
+    [SerializeField] public float _sfxVolume = 1.0f;
 
     [Header("메인씬 배경음")] 
     [SerializeField] private AudioClip _mainBgmClip;    //메인씬 배경음
@@ -24,18 +24,33 @@ public class SoundManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-
-            //볼륨 초기화
-            _bgmSource.volume = _bgmVolume;
-            _sfxSource.volume = _sfxVolume;
+            
         }
         else Destroy(gameObject);
     }
 
     private void Start()
     {
+        //볼륨 초기화
+        _bgmSource.volume = _bgmVolume;
+        _sfxSource.volume = _sfxVolume;
+
         _bgmSource.clip = _mainBgmClip;
         _bgmSource.Play();
+    }
+
+    //설정창 볼륨조절 함수
+    public void UpdateBgmVolume(float volume)
+    {
+        //볼륨값저장 (페이드효과에도 이값기준으로 사용해야함)
+        _bgmVolume = volume;
+        //볼륨값 적용
+        _bgmSource.volume = volume;
+    }
+    public void UpdateSfxVolume(float volume)
+    {
+        _sfxVolume = volume;
+        _sfxSource.volume = volume;
     }
 
 
@@ -43,7 +58,7 @@ public class SoundManager : MonoBehaviour
     public void PlaySFX(AudioClip clip)
     {
         //효과음 중복재생가능하게
-        _sfxSource.PlayOneShot(clip);
+        _sfxSource.PlayOneShot(clip, _sfxVolume);
     }
 
     //BGM 재생 (즉시 재생용)
@@ -51,6 +66,7 @@ public class SoundManager : MonoBehaviour
     public void PlayBGM(AudioClip clip)
     {
         _bgmSource.clip = clip;
+        _bgmSource.volume = _bgmVolume;
         _bgmSource.Play();
     }
 
