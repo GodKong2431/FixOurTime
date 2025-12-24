@@ -23,7 +23,7 @@ public class SavePoint : MonoBehaviour
 
             if(player != null && !_isSaved)
             {
-                player.CheckPoint();
+                player.CheckPoint(transform.position);
                 _isSaved = true;
                 _spr.color = Color.green;
 
