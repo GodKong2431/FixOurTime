@@ -2,42 +2,56 @@ using UnityEngine;
 
 public class BossZone : MonoBehaviour
 {
-    [Header("보스 컨트롤러")]
+    [Header("Settings")]
+    [Tooltip("연결할 보스 스크립트")]
     [SerializeField] private BossBase _boss;
 
-    private void OnTriggerStay2D(Collider2D collision)
+    [Tooltip("보스 발동에 필요한 대기 시간")]
+    [SerializeField] private float _requiredTime = 2.0f;
+
+    private float _stayTimer = 0f;
+    private bool _isPlayerInside = false; // 플레이어가 안에 있는지 여부
+
+    private void Update()
     {
-        // 1. 태그 확인 (가드 클로즈)
-        if (!collision.CompareTag("Player"))
+        // 물리 엔진 상태와 상관없이 매 프레임 검사
+        if (_isPlayerInside)
         {
-            return;
-        }
+            _stayTimer += Time.deltaTime;
 
-        // 2. Player 컴포넌트 가져오기
-        if (!collision.TryGetComponent(out Player player))
-        {
-            return;
-        }
-
-        // 3.플레이어가 땅에 착지했는지 
-        if (!player.IsGrounded)
-        {
-            return;
-        }
-
-        if (_boss != null)
-        {
-            Debug.Log("보스존 트리거 작동: 보스가 등장합니다.");
-            _boss.ActivateBoss(); // 보스 깨우기
-
-            // 더 이상 필요 없으니 트리거 끄기
-            gameObject.SetActive(false);
+            if (_stayTimer >= _requiredTime)
+            {
+                if (_boss != null)
+                {
+                    Debug.Log("보스존 진입 확인: 보스 등장!");
+                    _boss.ActivateBoss();
+                    gameObject.SetActive(false); // 보스 등장 후 트리거 비활성화
+                }
+            }
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            _isPlayerInside = true; // 들어왔음 체크
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        // 영역을 벗어나면 타이머 초기화
+        if (collision.CompareTag("Player"))
+        {
+            _stayTimer = 0f;
+        }
+    }
+
+    // 필요 시 외부에서 다시 켤 수 있도록 유지
     public void ResetTrigger()
     {
-        Debug.Log("보스존 트리거 재활성화");
-        gameObject.SetActive(true); // 다시 켜져서 플레이어를 감지할 준비
+        _stayTimer = 0f;
+        gameObject.SetActive(true);
     }
 }

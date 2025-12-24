@@ -6,7 +6,8 @@ public class PauseButton : MonoBehaviour
 {
     
     public void OnClickPause()
-    {
+    {        
         GameManager.Instance.TogglePause();
+
     }
 }

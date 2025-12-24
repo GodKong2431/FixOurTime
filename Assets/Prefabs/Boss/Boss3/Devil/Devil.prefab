@@ -105,7 +105,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dece90636ca557489a9e5e3e782940b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DevilHand
+  _trapDamage: 35
+  _knockbackForce: 7
+  _invincibleTime: 0.5
   _moveSpeed: 20
+  _attackSpeed: 18
 --- !u!61 &661646632766603533
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -284,7 +288,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dece90636ca557489a9e5e3e782940b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DevilHand
+  _trapDamage: 35
+  _knockbackForce: 7
+  _invincibleTime: 0.5
   _moveSpeed: 20
+  _attackSpeed: 18
 --- !u!61 &6422285748943375631
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -368,6 +376,8 @@ GameObject:
   m_Component:
   - component: {fileID: 375359391292624102}
   - component: {fileID: 7826481783512081498}
+  - component: {fileID: 4486495381055998624}
+  - component: {fileID: 7320808865579211157}
   - component: {fileID: 1912419988628477395}
   m_Layer: 0
   m_Name: Devil
@@ -451,6 +461,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4486495381055998624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8270420990446805351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9081950d4ef84e42b920a4766490160, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DevilPatternController
+  _patternDelay: 1
+--- !u!114 &7320808865579211157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8270420990446805351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 533d4127bdd58c142a895cd36f72fa87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DevilDarkSpearController
+  _stayTime: 5
+  _devilDarkSpear: {fileID: 0}
+  boxSize: {x: 10, y: 1}
+  boxPos: {fileID: 0}
+  boxOffset: {x: 0, y: 1}
 --- !u!114 &1912419988628477395
 MonoBehaviour:
   m_ObjectHideFlags: 0

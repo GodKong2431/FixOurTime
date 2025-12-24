@@ -377,7 +377,7 @@ MonoBehaviour:
     m_Bits: 2147483648
   _groundChecker: {fileID: 7884480922022477730}
   _groundCheckDistance: -0.35
-  _groundCheckerSize: {x: 0.8, y: 0.25}
+  _groundCheckerSize: {x: 0.8, y: 0.9}
   _minJumpForce: 5
   _maxJempForce: 15
   _maxChargeTime: 1

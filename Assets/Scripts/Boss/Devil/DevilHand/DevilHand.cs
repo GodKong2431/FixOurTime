@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 
-public class DevilHand : MonoBehaviour
+public class DevilHand : DamageableTrapBase
 {
     [Header("이동 속도")]
     [SerializeField] private float _moveSpeed = 18f;
@@ -190,9 +190,10 @@ public class DevilHand : MonoBehaviour
     /// 땅인지 체크하고 _hitGround 켜줌
     /// </summary>
     /// <param name="other"></param>
-    private void OnTriggerEnter2D(Collider2D other)
+    protected override void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Ground"))
+        base.OnTriggerEnter2D(other);
+        if (other.CompareTag("BossGround"))
         {
             _hitGround = true;
         }
