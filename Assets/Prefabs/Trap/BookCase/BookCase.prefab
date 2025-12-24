@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 7582949339313224240}
   - component: {fileID: 1155999773968474406}
   - component: {fileID: 7387597836982808141}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: BookCase
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
