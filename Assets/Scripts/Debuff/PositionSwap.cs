@@ -7,6 +7,9 @@ public class PositionSwap : MonoBehaviour
     [SerializeField] Transform _hotZone;
     [SerializeField] Transform _coolZone;
 
+    [Header("유령")]
+    [SerializeField] GhostSpawner _ghostSpawner;
+
     [Header("교체주기")]
     [SerializeField] float _interval = 8f;
 
@@ -23,6 +26,8 @@ public class PositionSwap : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(_interval);
+
+            _ghostSpawner.ChangeSpawnSide();
 
             Vector3 tempPos = _hotZone.position;
             _hotZone.position = _coolZone.position;

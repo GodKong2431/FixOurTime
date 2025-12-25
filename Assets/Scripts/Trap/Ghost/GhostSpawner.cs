@@ -33,6 +33,7 @@ public class GhostSpawner : MonoBehaviour
     private WaitForSeconds _spawnDelay;
     private Coroutine _spawnCoroutine;
     private SpriteRenderer _spriteRenderer;
+    
 
     private void Awake()
     {
@@ -45,9 +46,14 @@ public class GhostSpawner : MonoBehaviour
         StartSpawn();
     }
 
-    public void SetSpawnSide(GhostSpawnSide side)
+    public void ChangeSpawnSide()
     {
-        _spawnSide = side;
+        if (_spawnSide == GhostSpawnSide.Left) _spawnSide = GhostSpawnSide.Right;
+        else _spawnSide = GhostSpawnSide.Left;
+
+        _ghostObj.SetActive(false);
+
+        StartSpawn();
     }
 
     public void StartSpawn()
@@ -131,6 +137,8 @@ public class GhostSpawner : MonoBehaviour
     {
         while (true)
         {
+            yield return _spawnDelay;
+
             Vector2 spawnPos = GetSpawnPoint();
 
             if (_spawnPlatformCol == null)
@@ -151,7 +159,6 @@ public class GhostSpawner : MonoBehaviour
             }
 
             _ghostObj.SetActive(false);
-            yield return _spawnDelay;
         }
     }
 }

@@ -6417,6 +6417,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &448789587 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8051802830608445722, guid: 8efc25587a8a6be4ba9c013fcee99970, type: 3}
+  m_PrefabInstance: {fileID: 179012224}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e4722a3c1508e44a8d9f4f584aab389, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Ghost
 --- !u!1 &457995170
 GameObject:
   m_ObjectHideFlags: 0
@@ -28171,6 +28182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PositionSwap
   _hotZone: {fileID: 588731042}
   _coolZone: {fileID: 9550766}
+  _ghostSpawner: {fileID: 448789587}
   _interval: 8
 --- !u!4 &2030764799
 Transform:
