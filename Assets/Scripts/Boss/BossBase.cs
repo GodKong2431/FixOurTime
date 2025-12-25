@@ -1,11 +1,14 @@
 using UnityEngine;
 using System.Collections;
-
+using UnityEngine.Events;
 public abstract class BossBase : MonoBehaviour
 {
     [Header("Base Settings")]
     [SerializeField] protected Transform _playerTarget;
     [SerializeField] protected float _bossMaxHp = 100f;
+
+    [Header("Events")]
+    [SerializeField] UnityEvent OnBossDead;
 
     protected float _currentHp;
     // 외부에서 체력바 UI 등이 읽을 수 있게 프로퍼티 제공
@@ -36,6 +39,8 @@ public abstract class BossBase : MonoBehaviour
 
         if (_currentHp <= 0)
         {
+            Debug.Log("보스 사망 이벤트 발동");
+            OnBossDead?.Invoke();
             Die();
         }
     }
@@ -57,7 +62,7 @@ public abstract class BossBase : MonoBehaviour
     protected abstract void Die();
     public abstract void ActivateBoss();
 
-    // 리셋 기능 (필요시 구현)
+    // 리셋 기능 
     public virtual void ResetBoss()
     {
         StopAllCoroutines();
