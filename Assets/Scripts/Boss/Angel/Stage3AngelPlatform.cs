@@ -13,6 +13,7 @@ public class Stage3AngelPlatform : MonoBehaviour
     [Header("이동시간")]
     [SerializeField] private float _moveTime = 1f;
     [SerializeField] private float _sleep = 1f;
+    [SerializeField] private bool _moveOn = true;
 
 
     private float _moveDistance;
@@ -23,21 +24,44 @@ public class Stage3AngelPlatform : MonoBehaviour
     private Vector2 _initPos;
     private Vector2 _lastPos;
 
+    private Vector3 deltaMove;
+    private Vector3 lastPos;
+
+    private Rigidbody2D _playerRb;
+
     private Collider2D _col;
 
     private WaitForSeconds _sleepTime;
 
+    private Coroutine _moveCoroutine;
+
     private void Awake()
     {
-        _col = GetComponent<Collider2D>();
-        _sleepTime = new WaitForSeconds(_sleep);
-        _initPos = transform.position;
-        _moveDistance = _col.bounds.size.x * 0.5f;
+        if(_col = GetComponent<Collider2D>())
+        {
+            _sleepTime = new WaitForSeconds(_sleep);
+            _initPos = transform.position;
+            _moveDistance = _col.bounds.size.x * 0.5f;
+        }
     }
 
     private void Start()
     {
-        StartCoroutine(MovePlatform());
+        if(_moveOn)
+            _moveCoroutine = StartCoroutine(MovePlatform());
+
+        OutPlatform();
+    }
+
+    void LateUpdate()
+    {
+        deltaMove = transform.position - lastPos;
+        lastPos = transform.position;
+
+        if (_playerRb != null)
+        {
+            _playerRb.position += (Vector2)deltaMove;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -52,9 +76,12 @@ public class Stage3AngelPlatform : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
+        
         if (collision.transform.CompareTag("Player"))
         {
             _lastPos = collision.transform.position - transform.position;
+
+            _playerRb = collision.transform.GetComponent<Rigidbody2D>();
         }
     }
 
@@ -64,6 +91,7 @@ public class Stage3AngelPlatform : MonoBehaviour
         {
             _lastPos = collision.transform.position - transform.position;
         }
+        _playerRb = null;
     }
 
 
@@ -118,6 +146,29 @@ public class Stage3AngelPlatform : MonoBehaviour
 
             transform.position = targetPos;
             yield return _sleepTime;
+        }
+    }
+
+    public void OutPlatform()
+    {
+        if (_moveCoroutine != null)
+            StopCoroutine(_moveCoroutine);
+
+        StartCoroutine(OutMoveCoroutine());
+    }
+
+    IEnumerator OutMoveCoroutine()
+    {
+        Camera cam = Camera.main;
+
+        while (true)
+        {
+            float cameraX = cam.transform.position.x;
+            float dir = transform.position.x >= cameraX ? 1f : -1f;
+
+            transform.position += Vector3.right * dir * 5 * Time.deltaTime;
+
+            yield return null;
         }
     }
 }

@@ -4945,3 +4945,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80fd8ee8124978e439656289a9b1b4d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DevilBlackHole
+  _playerLayerName: Player
+  _groundLayerName: Ground
