@@ -20,14 +20,12 @@ public class FoxController : MonoBehaviour, IDamageable
     [SerializeField] private float _jumpDelay = 0.4f;
 
     [Header("Attack Settings (Local)")]
-    // 데미지나 감지 범위 등은 Boss2Data를 사용하므로 제거됨
     [Tooltip("물기 공격 사거리 (판정 범위)")]
     [SerializeField] private float _biteRange = 2.5f;
     [Tooltip("물기 시 플레이어 고정 위치 오프셋")]
     [SerializeField] private float _holdOffset = 0.8f;
 
     [Header("Shadow Mode Settings (Local)")]
-    // 속도 배율, 데미지 등은 Boss2Data 사용
     [SerializeField] private Vector2 _shadowAttackSize = new Vector2(3.0f, 5.0f);
     [SerializeField] private Vector2 _attackBoxOffset = new Vector2(0f, 2.5f);
     [SerializeField] private float _attackDuration = 1.5f;
