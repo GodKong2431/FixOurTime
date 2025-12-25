@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -15,6 +16,8 @@ public class PaperCraneSpawner : MonoBehaviour
     [SerializeField] private float _spawnDelay = 5f;
 
     ObjectPool<GameObject> _paperCranePool;
+
+    List<GameObject> _activeCranes = new List<GameObject>();
 
     GameObject _player;
 
@@ -36,6 +39,8 @@ public class PaperCraneSpawner : MonoBehaviour
                 {
                     obj.transform.position = _paperSpawnPoint[Random.Range(0, _paperSpawnPoint.Length)].transform.position;
                     obj.SetActive(true);
+
+                    _activeCranes.Add(obj);
                 },
                 actionOnRelease:(obj) =>
                 {
@@ -64,8 +69,32 @@ public class PaperCraneSpawner : MonoBehaviour
         }
     }
 
+    public void StopAndClearSpawns()
+    {
+        StopAllCoroutines();
+
+        // 리스트를 복사해서 순회 (순회 중 원본 리스트 수정 방지)
+        var targets = new List<GameObject>(_activeCranes);
+
+        foreach (var crane in targets)
+        {
+            if (crane.activeSelf)
+            {
+                // 강제로 풀에 반환
+                _paperCranePool.Release(crane);
+            }
+        }
+
+        // 관리 리스트 초기화
+        _activeCranes.Clear();
+    }
     public void Release(GameObject paperCrane)
     {
+        if (_activeCranes.Contains(paperCrane))
+        {
+            _activeCranes.Remove(paperCrane);
+        }
+
         _paperCranePool.Release(paperCrane);
     }
 }
