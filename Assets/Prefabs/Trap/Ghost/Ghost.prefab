@@ -52,7 +52,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   _offsetY: 2
-  _GhostObj: {fileID: 7982843618253693285}
+  _ghostObj: {fileID: 7982843618253693285}
+  _spawnSide: 1
 --- !u!1 &7982843618253693285
 GameObject:
   m_ObjectHideFlags: 0
