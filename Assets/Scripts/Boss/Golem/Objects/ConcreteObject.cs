@@ -6,6 +6,12 @@ public class ConcreteObject : MonoBehaviour
     [Header("충돌 설정")]
     [SerializeField] private Collider2D _headCollider;
 
+    [Header("이펙트 설정")]
+    [Tooltip("이동이 끝났을 때 생성될 먼지 이펙트 프리팹")]
+    [SerializeField] private GameObject _dustEffectPrefab;
+    [Tooltip("이펙트가 생성될 위치")]
+    [SerializeField] private Transform _headEffectPoint;
+
     private BoxCollider2D _col;
     private Vector3 _startPos;
     private Vector3 _targetPos;
@@ -62,8 +68,24 @@ public class ConcreteObject : MonoBehaviour
 
         _isMoving = false;
 
+        // 먼지 이펙트 재생
+        PlayDustEffect();
+
         gameObject.layer = LayerMask.NameToLayer("Ground");
 
+    }
+
+    private void PlayDustEffect()
+    {
+        if (_dustEffectPrefab == null) return;
+
+        // 설정된 위치가 있으면 그곳에서, 없으면 현재 위치에서 생성
+        Vector3 spawnPos = _headEffectPoint != null ? _headEffectPoint.position : transform.position;
+
+        // 이펙트 생성 (회전값은 프리팹 설정을 따르거나 필요 시 수정)
+        GameObject effect = Instantiate(_dustEffectPrefab, spawnPos, _dustEffectPrefab.transform.rotation);
+
+        // Destroy(effect, 2.0f); 
     }
 
     public void StartRetract()
