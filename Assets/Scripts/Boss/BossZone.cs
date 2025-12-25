@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BossZone : MonoBehaviour
 {
@@ -8,6 +9,10 @@ public class BossZone : MonoBehaviour
 
     [Tooltip("보스 발동에 필요한 대기 시간")]
     [SerializeField] private float _requiredTime = 2.0f;
+
+    [Header("Events")]
+    [Tooltip("보스존이 활성화될 때 실행될 이벤트")]
+    public UnityEvent OnBossZoneActivated;
 
     private float _stayTimer = 0f;
     private bool _isPlayerInside = false; // 플레이어가 안에 있는지 여부
@@ -25,6 +30,9 @@ public class BossZone : MonoBehaviour
                 {
                     Debug.Log("보스존 진입 확인: 보스 등장!");
                     _boss.ActivateBoss();
+
+                    OnBossZoneActivated?.Invoke();
+
                     gameObject.SetActive(false); // 보스 등장 후 트리거 비활성화
                 }
             }

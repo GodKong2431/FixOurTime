@@ -12663,6 +12663,34 @@ PrefabInstance:
       propertyPath: _boss
       value: 
       objectReference: {fileID: 1255499986}
+    - target: {fileID: 1476934364991690043, guid: 18b7c2da9728b8145b7d026fd577e14b, type: 3}
+      propertyPath: OnBossZoneActivated.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1476934364991690043, guid: 18b7c2da9728b8145b7d026fd577e14b, type: 3}
+      propertyPath: OnBossZoneActivated.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1476934364991690043, guid: 18b7c2da9728b8145b7d026fd577e14b, type: 3}
+      propertyPath: OnBossZoneActivated.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1012108364}
+    - target: {fileID: 1476934364991690043, guid: 18b7c2da9728b8145b7d026fd577e14b, type: 3}
+      propertyPath: OnBossZoneActivated.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1476934364991690043, guid: 18b7c2da9728b8145b7d026fd577e14b, type: 3}
+      propertyPath: OnBossZoneActivated.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StopAndClearSpawns
+      objectReference: {fileID: 0}
+    - target: {fileID: 1476934364991690043, guid: 18b7c2da9728b8145b7d026fd577e14b, type: 3}
+      propertyPath: OnBossZoneActivated.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PaperCraneSpawner, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1476934364991690043, guid: 18b7c2da9728b8145b7d026fd577e14b, type: 3}
+      propertyPath: OnBossZoneActivated.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2370957167332371213, guid: 18b7c2da9728b8145b7d026fd577e14b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4
@@ -26829,7 +26857,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1383446662183809203, guid: 3085df4e48e32cd468a525d3b81d299a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7926591432957656165, guid: 3085df4e48e32cd468a525d3b81d299a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26881,6 +26909,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7926591432957656165, guid: 3085df4e48e32cd468a525d3b81d299a, type: 3}
   m_PrefabInstance: {fileID: 1012108362}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1012108364 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6144337690652856160, guid: 3085df4e48e32cd468a525d3b81d299a, type: 3}
+  m_PrefabInstance: {fileID: 1012108362}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29352edf256755b459d30f655530c654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PaperCraneSpawner
 --- !u!4 &1017470542 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8935120486099669573, guid: 424df5155d605984eb65e4a46f2e0f49, type: 3}
