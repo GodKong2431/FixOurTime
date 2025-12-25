@@ -35,8 +35,8 @@ public class Judgment : DamageableTrapBase
         Vector2 stratpos = GetRandomPos();
 
         _judgmentLine.enabled = true;
-        ConnectLine(stratpos, pos);
-        LineRay(stratpos, pos);
+        ConnectLine(new Vector2(pos.x, transform.position.y), pos);
+        LineRay(new Vector2(pos.x, transform.position.y), pos);
 
         if (_lineOffCoroutine != null)
             StopCoroutine(_lineOffCoroutine);
@@ -80,7 +80,7 @@ public class Judgment : DamageableTrapBase
             }
         }
         
-        RaycastHit2D[] secondhits = Physics2D.RaycastAll(fixedEnd, dir, 10, (1 << 10) | (1 << 31));
+        RaycastHit2D[] secondhits = Physics2D.RaycastAll(fixedEnd, dir, 10, (1 << 10) | (1 << 31) | (1 << 29));
         if (secondhits.Length > 0)
         {
             foreach(RaycastHit2D hit in secondhits)

@@ -51,8 +51,6 @@ public class Feather : DamageableTrapBase
         {
             Stick(other.transform);
         }
-
-        StartCoroutine(DestroyAndAlphaChange());
     }
 
     protected override void OnTriggerStay2D(Collider2D other)
@@ -88,6 +86,8 @@ public class Feather : DamageableTrapBase
         _stuck = true;
         _direction = Vector2.zero;
         transform.SetParent(target, true);
+
+        StartCoroutine(DestroyAndAlphaChange());
     }
 
     private IEnumerator DestroyAndAlphaChange()
