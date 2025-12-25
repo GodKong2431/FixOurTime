@@ -6,6 +6,10 @@ using System.Collections.Generic;
 public class Stage2Boss : BossBase
 {
     #region Inspector Fields
+    [Header("Debug Settings")]
+    [Tooltip("체크하면 보스가 즉시 사망")]
+    public bool _testKillTrigger = false;
+
     [Header("Stage2 Data")]
     [Tooltip("2스테이지 보스 밸런스 데이터")]
     [SerializeField] private Boss2Data _bossData = new Boss2Data();
@@ -60,6 +64,16 @@ public class Stage2Boss : BossBase
     #endregion
 
     #region Unity Lifecycle
+
+    private void Update()
+    {
+        // 디버그용: 체크박스가 켜지면 보스 처치
+        if (_testKillTrigger)
+        {
+            _testKillTrigger = false; // 다시 꺼주기 (트리거 역할)
+            DebugKill();
+        }
+    }
     public override void ActivateBoss()
     {
         if (_isActivated) return;
@@ -336,5 +350,11 @@ public class Stage2Boss : BossBase
         public Sprite Sprite;
         public bool IsTarget;
         public ItemSetupData(Sprite s, bool t) { Sprite = s; IsTarget = t; }
+    }
+
+    public void DebugKill()
+    {
+        Debug.Log("디버그 트리거로 보스를 처치했습니다.");
+        TakeDamage(999999f);
     }
 }
