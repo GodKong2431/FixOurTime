@@ -22,13 +22,13 @@ public class Laser : DamageableTrapBase, IDamageable
     private WaitForSeconds _warningDur;
     private WaitForSeconds _fireDur;
 
-    private BoxCollider2D box;
+    private BoxCollider2D _box;
 
     private void Awake()
     {
-        box = GetComponent<BoxCollider2D>();
-        box.isTrigger = true;
-        box.enabled = false;
+        _box = _laserLine.GetComponent<BoxCollider2D>();
+        _box.isTrigger = true;
+        _box.enabled = false;
     }
 
     private void OnEnable()
@@ -59,8 +59,8 @@ public class Laser : DamageableTrapBase, IDamageable
         float distance = dir.magnitude;
         dir.Normalize();
 
-        box.size = new Vector2(distance, 0.2f);
-        box.offset = Vector2.right * distance * 0.5f;
+        _box.size = new Vector2(distance, 0.2f);
+        _box.offset = Vector2.right * distance * 0.5f;
 
         transform.position = _firePoint.position;
         transform.right = dir;
@@ -70,19 +70,19 @@ public class Laser : DamageableTrapBase, IDamageable
     {
         while (true)
         {
-            box.enabled = false;
+            _box.enabled = false;
             ShowLineRenderer(_warningLine, true);
             ShowLineRenderer(_laserLine, false);
 
             yield return _warningDur;
 
-            box.enabled = true;
+            _box.enabled = true;
             ShowLineRenderer(_warningLine, false);
             ShowLineRenderer(_laserLine, true);
 
             yield return _fireDur;
 
-            box.enabled = false;
+            _box.enabled = false;
             ShowLineRenderer(_laserLine, false);
 
             yield return _cool;

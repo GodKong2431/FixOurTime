@@ -51,7 +51,7 @@ public class DestroyArea : MonoBehaviour
             return;
 
         if(other.GetComponent<ItemObject>())
-            _moveSpeed *= 2;
+            _moveSpeed *= 20;
 
         if (other.TryGetComponent(out Player player))
         {
