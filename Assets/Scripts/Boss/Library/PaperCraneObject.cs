@@ -106,7 +106,14 @@ public class PaperCraneObject : MonoBehaviour, IDamageable
 
         return centerPos + new Vector3(facingDir * _frontOffset, _addHeight, 0);
     }
-
+    private void OnDestroy()
+    {
+        if (_target != null)
+        {
+            Player player = _target.GetComponent<Player>();
+            player.Unbind();
+        }
+    }
     private IEnumerator BindPlayerRoutine(GameObject playerObj)
     {
         _isChasing = false;
@@ -157,6 +164,8 @@ public class PaperCraneObject : MonoBehaviour, IDamageable
         }
 
         Destroy(gameObject);
+
+
     }
     #endregion
 }
