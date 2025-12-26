@@ -18,7 +18,7 @@ public class QuitGameButton : MonoBehaviour
 
     public void QuitClick()
     {
-        _quitGameButton?.Invoke();
+        Application.Quit();
     }
     void Start()
     {
