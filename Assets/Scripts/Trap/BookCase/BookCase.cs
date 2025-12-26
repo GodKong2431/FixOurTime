@@ -30,11 +30,11 @@ public class BookCase : MonoBehaviour
     public Rigidbody2D Rb { get; private set; }
     public Collider2D Col {  get; private set; }
     public Vector2 StartPos {  get; private set; }
-    public float BookCaseBotton { get; private set; }
+    public float BookCaseBottom { get; private set; }
     public bool IsLeft { get; private set; }
 
 
-    public Vector2 Dir() =>new Vector2( IsLeft ? Col.bounds.max.x : Col.bounds.min.x, BookCaseBotton);
+    public Vector2 Dir() =>new Vector2( IsLeft ? Col.bounds.max.x : Col.bounds.min.x, BookCaseBottom);
     public Vector3 MoveDir(bool Re) => (Re ? IsLeft : !IsLeft) ? Vector3.right : Vector3.left;
 
 
@@ -44,21 +44,15 @@ public class BookCase : MonoBehaviour
         Rb = GetComponent<Rigidbody2D>();
         Col = GetComponent<BoxCollider2D>();
         StartPos = transform.position;
-        BookCaseBotton = Col.bounds.min.y;
+        BookCaseBottom = Col.bounds.min.y;
         IsLeft = CheckPos();
         SetState(new BookCaseIdleState());
-    }
-
-    private void Start()
-    {
     }
 
     private void Update()
     {
         _bookCaseState?.Execute(this);
     }
-
-    
 
     public void SetState(IState<BookCase> newState)
     {
@@ -68,7 +62,7 @@ public class BookCase : MonoBehaviour
     }
     bool CheckPos()
     {
-        Vector2 origin = new Vector2( transform.position.x, BookCaseBotton);
+        Vector2 origin = new Vector2( transform.position.x, BookCaseBottom);
         RaycastHit2D hit = Physics2D.Raycast(origin,Vector2.down,1f,1 << 31);
 
         if(!hit)
