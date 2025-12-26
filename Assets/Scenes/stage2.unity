@@ -4489,6 +4489,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6894859525446076651, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6894859525446076651, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7379397506086796963, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -20723,6 +20731,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1362692478193546701, guid: e40ce7d4f07b8844991085eb2aaff939, type: 3}
+      propertyPath: m_Size.x
+      value: 14.850181
+      objectReference: {fileID: 0}
+    - target: {fileID: 1362692478193546701, guid: e40ce7d4f07b8844991085eb2aaff939, type: 3}
+      propertyPath: m_Size.y
+      value: 4.9788065
+      objectReference: {fileID: 0}
+    - target: {fileID: 1362692478193546701, guid: e40ce7d4f07b8844991085eb2aaff939, type: 3}
+      propertyPath: m_Offset.x
+      value: 2.0329843
+      objectReference: {fileID: 0}
+    - target: {fileID: 1362692478193546701, guid: e40ce7d4f07b8844991085eb2aaff939, type: 3}
+      propertyPath: m_Offset.y
+      value: 1.0762849
+      objectReference: {fileID: 0}
     - target: {fileID: 3103905565001957794, guid: e40ce7d4f07b8844991085eb2aaff939, type: 3}
       propertyPath: m_Name
       value: SavePoint
@@ -33294,6 +33318,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1362692478193546701, guid: e40ce7d4f07b8844991085eb2aaff939, type: 3}
+      propertyPath: m_Size.x
+      value: 31.94808
+      objectReference: {fileID: 0}
+    - target: {fileID: 1362692478193546701, guid: e40ce7d4f07b8844991085eb2aaff939, type: 3}
+      propertyPath: m_Size.y
+      value: 3.7133865
+      objectReference: {fileID: 0}
+    - target: {fileID: 1362692478193546701, guid: e40ce7d4f07b8844991085eb2aaff939, type: 3}
+      propertyPath: m_Offset.x
+      value: -2.44942
+      objectReference: {fileID: 0}
+    - target: {fileID: 1362692478193546701, guid: e40ce7d4f07b8844991085eb2aaff939, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.5912399
+      objectReference: {fileID: 0}
     - target: {fileID: 3103905565001957794, guid: e40ce7d4f07b8844991085eb2aaff939, type: 3}
       propertyPath: m_Name
       value: SavePoint (1)
@@ -66745,9 +66785,9 @@ SceneRoots:
   - {fileID: 476095897}
   - {fileID: 366163798}
   - {fileID: 1038315759}
-  - {fileID: 692500684}
   - {fileID: 133788230}
   - {fileID: 1278292803}
+  - {fileID: 692500684}
   - {fileID: 1081841163}
   - {fileID: 860501792}
   - {fileID: 1139551279}
