@@ -4,8 +4,8 @@ public class IdleState : IState<Player>
 {
     public void Enter(Player _player)
     {
-        _player.Anim.SetInteger(_player.animState, 0);
         _player.Anim.SetBool(_player.animFalling, false);
+        _player.Anim.SetInteger(_player.animState, 0);
 
         _player.SetPhysicsMaterial(false);
 

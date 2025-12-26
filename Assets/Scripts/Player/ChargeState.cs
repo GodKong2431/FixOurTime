@@ -6,6 +6,7 @@ public class ChargeState : IState<Player>
     {
         _player.SetPhysicsMaterial(false);
 
+        _player.Anim.SetBool(_player.animFalling, false);
         _player.Anim.SetInteger(_player.animState, 2);
 
         _player.CurrentChargeTime = 0;
@@ -59,7 +60,7 @@ public class ChargeState : IState<Player>
     {
         if (_player.IsGrounded)
         {
-            _player.SetState(new JumpState(false));
+            _player.SetState(new JumpState(false,_player.JumpDirX));
         }
     }
 }
