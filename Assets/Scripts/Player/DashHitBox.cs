@@ -17,8 +17,9 @@ public class DashHitBox : MonoBehaviour
             // 벽 혹은 적 레이어 체크
             bool isTarget = ((1 << other.gameObject.layer) & _player.AttackTargetLayer) != 0;
             bool isGround = ((1 << other.gameObject.layer) & LayerMask.GetMask("Ground")) != 0;
+            bool isWall = ((1 << other.gameObject.layer) & LayerMask.GetMask("Wall")) != 0;
 
-            if (isTarget || isGround)
+            if (isTarget || isGround || isWall)
             {
                 // 적이라면 데미지 처리 로직 추가 가능
                 if (isTarget)

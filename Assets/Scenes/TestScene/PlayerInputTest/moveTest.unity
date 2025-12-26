@@ -1152,7 +1152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
       propertyPath: _dashDistance
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7303901205914570929, guid: 399c980154248fc41b541233f493a29b, type: 3}
       propertyPath: m_LocalPosition.x
