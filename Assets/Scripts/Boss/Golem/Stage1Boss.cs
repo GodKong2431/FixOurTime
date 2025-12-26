@@ -78,6 +78,10 @@ public class Boss1Data : BossCommonData
     [Tooltip("세로 콘크리트 생성 위치 오프셋")]
     [SerializeField] private float _concreteSpawnOffsetV = -10.0f;
 
+    [Tooltip("주먹을 내지르기 전 뜸 들이는 시간")]
+    [SerializeField] private float _concreteAttackDelay = 0.5f; 
+    public float ConcreteAttackDelay => _concreteAttackDelay;   
+
 
     [Header("Weakness Pattern")]
     [Tooltip("약점이 노출되어 있는 최대 시간")]
