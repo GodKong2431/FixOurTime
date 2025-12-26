@@ -66,14 +66,14 @@ public class BossConcreteState : BossState
 
             // 2. 펀치 액션
 
-            // (1) 예비 동작 위치 계산 (목표 거리의 20%만 살짝 나옴)
-            Vector3 telegraphPos = Vector3.Lerp(startPos, targetPos, 0.4f);
+            // (1) 예비 동작 위치 계산
+            Vector3 telegraphPos = Vector3.Lerp(startPos, targetPos, 0.5f);
 
             // (2) 살짝 튀어나옴
             yield return _boss.StartCoroutine(_boss.MoveBossTo(currentFist, telegraphPos, 0.2f));
 
             // (3) 공격 전 딜레이
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(_boss.BossData.ConcreteAttackDelay);
 
             float punchSpeed = _boss.BossData.BossMoveDuration * 0.2f;
             yield return _boss.StartCoroutine(_boss.MoveBossTo(currentFist, targetPos, punchSpeed));
