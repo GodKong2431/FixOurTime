@@ -115,6 +115,7 @@ public class Player : MonoBehaviour,IDamageable,IBindable
     public readonly int animJump = Animator.StringToHash("DoJump");
     public readonly int animAttack = Animator.StringToHash("DoAttack");
     public readonly int animFalling = Animator.StringToHash("IsFalling");
+    public readonly int animHit = Animator.StringToHash("DoHit");
 
     //코루틴용 변수
     private Coroutine _activeCoroutine;
