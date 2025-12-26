@@ -15,6 +15,8 @@ public class HitState : IState<Player>
         //Debug.Log("히트 진입");
         _timer = 0f;
 
+        _player.Anim.SetTrigger(_player.animHit);
+
         _player.Rb.linearVelocity = Vector2.zero;
         _player.SetPhysicsMaterial(false);
 
@@ -28,6 +30,7 @@ public class HitState : IState<Player>
         _player.Spr.color = Color.red;
 
         _player.Rb.gravityScale = _player.AccelerationGravity;
+
     }
 
     public void Exit(Player _player)
@@ -35,6 +38,7 @@ public class HitState : IState<Player>
         //Debug.Log("히트 나감");
         _player.Spr.color = Color.white;
         _player.Rb.gravityScale = 1f;
+        _player.Anim.SetBool(_player.animFalling, false);
     }
 
     public void Execute(Player _player)
@@ -43,7 +47,7 @@ public class HitState : IState<Player>
 
         if(_timer >= _player.HitDuration)
         {
-
+            _player.Anim.SetBool(_player.animFalling, false);
             if (_player.IsGrounded)
             {
                 _player.Rb.linearVelocity = Vector2.zero;

@@ -6,7 +6,7 @@ public class MoveState : IState<Player>
     public void Enter(Player _player)
     {
         _player.SetPhysicsMaterial(false);
-
+        _player.Anim.SetBool(_player.animFalling, false);
         _player.Anim.SetInteger(_player.animState, 1);
     }
 
@@ -17,7 +17,7 @@ public class MoveState : IState<Player>
 
     public void Execute(Player _player)
     {
-        if (!_player.IsGrounded)
+        if (!_player.IsGrounded && _player.Rb.linearVelocity.y < -0.1f)
         {
             _player.SetState(new FallState());
             return;

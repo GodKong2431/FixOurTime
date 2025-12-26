@@ -104,6 +104,11 @@ public class Player : MonoBehaviour,IDamageable,IBindable
     [SerializeField] Button _resumeButton;
     bool _isPaused = false;
 
+    [Header("바인드 확인")]
+    bool _isBinded = false;
+    private Coroutine _bindCoroutine;
+    private float _currentMoveSpeed;
+
     Rigidbody2D _rb;
     SpriteRenderer _spr;
     Animator _anim;
@@ -115,11 +120,7 @@ public class Player : MonoBehaviour,IDamageable,IBindable
     public readonly int animJump = Animator.StringToHash("DoJump");
     public readonly int animAttack = Animator.StringToHash("DoAttack");
     public readonly int animFalling = Animator.StringToHash("IsFalling");
-
-    //코루틴용 변수
-    private Coroutine _activeCoroutine;
-    //현재속도 저장용 변수
-    private float _currentMoveSpeed;
+    public readonly int animHit = Animator.StringToHash("DoHit");
 
     //프로퍼티
     public int AirJumpCount => _airJumpCount;
@@ -208,6 +209,7 @@ public class Player : MonoBehaviour,IDamageable,IBindable
 
         if (_isGrounded)
         {
+            _anim.SetBool(animFalling, false);
             // 땅에 닿으면 무한 점프 잠금 해제
             _isInfiniteJumpLocked = false;
             _currentAirJump = _airJumpCount;
@@ -222,6 +224,7 @@ public class Player : MonoBehaviour,IDamageable,IBindable
         _currentState?.Exit(this);
         _currentState = newState;
         _currentState.Enter(this);
+        _currentState.Execute(this);
     }
     public void OnPause(InputAction.CallbackContext ctx)
     {
@@ -270,14 +273,9 @@ public class Player : MonoBehaviour,IDamageable,IBindable
     }
     public void OnJump(InputAction.CallbackContext ctx)
     {
-        if (MoveSpeed <= 0f)
-        {
-            return;
-        }
-        if (_currentState is HitState || _currentState is DeadState)
-        {
-            return;
-        }
+        if (_isBinded || MoveSpeed <= 0f || _currentState is HitState || _currentState is DeadState) return;
+
+        if (_currentState is AttackState) return;
 
         //공중에서 점프입력 들어왔을때 2단점프 시도
         if (ctx.started && (_currentState is FallState || _currentState is JumpState))
@@ -289,7 +287,7 @@ public class Player : MonoBehaviour,IDamageable,IBindable
             if ((_currentAirJump > 0 && _isAirJump && _isDoubleJumpEnabled) || canInfiniteJump)
             {
                 _jumpDirX = _moveInput.x;
-                SetState(new JumpState(true)); // true는 공중 점프임을 나타냄
+                SetState(new JumpState(true,_moveInput.x)); // true는 공중 점프임을 나타냄
 
                 // 일반 공중 점프 횟수는 무한 점프가 아닐 때만 차감하게 할 수도 있습니다.
                 if (!canInfiniteJump) _currentAirJump--;
@@ -307,6 +305,7 @@ public class Player : MonoBehaviour,IDamageable,IBindable
             }
             else if (ctx.canceled)
             {
+                _isChargeStarted = false;
                 if (_currentState is ChargeState currentChargeState)
                 {
                     currentChargeState.ReleaseJump(this);
@@ -317,7 +316,9 @@ public class Player : MonoBehaviour,IDamageable,IBindable
     }
     public void OnAttack(InputAction.CallbackContext ctx)
     {
-        if(ctx.started && CanAttack)
+        if (_currentState is DeadState) return;
+
+        if (ctx.started && CanAttack)
         {
             //공격 허용 안하는 상태들
             bool _isAttackPrevent = _currentState is HitState ||
@@ -367,7 +368,9 @@ public class Player : MonoBehaviour,IDamageable,IBindable
 
     public void OnDashAttack(InputAction.CallbackContext ctx)
     {
-        if(ctx.started && _isDashAttackEnabled && CanAttack)
+        if (_currentState is DeadState) return;
+
+        if (ctx.started && _isDashAttackEnabled && CanAttack)
         {
             if(_currentState is JumpState ||  _currentState is FallState)
             {
@@ -689,24 +692,45 @@ public class Player : MonoBehaviour,IDamageable,IBindable
     }
     public void SetBind(float duration)
     {
-        StartCoroutine(BindCoroutine(duration));
+        //이미 바인드 중이면 기존코루틴 멈춰서 지속시간 초기화
+        if (_bindCoroutine != null)
+        {
+            StopCoroutine(_bindCoroutine);
+        }
+        if (_currentState is ChargeState)
+        {
+            _isChargeStarted = false;
+            SetState(new IdleState());
+        }
+        _bindCoroutine = StartCoroutine(BindCoroutine(duration));
     }
     public void Unbind()
     {
-        MoveSpeed = _currentMoveSpeed;
+        if (_bindCoroutine != null)
+        {
+            StopCoroutine(_bindCoroutine);
+            _bindCoroutine = null;
+        }
+        ResetMoveSpeed();
     }
-
+    private void ResetMoveSpeed()
+    {
+        _isBinded = false;
+        _isChargeStarted = false;
+        _moveSpeed = 5f;
+    }
     private IEnumerator BindCoroutine(float duration)
     {
-        //원래 이속값 저장
-        _currentMoveSpeed = MoveSpeed;
+        _isBinded = true;
 
         MoveSpeed = 0f;
-        
-        _rb.linearVelocity = new Vector2(0, 0);
+
+        _rb.linearVelocity = Vector2.zero;
 
         yield return new WaitForSeconds(duration);
 
-        MoveSpeed = _currentMoveSpeed;
+        ResetMoveSpeed();
+
+        _bindCoroutine = null;
     }
 }

@@ -106,8 +106,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c15343a921accd54a9878f2dcd40a491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PaperCrane
-  _trapDamage: 20
-  _knockbackForce: 7
+  _trapDamage: 10
+  _knockbackForce: 2
   _invincibleTime: 0.5
   _Speed: 5
 --- !u!58 &4003802282006712135

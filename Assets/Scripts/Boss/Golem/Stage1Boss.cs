@@ -78,6 +78,10 @@ public class Boss1Data : BossCommonData
     [Tooltip("세로 콘크리트 생성 위치 오프셋")]
     [SerializeField] private float _concreteSpawnOffsetV = -10.0f;
 
+    [Tooltip("주먹을 내지르기 전 뜸 들이는 시간")]
+    [SerializeField] private float _concreteAttackDelay = 0.5f; 
+    public float ConcreteAttackDelay => _concreteAttackDelay;   
+
 
     [Header("Weakness Pattern")]
     [Tooltip("약점이 노출되어 있는 최대 시간")]
@@ -136,9 +140,10 @@ public class Stage1Boss : BossBase
     public Boss1Data BossData => _bossData;
 
     [Header("Objects")]
+    [SerializeField] private Transform _introBodyObject;
     [SerializeField] private Transform _centerPoint;
-    [SerializeField] private Transform _wallBossObject;
-    [SerializeField] private Transform _floorBossObject;
+    [SerializeField] private Transform _wallFistObject;  // 벽에서 나오는 주먹
+    [SerializeField] private Transform _floorFistObject; // 바닥에서 나오는 주먹
     [SerializeField] private GameObject _weaknessObject;
 
     [Header("Prefabs")]
@@ -152,11 +157,14 @@ public class Stage1Boss : BossBase
 
     private Vector3 _originWallPos;
     private Vector3 _originFloorPos;
+    private Vector3 _introOriginPos;
 
     // 외부(State) 접근용 프로퍼티
+    public bool IsActivated => _isActivated;
     public Transform CenterPoint => _centerPoint;
-    public Transform WallBossObject => _wallBossObject;
-    public Transform FloorBossObject => _floorBossObject;
+    public Transform IntroBodyObject => _introBodyObject;
+    public Transform WallFistObject => _wallFistObject;
+    public Transform FloorFistObject => _floorFistObject;
     public GameObject WeaknessObject => _weaknessObject;
     public GameObject ScrapPrefab => _scrapPrefab;
     public GameObject ConcreteHPrefab => _concreteHPrefab;
@@ -168,13 +176,25 @@ public class Stage1Boss : BossBase
         _bossMaxHp = _bossData.BossMaxHp;
         base.Start();
 
-        if (_wallBossObject) _originWallPos = _wallBossObject.position;
-        if (_floorBossObject) _originFloorPos = _floorBossObject.position;
-
-        // 초기화
-        if (_weaknessObject) _weaknessObject.SetActive(false);
-        if (_wallBossObject) _wallBossObject.gameObject.SetActive(false);
-        if (_floorBossObject) _floorBossObject.gameObject.SetActive(false);
+        if (_introBodyObject)
+        {
+            _introOriginPos = _introBodyObject.position;
+            _introBodyObject.gameObject.SetActive(false);
+        }
+        if (_wallFistObject)
+        {
+            _originWallPos = _wallFistObject.position; // 기존 변수 활용
+            _wallFistObject.gameObject.SetActive(false);
+        }
+        if (_floorFistObject)
+        {
+            _originFloorPos = _floorFistObject.position; // 기존 변수 활용
+            _floorFistObject.gameObject.SetActive(false);
+        }
+        if (_weaknessObject) 
+        { 
+            _weaknessObject.SetActive(false);
+        }
     }
 
     public override void ActivateBoss()
@@ -204,15 +224,25 @@ public class Stage1Boss : BossBase
         yield return new WaitForSeconds(_bossData.IntroDelay);
 
         // === 인트로 ===
-        Vector3 hiddenPos = _wallBossObject.position;
-        Vector3 appearPos = hiddenPos + Vector3.left * _bossData.BossAppearDistance;
+        if (_introBodyObject)
+        {
+            _introBodyObject.gameObject.SetActive(true);
 
-        if (_wallBossObject) _wallBossObject.gameObject.SetActive(true);
-        if (_floorBossObject) _floorBossObject.gameObject.SetActive(true);
+            Vector3 hiddenPos = _introBodyObject.position; // 숨겨진 위치
+            Vector3 appearPos = hiddenPos + Vector3.left * _bossData.BossAppearDistance; // 튀어나올 위치
 
-        yield return StartCoroutine(MoveBossTo(_wallBossObject, appearPos, _bossData.BossMoveDuration));
-        yield return new WaitForSeconds(_bossData.PatternWaitTime);
-        yield return StartCoroutine(MoveBossTo(_wallBossObject, hiddenPos, _bossData.BossMoveDuration));
+            // 등장
+            yield return StartCoroutine(MoveBossWithShake(_introBodyObject, appearPos, 3.0f, 0.05f));
+
+            // 포효하거나 대기하는 연출 시간 
+            yield return new WaitForSeconds(3.0f);
+            
+            // 퇴장
+            yield return StartCoroutine(MoveBossWithShake(_introBodyObject, hiddenPos, 3.0f, 0.05f));
+            _introBodyObject.gameObject.SetActive(false);
+        }
+
+
 
         // === Phase 1 ===
         yield return ChangeState(new BossScrapState(this, 3));
@@ -258,6 +288,33 @@ public class Stage1Boss : BossBase
         }
     }
 
+    private IEnumerator MoveBossWithShake(Transform bossTr, Vector3 targetPos, float duration, float shakePower)
+    {
+        Vector3 startPos = bossTr.position;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+
+            // 1. 선형 이동 (기본 위치)
+            Vector3 basePos = Vector3.Lerp(startPos, targetPos, t);
+
+            // 2. 진동 (랜덤 오프셋)
+            // insideUnitCircle을 사용하여 X, Y축으로 흔들림 (Z축 유지)
+            Vector3 shakeOffset = (Vector3)(Random.insideUnitCircle * shakePower);
+
+            // 3. 최종 위치 적용
+            bossTr.position = basePos + shakeOffset;
+
+            yield return null;
+        }
+
+        // 이동 완료 후 정확한 위치로 고정
+        bossTr.position = targetPos;
+    }
+
     public void RegisterConcrete(ConcreteObject concrete)
     {
         _activeConcretes.Add(concrete);
@@ -282,15 +339,20 @@ public class Stage1Boss : BossBase
         // === 1스테이지 전용 초기화  ===
 
         // 1. 위치 원위치 및 비활성화
-        if (_wallBossObject)
+        if (_introBodyObject)
         {
-            _wallBossObject.gameObject.SetActive(false);
-            _wallBossObject.position = _originWallPos;
+            _introBodyObject.position = _introOriginPos;
+            _introBodyObject.gameObject.SetActive(false);
         }
-        if (_floorBossObject)
+        if (_wallFistObject)
         {
-            _floorBossObject.gameObject.SetActive(false);
-            _floorBossObject.position = _originFloorPos;
+            _wallFistObject.gameObject.SetActive(false);
+            _wallFistObject.position = _originWallPos;
+        }
+        if (_floorFistObject)
+        {
+            _floorFistObject.gameObject.SetActive(false);
+            _floorFistObject.position = _originFloorPos;
         }
         if (_weaknessObject)
         {
@@ -310,8 +372,8 @@ public class Stage1Boss : BossBase
     protected override void Die()
     {
         StopAllCoroutines();
-        if (_wallBossObject) _wallBossObject.gameObject.SetActive(false);
-        if (_floorBossObject) _floorBossObject.gameObject.SetActive(false);
+        if (_wallFistObject) _wallFistObject.gameObject.SetActive(false);
+        if (_floorFistObject) _floorFistObject.gameObject.SetActive(false);
 
         Debug.Log("Stage 1 보스 클리어!");
     }
