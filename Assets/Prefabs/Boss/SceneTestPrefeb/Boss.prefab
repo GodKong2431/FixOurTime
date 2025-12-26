@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 7246249300971532040}
   - component: {fileID: 3539703067255598185}
   - component: {fileID: 2132975945158498418}
-  - component: {fileID: 348507643711209827}
+  - component: {fileID: 517344263326052177}
   m_Layer: 0
   m_Name: SideBossModel
   m_TagString: Untagged
@@ -139,7 +139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79e905695bb93a144a8d7db5fc3e8490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossBody
---- !u!61 &348507643711209827
+  _boss: {fileID: 0}
+--- !u!61 &517344263326052177
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -183,7 +184,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.01, y: 3.87}
   m_EdgeRadius: 0
 --- !u!1 &3269221703071505787
 GameObject:
@@ -428,7 +429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6399fa6da3071aa4f8eddf775a65f9e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaknessObject
-  _bossController: {fileID: 0}
+  _bossBase: {fileID: 0}
 --- !u!1 &6280904258970619411
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,7 +503,7 @@ GameObject:
   - component: {fileID: 6781982583512702132}
   - component: {fileID: 4484819292346425713}
   - component: {fileID: 4661409143736925193}
-  - component: {fileID: 2632260940995364153}
+  - component: {fileID: 7907332428640376516}
   m_Layer: 0
   m_Name: BottomBossModel
   m_TagString: Untagged
@@ -595,7 +596,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79e905695bb93a144a8d7db5fc3e8490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossBody
---- !u!61 &2632260940995364153
+  _boss: {fileID: 0}
+--- !u!61 &7907332428640376516
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -639,5 +641,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.01, y: 3.87}
   m_EdgeRadius: 0

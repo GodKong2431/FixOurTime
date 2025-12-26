@@ -14,7 +14,15 @@ public class BossConcreteState : BossState
     }
 
     public override void Enter() { }
-    public override void Exit() { }
+    public override void Exit()
+    {
+        Stage1Boss boss = _baseBoss as Stage1Boss;
+        if (boss != null)
+        {
+            if (boss.WallFistObject) boss.WallFistObject.gameObject.SetActive(false);
+            if (boss.FloorFistObject) boss.FloorFistObject.gameObject.SetActive(false);
+        }
+    }
 
     public override IEnumerator Execute()
     {
@@ -25,75 +33,78 @@ public class BossConcreteState : BossState
         for (int i = 0; i < _count; i++)
         {
             bool isHorizontal = (i % 2 == 0);
-            Transform currentBoss = isHorizontal ? _boss.WallBossObject : _boss.FloorBossObject;
 
-            Vector3 startPos = currentBoss.position;
+            // 가로면 벽 주먹, 세로면 바닥 주먹 선택
+            Transform currentFist = isHorizontal ? _boss.WallFistObject : _boss.FloorFistObject;
+            currentFist.gameObject.SetActive(true);
+
+            Vector3 startPos = currentFist.position; // 초기 위치
             Vector3 targetPos;
-
-
             float moveDist = _boss.BossData.BossAppearDistance;
 
-            // 보스 등장 위치 설정
+            // 1. 등장 위치 설정 (플레이어 추적)
             if (isHorizontal)
             {
-                startPos.y = _boss.PlayerTarget.position.y;
-                currentBoss.position = startPos;
+                // 벽 주먹: Y축 추적
+                Vector3 currentPos = currentFist.position;
+                currentPos.y = _boss.PlayerTarget.position.y;
+                currentFist.position = currentPos;
+
+                startPos = currentPos; // 시작점 갱신
                 targetPos = startPos + Vector3.left * moveDist;
             }
             else
             {
-                startPos.x = _boss.PlayerTarget.position.x;
-                currentBoss.position = startPos;
-                targetPos = startPos + Vector3.up * (moveDist -2.0f);
+                // 바닥 주먹: X축 추적
+                Vector3 currentPos = currentFist.position;
+                currentPos.x = _boss.PlayerTarget.position.x;
+                currentFist.position = currentPos;
+
+                startPos = currentPos; // 시작점 갱신
+                targetPos = startPos + Vector3.up * (moveDist - 2.0f); // 높이 보정
             }
 
-            // 보스 등장 이동
-            yield return _boss.StartCoroutine(_boss.MoveBossTo(currentBoss, targetPos, _boss.BossData.BossMoveDuration));
-            
-            // 공격 전 대기
-            yield return new WaitForSeconds(_boss.BossData.PatternWaitTime);
+            // 2. 펀치 액션
 
-            // 2. 콘크리트 생성 위치 계산 
-            Vector3 spawnOffset = Vector3.zero;
+            // (1) 예비 동작 위치 계산 (목표 거리의 20%만 살짝 나옴)
+            Vector3 telegraphPos = Vector3.Lerp(startPos, targetPos, 0.4f);
 
+            // (2) 살짝 튀어나옴
+            yield return _boss.StartCoroutine(_boss.MoveBossTo(currentFist, telegraphPos, 0.2f));
 
-            if (isHorizontal)
-            {
-                spawnOffset = Vector3.left * _boss.BossData.ConcreteSpawnOffsetH;
-            }
-            else
-            {
-                spawnOffset = Vector3.up * _boss.BossData.ConcreteSpawnOffsetV;
-            }
+            // (3) 공격 전 딜레이
+            yield return new WaitForSeconds(0.5f);
 
-            Vector3 finalSpawnPos = currentBoss.position + spawnOffset;
+            float punchSpeed = _boss.BossData.BossMoveDuration * 0.2f;
+            yield return _boss.StartCoroutine(_boss.MoveBossTo(currentFist, targetPos, punchSpeed));
 
-            // 3. 콘크리트 생성 및 초기화
+            // 3. 콘크리트 생성 위치 계산
+            Vector3 spawnOffset = isHorizontal
+                ? Vector3.left * _boss.BossData.ConcreteSpawnOffsetH
+                : Vector3.up * _boss.BossData.ConcreteSpawnOffsetV;
+
+            Vector3 finalSpawnPos = currentFist.position + spawnOffset;
+
+            // 4. 콘크리트 생성
             GameObject prefab = isHorizontal ? _boss.ConcreteHPrefab : _boss.ConcreteVPrefab;
-            GameObject concreteObj = Object.Instantiate(prefab, finalSpawnPos, Quaternion.identity);
+            Quaternion rotation = isHorizontal ? Quaternion.identity : Quaternion.Euler(0, 0, -90f);
 
-            //스크립트 가져오기
+            GameObject concreteObj = Object.Instantiate(prefab, finalSpawnPos, rotation);
             ConcreteObject concreteScript = concreteObj.GetComponent<ConcreteObject>();
 
-            // 데이터 전달 (속도, 유지시간 등)
-            concreteObj.GetComponent<ConcreteObject>().Initialize(
-                isHorizontal,
-                _boss.CenterPoint.position,
-                _boss.BossData
-            );
-
-            // 컨트롤러 명단에 등록
+            concreteScript.Initialize(isHorizontal, _boss.CenterPoint.position, _boss.BossData);
             _boss.RegisterConcrete(concreteScript);
 
             yield return new WaitForSeconds(_boss.BossData.ConcreteInterval);
 
-            yield return _boss.StartCoroutine(_boss.MoveBossTo(currentBoss, startPos, _boss.BossData.BossMoveDuration));
+            // 5. 주먹 회수
+            yield return _boss.StartCoroutine(_boss.MoveBossTo(currentFist, startPos, _boss.BossData.BossMoveDuration));
+            currentFist.gameObject.SetActive(false); // 사용 후 숨김
 
-            // 다음 패턴까지 대기
+            // 다음 패턴 대기
             yield return new WaitForSeconds(_boss.BossData.PatternWaitTime);
         }
 
-        // 모든 생성이 끝난 후, 회수 옵션이 켜져있으면 일괄 회수
         if (_isRetract)
         {
             _boss.RetractAllConcretes();

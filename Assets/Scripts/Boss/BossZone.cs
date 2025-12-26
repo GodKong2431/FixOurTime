@@ -17,6 +17,12 @@ public class BossZone : MonoBehaviour
     private float _stayTimer = 0f;
     private bool _isPlayerInside = false; // 플레이어가 안에 있는지 여부
 
+    private void OnEnable()
+    {
+        _stayTimer = 0f;
+        _isPlayerInside = false; // 켜질 때는 무조건 없는 걸로 간주
+    }
+
     private void Update()
     {
         // 물리 엔진 상태와 상관없이 매 프레임 검사
@@ -60,6 +66,7 @@ public class BossZone : MonoBehaviour
     public void ResetTrigger()
     {
         _stayTimer = 0f;
+        _isPlayerInside = false;
         gameObject.SetActive(true);
     }
 }

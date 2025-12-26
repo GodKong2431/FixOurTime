@@ -11,39 +11,52 @@ public class BossScrapState : BossState
     }
 
     public override void Enter() { }
-    public override void Exit() { }
-
+    public override void Exit()
+    {       
+        Stage1Boss boss = _baseBoss as Stage1Boss;
+        if (boss != null && boss.WallFistObject != null)
+            boss.WallFistObject.gameObject.SetActive(false);
+    }
     public override IEnumerator Execute()
     {
         Stage1Boss _boss = _baseBoss as Stage1Boss;
         if (_boss == null) yield break;
 
-        Transform currentBoss = _boss.WallBossObject;
+        Transform fist = _boss.WallFistObject;
+        fist.gameObject.SetActive(true);
 
         for (int i = 0; i < _count; i++)
         {
-            Vector3 startPos = currentBoss.position;
+            // 1. 위치 잡기 (플레이어 Y축 추적)
+            Vector3 startPos = fist.position; // 보통 벽 안쪽 숨겨진 위치
+            // X축은 고정(벽 안), Y축만 플레이어 따라감
             startPos.y = _boss.PlayerTarget.position.y;
-            currentBoss.position = startPos;
+            fist.position = startPos;
 
-            
-            Vector3 appearPos = startPos + Vector3.left * _boss.BossData.BossAppearDistance;
+            Vector3 punchPos = startPos + Vector3.left * _boss.BossData.BossAppearDistance;
 
-            // 1. 등장
-            yield return _boss.StartCoroutine(_boss.MoveBossTo(currentBoss, appearPos, _boss.BossData.BossMoveDuration));
+            // 2. 조준 
+            yield return new WaitForSeconds(_boss.BossData.ScrapAimDelay);
 
-            yield return new WaitForSeconds(_boss.BossData.ScrapAimDelay); // 조준 시간
+            // 3. 펀치
+            float punchSpeed = _boss.BossData.BossMoveDuration * 0.5f;
+            yield return _boss.StartCoroutine(_boss.MoveBossTo(fist, punchPos, punchSpeed));
 
-            // 2. 발사
-            GameObject scrap = Object.Instantiate(_boss.ScrapPrefab, currentBoss.position, Quaternion.identity);
+            // 4. 발사
+            float fireOffset = 2.0f;
+            Vector3 firePos = fist.position + (Vector3.left * fireOffset);
+
+            GameObject scrap = Object.Instantiate(_boss.ScrapPrefab, firePos, Quaternion.identity);
             scrap.GetComponent<ScrapObject>().Initialize(Vector3.left, _boss.BossData);
 
-            yield return new WaitForSeconds(_boss.BossData.ScrapFireDelay); // 발사 후 딜레이
+            yield return new WaitForSeconds(_boss.BossData.ScrapFireDelay);
 
-            // 3. 퇴장
-            yield return _boss.StartCoroutine(_boss.MoveBossTo(currentBoss, startPos, _boss.BossData.BossMoveDuration));
+            // 5. 회수
+            yield return _boss.StartCoroutine(_boss.MoveBossTo(fist, startPos, _boss.BossData.BossMoveDuration));
 
-            yield return new WaitForSeconds(_boss.BossData.ScrapCycleWaitTime); // 다음 발사 대기
+            yield return new WaitForSeconds(_boss.BossData.ScrapCycleWaitTime);
         }
+
+        fist.gameObject.SetActive(false);
     }
 }
