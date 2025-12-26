@@ -14,6 +14,7 @@ public class AttackState : IState<Player>
 
         //공격중 이동 못하게
         _player.Rb.linearVelocity = Vector2.zero;
+
     }
 
     public void Exit(Player _player)
