@@ -28,8 +28,6 @@ public class DevilTile : MonoBehaviour
         _moveDir = _dir == TileDir.Left ? Vector2.left : Vector2.right;
 
         _endPos = _startPos + _moveDir * _distance;
-
-        Move();
     }
 
     public void Move()
