@@ -5896,7 +5896,7 @@ PrefabInstance:
     - target: {fileID: 6493955315868154070, guid: d1ca0e87cc4b7864598ef5d095f5c01a, type: 3}
       propertyPath: _playerHpUI
       value: 
-      objectReference: {fileID: 2198655071580465835}
+      objectReference: {fileID: 83303104037676336}
     - target: {fileID: 9110122852796830231, guid: d1ca0e87cc4b7864598ef5d095f5c01a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.93572
@@ -24146,15 +24146,15 @@ PrefabInstance:
     - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
       propertyPath: _pausePanel
       value: 
-      objectReference: {fileID: 2658189413769393362}
+      objectReference: {fileID: 0}
     - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
       propertyPath: _pauseButton
       value: 
-      objectReference: {fileID: 7950623077513750461}
+      objectReference: {fileID: 0}
     - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
       propertyPath: _resumeButton
       value: 
-      objectReference: {fileID: 6924358157042173102}
+      objectReference: {fileID: 0}
     - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
       propertyPath: OnPlayerDead.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -32512,9 +32512,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
---- !u!114 &2198655071580465835 stripped
+--- !u!114 &83303104037676336 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 79308017078925541, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7211487524268046940, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
   m_PrefabInstance: {fileID: 83303104037676335}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -32523,33 +32523,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16f9b96eab61c4642ab429ac7bac9398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHpUI
---- !u!1 &2658189413769393362 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1521389514141589195, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
-  m_PrefabInstance: {fileID: 83303104037676335}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6924358157042173102 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 764003843936283214, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
-  m_PrefabInstance: {fileID: 83303104037676335}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
---- !u!114 &7950623077513750461 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3726766166764175811, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
-  m_PrefabInstance: {fileID: 83303104037676335}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
