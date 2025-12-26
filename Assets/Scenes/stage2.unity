@@ -14486,18 +14486,30 @@ PrefabInstance:
       objectReference: {fileID: 1255499986}
     - target: {fileID: 1476934364991690043, guid: 18b7c2da9728b8145b7d026fd577e14b, type: 3}
       propertyPath: OnBossZoneActivated.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1476934364991690043, guid: 18b7c2da9728b8145b7d026fd577e14b, type: 3}
       propertyPath: OnBossZoneActivated.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1476934364991690043, guid: 18b7c2da9728b8145b7d026fd577e14b, type: 3}
+      propertyPath: OnBossZoneActivated.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1476934364991690043, guid: 18b7c2da9728b8145b7d026fd577e14b, type: 3}
       propertyPath: OnBossZoneActivated.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1012108364}
     - target: {fileID: 1476934364991690043, guid: 18b7c2da9728b8145b7d026fd577e14b, type: 3}
+      propertyPath: OnBossZoneActivated.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 574372323}
+    - target: {fileID: 1476934364991690043, guid: 18b7c2da9728b8145b7d026fd577e14b, type: 3}
       propertyPath: OnBossZoneActivated.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1476934364991690043, guid: 18b7c2da9728b8145b7d026fd577e14b, type: 3}
+      propertyPath: OnBossZoneActivated.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1476934364991690043, guid: 18b7c2da9728b8145b7d026fd577e14b, type: 3}
@@ -14505,11 +14517,27 @@ PrefabInstance:
       value: StopAndClearSpawns
       objectReference: {fileID: 0}
     - target: {fileID: 1476934364991690043, guid: 18b7c2da9728b8145b7d026fd577e14b, type: 3}
+      propertyPath: OnBossZoneActivated.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 1476934364991690043, guid: 18b7c2da9728b8145b7d026fd577e14b, type: 3}
       propertyPath: OnBossZoneActivated.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: PaperCraneSpawner, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1476934364991690043, guid: 18b7c2da9728b8145b7d026fd577e14b, type: 3}
+      propertyPath: OnBossZoneActivated.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1476934364991690043, guid: 18b7c2da9728b8145b7d026fd577e14b, type: 3}
+      propertyPath: OnBossZoneActivated.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1476934364991690043, guid: 18b7c2da9728b8145b7d026fd577e14b, type: 3}
       propertyPath: OnBossZoneActivated.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1476934364991690043, guid: 18b7c2da9728b8145b7d026fd577e14b, type: 3}
+      propertyPath: OnBossZoneActivated.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2370957167332371213, guid: 18b7c2da9728b8145b7d026fd577e14b, type: 3}
@@ -14950,8 +14978,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineCamera
   Priority:
-    Enabled: 0
-    m_Value: 0
+    Enabled: 1
+    m_Value: 10
   OutputChannel: 1
   StandbyUpdate: 2
   m_StreamingVersion: 20241001
@@ -17806,7 +17834,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &574372324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17820,8 +17848,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineCamera
   Priority:
-    Enabled: 0
-    m_Value: 0
+    Enabled: 1
+    m_Value: 11
   OutputChannel: 1
   StandbyUpdate: 2
   m_StreamingVersion: 20241001
@@ -30780,7 +30808,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1383446662183809203, guid: 3085df4e48e32cd468a525d3b81d299a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7926591432957656165, guid: 3085df4e48e32cd468a525d3b81d299a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -49312,13 +49340,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: BookCase (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1092686124159025771, guid: e2df9b0689a06774c9303e0fa4466d5a, type: 3}
+      propertyPath: m_Layer
+      value: 29
+      objectReference: {fileID: 0}
     - target: {fileID: 4996361996812643629, guid: e2df9b0689a06774c9303e0fa4466d5a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.665
       objectReference: {fileID: 0}
     - target: {fileID: 4996361996812643629, guid: e2df9b0689a06774c9303e0fa4466d5a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 37.475
+      value: 37.51
       objectReference: {fileID: 0}
     - target: {fileID: 4996361996812643629, guid: e2df9b0689a06774c9303e0fa4466d5a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -49836,7 +49868,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 15
+  orthographic size: 9
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -49861,7 +49893,7 @@ Transform:
   m_GameObject: {fileID: 1607995765}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4, y: 66.75, z: -26.82727}
+  m_LocalPosition: {x: -4, y: -11.5, z: -26.82727}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -57116,13 +57148,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: BookCase
       objectReference: {fileID: 0}
+    - target: {fileID: 1092686124159025771, guid: e2df9b0689a06774c9303e0fa4466d5a, type: 3}
+      propertyPath: m_Layer
+      value: 29
+      objectReference: {fileID: 0}
     - target: {fileID: 4996361996812643629, guid: e2df9b0689a06774c9303e0fa4466d5a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -22.84
       objectReference: {fileID: 0}
     - target: {fileID: 4996361996812643629, guid: e2df9b0689a06774c9303e0fa4466d5a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.962
+      value: 10.979
       objectReference: {fileID: 0}
     - target: {fileID: 4996361996812643629, guid: e2df9b0689a06774c9303e0fa4466d5a, type: 3}
       propertyPath: m_LocalPosition.z
