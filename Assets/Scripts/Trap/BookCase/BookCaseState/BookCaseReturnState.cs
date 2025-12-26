@@ -4,12 +4,10 @@ public class BookCaseReturnState : IState<BookCase>
 {
     public void Enter(BookCase context)
     {
-        Debug.Log($"{this}¡¯¿‘");
     }
 
     public void Exit(BookCase context)
     {
-        Debug.Log($"{this}≈ª√‚");
     }
 
     public void Execute(BookCase context)

@@ -30810,6 +30810,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6144337690652856160, guid: 3085df4e48e32cd468a525d3b81d299a, type: 3}
+      propertyPath: _spawnDelay
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7926591432957656165, guid: 3085df4e48e32cd468a525d3b81d299a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -17.001
