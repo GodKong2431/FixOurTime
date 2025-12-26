@@ -70,7 +70,14 @@ public class BossConcreteState : BossState
 
             // 3. 콘크리트 생성 및 초기화
             GameObject prefab = isHorizontal ? _boss.ConcreteHPrefab : _boss.ConcreteVPrefab;
-            GameObject concreteObj = Object.Instantiate(prefab, finalSpawnPos, Quaternion.identity);
+
+            Quaternion rotation = Quaternion.identity;
+            if (!isHorizontal)
+            {
+                rotation = Quaternion.Euler(0, 0, -90f);
+            }
+
+            GameObject concreteObj = Object.Instantiate(prefab, finalSpawnPos, rotation);
 
             //스크립트 가져오기
             ConcreteObject concreteScript = concreteObj.GetComponent<ConcreteObject>();
