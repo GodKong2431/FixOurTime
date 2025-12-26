@@ -1,0 +1,293 @@
+fileFormatVersion: 2
+guid: a29821d2b8516bf4db79780c7b6862ee
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1191201213992198359
+    second: FixOurTime_3StageBG (3)_0
+  - first:
+      213: 3506296222626455341
+    second: FixOurTime_3StageBG (3)_1
+  - first:
+      213: -6758696089945303947
+    second: FixOurTime_3StageBG (3)_2
+  - first:
+      213: 2294007441683144538
+    second: FixOurTime_3StageBG (3)_3
+  - first:
+      213: 8446082068422358258
+    second: FixOurTime_3StageBG (3)_4
+  - first:
+      213: -6906599829062823109
+    second: FixOurTime_3StageBG (3)_5
+  - first:
+      213: -638891623566631838
+    second: FixOurTime_3StageBG (3)_6
+  - first:
+      213: 3148106889355611572
+    second: FixOurTime_3StageBG (3)_7
+  - first:
+      213: -3504539102898234441
+    second: FixOurTime_3StageBG (3)_8
+  - first:
+      213: 9101252611251198493
+    second: FixOurTime_3StageBG (3)_9
+  - first:
+      213: 3411599485679155027
+    second: FixOurTime_3StageBG (3)_10
+  - first:
+      213: 3223851369938889321
+    second: FixOurTime_3StageBG (3)_11
+  - first:
+      213: -2905509734040738291
+    second: FixOurTime_3StageBG (3)_12
+  - first:
+      213: -4407014519453838270
+    second: FixOurTime_3StageBG (3)_13
+  - first:
+      213: 7508418643083650375
+    second: FixOurTime_3StageBG (3)_14
+  - first:
+      213: -8040985447764446463
+    second: FixOurTime_3StageBG (3)_15
+  - first:
+      213: -6981194346525894727
+    second: FixOurTime_3StageBG (3)_16
+  - first:
+      213: 836533308223154851
+    second: FixOurTime_3StageBG (3)_17
+  - first:
+      213: -6005060357916440521
+    second: FixOurTime_3StageBG (3)_18
+  - first:
+      213: 1751413461482332707
+    second: FixOurTime_3StageBG (3)_19
+  - first:
+      213: -7192491656553848086
+    second: FixOurTime_3StageBG (3)_20
+  - first:
+      213: -3021824173879859942
+    second: FixOurTime_3StageBG (3)_21
+  - first:
+      213: 1922567948745298242
+    second: FixOurTime_3StageBG (3)_22
+  - first:
+      213: -7150804557616314762
+    second: FixOurTime_3StageBG (3)_23
+  - first:
+      213: 8058339613481601635
+    second: FixOurTime_3StageBG (3)_24
+  - first:
+      213: -2503898233295834919
+    second: FixOurTime_3StageBG (3)_25
+  - first:
+      213: -7471970511438294791
+    second: FixOurTime_3StageBG (3)_26
+  - first:
+      213: -5072515915756604179
+    second: FixOurTime_3StageBG (3)_27
+  - first:
+      213: -3099451788993215067
+    second: FixOurTime_3StageBG (3)_28
+  - first:
+      213: -6124210925122706967
+    second: FixOurTime_3StageBG (3)_29
+  - first:
+      213: -1519927759363988439
+    second: FixOurTime_3StageBG (3)_30
+  - first:
+      213: 8016653336676148126
+    second: FixOurTime_3StageBG (3)_31
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: FixOurTime_3StageBG (3)_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 714
+        height: 1030
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d0e400613ff78010800000000000000
+      internalID: 1191201213992198359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 79b9a07ed618a8d448605332d4b21a8c
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      FixOurTime_3StageBG (3)_0: 1191201213992198359
+      FixOurTime_3StageBG (3)_1: 3506296222626455341
+      FixOurTime_3StageBG (3)_10: 3411599485679155027
+      FixOurTime_3StageBG (3)_11: 3223851369938889321
+      FixOurTime_3StageBG (3)_12: -2905509734040738291
+      FixOurTime_3StageBG (3)_13: -4407014519453838270
+      FixOurTime_3StageBG (3)_14: 7508418643083650375
+      FixOurTime_3StageBG (3)_15: -8040985447764446463
+      FixOurTime_3StageBG (3)_16: -6981194346525894727
+      FixOurTime_3StageBG (3)_17: 836533308223154851
+      FixOurTime_3StageBG (3)_18: -6005060357916440521
+      FixOurTime_3StageBG (3)_19: 1751413461482332707
+      FixOurTime_3StageBG (3)_2: -6758696089945303947
+      FixOurTime_3StageBG (3)_20: -7192491656553848086
+      FixOurTime_3StageBG (3)_21: -3021824173879859942
+      FixOurTime_3StageBG (3)_22: 1922567948745298242
+      FixOurTime_3StageBG (3)_23: -7150804557616314762
+      FixOurTime_3StageBG (3)_24: 8058339613481601635
+      FixOurTime_3StageBG (3)_25: -2503898233295834919
+      FixOurTime_3StageBG (3)_26: -7471970511438294791
+      FixOurTime_3StageBG (3)_27: -5072515915756604179
+      FixOurTime_3StageBG (3)_28: -3099451788993215067
+      FixOurTime_3StageBG (3)_29: -6124210925122706967
+      FixOurTime_3StageBG (3)_3: 2294007441683144538
+      FixOurTime_3StageBG (3)_30: -1519927759363988439
+      FixOurTime_3StageBG (3)_31: 8016653336676148126
+      FixOurTime_3StageBG (3)_4: 8446082068422358258
+      FixOurTime_3StageBG (3)_5: -6906599829062823109
+      FixOurTime_3StageBG (3)_6: -638891623566631838
+      FixOurTime_3StageBG (3)_7: 3148106889355611572
+      FixOurTime_3StageBG (3)_8: -3504539102898234441
+      FixOurTime_3StageBG (3)_9: 9101252611251198493
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

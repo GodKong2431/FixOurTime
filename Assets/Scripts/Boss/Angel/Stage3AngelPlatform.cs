@@ -49,8 +49,6 @@ public class Stage3AngelPlatform : MonoBehaviour
     {
         if(_moveOn)
             _moveCoroutine = StartCoroutine(MovePlatform());
-
-        OutPlatform();
     }
 
     void LateUpdate()
