@@ -139,8 +139,9 @@ public class DevilHandController : MonoBehaviour
         yield return new WaitUntil(() => !_leftHand.IsBusy && !_rightHand.IsBusy);
     }
 
-    private void OnDisable()
+    public void ForceResetHands()
     {
+        StopAllCoroutines();
         if (_leftHand != null) _leftHand.ForceReturn();
         if (_rightHand != null) _rightHand.ForceReturn();
     }

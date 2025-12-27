@@ -14,7 +14,8 @@ public class FeatherSpawner : MonoBehaviour
 
     [Header("ÄðÅ¸ÀÓ")]
     [SerializeField] private float _coolTime;
-
+   
+    private Coroutine _spawnCoroutine;
     private WaitForSeconds _cool;
 
     private void Awake()
@@ -22,12 +23,15 @@ public class FeatherSpawner : MonoBehaviour
         _cool = new WaitForSeconds(_coolTime);
     }
 
-    private void Start()
+    public void StartSpawn()
     {
-        StartCoroutine(SpawnFeather());
+        if (_spawnCoroutine != null) StopCoroutine(_spawnCoroutine);
+        _spawnCoroutine = StartCoroutine(SpawnFeather());
     }
-
-
+    public void StopSpawn()
+    {
+        if (_spawnCoroutine != null) StopCoroutine(_spawnCoroutine);
+    }
     public IEnumerator SpawnFeather()
     {
         if (_featherCount <= 1) yield break;

@@ -158,15 +158,27 @@ public class Stage3AngelPlatform : MonoBehaviour
     IEnumerator OutMoveCoroutine()
     {
         Camera cam = Camera.main;
+        if (cam == null) yield break;
+
+        float dir = transform.position.x >= cam.transform.position.x ? 1f : -1f;
 
         while (true)
         {
-            float cameraX = cam.transform.position.x;
-            float dir = transform.position.x >= cameraX ? 1f : -1f;
-
             transform.position += Vector3.right * dir * 5 * Time.deltaTime;
 
+            if (Mathf.Abs(transform.position.x - cam.transform.position.x) > 30f)
+            {
+                gameObject.SetActive(false); // 비활성화
+                yield break;
+            }
             yield return null;
         }
+    }
+
+    public void ResetPlatform()
+    {
+        StopAllCoroutines();
+        gameObject.SetActive(true); // 다시 켜기
+        transform.position = _initPos; // 초기 위치로 이동
     }
 }

@@ -35,6 +35,12 @@ public class BossZone : MonoBehaviour
                 if (_boss != null)
                 {
                     Debug.Log("보스존 진입 확인: 보스 등장!");
+
+
+                    if (!_boss.gameObject.activeSelf)
+                    {
+                        _boss.gameObject.SetActive(true);
+                    }
                     _boss.ActivateBoss();
 
                     OnBossZoneActivated?.Invoke();

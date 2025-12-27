@@ -52,6 +52,24 @@ public class DevilBlackHoleController : MonoBehaviour
         currentBlackHole = null;
     }
 
+
+    public void StopBlackHole()
+    {
+        StopAllCoroutines(); // 생성 대기 중인 코루틴 정지
+
+        // 현재 나와있는 블랙홀이 있다면 파괴
+        if (currentBlackHole != null)
+        {
+            Destroy(currentBlackHole.gameObject);
+            currentBlackHole = null;
+        }
+
+        // 코어 상태 초기화
+        if (_devilCore != null)
+        {
+            _devilCore.SetBlackHoleActive(false);
+        }
+    }
     private void OnDisable()
     {
         // 보스가 죽으면 소환해둔 블랙홀도 같이 삭제

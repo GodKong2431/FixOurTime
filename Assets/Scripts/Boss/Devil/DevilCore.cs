@@ -8,6 +8,7 @@ public class DevilCore : MonoBehaviour, IDamageable
 
     private bool _blackHoleActive;
     private bool _damageRunning;
+    private bool _isPlayerInside;
 
     private void Awake()
     {
@@ -21,15 +22,21 @@ public class DevilCore : MonoBehaviour, IDamageable
     public void SetBlackHoleActive(bool active)
     {
         _blackHoleActive = active;
+        //보스가 죽으면 데미지 코루틴 정지
+        //if (!active) StopAllCoroutines(); _damageRunning = false;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!_blackHoleActive) return;
         if (!other.CompareTag("Player")) return;
+        _isPlayerInside = true;
         if (other.TryGetComponent(out Player player))
         {
-            StartCoroutine(CoreDamageCoroutine(player));
+            if (!_damageRunning)
+            {
+                StartCoroutine(CoreDamageCoroutine(player));
+            }
         }
     }
 
@@ -37,9 +44,18 @@ public class DevilCore : MonoBehaviour, IDamageable
     {
         if (!_blackHoleActive || _damageRunning) return;
         if (!other.CompareTag("Player")) return;
+        _isPlayerInside = true;
         if (other.TryGetComponent(out Player player))
         {
             StartCoroutine(CoreDamageCoroutine(player));
+        }
+    }
+    // 플레이어가 범위 밖으로 나가면 데미지 중단
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            _isPlayerInside = false; // 나감 표시
         }
     }
 
@@ -60,6 +76,9 @@ public class DevilCore : MonoBehaviour, IDamageable
 
         for (int i = 0; i < ticks; i++)
         {
+            if (!_blackHoleActive) break;
+
+            if (!_isPlayerInside) break;
             player.TakeDamage(damage, 0, transform.position);
             yield return new WaitForSeconds(interval);
         }

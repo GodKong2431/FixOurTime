@@ -40,6 +40,8 @@ public class DevilHand : DamageableTrapBase
     /// </summary>
     public void BeginPattern(Vector2 startOffset)
     {
+
+        gameObject.SetActive(true);
         _startOffset = startOffset;
         _hitGround = false;
 
@@ -204,14 +206,26 @@ public class DevilHand : DamageableTrapBase
     public void ForceReturn()
     {
         StopCurrentCoroutine();
+        // 부모가 존재할 때만 복귀 시도
         if (_bossTransform != null)
         {
-            transform.SetParent(_bossTransform);
+            if (_bossTransform.gameObject.activeInHierarchy)
+            {
+                transform.SetParent(_bossTransform);
+            }
+            else
+            {
+                
+            }
+
+            // 위치 원상복구
             transform.localPosition = _returnPos;
+            transform.localRotation = Quaternion.identity;
         }
-        if (_bossTransform != null && !_bossTransform.gameObject.activeInHierarchy)
-        {
-            gameObject.SetActive(false);
-        }
+
+        // 3. 상태값 초기화
+        _hitGround = false;
+
+        gameObject.SetActive(false); 
     }
 }

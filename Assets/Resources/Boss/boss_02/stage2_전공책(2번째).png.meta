@@ -146,7 +146,7 @@ TextureImporter:
         width: 224
         height: 226
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -168,7 +168,7 @@ TextureImporter:
         width: 354
         height: 244
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -182,28 +182,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "stage2_\uC804\uACF5\uCC45(2\uBC88\uC9F8)_2"
-      rect:
-        serializedVersion: 2
-        x: 143
-        y: 179
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6af299471a985ae80800000000000000
-      internalID: -8167971022627590234
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: "stage2_\uC804\uACF5\uCC45(2\uBC88\uC9F8)_3"
       rect:
         serializedVersion: 2
@@ -212,7 +190,7 @@ TextureImporter:
         width: 204
         height: 268
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -234,7 +212,7 @@ TextureImporter:
         width: 366
         height: 257
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -251,7 +229,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 4c7ed92594b548141b74b501acb4e0bc
     internalID: 0
     vertices: []
     indices: 
