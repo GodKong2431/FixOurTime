@@ -1,8 +1,11 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.Pool;
 
-public class DestroyArea : MonoBehaviour
+[RequireComponent(typeof(Collider2D))]
+public class TilePixelCollapse : MonoBehaviour
 {
     [Header("타일맵")]
     public Tilemap _tilemap;
@@ -22,20 +25,58 @@ public class DestroyArea : MonoBehaviour
     [Header("생존 시간")]
     public float _lifeTime = 2f;
 
-    private HashSet<Vector3Int> collapsedCells = new HashSet<Vector3Int>();
-    private Collider2D col;
+    [Header("풀 설정")]
+    public int _defaultPoolSize = 50;
+    public int _maxPoolSize = 200;
+
+    private HashSet<Vector3Int> _collapsedCells = new HashSet<Vector3Int>();
+    private Collider2D _col;
+
+    private ObjectPool<GameObject> _piecePool;
 
     void Awake()
     {
-        col = GetComponent<Collider2D>();
-        col.isTrigger = true;
+        _col = GetComponent<Collider2D>();
+        _col.isTrigger = true;
+
+        _piecePool = new ObjectPool<GameObject>(
+            CreatePixel,
+            OnGetPixel,
+            OnReleasePixel,
+            OnDestroyPixel,
+            false,
+            _defaultPoolSize,
+            _maxPoolSize
+        );
+    }
+
+    GameObject CreatePixel()
+    {
+        GameObject obj = Instantiate(_piecePrefab);
+        obj.SetActive(false);
+        return obj;
+    }
+
+    void OnGetPixel(GameObject obj)
+    {
+        obj.SetActive(true);
+    }
+
+    void OnReleasePixel(GameObject obj)
+    {
+        obj.SetActive(false);
+    }
+
+    void OnDestroyPixel(GameObject obj)
+    {
+        Destroy(obj);
     }
 
     void OnTriggerStay2D(Collider2D other)
     {
         if (!other.CompareTag("Tilemap")) return;
 
-        Bounds bounds = col.bounds;
+        Bounds bounds = _col.bounds;
         Vector3Int min = _tilemap.WorldToCell(bounds.min);
         Vector3Int max = _tilemap.WorldToCell(bounds.max);
 
@@ -46,22 +87,26 @@ public class DestroyArea : MonoBehaviour
                 Vector3Int cell = new Vector3Int(x, y, 0);
 
                 if (!_tilemap.HasTile(cell)) continue;
-                if (collapsedCells.Contains(cell)) continue;
+                if (_collapsedCells.Contains(cell)) continue;
 
                 Collapse(cell);
             }
         }
     }
 
+    private void FixedUpdate()
+    {
+        transform.position += Vector3.up * 0.5f * Time.fixedDeltaTime;
+    }
+
     void Collapse(Vector3Int cell)
     {
-        collapsedCells.Add(cell);
+        _collapsedCells.Add(cell);
 
         Tile tile = _tilemap.GetTile(cell) as Tile;
         if (tile == null) return;
 
         Vector3 center = _tilemap.GetCellCenterWorld(cell);
-
         Color finalColor = SpriteAverageColorCache.GetAverageColor(tile.sprite);
 
         _tilemap.SetTile(cell, null);
@@ -75,7 +120,8 @@ public class DestroyArea : MonoBehaviour
 
     void SpawnPixel(Vector3 pos, Color color)
     {
-        GameObject p = Instantiate(_piecePrefab);
+        GameObject p = _piecePool.Get();
+
         p.transform.position = pos;
         p.transform.localScale = Vector3.one * _pieceSize;
 
@@ -85,6 +131,7 @@ public class DestroyArea : MonoBehaviour
 
         Rigidbody2D rb = p.GetComponent<Rigidbody2D>();
         rb.linearVelocity = Vector2.zero;
+        rb.angularVelocity = 0f;
 
         Vector2 dir = new Vector2(
             Random.Range(-0.5f, 0.5f),
@@ -94,6 +141,12 @@ public class DestroyArea : MonoBehaviour
         rb.AddForce(dir * _force, ForceMode2D.Impulse);
         rb.AddTorque(Random.Range(-3f, 3f));
 
-        Destroy(p, _lifeTime);
+        StartCoroutine(ReleaseAfterTime(p, _lifeTime));
+    }
+
+    IEnumerator ReleaseAfterTime(GameObject obj, float time)
+    {
+        yield return new WaitForSeconds(time);
+        _piecePool.Release(obj);
     }
 }

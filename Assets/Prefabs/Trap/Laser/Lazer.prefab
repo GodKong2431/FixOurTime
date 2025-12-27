@@ -61,7 +61,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: 8783455983e34b54e8d50a6779a48d8f, type: 3}
+  - {fileID: 2100000, guid: 9bb0d0dd77626664ca8365a71e38a3e5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -116,6 +116,9 @@ MonoBehaviour:
   _firePoint: {fileID: 207615410107145364}
   _warningLine: {fileID: 9045707398622379404}
   _laserLine: {fileID: 6293473541359672952}
+  _permanentOutlineColor: {r: 1, g: 0, b: 0, a: 1}
+  _outlineIntensity: 2
+  _outlineWidth: 0.02
 --- !u!61 &8585446003811918402
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -490,7 +493,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 16.56, y: 3.73}
+  m_Offset: {x: -1.0633627, y: 3.3781443}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -500,5 +503,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.3881228, y: 0.29628825}
   m_EdgeRadius: 0
