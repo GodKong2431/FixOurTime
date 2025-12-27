@@ -4,6 +4,7 @@ public class FallState : IState<Player>
 {
     public void Enter(Player _player)
     {
+        Debug.Log("폴진입");
         _player.SetPhysicsMaterial(true);
 
         _player.Anim.SetBool(_player.animFalling, true);
@@ -37,6 +38,8 @@ public class FallState : IState<Player>
             _player.IsStunStarted = true;
         }
 
+
+
         if (_player.IsGrounded)
         {
             _player.SetPhysicsMaterial(false);
@@ -44,22 +47,27 @@ public class FallState : IState<Player>
             _player.CurrentAirJump = _player.AirJumpCount;
             _player.IsAirJump = true;
 
-            if (_player.IsStunStarted)
+            if (Mathf.Abs(_player.Rb.linearVelocity.y) < 0.5f)
             {
-                _player.IsStunStarted = false;
-                _player.SetState(new StunState());
-                return;
-            }
+                _player.Anim.SetBool(_player.animFalling, false);
 
-            if(_player.MoveInput.x != 0)
-            {
-                _player.SetState(new MoveState());
+                if (_player.IsStunStarted)
+                {
+                    _player.IsStunStarted = false;
+                    _player.SetState(new StunState());
+                    return;
+                }
+
+                // 이동 입력 여부에 따라 확실히 상태 전이
+                if (_player.MoveInput.x != 0)
+                {
+                    _player.SetState(new MoveState());
+                }
+                else
+                {
+                    _player.SetState(new IdleState());
+                }
             }
-            else
-            {
-                _player.SetState(new IdleState());
-            }
-            return;
         }
     }
 }

@@ -5,9 +5,10 @@ public class JumpState : IState<Player>
     bool _isDoubleJump;
     float _jumpDirX;
 
-    public JumpState(bool isDoubleJump)
+    public JumpState(bool isDoubleJump,float inputDirX)
     {
         _isDoubleJump = isDoubleJump;
+        _jumpDirX = inputDirX;
     }
 
     public void Enter(Player _player)
@@ -16,12 +17,6 @@ public class JumpState : IState<Player>
 
         _player.Anim.SetTrigger(_player.animJump);
         _player.Anim.SetBool(_player.animFalling, false);
-
-        //카메라 테스트용 코드
-        //if(CinemachinCamManager.Instance != null)
-        //{
-        //    CinemachinCamManager.Instance.Shake(5.0f,2.0f, 1f);
-        //}
 
         Debug.Log("점프 진입");
         Vector2 velocity = _player.Rb.linearVelocity;
@@ -64,10 +59,10 @@ public class JumpState : IState<Player>
         velocity.y = currentJumpForce;
 
         _player.Rb.gravityScale = targetGravity;
-            //수평속도
-        _jumpDirX = _player.JumpDirX;
+        //수평속도
+        float finalDirX = _jumpDirX;
 
-        velocity.x = _jumpDirX * _player.MoveSpeed*_player.CurrentTimeScale;
+        velocity.x = finalDirX * _player.MoveSpeed*_player.CurrentTimeScale;
 
         _player.Rb.linearVelocity = velocity;
 
@@ -91,7 +86,7 @@ public class JumpState : IState<Player>
         if (_player.IsGrounded && _player.Rb.linearVelocity.y <= 0.01f)
         {
             _player.SetPhysicsMaterial(false);
-
+            _player.Anim.SetBool(_player.animFalling, false);
             _player.CurrentAirJump = _player.AirJumpCount;
             _player.IsAirJump = true;
             

@@ -7,7 +7,7 @@ public class DashAttackState : IState<Player>
     Vector2 _dashDir;
     Vector2 _startPos;
     bool _isBounced = false;
-
+    
     public void Enter(Player _player)
     {
         _player.ResetAttackCooldown();
@@ -19,7 +19,18 @@ public class DashAttackState : IState<Player>
         _startPos = _player.transform.position;
 
         //방향설정
-        float dirX = _player.Spr.flipX ? -1f : 1f;
+        float dirX;
+        //방향키 입력방향에 따른 대시방향설정
+        if (Mathf.Abs(_player.MoveInput.x) > 0.1f)
+        {
+            dirX = _player.MoveInput.x > 0 ? 1f : -1f;
+            // 스프라이트도 뒤집게
+            _player.Spr.flipX = dirX < 0;
+        }
+        else //아무키도 안누르면 바라보는 방향
+        {
+            dirX = _player.Spr.flipX ? -1f : 1f;
+        }
         _dashDir = new Vector2(dirX, 0f);
 
         //히트박스 활성화

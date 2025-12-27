@@ -17,18 +17,27 @@ public class Laser : DamageableTrapBase, IDamageable
     [SerializeField] private LineRenderer _warningLine;
     [SerializeField] private LineRenderer _laserLine;
 
+    [Header("상시 아웃라인 세팅")]
+    [SerializeField] private Color _permanentOutlineColor = Color.red;
+    [SerializeField] private float _outlineIntensity = 2.0f;
+    [SerializeField] private float _outlineWidth = 0.015f;
+
     private Vector2 EndPoint;
     private WaitForSeconds _cool;
     private WaitForSeconds _warningDur;
     private WaitForSeconds _fireDur;
 
-    private BoxCollider2D _box;
+    private BoxCollider2D box;
+    private SpriteRenderer _spr;
 
     private void Awake()
     {
-        _box = _laserLine.GetComponent<BoxCollider2D>();
-        _box.isTrigger = true;
-        _box.enabled = false;
+        _spr = GetComponent<SpriteRenderer>();
+        box = GetComponent<BoxCollider2D>();
+        box.isTrigger = true;
+        box.enabled = false;
+
+        OutlineSetting();
     }
 
     private void OnEnable()
@@ -59,8 +68,8 @@ public class Laser : DamageableTrapBase, IDamageable
         float distance = dir.magnitude;
         dir.Normalize();
 
-        _box.size = new Vector2(distance, 0.2f);
-        _box.offset = Vector2.right * distance * 0.5f;
+        box.size = new Vector2(distance, 0.2f);
+        box.offset = Vector2.right * distance * 0.5f;
 
         transform.position = _firePoint.position;
         transform.right = dir;
@@ -70,19 +79,19 @@ public class Laser : DamageableTrapBase, IDamageable
     {
         while (true)
         {
-            _box.enabled = false;
+            box.enabled = false;
             ShowLineRenderer(_warningLine, true);
             ShowLineRenderer(_laserLine, false);
 
             yield return _warningDur;
 
-            _box.enabled = true;
+            box.enabled = true;
             ShowLineRenderer(_warningLine, false);
             ShowLineRenderer(_laserLine, true);
 
             yield return _fireDur;
 
-            _box.enabled = false;
+            box.enabled = false;
             ShowLineRenderer(_laserLine, false);
 
             yield return _cool;
@@ -108,5 +117,15 @@ public class Laser : DamageableTrapBase, IDamageable
     public void TakeDamage(float damage, float KnockbackForce, Vector3 hitPos)
     {
         Destroy(gameObject);
+    }
+
+    private void OutlineSetting()
+    {
+        if (_spr == null) return;
+
+        Material mat = _spr.material;
+
+        mat.SetColor("_OutlineColor", _permanentOutlineColor * _outlineIntensity);
+        mat.SetFloat("_OutlineWidth", _outlineWidth);
     }
 }

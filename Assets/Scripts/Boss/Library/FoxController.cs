@@ -128,7 +128,7 @@ public class FoxController : MonoBehaviour, IDamageable
         }
         else if (_state == FoxState.ShadowChasing && _player != null)
         {
-            // [Fix] Boss2Data 사용
+            // Boss2Data 사용
             float shadowSpeed = _boss.Data.FoxMoveSpeed * _boss.Data.FoxShadowSpeedMultiplier;
             MoveToTarget(_player.position, shadowSpeed);
         }
@@ -165,7 +165,7 @@ public class FoxController : MonoBehaviour, IDamageable
         Gizmos.DrawWireSphere(transform.position, _biteRange);
 
         Gizmos.color = Color.yellow;
-        // [Fix] _boss가 할당되지 않은 에디터 상태에서는 기본값 8.0f 등으로 표시하거나 예외처리
+        // _boss가 할당되지 않은 에디터 상태에서는 기본값 8.0f 등으로 표시하거나 예외처리
         float range = (_boss != null) ? _boss.Data.FoxDetectRange : 8.0f;
         Gizmos.DrawWireSphere(transform.position, range);
 
@@ -341,7 +341,7 @@ public class FoxController : MonoBehaviour, IDamageable
         _state = FoxState.ShadowChargingExplosion;
         _rb.linearVelocity = Vector2.zero;
 
-        // [Fix] Boss2Data 사용
+        // Boss2Data 사용
         float delay = _boss.Data.FoxAoeDelay;
         Debug.Log($"FoxController: 공격 준비. {delay}초 뒤 발동");
 
@@ -384,7 +384,7 @@ public class FoxController : MonoBehaviour, IDamageable
 
             if (target != null)
             {
-                // [Fix] Boss2Data 사용
+                // Boss2Data 사용
                 target.TakeDamage(_boss.Data.FoxAoeDamage, _boss.Data.FoxShadowKnockback, attackCenter);
                 Debug.Log($"FoxController: {hit.name}에게 광역 데미지 적용");
             }
@@ -408,7 +408,7 @@ public class FoxController : MonoBehaviour, IDamageable
         _state = FoxState.ChasingPlayer;
         Debug.Log("FoxController: 플레이어 추격 시작");
 
-        // [Fix] Boss2Data 사용
+        //  Boss2Data 사용
         float aggroRange = _boss.Data.FoxDetectRange;
 
         while (_isActive && _player != null)
@@ -443,7 +443,7 @@ public class FoxController : MonoBehaviour, IDamageable
         if (targetDamageable == null) targetDamageable = _player.GetComponentInParent<IDamageable>();
         if (targetDamageable == null) targetDamageable = _player.GetComponentInChildren<IDamageable>();
 
-        // [Fix] Boss2Data 사용
+        // Boss2Data 사용
         float initialDamage = _boss.Data.FoxBiteDamage;
         float dotDamage = _boss.Data.FoxBiteDotDamage;
 
@@ -477,7 +477,7 @@ public class FoxController : MonoBehaviour, IDamageable
         _rb.linearVelocity = Vector2.zero;
 
         float elapsed = 0f;
-        // [Fix] Boss2Data 사용 (기존에 3.0f 하드코딩 되어 있었음)
+        // Boss2Data 사용 
         float eatDuration = _boss.Data.FoxEatDuration;
 
         while (elapsed < eatDuration)
@@ -729,7 +729,7 @@ public class FoxController : MonoBehaviour, IDamageable
         if (_player == null || !_isActive) return false;
         if (_state == FoxState.Retreat || _state == FoxState.Biting || _isShadowMode) return false;
 
-        // [Fix] Boss2Data 사용
+        // Boss2Data 사용
         float dist = Vector2.Distance(transform.position, _player.position);
         return dist <= _boss.Data.FoxDetectRange;
     }

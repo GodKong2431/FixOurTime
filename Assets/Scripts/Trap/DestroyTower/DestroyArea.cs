@@ -1,65 +1,99 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class DestroyArea : MonoBehaviour
 {
-    [Header("¿Ãµø º”µµ")]
-    [SerializeField] private float _moveSpeed = 0.5f;
+    [Header("ÌÉÄÏùºÎßµ")]
+    public Tilemap _tilemap;
 
-    [Header("¥ÎªÛ ≈∏¿œ∏ ")]
-    [SerializeField] private Tilemap _tilemap;
+    [Header("Ï°∞Í∞Å ÌîÑÎ¶¨Ìé©")]
+    public GameObject _piecePrefab;
 
-    private Collider2D _zoneCollider;
+    [Header("Ï°∞Í∞Å Í∞úÏàò")]
+    public int _piecesCount = 6;
 
-    private void Awake()
+    [Header("Ï°∞Í∞Å ÏÇ¨Ïù¥Ï¶à")]
+    public float _pieceSize = 0.4f;
+
+    [Header("Ìûò")]
+    public float _force = 2.5f;
+
+    [Header("ÏÉùÏ°¥ ÏãúÍ∞Ñ")]
+    public float _lifeTime = 2f;
+
+    private HashSet<Vector3Int> collapsedCells = new HashSet<Vector3Int>();
+    private Collider2D col;
+
+    void Awake()
     {
-        _zoneCollider = GetComponent<Collider2D>();
+        col = GetComponent<Collider2D>();
+        col.isTrigger = true;
     }
 
-    private void FixedUpdate()
+    void OnTriggerStay2D(Collider2D other)
     {
-        transform.position += Vector3.up * _moveSpeed * Time.deltaTime;
+        if (!other.CompareTag("Tilemap")) return;
 
-        DestroyTilesInZone();
-    }
+        Bounds bounds = col.bounds;
+        Vector3Int min = _tilemap.WorldToCell(bounds.min);
+        Vector3Int max = _tilemap.WorldToCell(bounds.max);
 
-    private void DestroyTilesInZone()
-    {
-        Bounds bounds = _zoneCollider.bounds;
-
-        Vector3Int minCell = _tilemap.WorldToCell(bounds.min);
-        Vector3Int maxCell = _tilemap.WorldToCell(bounds.max);
-
-        for (int x = minCell.x; x <= maxCell.x; x++)
+        for (int x = min.x; x <= max.x; x++)
         {
-            for (int y = minCell.y; y <= maxCell.y; y++)
+            for (int y = min.y; y <= max.y; y++)
             {
-                Vector3Int cellPos = new Vector3Int(x, y, 0);
+                Vector3Int cell = new Vector3Int(x, y, 0);
 
-                if (!_tilemap.HasTile(cellPos))
-                    continue;
+                if (!_tilemap.HasTile(cell)) continue;
+                if (collapsedCells.Contains(cell)) continue;
 
-                // ≈∏¿œ ¡¶∞≈
-                _tilemap.SetTile(cellPos, null);
+                Collapse(cell);
             }
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    void Collapse(Vector3Int cell)
     {
-        if (other.GetComponent<TilemapCollider2D>())
-            return;
+        collapsedCells.Add(cell);
 
-        if(other.GetComponent<ItemObject>())
-            _moveSpeed *= 20;
+        Tile tile = _tilemap.GetTile(cell) as Tile;
+        if (tile == null) return;
 
-        if (other.TryGetComponent(out Player player))
+        Vector3 center = _tilemap.GetCellCenterWorld(cell);
+
+        Color finalColor = SpriteAverageColorCache.GetAverageColor(tile.sprite);
+
+        _tilemap.SetTile(cell, null);
+
+        for (int i = 0; i < _piecesCount; i++)
         {
-            player.TakeDamage(9999, 0, transform.position);
-            return;
+            Vector2 offset = Random.insideUnitCircle * 0.3f;
+            SpawnPixel(center + (Vector3)offset, finalColor);
         }
-            
+    }
 
-        other.gameObject.SetActive(false);
+    void SpawnPixel(Vector3 pos, Color color)
+    {
+        GameObject p = Instantiate(_piecePrefab);
+        p.transform.position = pos;
+        p.transform.localScale = Vector3.one * _pieceSize;
+
+        SpriteRenderer sr = p.GetComponent<SpriteRenderer>();
+        sr.color = color;
+        sr.sortingOrder = 10;
+
+        Rigidbody2D rb = p.GetComponent<Rigidbody2D>();
+        rb.linearVelocity = Vector2.zero;
+
+        Vector2 dir = new Vector2(
+            Random.Range(-0.5f, 0.5f),
+            Random.Range(1f, 2f)
+        );
+
+        rb.AddForce(dir * _force, ForceMode2D.Impulse);
+        rb.AddTorque(Random.Range(-3f, 3f));
+
+        Destroy(p, _lifeTime);
     }
 }
