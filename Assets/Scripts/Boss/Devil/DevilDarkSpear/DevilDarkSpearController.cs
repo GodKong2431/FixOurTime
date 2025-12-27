@@ -91,6 +91,17 @@ public class DevilDarkSpearController : MonoBehaviour
         _devilDarkSpear.ReturnSpear();
         _isAttacking = false;
     }
+    public void StopController()
+    {
+        StopAllCoroutines(); // 감지 루프(CheckStayTime) 및 공격 루프(CallDarkSpear) 중단
+        _isAttacking = false;
+        _currentStayTime = 0f;
+
+        if (_devilDarkSpear != null)
+        {
+            _devilDarkSpear.InstantReset(); // 창 즉시 원위치
+        }
+    }
 
     private void OnDrawGizmosSelected()
     {

@@ -106,4 +106,13 @@ public class Judgment : DamageableTrapBase
         obj.transform.SetParent(platform);
         obj.transform.position = pos + new Vector2(0, _fireObjoffset);
     }
+
+    public void StopJudgment()
+    {
+        StopAllCoroutines(); // 1초 뒤 꺼지는 코루틴 등 모두 정지
+        if (_judgmentLine != null)
+        {
+            _judgmentLine.enabled = false; // 레이저 즉시 끄기
+        }
+    }
 }

@@ -16,16 +16,16 @@ public class DevilTile : MonoBehaviour
     [SerializeField] private float _duration = 2;
     [SerializeField] private TileDir _dir = TileDir.Left;
 
-    Vector2 _startPos;
-    Vector2 _moveDir;
-    Vector2 _endPos;
+    Vector3 _startPos;
+    Vector3 _moveDir;
+    Vector3 _endPos;
 
     Coroutine _mouveCoroutine;
 
     private void Awake()
     {
         _startPos = transform.position;
-        _moveDir = _dir == TileDir.Left ? Vector2.left : Vector2.right;
+        _moveDir = _dir == TileDir.Left ? Vector3.left : Vector3.right;
 
         _endPos = _startPos + _moveDir * _distance;
     }
@@ -52,5 +52,11 @@ public class DevilTile : MonoBehaviour
         }
 
         transform.position = endPos;
+    }
+
+    public void ResetTile()
+    {
+        StopAllCoroutines();
+        transform.position = _startPos;
     }
 }

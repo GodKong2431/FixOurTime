@@ -72,4 +72,15 @@ public class DevilDarkSpear : DamageableTrapBase
             yield return null;
         }
     }
+    public void InstantReset()
+    {
+        // 1. 움직임 멈춤
+        if (_moveCoroutine != null) StopCoroutine(_moveCoroutine);
+
+        // 2. 위치 즉시 복구
+        transform.position = _startPos;
+
+        // 3. 상태 초기화
+        _spearActive = false;
+    }
 }

@@ -7,7 +7,9 @@ public class Angel : MonoBehaviour
 
     public void StayTimeController(Stage3AngelPlatform platform)
     {
-        if(_platform == platform) return;
+        if (!gameObject.activeInHierarchy) return;
+
+        if (_platform == platform) return;
 
         if (_staytimeCoroutine != null)
         {
@@ -16,5 +18,14 @@ public class Angel : MonoBehaviour
 
         _platform = platform;
         _staytimeCoroutine = StartCoroutine(platform.CheckStayTime());
+    }
+    public void StopCheck()
+    {
+        if (_staytimeCoroutine != null)
+        {
+            StopCoroutine(_staytimeCoroutine);
+            _staytimeCoroutine = null;
+        }
+        _platform = null;
     }
 }

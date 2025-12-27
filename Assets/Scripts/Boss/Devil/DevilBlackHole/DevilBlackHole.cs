@@ -120,4 +120,13 @@ public class DevilBlackHole : MonoBehaviour
 
         Destroy(gameObject);
     }
+
+    private void OnDisable()
+    {
+        int playerLayer = LayerMask.NameToLayer(_playerLayerName);
+        int groundLayer = LayerMask.NameToLayer(_groundLayerName);
+
+        // 강제로 충돌 다시 켜주기
+        Physics2D.IgnoreLayerCollision(playerLayer, groundLayer, false);
+    }
 }
