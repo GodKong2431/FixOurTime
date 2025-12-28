@@ -85,6 +85,7 @@ public class InteractableGear : Gear,IDamageable
         {
             obj.SetActive(!obj.activeSelf);
         }
+        SoundManager.Instance.PlaySFX("SFX_Steam_Off");
     }
 
 }

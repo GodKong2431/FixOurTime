@@ -9,4 +9,10 @@ public class Gear : DamageableTrapBase
     {
         transform.Rotate(0f, 0f, _rotateSpeed * Time.fixedDeltaTime);
     }
+
+    protected override void OnTriggerEnter2D(Collider2D collision)
+    {
+        base.OnTriggerEnter2D(collision);
+        SoundManager.Instance.PlaySFX("SFX_Gear_Hit");
+    }
 } 
