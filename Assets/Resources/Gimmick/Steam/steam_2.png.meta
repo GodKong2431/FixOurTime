@@ -1,0 +1,355 @@
+fileFormatVersion: 2
+guid: 0db630d346e86c5499e2525b414b959c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4070169495327033365
+    second: steam_2_0
+  - first:
+      213: -7096679730039902612
+    second: steam_2_1
+  - first:
+      213: 5183997174752822661
+    second: steam_2_2
+  - first:
+      213: 2041858571740892487
+    second: steam_2_3
+  - first:
+      213: 8978760247515266190
+    second: steam_2_4
+  - first:
+      213: 5272949414171483534
+    second: steam_2_5
+  - first:
+      213: 1678286722453472153
+    second: steam_2_6
+  - first:
+      213: -6446118507586780690
+    second: steam_2_7
+  - first:
+      213: -7731184925007518290
+    second: steam_2_8
+  - first:
+      213: 5149145429061081605
+    second: steam_2_9
+  - first:
+      213: 8235054020995136017
+    second: steam_2_10
+  - first:
+      213: -3448209329636114975
+    second: steam_2_11
+  - first:
+      213: 6315302259679719482
+    second: steam_2_12
+  - first:
+      213: -9090243264760925222
+    second: steam_2_13
+  - first:
+      213: -8658380365861789961
+    second: steam_2_14
+  - first:
+      213: 720285035371839686
+    second: steam_2_15
+  - first:
+      213: 5266342381027803438
+    second: steam_2_16
+  - first:
+      213: 1819746422691675693
+    second: steam_2_17
+  - first:
+      213: -6025782823994679080
+    second: steam_2_18
+  - first:
+      213: 1944684932640384694
+    second: steam_2_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: steam_2_0
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 0
+        width: 129
+        height: 529
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 518499067952c7830800000000000000
+      internalID: 4070169495327033365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: steam_2_2
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 0
+        width: 129
+        height: 529
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58545c5e6f141f740800000000000000
+      internalID: 5183997174752822661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: steam_2_4
+      rect:
+        serializedVersion: 2
+        x: 804
+        y: 0
+        width: 129
+        height: 529
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8cbb84afd6fa9c70800000000000000
+      internalID: 8978760247515266190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: steam_2_10
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 0
+        width: 129
+        height: 529
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11a319b300ac84270800000000000000
+      internalID: 8235054020995136017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: steam_2_15
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 0
+        width: 129
+        height: 529
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c04e566c67fef900800000000000000
+      internalID: 720285035371839686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: steam_2_19
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 0
+        width: 129
+        height: 529
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b6a51294a8ecfa10800000000000000
+      internalID: 1944684932640384694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 05054c0c7eea3c5468bd37db0c1d9e6f
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      steam_2_0: 4070169495327033365
+      steam_2_1: -7096679730039902612
+      steam_2_10: 8235054020995136017
+      steam_2_11: -3448209329636114975
+      steam_2_12: 6315302259679719482
+      steam_2_13: -9090243264760925222
+      steam_2_14: -8658380365861789961
+      steam_2_15: 720285035371839686
+      steam_2_16: 5266342381027803438
+      steam_2_17: 1819746422691675693
+      steam_2_18: -6025782823994679080
+      steam_2_19: 1944684932640384694
+      steam_2_2: 5183997174752822661
+      steam_2_3: 2041858571740892487
+      steam_2_4: 8978760247515266190
+      steam_2_5: 5272949414171483534
+      steam_2_6: 1678286722453472153
+      steam_2_7: -6446118507586780690
+      steam_2_8: -7731184925007518290
+      steam_2_9: 5149145429061081605
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
