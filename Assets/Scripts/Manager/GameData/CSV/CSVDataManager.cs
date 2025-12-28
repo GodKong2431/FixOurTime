@@ -36,7 +36,7 @@ public class CSVDataManager : SingleTon<CSVDataManager>
         if(CSVMap[csvTableName] is TableSOBase<T>)
         {
             TableSOBase<T> result = CSVMap[csvTableName] as TableSOBase<T>;
-            if(result.RowDict == null)
+            if(result.RowDictInt == null)
                 result.BuildIndex();
 
             return result;

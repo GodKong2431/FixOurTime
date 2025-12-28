@@ -18,19 +18,19 @@ public class VolumeSlider : MonoBehaviour
     {        
         if (_type == _sliderType.BGM)
         {
-            _slider.value = SoundManager.instance._bgmVolume;
+            _slider.value = SoundManager.Instance._bgmVolume;
         }
         else
         {
-            _slider.value = SoundManager.instance._sfxVolume;
+            _slider.value = SoundManager.Instance._sfxVolume;
         }
     }
     public void SetLevel(float value)
     {
         if (_type == _sliderType.BGM)
-            SoundManager.instance.UpdateBgmVolume(value);
+            SoundManager.Instance.UpdateBgmVolume(value);
         else
-            SoundManager.instance.UpdateSfxVolume(value);
+            SoundManager.Instance.UpdateSfxVolume(value);
     }
 
 }

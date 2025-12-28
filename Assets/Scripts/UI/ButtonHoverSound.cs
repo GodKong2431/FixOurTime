@@ -10,8 +10,8 @@ public class ButtonHoverSound : MonoBehaviour, IPointerEnterHandler
         _audioSource.Play();
     }
 
-    public void OnCilck()
-    {
-        SoundManager.instance.PlaySFX(_clickSound);
-    }
+    //public void OnCilck()
+    //{
+    //    SoundManager.Instance.PlaySFX(_clickSound);
+    //}
 }

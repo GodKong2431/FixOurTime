@@ -2,12 +2,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public abstract class SOBase : ScriptableObject
-{
-}
-
-
 // SO의 베이스가 되는 추상 클래스
 // 제네릭으로 어떤 타입 테이블이든 리스트로 저장 가능
 public abstract class TableSOBase<TRow> : SOBase
@@ -15,17 +9,21 @@ public abstract class TableSOBase<TRow> : SOBase
 {
     public List<TRow> rows = new();
 
-    private Dictionary<int, TRow> _rowDict;
+    private Dictionary<int, TRow> _rowDictInt;
+    private Dictionary<string, TRow> _rowDictStr;
 
-    public IReadOnlyDictionary<int, TRow> RowDict => _rowDict;
+
+    public IReadOnlyDictionary<int, TRow> RowDictInt => _rowDictInt;
+    public IReadOnlyDictionary<string, TRow> RowDictStr => _rowDictStr;
 
     public void BuildIndex()
     {
-        _rowDict = new();
+        _rowDictInt = new();
+        _rowDictStr = new();
+
         foreach (var row in rows)
         {
-            Debug.Log(row);
-            _rowDict[row.id] = row;
+            _rowDictInt[row.id] = row;
         }
     }
 
@@ -33,7 +31,15 @@ public abstract class TableSOBase<TRow> : SOBase
     {
         get
         {
-            return RowDict[Key];
+            return RowDictInt[Key];
+        }
+    }
+
+    public TRow this[string Key]
+    {
+        get
+        {
+            return RowDictStr[Key];
         }
     }
 }

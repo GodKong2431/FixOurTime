@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abe8caa5d19440f41a03279a74c6e630, type: 3}
+  m_Name: SoundTable
+  m_EditorClassIdentifier: Assembly-CSharp::SoundTable
+  rows:
+  - id: 101
+    name: SFX_Player_Attack
+    soundtype: 1
+  - id: 102
+    name: SFX_Player_AttackToWall
+    soundtype: 1
+  - id: 103
+    name: SFX_Player_Dash
+    soundtype: 1
+  - id: 104
+    name: SFX_Player_DoubleJump
+    soundtype: 1
+  - id: 105
+    name: SFX_Player_Jump
+    soundtype: 1
+  - id: 106
+    name: SFX_Player_Land
+    soundtype: 1
+  - id: 107
+    name: SFX_Player_WallBump
+    soundtype: 1
+  - id: 108
+    name: SFX_Player_Hit
+    soundtype: 1
+  - id: 201
+    name: SFX_UI_ButtonHover
+    soundtype: 1
+  - id: 202
+    name: SFX_UI_Back
+    soundtype: 1
+  - id: 203
+    name: SFX_UI_ButtonClick
+    soundtype: 1
+  - id: 301
+    name: SFX_Gear_Hit
+    soundtype: 1
+  - id: 302
+    name: SFX_Gear_Moving
+    soundtype: 1
+  - id: 303
+    name: SFX_Gear_Lock
+    soundtype: 1
+  - id: 304
+    name: SFX_Steam_Off
+    soundtype: 1
+  - id: 305
+    name: SFX_PaperCrane_Hit
+    soundtype: 1
+  - id: 306
+    name: SFX_Ghost_ImmuneHit
+    soundtype: 1
+  - id: 307
+    name: SFX_Fountain_Cure
+    soundtype: 1
+  - id: 308
+    name: SFX_ClockHand_Get
+    soundtype: 1
+  - id: 309
+    name: SFX_Core_Activate
+    soundtype: 1
+  - id: 401
+    name: SFX_Boss1_ThrowMetal
+    soundtype: 1
+  - id: 402
+    name: SFX_Boss1_MetalSmash
+    soundtype: 1
+  - id: 403
+    name: SFX_Boss1_ConcreteLock
+    soundtype: 1
+  - id: 404
+    name: SFX_Boss1_WeakPointHit
+    soundtype: 1
+  - id: 405
+    name: SFX_Boss1_ThrowConcrete
+    soundtype: 1
+  - id: 406
+    name: SFX_Boss1_WeakPointSmash
+    soundtype: 1
+  - id: 501
+    name: SFX_Stage_Start
+    soundtype: 1
+  - id: 502
+    name: SFX_Stage4_Earthquake
+    soundtype: 1
+  - id: 503
+    name: SFX_Stage_ClearEventQuake
+    soundtype: 1
+  - id: 504
+    name: SFX_Stage3_TimeShift
+    soundtype: 1

@@ -1,10 +1,18 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using static UnityEngine.Rendering.DebugUI;
 
-public class SoundManager : MonoBehaviour
+public enum SoundType
 {
-    public static SoundManager instance;
+    BGM,
+    SFX
+}
 
+
+public class SoundManager : SingleTon<SoundManager>
+{
     [SerializeField] private AudioSource _bgmSource;
     [SerializeField] private AudioSource _sfxSource;
 
@@ -16,18 +24,8 @@ public class SoundManager : MonoBehaviour
     [Header("메인씬 배경음")] 
     [SerializeField] private AudioClip _mainBgmClip;    //메인씬 배경음
 
-  
-
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-            
-        }
-        else Destroy(gameObject);
-    }
+    TableSOBase<SoundTableData> _soundData;
+    Dictionary<string, AudioClip> _soundDict = new();
 
     private void Start()
     {
@@ -37,6 +35,41 @@ public class SoundManager : MonoBehaviour
 
         _bgmSource.clip = _mainBgmClip;
         _bgmSource.Play();
+
+        InitSoundData();
+    }
+
+    private void InitSoundData()
+    {
+        _soundData = CSVDataManager.Instance.Get<SoundTableData>("SoundTable");
+
+        foreach (var row in _soundData.rows)
+        {
+            string path = GetResourcePath(row);
+
+            AudioClip clip = Resources.Load<AudioClip>(path);
+
+            if (clip == null)
+            {
+                Debug.LogError($"사운드 없음 : {path}");
+                continue;
+            }
+
+            _soundDict[row.name] = clip;
+        }
+    }
+
+    private string GetResourcePath(SoundTableData row)
+    {
+        switch (row.soundtype)
+        {
+            case SoundType.BGM:
+                return $"Sound/BGM/{row.name}";
+            case SoundType.SFX:
+                return $"Sound/SFX/{row.name}";
+            default:
+                return row.name;
+        }
     }
 
     //설정창 볼륨조절 함수
@@ -53,12 +86,11 @@ public class SoundManager : MonoBehaviour
         _sfxSource.volume = volume;
     }
 
-
     //효과음 재생
-    public void PlaySFX(AudioClip clip)
+    public void PlaySFX(string clipName)
     {
         //효과음 중복재생가능하게
-        _sfxSource.PlayOneShot(clip, _sfxVolume);
+        _sfxSource.PlayOneShot(_soundDict[clipName], _sfxVolume);
     }
 
     //BGM 재생 (즉시 재생용)
@@ -72,10 +104,10 @@ public class SoundManager : MonoBehaviour
 
 
     //BGM페이드 효과용 재생 (코루틴)
-    public void FadePlayBgm(AudioClip clip, float fadeTime = 1.0f)  //fadeTime동안 볼륨조절
+    public void FadePlayBgm(string clipName, float fadeTime = 1.0f)  //fadeTime동안 볼륨조절
     {
         StopAllCoroutines();    //진행중인 코루틴은 끄기
-        StartCoroutine(FadeBgmCoroutine(clip, fadeTime));
+        StartCoroutine(FadeBgmCoroutine(_soundDict[clipName], fadeTime));
     }
 
     private IEnumerator FadeBgmCoroutine(AudioClip clip, float time)
