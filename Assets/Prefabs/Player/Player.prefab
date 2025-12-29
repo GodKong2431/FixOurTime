@@ -401,7 +401,7 @@ MonoBehaviour:
   _attackHitBox: {fileID: 3821669099503789512}
   _attackDuration: 0.5
   _attackRange: 2
-  _attackDamage: 10
+  _attackDamage: 20
   _attackCooldown: 1
   _attackTargetLayer:
     serializedVersion: 2

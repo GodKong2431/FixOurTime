@@ -129,12 +129,12 @@ TextureImporter:
       name: "stage2_\uADF8\uB9BC\uC790\uC5EC\uC6B0\uAD11\uC5ED\uAE30_0"
       rect:
         serializedVersion: 2
-        x: 0
-        y: 308
-        width: 1024
-        height: 716
+        x: 88
+        y: 310
+        width: 741
+        height: 488
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: f1fdbcc19588dad4bb359d6cd3fd37c2
     internalID: 0
     vertices: []
     indices: 
