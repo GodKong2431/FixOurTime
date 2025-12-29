@@ -85,7 +85,10 @@ public class InteractableGear : Gear,IDamageable
     {
         foreach (var obj in _onOffObjs)
         {
-            obj.SetActive(!obj.activeSelf);
+            if(obj.TryGetComponent(out Steam steam))
+            {
+                StartCoroutine(steam.OffSteam());
+            }
         }
         SoundManager.Instance.PlaySFX("SFX_Steam_Off", transform.position);
     }
