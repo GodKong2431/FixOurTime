@@ -575,6 +575,12 @@ public class Player : MonoBehaviour,IDamageable,IBindable
         debuff.OnExit(this);
         _activeEffects.Remove(debuff);
     }
+    public void RemoveAllEffect()
+    {
+        RemoveEffectByName("더움");
+        RemoveEffectByName("탈진");
+        RemoveEffectByName("추움");
+    }
 
     //죽었을때 이벤트 호출
     public void InvokeDeadEvent()
