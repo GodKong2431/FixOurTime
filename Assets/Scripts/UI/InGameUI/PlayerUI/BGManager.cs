@@ -48,40 +48,12 @@ public class BGManager : MonoBehaviour
             int nextIndex = (currentIndex + 1) % _image.Length;
 
             //페이드 시작
-            yield return StartCoroutine(FadeRoutine(_image[currentIndex], _image[nextIndex]));
+            yield return StartCoroutine
+                //유틸클래스 페이드아웃 코루틴 호출
+                (UIUtill.FadeRoutine(_image[currentIndex], _image[nextIndex], _fadeDuration));
 
             //교체 완료되면 인덱스 업데이트
             currentIndex = nextIndex;
         }
-    }
-
-    IEnumerator FadeRoutine(Image current, Image next)
-    {
-        float timer = 0;    
-
-        next.gameObject.SetActive(true); // 다음 이미지 활성화
-
-        Color currentColor = current.color;
-        Color nextColor = next.color;
-
-        nextColor.a = 0f;   //처음에는 투명
-
-        while (timer < _fadeDuration)   
-        {
-            timer += Time.deltaTime;
-            float progress = timer / _fadeDuration;
-
-            currentColor.a = 1 - progress; // 현재이미지 점점 투명하게
-            nextColor.a = progress;       // 다음 이미지 점점 불투명하게
-
-            //변경된 투명도 컴포넌트에 적용
-            current.color = currentColor;
-            next.color = nextColor;
-
-            yield return null;
-        }
-        //페이드 끝난후 값 고정
-        currentColor.a = 0;
-        nextColor.a = 1;
     }
 }

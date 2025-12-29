@@ -3,15 +3,15 @@ using UnityEngine.EventSystems;
 
 public class ButtonHoverSound : MonoBehaviour, IPointerEnterHandler
 {
-    [SerializeField] private AudioSource _audioSource;
-    [SerializeField] private AudioClip _clickSound;
+    //[SerializeField] private AudioSource _audioSource;
+    //[SerializeField] private AudioClip _clickSound;
     public void OnPointerEnter(PointerEventData eventData)
     {
-        _audioSource.Play();
+        SoundManager.Instance.PlaySFX("SFX_UI_ButtonHover");
     }
 
-    //public void OnCilck()
-    //{
-    //    SoundManager.Instance.PlaySFX(_clickSound);
-    //}
+    public void OnCilck()
+    {
+        SoundManager.Instance.PlaySFX("SFX_UI_ButtonClick");
+    }
 }
