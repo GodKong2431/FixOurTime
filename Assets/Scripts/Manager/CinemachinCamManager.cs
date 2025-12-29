@@ -103,23 +103,38 @@ public class CinemachinCamManager : SingleTon<CinemachinCamManager>
     {
         if(_noise != null)
         {
-            StartCoroutine(Co_Shake(intensity, frequency, duration));
+            StartCoroutine(Co_Shake(_noise,intensity, frequency, duration));
+        }
+    }
+    //특정 시네머신 캠 흔들기
+    public void ShakeTargetCamera(CinemachineCamera targetCam, float intensity, float frequency, float duration)
+    {
+        if (targetCam == null) return;
+
+        var targetNoise = targetCam.GetComponent<CinemachineBasicMultiChannelPerlin>();
+        if (targetNoise != null)
+        {
+            StartCoroutine(Co_Shake(targetNoise, intensity, frequency, duration));
+        }
+        else
+        {
+            Debug.LogWarning($"{targetCam.name}에 Noise(Basic Multi Channel Perlin) 컴포넌트가 없습니다.");
         }
     }
 
-    private IEnumerator Co_Shake(float intensity, float frequency, float duration)
+    private IEnumerator Co_Shake(CinemachineBasicMultiChannelPerlin noise,float intensity, float frequency, float duration)
     {
-        if (_noise == null) yield break;
+        if (noise == null) yield break;
 
-        _noise.AmplitudeGain = intensity;
-        _noise.FrequencyGain = frequency;
+        noise.AmplitudeGain = intensity;
+        noise.FrequencyGain = frequency;
 
         yield return new WaitForSeconds(duration);
 
-        if (_noise != null)
+        if (noise != null)
         {
-            _noise.AmplitudeGain = 0f;
-            _noise.FrequencyGain = 0f;
+            noise.AmplitudeGain = 0f;
+            noise.FrequencyGain = 0f;
         }
     }
 
