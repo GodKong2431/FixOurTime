@@ -15,13 +15,15 @@ public class SoundManager : SingleTon<SoundManager>
 
     [Header("Volumes")]
     [Range(0f, 1f)]
-    [SerializeField] private float bgmVolume = 1f;
+    [SerializeField] private float _bgmVolume = 1f;
     [Range(0f, 1f)]
-    [SerializeField] private float sfxVolume = 1f;
+    [SerializeField] private float _sfxVolume = 1f;
 
     [Header("Default BGM")]
     [SerializeField] private AudioClip mainBgm;
 
+    public float BGMVolume => _bgmVolume;
+    public float SFXVolume => _sfxVolume;
 
     /// 사운드 테이블에서 로드한 AudioClip 캐싱할 딕셔너리
     private readonly Dictionary<string, AudioClip> soundCache = new();
@@ -62,7 +64,7 @@ public class SoundManager : SingleTon<SoundManager>
     private void InitBgm()
     {
         bgmSource.loop = true;
-        bgmSource.volume = bgmVolume;
+        bgmSource.volume = _bgmVolume;
         bgmSource.clip = mainBgm;
         bgmSource.Play();
     }
@@ -98,15 +100,15 @@ public class SoundManager : SingleTon<SoundManager>
 
     #region 볼륨 컨트롤
 
-    public void SetBgmVolume(float volume)
+    public void UpdateBgmVolume(float volume)
     {
-        bgmVolume = volume;
+        _bgmVolume = volume;
         bgmSource.volume = volume;
     }
 
-    public void SetSfxVolume(float volume)
+    public void UpdateSfxVolume(float volume)
     {
-        sfxVolume = volume;
+        _sfxVolume = volume;
     }
 
     #endregion
@@ -118,7 +120,7 @@ public class SoundManager : SingleTon<SoundManager>
     /// - 중복 재생 방지
     /// - worldPos가 지정되면 카메라 안에 있을 때만 재생
     /// </summary>
-    public void PlaySfx(string name, Vector3? worldPos = null)
+    public void PlaySFX(string name, Vector3? worldPos = null)
     {
         // 위치가 주어졌고, 카메라 밖이면 재생하지 않음
         if (worldPos.HasValue && !IsInCameraView(worldPos.Value))
@@ -127,7 +129,7 @@ public class SoundManager : SingleTon<SoundManager>
         if (!CanPlaySfx(name, out var clip))
             return;
 
-        sfxSource.PlayOneShot(clip, sfxVolume);
+        sfxSource.PlayOneShot(clip, _sfxVolume);
         RegisterSfx(name, clip.length);
     }
 
@@ -170,9 +172,6 @@ public class SoundManager : SingleTon<SoundManager>
 
     #region BGM
 
-    /// <summary>
-    /// 현재 BGM을 페이드아웃 후 새 BGM으로 전환
-    /// </summary>
     public void FadePlayBgm(string name, float fadeTime = 1f)
     {
         if (!soundCache.TryGetValue(name, out var clip))
@@ -189,7 +188,7 @@ public class SoundManager : SingleTon<SoundManager>
         bgmSource.clip = clip;
         bgmSource.Play();
 
-        yield return FadeVolume(bgmSource, 0, bgmVolume, time);
+        yield return FadeVolume(bgmSource, 0, _bgmVolume, time);
     }
 
     private static IEnumerator FadeVolume(AudioSource source, float from, float to, float time)
