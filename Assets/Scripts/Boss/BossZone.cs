@@ -65,6 +65,7 @@ public class BossZone : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             _stayTimer = 0f;
+            _isPlayerInside = false;
         }
     }
 
