@@ -50,6 +50,7 @@ public class FallState : IState<Player>
             if (Mathf.Abs(_player.Rb.linearVelocity.y) < 0.5f)
             {
                 _player.Anim.SetBool(_player.animFalling, false);
+                SoundManager.Instance.PlaySFX(Player.PlayerLand);
 
                 if (_player.IsStunStarted)
                 {

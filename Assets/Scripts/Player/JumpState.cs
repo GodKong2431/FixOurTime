@@ -29,10 +29,12 @@ public class JumpState : IState<Player>
             currentJumpForce = _player.DoubleJumpForce;
             _player.CurrentAirJump--;
             velocity.y = 0f;
+            SoundManager.Instance.PlaySFX(Player.PlayerDoubleJump);
         }
         else
         {
             currentJumpForce = _player.CalculatedJumpForce;
+            SoundManager.Instance.PlaySFX(Player.PlayerJump);
         }
 
         //가속상태 진입하면 가속중력적용
