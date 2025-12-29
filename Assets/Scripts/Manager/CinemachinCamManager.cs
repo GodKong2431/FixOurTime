@@ -18,7 +18,6 @@ public class CinemachinCamManager : SingleTon<CinemachinCamManager>
     protected override void Awake()
     {
         base.Awake();
-        //Reconnect();
     }
 
     public void Reconnect()
@@ -147,7 +146,7 @@ public class CinemachinCamManager : SingleTon<CinemachinCamManager>
     {
         float startSize = _activeCam.Lens.OrthographicSize;
         float elapsed = 0f;
-        while (elapsed < targetSize)
+        while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
             _activeCam.Lens.OrthographicSize = Mathf.Lerp(startSize, targetSize, elapsed / duration);
@@ -156,12 +155,18 @@ public class CinemachinCamManager : SingleTon<CinemachinCamManager>
         _activeCam.Lens.OrthographicSize = targetSize;
     }
 
-    public Vector3 GetCamPos()
-    {
-        return _activeCam.transform.position;
-    }
+    
     public void LoadCamPos(Vector3 savedPos)
     {
         _activeCam.transform.position = savedPos;
+    }
+
+    public Vector3 GetCamPos()
+    {
+        if (_activeCam == null)
+        {
+            return Vector3.zero;
+        }
+        return _activeCam.transform.position;
     }
 }
