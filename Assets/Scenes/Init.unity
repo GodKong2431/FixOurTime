@@ -351,6 +351,16 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 466787582}
   m_CullTransparentMesh: 1
+--- !u!82 &585517498 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3135592528176739169, guid: fcbcdc4e72924574babce6850510cfeb, type: 3}
+  m_PrefabInstance: {fileID: 938468316}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &585517499 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8935311000346502642, guid: fcbcdc4e72924574babce6850510cfeb, type: 3}
+  m_PrefabInstance: {fileID: 938468316}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &601702274
 GameObject:
   m_ObjectHideFlags: 0
@@ -744,6 +754,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3827322394487666444, guid: fcbcdc4e72924574babce6850510cfeb, type: 3}
+      propertyPath: _bgmSource
+      value: 
+      objectReference: {fileID: 585517499}
+    - target: {fileID: 3827322394487666444, guid: fcbcdc4e72924574babce6850510cfeb, type: 3}
+      propertyPath: _sfxSource
+      value: 
+      objectReference: {fileID: 585517498}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

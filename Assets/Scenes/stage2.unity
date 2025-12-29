@@ -4529,7 +4529,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8856196052005427204, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
+    - {fileID: 1463426938731723842, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
+    - {fileID: 109672701928485185, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
+    - {fileID: 6415489718734889348, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
+    - {fileID: 5055920866230834384, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
+    - {fileID: 333602471562597389, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
+    - {fileID: 8477974791270361512, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -24069,6 +24076,50 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &812668531
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 812668533}
+  - component: {fileID: 812668532}
+  m_Layer: 0
+  m_Name: StageStartSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &812668532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812668531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d69f4eaa0af3e648a4d7c2d9ae7d5d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageStartSound
+--- !u!4 &812668533
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812668531}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &813641810
 GameObject:
   m_ObjectHideFlags: 0
@@ -66952,6 +67003,7 @@ SpriteRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 812668533}
   - {fileID: 1607995769}
   - {fileID: 619394802}
   - {fileID: 1034972351}
