@@ -13,6 +13,9 @@ public class Gear : DamageableTrapBase
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
         base.OnTriggerEnter2D(collision);
-        SoundManager.Instance.PlaySFX("SFX_Gear_Hit");
+        if (collision.CompareTag("PlayerAttack"))
+        {
+            SoundManager.Instance.PlaySFX("SFX_Gear_Hit");
+        }
     }
 } 
