@@ -4,30 +4,36 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.Pool;
 
-[RequireComponent(typeof(Collider2D))]
-public class TilePixelCollapse : MonoBehaviour
+public class DestsroyArea : MonoBehaviour
 {
     [Header("타일맵")]
-    public Tilemap _tilemap;
+    [SerializeField] private Tilemap _tilemap;
 
     [Header("조각 프리펩")]
-    public GameObject _piecePrefab;
+    [SerializeField] private GameObject[] _piecePrefab;
 
     [Header("조각 개수")]
-    public int _piecesCount = 6;
+    [SerializeField] private int _piecesCount = 6;
 
     [Header("조각 사이즈")]
-    public float _pieceSize = 0.4f;
+    [SerializeField] private float _pieceSize = 0.4f;
 
     [Header("힘")]
-    public float _force = 2.5f;
+    [SerializeField] private float _force = 2.5f;
 
     [Header("생존 시간")]
-    public float _lifeTime = 2f;
+    [SerializeField] private float _lifeTime = 2f;
 
     [Header("풀 설정")]
-    public int _defaultPoolSize = 50;
-    public int _maxPoolSize = 200;
+    [SerializeField] private int _defaultPoolSize = 50;
+    [SerializeField] private int _maxPoolSize = 200;
+
+    [Header("속도")]
+    [SerializeField] private float _moveSpeed = 0.5f;
+    [SerializeField] private int _mulSpeed = 20;
+
+    [Header("오프셋")]
+    [SerializeField] private float offset = 20;
 
     private HashSet<Vector3Int> _collapsedCells = new HashSet<Vector3Int>();
     private Collider2D _col;
@@ -50,9 +56,15 @@ public class TilePixelCollapse : MonoBehaviour
         );
     }
 
+
+    private void Start()
+    {
+        transform.position = new Vector2(transform.position.x, GameManager.Instance.Player.transform.position.y - offset);
+    }
+
     GameObject CreatePixel()
     {
-        GameObject obj = Instantiate(_piecePrefab);
+        GameObject obj = Instantiate(_piecePrefab[Random.Range(0, _piecePrefab.Length)]);
         obj.SetActive(false);
         return obj;
     }
@@ -96,7 +108,7 @@ public class TilePixelCollapse : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.position += Vector3.up * 0.5f * Time.fixedDeltaTime;
+        transform.position += Vector3.up * _moveSpeed * Time.fixedDeltaTime;
     }
 
     void Collapse(Vector3Int cell)
@@ -148,5 +160,22 @@ public class TilePixelCollapse : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         _piecePool.Release(obj);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("Tilemap")) return;
+
+        if (collision.TryGetComponent(out Player player))
+        {
+            player.TakeDamage(9999999,0,transform.position);
+            return;
+        }
+
+        if(collision.TryGetComponent(out ItemObject item))
+        {
+            _moveSpeed *= _mulSpeed;
+            collision.gameObject.SetActive(false);
+        }
     }
 }
