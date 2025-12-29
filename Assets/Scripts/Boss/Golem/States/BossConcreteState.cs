@@ -13,10 +13,7 @@ public class BossConcreteState : BossState
         _isRetract = doRetract;
     }
 
-    public override void Enter() 
-    { 
-
-    }
+    public override void Enter() { }
     public override void Exit()
     {
         Stage1Boss boss = _baseBoss as Stage1Boss;
