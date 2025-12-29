@@ -32691,6 +32691,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2025495306}
     - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
+      propertyPath: _isSpeedBoostEnabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
       propertyPath: OnPlayerDead.m_PersistentCalls.m_Calls.Array.size
       value: 3
       objectReference: {fileID: 0}

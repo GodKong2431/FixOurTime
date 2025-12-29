@@ -24307,6 +24307,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 83303104037676337}
     - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
+      propertyPath: _isDashAttackEnabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
+      propertyPath: _isDoubleJumpEnabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
+      propertyPath: _isSpeedBoostEnabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
       propertyPath: OnPlayerRespawn.m_PersistentCalls.m_Calls.Array.size
       value: 2
       objectReference: {fileID: 0}
