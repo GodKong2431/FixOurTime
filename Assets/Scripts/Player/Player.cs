@@ -577,7 +577,9 @@ public class Player : MonoBehaviour,IDamageable,IBindable
     }
     public void RemoveAllEffect()
     {
-        _activeEffects.Clear();
+        RemoveEffectByName("더움");
+        RemoveEffectByName("탈진");
+        RemoveEffectByName("추움");
     }
 
     //죽었을때 이벤트 호출
