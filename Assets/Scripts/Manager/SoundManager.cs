@@ -96,6 +96,7 @@ public class SoundManager : SingleTon<SoundManager>
 
     #region SFX 
 
+    //여러번 중복으로 호출가능한 메서드
     public void PlaySFXOneShot(string clipName)
     {
         if (!_soundDict.TryGetValue(clipName, out var clip)) return;
@@ -103,6 +104,7 @@ public class SoundManager : SingleTon<SoundManager>
         _sfxSource.PlayOneShot(clip, _sfxVolume);
     }
 
+    //화면 밖에서 소리 나는 메서드
     public void PlaySFX(string clipName) 
     { 
         if (!_soundDict.TryGetValue(clipName, out var clip)) return; 
@@ -112,6 +114,7 @@ public class SoundManager : SingleTon<SoundManager>
         RegisterSfx(clipName, clip.length); 
     } 
 
+    // 화면 밖에서 사운드 안나게 하는 메서드
     public void PlaySFX(string clipName, Vector3 worldPos) 
     { 
         if (!_soundDict.TryGetValue(clipName, out var clip)) return; 

@@ -20,7 +20,8 @@ public class AutoMoveGear : Gear
         while (true)
         {
             _move.MoveNextPoint();
-            if(_move.ChangeNextPoint())
+            SoundManager.Instance.PlaySFX("SFX_Gear_Moving", transform.position);
+            if (_move.ChangeNextPoint())
             {
                 _rotateSpeed = -_rotateSpeed;
             }
