@@ -7,7 +7,7 @@ TagManager:
   - PlayerAttack
   - Wall
   - Ground
-  - BossGround
+  - Tilemap
   layers:
   - Default
   - TransparentFX
