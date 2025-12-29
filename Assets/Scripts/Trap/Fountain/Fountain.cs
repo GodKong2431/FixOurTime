@@ -69,7 +69,7 @@ public class Fountain : MonoBehaviour
     {
         if (!collision.CompareTag("Player"))
             return;
-        Debug.Log("이펙트 제거 코루틴 종료");
+
         if (_removeEffectCoroutine != null)
         {
             StopCoroutine(_removeEffectCoroutine);
@@ -92,8 +92,6 @@ public class Fountain : MonoBehaviour
         player.RemoveEffectByName("더움");
         player.RemoveEffectByName("탈진");
         _zone._stayTimer = 0;
-
-        Debug.Log("이펙트 제거 실행됨");
+        SoundManager.Instance.PlaySFX("SFX_Fountain_Cure");
     }
-    
 }

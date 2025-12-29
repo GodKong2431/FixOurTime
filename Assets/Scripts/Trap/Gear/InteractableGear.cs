@@ -38,6 +38,7 @@ public class InteractableGear : Gear,IDamageable
         if (_currentState == GearStateType.GearMoveState)
         {
             _move.MoveNextPoint();
+            SoundManager.Instance.PlaySFX("SFX_Gear_Moving", transform.position);
             _rotateSpeed = rotateSpeed;
             //기존 체인지 포인트는 인덱스가 _currentIndex += _wayDir 때문에 범위벗어날라해서 여기서 직접 거리체크
             if (Vector3.Distance(transform.position,_move.NextPoint.position)<0.05f)
@@ -49,6 +50,7 @@ public class InteractableGear : Gear,IDamageable
                     Debug.Log("마지막 인덱스 도달 상호작용x");
                     _rotateSpeed = 0;
                     _isFinal = true; // 잠금 상태 활성화
+                    SoundManager.Instance.PlaySFX("SFX_Gear_Lock", transform.position);
                 }
 
                 if (_onOffObjs != null)
