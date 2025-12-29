@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class GameManager : SingleTon<GameManager>
@@ -17,10 +18,19 @@ public class GameManager : SingleTon<GameManager>
     bool _isPaused = false;
     public bool IsPaused => _isPaused;
 
+    public bool IsSceneReady { get; private set; }
+
     protected override void Awake()
     {
         base.Awake();
         //필요시 게임시작후 플레이어 참조
+    }
+    
+
+    private IEnumerator Start()
+    {
+        yield return null;   
+        IsSceneReady = true;
     }
 
     public void TogglePause()
