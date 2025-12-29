@@ -30,6 +30,7 @@ public class DelaySteam : MonoBehaviour
             _steam.SetActive(true);
             yield return Duration;
 
+            yield return StartCoroutine(_steam.GetComponent<Steam>().OffSteam());
             _steam.SetActive(false);
             yield return Delay;
         }
