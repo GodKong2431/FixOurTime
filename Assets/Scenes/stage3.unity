@@ -2462,8 +2462,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ghost
       objectReference: {fileID: 0}
-    - target: {fileID: 1302846910487728041, guid: 8efc25587a8a6be4ba9c013fcee99970, type: 3}
-      propertyPath: m_IsActive
+    - target: {fileID: 2457210653003056189, guid: 8efc25587a8a6be4ba9c013fcee99970, type: 3}
+      propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2664623151010068764, guid: 8efc25587a8a6be4ba9c013fcee99970, type: 3}
@@ -2505,14 +2505,6 @@ PrefabInstance:
     - target: {fileID: 2664623151010068764, guid: 8efc25587a8a6be4ba9c013fcee99970, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5771022200710890291, guid: 8efc25587a8a6be4ba9c013fcee99970, type: 3}
-      propertyPath: m_Color.a
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8051802830608445722, guid: 8efc25587a8a6be4ba9c013fcee99970, type: 3}
-      propertyPath: _platforms.Array.size
-      value: 52
       objectReference: {fileID: 0}
     - target: {fileID: 8051802830608445722, guid: 8efc25587a8a6be4ba9c013fcee99970, type: 3}
       propertyPath: '_platforms.Array.data[0]'
