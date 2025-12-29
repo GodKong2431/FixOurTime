@@ -17,6 +17,9 @@ public class SavePoint : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (!GameManager.Instance.IsSceneReady)
+            return;
+
         if (other.CompareTag("Player"))
         {
             Player player = other.GetComponent<Player>();
@@ -33,6 +36,9 @@ public class SavePoint : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        if (!GameManager.Instance.IsSceneReady)
+            return;
+
         if (_isSaved) return;
 
         if (collision.CompareTag("Player"))

@@ -14,16 +14,14 @@ public class SoundManager : SingleTon<SoundManager>
     [SerializeField] private float _bgmVolume = 1.0f; 
     [SerializeField] private float _sfxVolume = 1.0f; 
 
-    [Header("Main BGM")]
-    [SerializeField] private AudioClip _mainBgmClip; 
-
     private TableSOBase<SoundTableData> _soundData; 
 
     private readonly Dictionary<string, AudioClip> _soundDict = new(); 
 
     private readonly Dictionary<string, float> _playingSfx = new(); 
 
-    private Camera _mainCamera; 
+    private Camera _mainCamera;
+    Coroutine _bgmCoroutine;
     public float BGMVolume => _bgmVolume; 
     public float SFXVolume => _sfxVolume; 
 
@@ -39,7 +37,6 @@ public class SoundManager : SingleTon<SoundManager>
     { 
         _bgmSource.loop = true; 
         _bgmSource.volume = _bgmVolume; 
-        _bgmSource.clip = _mainBgmClip; 
         _bgmSource.Play(); 
         InitSoundData(); 
     } 
@@ -55,32 +52,32 @@ public class SoundManager : SingleTon<SoundManager>
     { 
         if (_mainCamera == null) 
             _mainCamera = Camera.main; 
-    } 
-    private void InitSoundData() 
-    { 
-        _soundData = CSVDataManager.Instance.Get<SoundTableData>("SoundTable"); 
+    }
+    private void InitSoundData()
+    {
+        _soundData = CSVDataManager.Instance.Get<SoundTableData>("SoundTable");
 
-        foreach (var row in _soundData.rows) 
-        { 
-            string path = GetResourcePath(row); 
-            AudioClip clip = Resources.Load<AudioClip>(path); 
+        foreach (var row in _soundData.rows)
+        {
+            string path = GetResourcePath(row);
+            AudioClip clip = Resources.Load<AudioClip>(path);
 
-            if (clip == null) 
-            { 
-                Debug.LogError($"[SoundManager] 사운드 없음 : {path}"); 
-                continue; 
-            } 
+            if (clip == null)
+            {
+                Debug.LogError($"[SoundManager] 사운드 없음 : {path}");
+                continue;
+            }
 
-            _soundDict[row.name] = clip; 
-        } 
-    } 
-    private string GetResourcePath(SoundTableData row) 
+            _soundDict[row.name] = clip;
+        }
+    }
+    private string GetResourcePath(SoundTableData row)
     {
         return row.soundtype == SoundType.BGM
             ? $"Sound/BGM/{row.name}"
             : $"Sound/SFX/{row.name}";
-    } 
-    #endregion 
+    }
+    #endregion
 
     #region UI 볼륨
     public void UpdateBgmVolume(float volume) 
@@ -148,10 +145,69 @@ public class SoundManager : SingleTon<SoundManager>
             _playingSfx.Remove(key); 
 
         ListPool<string>.Release(removeList); 
-    } 
-    #endregion 
+    }
+    #endregion
 
     #region BGM 
+    public void PlayBGMWithFade(string clipName, float time = 3f)
+    {
+        StopCurrentBgmCoroutine();
+        _bgmCoroutine = StartCoroutine(PlayBGM(clipName, time));
+    }
+
+    public void StopBGMWithFade(float time = 3f)
+    {
+        StopCurrentBgmCoroutine();
+        _bgmCoroutine = StartCoroutine(StopBGM(time));
+    }
+    private IEnumerator PlayBGM(string clipName, float time = 3f)
+    {
+        if (!_soundDict.TryGetValue(clipName, out var clip))
+            yield break;
+
+        _bgmSource.Stop();
+        _bgmSource.clip = clip;
+        _bgmSource.volume = 0f;
+        _bgmSource.Play();
+
+        float t = 0f;
+
+        while (t < time)
+        {
+            t += Time.unscaledDeltaTime;
+            _bgmSource.volume = Mathf.Lerp(0, _bgmVolume, t / time);
+            yield return null;
+        }
+
+        _bgmSource.volume = _bgmVolume;
+    }
+
+    private IEnumerator StopBGM(float time = 3f)
+    {
+        float startVolume = _bgmSource.volume;
+        float t = 0f;
+
+        while (t < time)
+        {
+            t += Time.unscaledDeltaTime;
+            _bgmSource.volume = Mathf.Lerp(startVolume, 0, t / time);
+            yield return null;
+        }
+
+        _bgmSource.volume = 0f;
+        _bgmSource.Stop();
+        _bgmSource.clip = null;
+    }
+
+    void StopCurrentBgmCoroutine()
+    {
+        if (_bgmCoroutine != null)
+        {
+            StopCoroutine(_bgmCoroutine);
+            _bgmCoroutine = null;
+        }
+    }
+
     public void FadePlayBgm(string clipName, float fadeTime = 1f) 
     { 
         if (!_soundDict.TryGetValue(clipName, out var clip)) return; 

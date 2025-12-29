@@ -762,6 +762,10 @@ PrefabInstance:
       propertyPath: _sfxSource
       value: 
       objectReference: {fileID: 585517498}
+    - target: {fileID: 3827322394487666444, guid: fcbcdc4e72924574babce6850510cfeb, type: 3}
+      propertyPath: _mainBgmClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 81da4bf1baffbf34a97581dc68b54e42, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -1,4 +1,4 @@
-아이디,이름,사운드 종류
+아이디,이름,타입
 id,name,soundtype
 int,string,SoundType
 101,SFX_Player_Attack,SFX
@@ -27,7 +27,16 @@ int,string,SoundType
 404,SFX_Boss1_WeakPointHit,SFX
 405,SFX_Boss1_ThrowConcrete,SFX
 406,SFX_Boss1_WeakPointSmash,SFX
+407,SFX_Boss2_BookThrow,SFX
+408,SFX_Boss2_Bookbite,SFX
+409,SFX_Boss2_Bite,SFX
+410,SFX_Boss2_Bite,SFX
+411,SFX_Boss2_Explosion,SFX
+412,SFX_Boss2_Book,SFX
 501,SFX_Stage_Start,SFX
 502,SFX_Stage4_Earthquake,SFX
 503,SFX_Stage_ClearEventQuake,SFX
 504,SFX_Stage3_TimeShift,SFX
+601,BGM_FixOurTime,BGM
+602,BGM_Stage1,BGM
+603,BGM_Stage2,BGM

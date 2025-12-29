@@ -91,6 +91,24 @@ MonoBehaviour:
   - id: 406
     name: SFX_Boss1_WeakPointSmash
     soundtype: 1
+  - id: 407
+    name: SFX_Boss2_BookThrow
+    soundtype: 1
+  - id: 408
+    name: SFX_Boss2_Bookbite
+    soundtype: 1
+  - id: 409
+    name: SFX_Boss2_Bite
+    soundtype: 1
+  - id: 410
+    name: SFX_Boss2_Bite
+    soundtype: 1
+  - id: 411
+    name: SFX_Boss2_Explosion
+    soundtype: 1
+  - id: 412
+    name: SFX_Boss2_Book
+    soundtype: 1
   - id: 501
     name: SFX_Stage_Start
     soundtype: 1
@@ -103,3 +121,12 @@ MonoBehaviour:
   - id: 504
     name: SFX_Stage3_TimeShift
     soundtype: 1
+  - id: 601
+    name: BGM_FixOurTime
+    soundtype: 0
+  - id: 602
+    name: BGM_Stage1
+    soundtype: 0
+  - id: 603
+    name: BGM_Stage2
+    soundtype: 0
