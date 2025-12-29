@@ -18262,13 +18262,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FragmentMarker
   _tilemap: {fileID: 1879102390}
-  _piecePrefab: {fileID: 7011453393234131726, guid: b97f39b48c4ad8747a36b19f77e3a3b9, type: 3}
+  _piecePrefab:
+  - {fileID: 7011453393234131726, guid: b97f39b48c4ad8747a36b19f77e3a3b9, type: 3}
+  - {fileID: 7011453393234131726, guid: fe257c65390418444a03cad9becf3248, type: 3}
+  - {fileID: 7011453393234131726, guid: 8872eccd3897e3949b61826bbf320beb, type: 3}
+  - {fileID: 7011453393234131726, guid: ce6d6c7309ef8804f9c546fdec92c456, type: 3}
+  - {fileID: 7011453393234131726, guid: 53de1be47dfe65b459eaefec01f583f4, type: 3}
   _piecesCount: 6
-  _pieceSize: 0.4
+  _pieceSize: 0.3
   _force: 2.5
   _lifeTime: 2
   _defaultPoolSize: 50
   _maxPoolSize: 200
+  _moveSpeed: 0.5
+  _mulSpeed: 10
 --- !u!212 &1189559895
 SpriteRenderer:
   m_ObjectHideFlags: 0

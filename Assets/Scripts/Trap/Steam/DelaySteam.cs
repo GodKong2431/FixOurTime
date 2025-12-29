@@ -31,7 +31,6 @@ public class DelaySteam : MonoBehaviour
             yield return Duration;
 
             _steam.SetActive(false);
-            SoundManager.Instance.PlaySFX("SFX_Steam_Off", transform.position);
             yield return Delay;
         }
     }
