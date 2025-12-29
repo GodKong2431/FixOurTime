@@ -4373,6 +4373,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2525851882532831258, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2838901264221045163, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -4529,6 +4533,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7548509100127813432, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7577610369235226323, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
+      propertyPath: m_text
+      value: Dash Attack Enabled !
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8856196052005427204, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
     - {fileID: 1463426938731723842, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
@@ -4579,6 +4591,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!1 &133788235 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7548509100127813432, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
+  m_PrefabInstance: {fileID: 133788230}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &133920986
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11670,7 +11687,7 @@ PrefabInstance:
       objectReference: {fileID: 2083793505}
     - target: {fileID: 3683694011127137908, guid: 5ba348d4b99c40a46819e86181f08808, type: 3}
       propertyPath: OnBossDead.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3683694011127137908, guid: 5ba348d4b99c40a46819e86181f08808, type: 3}
       propertyPath: OnBossDead.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -11678,6 +11695,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3683694011127137908, guid: 5ba348d4b99c40a46819e86181f08808, type: 3}
       propertyPath: OnBossDead.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3683694011127137908, guid: 5ba348d4b99c40a46819e86181f08808, type: 3}
+      propertyPath: OnBossDead.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3683694011127137908, guid: 5ba348d4b99c40a46819e86181f08808, type: 3}
+      propertyPath: OnBossDead.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3683694011127137908, guid: 5ba348d4b99c40a46819e86181f08808, type: 3}
@@ -11689,11 +11714,27 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9989016}
     - target: {fileID: 3683694011127137908, guid: 5ba348d4b99c40a46819e86181f08808, type: 3}
+      propertyPath: OnBossDead.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 133788235}
+    - target: {fileID: 3683694011127137908, guid: 5ba348d4b99c40a46819e86181f08808, type: 3}
+      propertyPath: OnBossDead.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 1686365516}
+    - target: {fileID: 3683694011127137908, guid: 5ba348d4b99c40a46819e86181f08808, type: 3}
       propertyPath: OnBossDead.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3683694011127137908, guid: 5ba348d4b99c40a46819e86181f08808, type: 3}
       propertyPath: OnBossDead.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3683694011127137908, guid: 5ba348d4b99c40a46819e86181f08808, type: 3}
+      propertyPath: OnBossDead.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3683694011127137908, guid: 5ba348d4b99c40a46819e86181f08808, type: 3}
+      propertyPath: OnBossDead.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3683694011127137908, guid: 5ba348d4b99c40a46819e86181f08808, type: 3}
@@ -11705,6 +11746,14 @@ PrefabInstance:
       value: ChangeBackground
       objectReference: {fileID: 0}
     - target: {fileID: 3683694011127137908, guid: 5ba348d4b99c40a46819e86181f08808, type: 3}
+      propertyPath: OnBossDead.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 3683694011127137908, guid: 5ba348d4b99c40a46819e86181f08808, type: 3}
+      propertyPath: OnBossDead.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: UnlockDashAttack
+      objectReference: {fileID: 0}
+    - target: {fileID: 3683694011127137908, guid: 5ba348d4b99c40a46819e86181f08808, type: 3}
       propertyPath: OnBossDead.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: CeilingCollider, Assembly-CSharp
       objectReference: {fileID: 0}
@@ -11713,11 +11762,35 @@ PrefabInstance:
       value: StageBackgroundChanger, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3683694011127137908, guid: 5ba348d4b99c40a46819e86181f08808, type: 3}
+      propertyPath: OnBossDead.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3683694011127137908, guid: 5ba348d4b99c40a46819e86181f08808, type: 3}
+      propertyPath: OnBossDead.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: Player, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3683694011127137908, guid: 5ba348d4b99c40a46819e86181f08808, type: 3}
+      propertyPath: OnBossDead.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3683694011127137908, guid: 5ba348d4b99c40a46819e86181f08808, type: 3}
+      propertyPath: OnBossDead.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3683694011127137908, guid: 5ba348d4b99c40a46819e86181f08808, type: 3}
       propertyPath: OnBossDead.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3683694011127137908, guid: 5ba348d4b99c40a46819e86181f08808, type: 3}
       propertyPath: OnBossDead.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3683694011127137908, guid: 5ba348d4b99c40a46819e86181f08808, type: 3}
+      propertyPath: OnBossDead.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3683694011127137908, guid: 5ba348d4b99c40a46819e86181f08808, type: 3}
+      propertyPath: OnBossDead.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6893919507403199584, guid: 5ba348d4b99c40a46819e86181f08808, type: 3}
@@ -52798,6 +52871,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 133788234}
     - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
+      propertyPath: _isDashAttackEnabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
+      propertyPath: _isSpeedBoostEnabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
       propertyPath: _groundLayer.Array.data[0].m_Bits
       value: 2147483648
       objectReference: {fileID: 0}
@@ -52934,6 +53015,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 399c980154248fc41b541233f493a29b, type: 3}
+--- !u!114 &1686365516 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 937044888594761141, guid: 399c980154248fc41b541233f493a29b, type: 3}
+  m_PrefabInstance: {fileID: 1686365515}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c8a033cf4d2fa44cb914114bf43e5a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player
 --- !u!1 &1687175096
 GameObject:
   m_ObjectHideFlags: 0
