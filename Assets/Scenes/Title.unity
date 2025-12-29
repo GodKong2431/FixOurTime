@@ -243,23 +243,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a4e334ac831418459dfd3735b8974fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonHoverSound
---- !u!1 &735180140 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2636615931343837210, guid: 630466a29d14642459f32995bb5eb203, type: 3}
-  m_PrefabInstance: {fileID: 3468131160656528474}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &735180144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 735180140}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c95ad30f04a5209408f4bf82e003d552, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UiMover
 --- !u!1 &874504784 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4377286073175321978, guid: 630466a29d14642459f32995bb5eb203, type: 3}
@@ -1774,9 +1757,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5814124834180912339, guid: 630466a29d14642459f32995bb5eb203, type: 3}
       insertIndex: -1
       addedObject: {fileID: 943384297}
-    - targetCorrespondingSourceObject: {fileID: 2636615931343837210, guid: 630466a29d14642459f32995bb5eb203, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 735180144}
     - targetCorrespondingSourceObject: {fileID: 4377286073175321978, guid: 630466a29d14642459f32995bb5eb203, type: 3}
       insertIndex: 4
       addedObject: {fileID: 874504791}
