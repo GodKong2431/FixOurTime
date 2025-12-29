@@ -29030,19 +29030,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6313110040764761012, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
       propertyPath: m_LocalScale.x
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 6313110040764761012, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 6313110040764761012, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
-      propertyPath: m_LocalScale.z
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6313110040764761012, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6313110040764761012, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6313110040764761012, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 27.41
+      value: 27.97
       objectReference: {fileID: 0}
     - target: {fileID: 6313110040764761012, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -32548,10 +32548,14 @@ PrefabInstance:
       objectReference: {fileID: 1643571692}
     - target: {fileID: 3327714472706973608, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3327714472706973608, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5390484494698999564, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6894859525446076651, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
