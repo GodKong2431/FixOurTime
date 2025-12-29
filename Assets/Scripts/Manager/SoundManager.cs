@@ -10,8 +10,8 @@ public class SoundManager : SingleTon<SoundManager>
     #region 필드
 
     [Header("Audio Sources")]
-    [SerializeField] private AudioSource bgmSource;
-    [SerializeField] private AudioSource sfxSource;
+    [SerializeField] private AudioSource _bgmSource;
+    [SerializeField] private AudioSource _sfxSource;
 
     [Header("Volumes")]
     [Range(0f, 1f)]
@@ -63,10 +63,10 @@ public class SoundManager : SingleTon<SoundManager>
     /// </summary>
     private void InitBgm()
     {
-        bgmSource.loop = true;
-        bgmSource.volume = _bgmVolume;
-        bgmSource.clip = mainBgm;
-        bgmSource.Play();
+        _bgmSource.loop = true;
+        _bgmSource.volume = _bgmVolume;
+        _bgmSource.clip = mainBgm;
+        _bgmSource.Play();
     }
 
     /// <summary>
@@ -103,7 +103,7 @@ public class SoundManager : SingleTon<SoundManager>
     public void UpdateBgmVolume(float volume)
     {
         _bgmVolume = volume;
-        bgmSource.volume = volume;
+        _bgmSource.volume = volume;
     }
 
     public void UpdateSfxVolume(float volume)
@@ -129,8 +129,20 @@ public class SoundManager : SingleTon<SoundManager>
         if (!CanPlaySfx(name, out var clip))
             return;
 
-        sfxSource.PlayOneShot(clip, _sfxVolume);
+        _sfxSource.PlayOneShot(clip, _sfxVolume);
         RegisterSfx(name, clip.length);
+    }
+
+    public void PlaySFXOneShot(string name, Vector3? worldPos = null)
+    {
+        // 위치가 주어졌고 카메라 밖이면 재생 안 함
+        if (worldPos.HasValue && !IsInCameraView(worldPos.Value))
+            return;
+
+        if (!CanPlaySfx(name, out var clip))
+            return;
+
+        _sfxSource.PlayOneShot(clip, _sfxVolume);
     }
 
     private bool CanPlaySfx(string name, out AudioClip clip)
@@ -183,12 +195,12 @@ public class SoundManager : SingleTon<SoundManager>
 
     private IEnumerator FadeBgmRoutine(AudioClip clip, float time)
     {
-        yield return FadeVolume(bgmSource, bgmSource.volume, 0, time);
+        yield return FadeVolume(_bgmSource, _bgmSource.volume, 0, time);
 
-        bgmSource.clip = clip;
-        bgmSource.Play();
+        _bgmSource.clip = clip;
+        _bgmSource.Play();
 
-        yield return FadeVolume(bgmSource, 0, _bgmVolume, time);
+        yield return FadeVolume(_bgmSource, 0, _bgmVolume, time);
     }
 
     private static IEnumerator FadeVolume(AudioSource source, float from, float to, float time)
