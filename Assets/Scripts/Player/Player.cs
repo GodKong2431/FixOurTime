@@ -327,6 +327,13 @@ public class Player : MonoBehaviour,IDamageable,IBindable
 
         if (ctx.started && CanAttack)
         {
+            //공중 대시공격 체크
+            if (_isDashAttackEnabled && (_currentState is JumpState || _currentState is FallState))
+            {
+                SetState(new DashAttackState());
+                return; // 대시 공격하면 일반공격 건너뜀
+            }
+
             //공격 허용 안하는 상태들
             bool _isAttackPrevent = _currentState is HitState ||
                                  _currentState is StunState ||
@@ -344,18 +351,18 @@ public class Player : MonoBehaviour,IDamageable,IBindable
         }
     }
 
-    public void OnDashAttack(InputAction.CallbackContext ctx)
-    {
-        if (_currentState is DeadState) return;
-
-        if (ctx.started && _isDashAttackEnabled && CanAttack)
-        {
-            if (_currentState is JumpState || _currentState is FallState)
-            {
-                SetState(new DashAttackState());
-            }
-        }
-    }
+    //public void OnDashAttack(InputAction.CallbackContext ctx)
+    //{
+    //    if (_currentState is DeadState) return;
+    //
+    //    if (ctx.started && _isDashAttackEnabled && CanAttack)
+    //    {
+    //        if (_currentState is JumpState || _currentState is FallState)
+    //        {
+    //            SetState(new DashAttackState());
+    //        }
+    //    }
+    //}
 
     public void OnSpeedBoost(InputAction.CallbackContext ctx)
     {
