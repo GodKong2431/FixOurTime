@@ -10,6 +10,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour,IDamageable,IBindable
 {
+    #region 필드
     [Header("기본 상태 값 설정")]
     IState<Player> _currentState;
     [SerializeField] float _moveSpeed = 5f;
@@ -103,7 +104,6 @@ public class Player : MonoBehaviour,IDamageable,IBindable
     [SerializeField] GameObject _pausePanel;
     [SerializeField] Button _pauseButton;
     [SerializeField] Button _resumeButton;
-    bool _isPaused = false;
 
     [Header("바인드 확인")]
     bool _isBinded = false;
@@ -116,7 +116,9 @@ public class Player : MonoBehaviour,IDamageable,IBindable
     SpriteRenderer _attackHitBoxSpriteRenderer;
 
     private LayerMask _sortGroundLayer;
+    #endregion
 
+    #region 애니메이션, 사운드 이름
     public readonly int animState = Animator.StringToHash("State");
     public readonly int animJump = Animator.StringToHash("DoJump");
     public readonly int animAttack = Animator.StringToHash("DoAttack");
@@ -130,7 +132,9 @@ public class Player : MonoBehaviour,IDamageable,IBindable
     public const string PlayerDash = "SFX_Player_Dash";
     public const string PlayerHit = "SFX_Player_Hit";
     public const string WallBump = "SFX_Player_WallBump";
+    #endregion
 
+    #region 프로퍼티
     //프로퍼티
     public int AirJumpCount => _airJumpCount;
     public int CurrentAirJump { get => _currentAirJump; set => _currentAirJump = value; }
@@ -178,6 +182,7 @@ public class Player : MonoBehaviour,IDamageable,IBindable
     public bool HasSecondHand => _hasSecondHand;
     public bool HasMinuteHand => _hasMinuteHand;
     public bool HasHourHand => _hasHourHand;
+    #endregion
 
     private void Awake()
     {
@@ -244,6 +249,9 @@ public class Player : MonoBehaviour,IDamageable,IBindable
         _currentState.Enter(this);
         _currentState.Execute(this);
     }
+
+    #region 입력처리(인풋시스템)
+    
     public void OnPause(InputAction.CallbackContext ctx)
     {
         if (ctx.started)
@@ -259,27 +267,6 @@ public class Player : MonoBehaviour,IDamageable,IBindable
                 // 판넬 꺼져있으면 퍼즈버튼 실행
                 ExecutePause();
             }
-        }
-    }
-
-    // 마우스로 누를 때와 ESC로 누를 때 공통으로 실행될 로직
-    public void ExecutePause()
-    {
-        if (_pauseButton != null && _pauseButton.interactable)
-        {
-            SoundManager.Instance.PlaySFX("SFX_UI_ButtonClick");
-            _pauseButton.onClick.Invoke();
-            Debug.Log("일시정지 실행");
-        }
-    }
-
-    public void ExecuteResume()
-    {
-        if (_resumeButton != null && _resumeButton.interactable)
-        {
-            SoundManager.Instance.PlaySFX("SFX_UI_Back");
-            _resumeButton.onClick.Invoke();
-            Debug.Log("게임 재개 실행");
         }
     }
     public void OnMove(InputAction.CallbackContext ctx)
@@ -307,7 +294,7 @@ public class Player : MonoBehaviour,IDamageable,IBindable
             if ((_currentAirJump > 0 && _isAirJump && _isDoubleJumpEnabled) || canInfiniteJump)
             {
                 _jumpDirX = _moveInput.x;
-                SetState(new JumpState(true,_moveInput.x)); // true는 공중 점프임을 나타냄
+                SetState(new JumpState(true, _moveInput.x)); // true는 공중 점프임을 나타냄
 
                 // 일반 공중 점프 횟수는 무한 점프가 아닐 때만 차감하게 할 수도 있습니다.
                 if (!canInfiniteJump) _currentAirJump--;
@@ -332,7 +319,7 @@ public class Player : MonoBehaviour,IDamageable,IBindable
                 }
             }
         }
-        
+
     }
     public void OnAttack(InputAction.CallbackContext ctx)
     {
@@ -357,6 +344,62 @@ public class Player : MonoBehaviour,IDamageable,IBindable
         }
     }
 
+    public void OnDashAttack(InputAction.CallbackContext ctx)
+    {
+        if (_currentState is DeadState) return;
+
+        if (ctx.started && _isDashAttackEnabled && CanAttack)
+        {
+            if (_currentState is JumpState || _currentState is FallState)
+            {
+                SetState(new DashAttackState());
+            }
+        }
+    }
+
+    public void OnSpeedBoost(InputAction.CallbackContext ctx)
+    {
+        if (!_isSpeedBoostEnabled || _currentState is HitState || _currentState is StunState)
+        {
+            return;
+        }
+
+        if (ctx.started)
+        {
+            if (_speedBoostCoroutine != null) StopCoroutine(_speedBoostCoroutine);
+            _speedBoostCoroutine = StartCoroutine(SpeedBoostCoroutine());
+        }
+        else if (ctx.canceled)
+        {
+            StopSpeedBoost();
+        }
+    }
+    #endregion
+
+    #region Pause, resume 버튼UI 설정
+    // 마우스로 누를 때와 ESC로 누를 때 공통으로 실행될 로직
+    public void ExecutePause()
+    {
+        if (_pauseButton != null && _pauseButton.interactable)
+        {
+            SoundManager.Instance.PlaySFX("SFX_UI_ButtonClick");
+            _pauseButton.onClick.Invoke();
+            Debug.Log("일시정지 실행");
+        }
+    }
+
+    public void ExecuteResume()
+    {
+        if (_resumeButton != null && _resumeButton.interactable)
+        {
+            SoundManager.Instance.PlaySFX("SFX_UI_Back");
+            _resumeButton.onClick.Invoke();
+            Debug.Log("게임 재개 실행");
+        }
+    }
+    #endregion
+
+    #region 공격설정
     public void StartAttack()
     {
         if (_attackCoroutine != null)
@@ -389,6 +432,7 @@ public class Player : MonoBehaviour,IDamageable,IBindable
         }
     }
 
+    //공격 잔상 조절
     public void UpdateAttackProgress(float progress)
     {
         if(_attackHitBox != null)
@@ -397,43 +441,16 @@ public class Player : MonoBehaviour,IDamageable,IBindable
         }
     }
 
-    public void OnDashAttack(InputAction.CallbackContext ctx)
-    {
-        if (_currentState is DeadState) return;
-
-        if (ctx.started && _isDashAttackEnabled && CanAttack)
-        {
-            if(_currentState is JumpState ||  _currentState is FallState)
-            {
-                SetState(new DashAttackState());
-            }
-        }
-    }
+    
     //공격 시작시 쿨타임 적용시키는 메서드
     public void ResetAttackCooldown()
     {
         _nextAttackTime = Time.time + _attackCooldown;
     }
 
-    
-    public void OnSpeedBoost(InputAction.CallbackContext ctx)
-    {
-        if(!_isSpeedBoostEnabled || _currentState is HitState || _currentState is StunState)
-        {
-            return;
-        }
+    #endregion
 
-        if (ctx.started)
-        {
-            if (_speedBoostCoroutine != null) StopCoroutine(_speedBoostCoroutine);
-            _speedBoostCoroutine = StartCoroutine(SpeedBoostCoroutine());
-        }
-        else if (ctx.canceled)
-        {
-            StopSpeedBoost();
-        }
-    }
-
+    #region 가속 설정
     //가속종료
     private void StopSpeedBoost()
     {
@@ -469,6 +486,9 @@ public class Player : MonoBehaviour,IDamageable,IBindable
         }
     }
 
+    #endregion
+
+    #region 피격 설정
     public void TakeDamage(float damage, float KnockbackForce, Vector3 hitPos)
     {
 
@@ -512,7 +532,9 @@ public class Player : MonoBehaviour,IDamageable,IBindable
             SetState(new HitState(dirX, KnockbackForce));
         }
     }
+    #endregion
 
+    #region 버프/디버프 관리
     private void HandleDebuffs()
     {
         for(int i = _activeEffects.Count - 1; i >= 0; i--)
@@ -575,12 +597,53 @@ public class Player : MonoBehaviour,IDamageable,IBindable
         debuff.OnExit(this);
         _activeEffects.Remove(debuff);
     }
-
-    //죽었을때 이벤트 호출
-    public void InvokeDeadEvent()
+    public void SetBind(float duration)
     {
-        OnPlayerDead?.Invoke();
+        //이미 바인드 중이면 기존코루틴 멈춰서 지속시간 초기화
+        if (_bindCoroutine != null)
+        {
+            StopCoroutine(_bindCoroutine);
+        }
+        if (_currentState is ChargeState)
+        {
+            _isChargeStarted = false;
+            SetState(new IdleState());
+        }
+        _bindCoroutine = StartCoroutine(BindCoroutine(duration));
     }
+    public void Unbind()
+    {
+        if (_bindCoroutine != null)
+        {
+            StopCoroutine(_bindCoroutine);
+            _bindCoroutine = null;
+        }
+        ResetMoveSpeed();
+    }
+    private void ResetMoveSpeed()
+    {
+        _isBinded = false;
+        _isChargeStarted = false;
+        _moveSpeed = 5f;
+    }
+    private IEnumerator BindCoroutine(float duration)
+    {
+        _isBinded = true;
+
+        MoveSpeed = 0f;
+
+        _rb.linearVelocity = Vector2.zero;
+
+        yield return new WaitForSeconds(duration);
+
+        ResetMoveSpeed();
+
+        _bindCoroutine = null;
+    }
+    #endregion
+
+    #region 세이브/로드 데이터 관리
+
     //데이터 저장시키기
     public void SavePlayerState(GameData data)
     {
@@ -631,6 +694,15 @@ public class Player : MonoBehaviour,IDamageable,IBindable
 
         GameDataManager.Save(data);
     }
+    #endregion
+
+    #region 사망/부활 설정
+    //죽었을때 이벤트 호출
+    public void InvokeDeadEvent()
+    {
+        OnPlayerDead?.Invoke();
+    }
+
     //부활
     public void Respawn()
     {
@@ -647,7 +719,9 @@ public class Player : MonoBehaviour,IDamageable,IBindable
         OnPlayerRespawn?.Invoke();
         SetState(new IdleState());
     }
+    #endregion
 
+    #region 기능해금 호출
     //기능 해금들
     public void UnlockDoubleJump()
     {
@@ -666,6 +740,10 @@ public class Player : MonoBehaviour,IDamageable,IBindable
         _isDashAttackEnabled = true;
         Debug.Log("대시어택 기능이 활성화되었습니다.");
     }
+
+    #endregion
+
+    #region 마테리얼, 기즈모, 셰이더 설정
     //마테리얼 교체
     public void SetPhysicsMaterial(bool isBounce)
     {
@@ -684,17 +762,9 @@ public class Player : MonoBehaviour,IDamageable,IBindable
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(_groundChecker.position, 0.05f);
     }
-    //클리어를 위한 아이템 다 모았는가 확인용
-    public void CollectItem(ItemObject.ItemType type)
-    {
-        switch (type)
-        {
-            case ItemObject.ItemType.SecondHand: _hasSecondHand = true; break;
-            case ItemObject.ItemType.MinuteHand: _hasMinuteHand = true; break;
-            case ItemObject.ItemType.HourHand: _hasHourHand = true; break;
-        }
-    }
+    
 
+    //차징시 나타나는 셰이더 마테리얼 설정
     public void ChargeVisual(float ratio)
     {
 
@@ -723,49 +793,18 @@ public class Player : MonoBehaviour,IDamageable,IBindable
         //두께 차징정도에따라  0.02f까지 키우기
         Spr.material.SetFloat("_OutlineWidth", ratio * 0.02f);
     }
-    public void SetBind(float duration)
+    #endregion
+
+    //클리어를 위한 아이템 다 모았는가 확인용
+    public void CollectItem(ItemObject.ItemType type)
     {
-        //이미 바인드 중이면 기존코루틴 멈춰서 지속시간 초기화
-        if (_bindCoroutine != null)
+        switch (type)
         {
-            StopCoroutine(_bindCoroutine);
+            case ItemObject.ItemType.SecondHand: _hasSecondHand = true; break;
+            case ItemObject.ItemType.MinuteHand: _hasMinuteHand = true; break;
+            case ItemObject.ItemType.HourHand: _hasHourHand = true; break;
         }
-        if (_currentState is ChargeState)
-        {
-            _isChargeStarted = false;
-            SetState(new IdleState());
-        }
-        _bindCoroutine = StartCoroutine(BindCoroutine(duration));
-    }
-    public void Unbind()
-    {
-        if (_bindCoroutine != null)
-        {
-            StopCoroutine(_bindCoroutine);
-            _bindCoroutine = null;
-        }
-        ResetMoveSpeed();
-    }
-    private void ResetMoveSpeed()
-    {
-        _isBinded = false;
-        _isChargeStarted = false;
-        _moveSpeed = 5f;
-    }
-    private IEnumerator BindCoroutine(float duration)
-    {
-        _isBinded = true;
-
-        MoveSpeed = 0f;
-
-        _rb.linearVelocity = Vector2.zero;
-
-        yield return new WaitForSeconds(duration);
-
-        ResetMoveSpeed();
-
-        _bindCoroutine = null;
     }
 
-    
+
 }
