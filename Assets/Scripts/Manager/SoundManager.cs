@@ -2,237 +2,188 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
-
 public enum SoundType { BGM, SFX }
 
-public class SoundManager : SingleTon<SoundManager>
-{
-    #region 필드
-
+public class SoundManager : SingleTon<SoundManager> 
+{ 
     [Header("Audio Sources")]
-    [SerializeField] private AudioSource _bgmSource;
-    [SerializeField] private AudioSource _sfxSource;
+    [SerializeField] private AudioSource _bgmSource; 
+    [SerializeField] private AudioSource _sfxSource; 
 
     [Header("Volumes")]
-    [Range(0f, 1f)]
-    [SerializeField] private float _bgmVolume = 1f;
-    [Range(0f, 1f)]
-    [SerializeField] private float _sfxVolume = 1f;
+    [SerializeField] private float _bgmVolume = 1.0f; 
+    [SerializeField] private float _sfxVolume = 1.0f; 
 
-    [Header("Default BGM")]
-    [SerializeField] private AudioClip mainBgm;
+    [Header("Main BGM")]
+    [SerializeField] private AudioClip _mainBgmClip; 
 
-    public float BGMVolume => _bgmVolume;
-    public float SFXVolume => _sfxVolume;
+    private TableSOBase<SoundTableData> _soundData; 
 
-    /// 사운드 테이블에서 로드한 AudioClip 캐싱할 딕셔너리
-    private readonly Dictionary<string, AudioClip> soundCache = new();
+    private readonly Dictionary<string, AudioClip> _soundDict = new(); 
 
-    // SFX 중복 재생 방지용 (재생 종료 시간 기록)
-    private readonly Dictionary<string, float> playingSfx = new();
+    private readonly Dictionary<string, float> _playingSfx = new(); 
 
-    private Camera mainCam;
+    private Camera _mainCamera; 
+    public float BGMVolume => _bgmVolume; 
+    public float SFXVolume => _sfxVolume; 
 
-    #endregion
 
-    #region 유니티 라이프 사이클
+    #region Unity LifeCycle 
 
-    protected override void Awake()
+    protected override void Awake() 
+    { 
+        base.Awake(); 
+        RefreshCamera(); 
+    } 
+    private void Start() 
+    { 
+        _bgmSource.loop = true; 
+        _bgmSource.volume = _bgmVolume; 
+        _bgmSource.clip = _mainBgmClip; 
+        _bgmSource.Play(); 
+        InitSoundData(); 
+    } 
+    private void Update() 
+    { 
+        CleanupFinishedSFX(); 
+        RefreshCamera(); 
+    } 
+    #endregion 
+
+    #region Init 
+    private void RefreshCamera() 
+    { 
+        if (_mainCamera == null) 
+            _mainCamera = Camera.main; 
+    } 
+    private void InitSoundData() 
+    { 
+        _soundData = CSVDataManager.Instance.Get<SoundTableData>("SoundTable"); 
+
+        foreach (var row in _soundData.rows) 
+        { 
+            string path = GetResourcePath(row); 
+            AudioClip clip = Resources.Load<AudioClip>(path); 
+
+            if (clip == null) 
+            { 
+                Debug.LogError($"[SoundManager] 사운드 없음 : {path}"); 
+                continue; 
+            } 
+
+            _soundDict[row.name] = clip; 
+        } 
+    } 
+    private string GetResourcePath(SoundTableData row) 
     {
-        base.Awake();
-        mainCam = Camera.main;
-    }
+        return row.soundtype == SoundType.BGM
+            ? $"Sound/BGM/{row.name}"
+            : $"Sound/SFX/{row.name}";
+    } 
+    #endregion 
 
-    private void Start()
-    {
-        InitBgm();
-        LoadSoundTable();
-    }
+    #region UI Volume 
+    public void UpdateBgmVolume(float volume) 
+    { 
+        _bgmVolume = volume; 
+        _bgmSource.volume = volume; 
+    } 
+    public void UpdateSfxVolume(float volume) 
+    { 
+        _sfxVolume = volume; 
+    } 
+    #endregion 
 
-    private void Update()
-    {
-        CleanupFinishedSfx();
-    }
+    #region SFX 
+    public void PlaySFX(string clipName) 
+    { 
+        if (!_soundDict.TryGetValue(clipName, out var clip)) return; 
+        if (IsSFXPlaying(clipName)) return; 
 
-    #endregion
+        _sfxSource.PlayOneShot(clip, _sfxVolume); 
+        RegisterSfx(clipName, clip.length); 
+    } 
 
-    #region 초기화
+    public void PlaySFX(string clipName, Vector3 worldPos) 
+    { 
+        if (!_soundDict.TryGetValue(clipName, out var clip)) return; 
+        if (!IsInCameraView2D(worldPos)) return; 
+        if (IsSFXPlaying(clipName)) return; 
 
-    /// <summary>
-    /// 기본 BGM 설정 및 재생
-    /// </summary>
-    private void InitBgm()
-    {
-        _bgmSource.loop = true;
-        _bgmSource.volume = _bgmVolume;
-        _bgmSource.clip = mainBgm;
-        _bgmSource.Play();
-    }
+        _sfxSource.PlayOneShot(clip, _sfxVolume); 
+        RegisterSfx(clipName, clip.length); 
+    } 
+    private bool IsSFXPlaying(string clipName) 
+    { 
+        return _playingSfx.ContainsKey(clipName); 
+    } 
+    private void RegisterSfx(string clipName, float duration) 
+    { 
+        _playingSfx[clipName] = Time.time + duration; 
+    } 
+    private void CleanupFinishedSFX() 
+    { 
+        if (_playingSfx.Count == 0) return; 
 
-    /// <summary>
-    /// CSV 사운드 테이블 기반으로 Resources에서 AudioClip 로드
-    /// </summary>
-    private void LoadSoundTable()
-    {
-        var table = CSVDataManager.Instance.Get<SoundTableData>("SoundTable");
+        float now = Time.time; 
+        var removeList = ListPool<string>.Get(); 
 
-        foreach (var row in table.rows)
-        {
-            string path = GetSoundPath(row);
-            AudioClip clip = Resources.Load<AudioClip>(path);
+        foreach (var kv in _playingSfx) 
+        { 
+            if (now >= kv.Value) removeList.Add(kv.Key); 
+        } 
 
-            if (clip == null)
-            {
-                Debug.LogError($"[SoundManager] 사운드 못찾음 : {path}");
-                continue;
-            }
+        foreach (var key in removeList) 
+            _playingSfx.Remove(key); 
 
-            soundCache[row.name] = clip;
-        }
-    }
+        ListPool<string>.Release(removeList); 
+    } 
+    #endregion 
 
-    private static string GetSoundPath(SoundTableData row)
-    {
-        return row.soundtype == SoundType.BGM ? $"Sound/BGM/{row.name}" : $"Sound/SFX/{row.name}";
-    }
+    #region BGM 
+    public void FadePlayBgm(string clipName, float fadeTime = 1f) 
+    { 
+        if (!_soundDict.TryGetValue(clipName, out var clip)) return; 
 
-    #endregion
+        StopAllCoroutines(); 
+        StartCoroutine(FadeBgmCoroutine(clip, fadeTime)); 
+    } 
+    private IEnumerator FadeBgmCoroutine(AudioClip clip, float time) 
+    { 
+        float startVolume = _bgmSource.volume; 
+        float t = 0f; 
 
-    #region 볼륨 컨트롤
+        while (t < time) 
+        { 
+            t += Time.unscaledDeltaTime; 
+            _bgmSource.volume = Mathf.Lerp(startVolume, 0, t / time); 
+            yield return null; 
+        } 
 
-    public void UpdateBgmVolume(float volume)
-    {
-        _bgmVolume = volume;
-        _bgmSource.volume = volume;
-    }
+        _bgmSource.clip = clip; 
+        _bgmSource.volume = 0; 
+        _bgmSource.Play(); 
+        t = 0f; 
 
-    public void UpdateSfxVolume(float volume)
-    {
-        _sfxVolume = volume;
-    }
+        while (t < time) 
+        { 
+            t += Time.unscaledDeltaTime; 
+            _bgmSource.volume = Mathf.Lerp(0, _bgmVolume, t / time); 
+            yield return null; 
+        } 
 
-    #endregion
+        _bgmSource.volume = _bgmVolume; 
+    } 
+    #endregion 
 
-    #region SFX
+    #region Camera Check (2D) 
+    private bool IsInCameraView2D(Vector3 worldPos) 
+    { 
+        if (_mainCamera == null) return false; 
 
-    /// <summary>
-    /// SFX 재생
-    /// - 중복 재생 방지
-    /// - worldPos가 지정되면 카메라 안에 있을 때만 재생
-    /// </summary>
-    public void PlaySFX(string name, Vector3? worldPos = null)
-    {
-        // 위치가 주어졌고, 카메라 밖이면 재생하지 않음
-        if (worldPos.HasValue && !IsInCameraView(worldPos.Value))
-            return;
+        Vector3 viewPos = _mainCamera.WorldToViewportPoint(worldPos); 
 
-        if (!CanPlaySfx(name, out var clip))
-            return;
-
-        _sfxSource.PlayOneShot(clip, _sfxVolume);
-        RegisterSfx(name, clip.length);
-    }
-
-    public void PlaySFXOneShot(string name, Vector3? worldPos = null)
-    {
-        // 위치가 주어졌고 카메라 밖이면 재생 안 함
-        if (worldPos.HasValue && !IsInCameraView(worldPos.Value))
-            return;
-
-        if (!CanPlaySfx(name, out var clip))
-            return;
-
-        _sfxSource.PlayOneShot(clip, _sfxVolume);
-    }
-
-    private bool CanPlaySfx(string name, out AudioClip clip)
-    {
-        clip = null;
-
-        if (!soundCache.TryGetValue(name, out clip))
-            return false;
-
-        return !playingSfx.ContainsKey(name);
-    }
-
-    private void RegisterSfx(string name, float duration)
-    {
-        playingSfx[name] = Time.time + duration;
-    }
-
-    private void CleanupFinishedSfx()
-    {
-        if (playingSfx.Count == 0)
-            return;
-
-        float now = Time.time;
-        var removeList = ListPool<string>.Get();
-
-        foreach (var sfx in playingSfx)
-        {
-            if (now >= sfx.Value)
-                removeList.Add(sfx.Key);
-        }
-
-        foreach (var key in removeList)
-            playingSfx.Remove(key);
-
-        ListPool<string>.Release(removeList);
-    }
-
-    #endregion
-
-    #region BGM
-
-    public void FadePlayBgm(string name, float fadeTime = 1f)
-    {
-        if (!soundCache.TryGetValue(name, out var clip))
-            return;
-
-        StopAllCoroutines();
-        StartCoroutine(FadeBgmRoutine(clip, fadeTime));
-    }
-
-    private IEnumerator FadeBgmRoutine(AudioClip clip, float time)
-    {
-        yield return FadeVolume(_bgmSource, _bgmSource.volume, 0, time);
-
-        _bgmSource.clip = clip;
-        _bgmSource.Play();
-
-        yield return FadeVolume(_bgmSource, 0, _bgmVolume, time);
-    }
-
-    private static IEnumerator FadeVolume(AudioSource source, float from, float to, float time)
-    {
-        float t = 0f;
-        while (t < time)
-        {
-            t += Time.unscaledDeltaTime;
-            source.volume = Mathf.Lerp(from, to, t / time);
-            yield return null;
-        }
-        source.volume = to;
-    }
-
-    #endregion
-
-    #region 포지션 체크
-
-    /// <summary>
-    /// 월드 좌표가 카메라 화면 안에 있는지 체크 (2D)
-    /// </summary>
-    private bool IsInCameraView(Vector3 worldPos)
-    {
-        if (mainCam == null)
-            return false;
-
-        Vector3 vp = mainCam.WorldToViewportPoint(worldPos);
-
-        return vp.z > 0 &&
-               vp.x is >= 0f and <= 1f &&
-               vp.y is >= 0f and <= 1f;
-    }
-
-    #endregion
+        return viewPos.z > 0 && viewPos.x >= 0f && viewPos.x <= 1f && viewPos.y >= 0f && viewPos.y <= 1f; 
+    } 
+    #endregion 
 }
