@@ -374,9 +374,12 @@ public class Player : MonoBehaviour,IDamageable,IBindable
             float offsetDir = _spr.flipX ? -1f : 1f;
             Vector3 newPos = _attackHitBox.transform.localPosition;
             newPos.x = Mathf.Abs(newPos.x) * offsetDir;
+            newPos.y = 0.2f;
             _attackHitBox.transform.localPosition = newPos;
-            Vector2 attSize = GetComponent<CapsuleCollider2D>().size;
-            _attackHitBox.Activate(_attackDamage, attSize);
+
+            Vector2 playerSize = GetComponent<CapsuleCollider2D>().size;
+            Vector2 attackSize = new Vector2(playerSize.x * 1.2f, playerSize.y);
+            _attackHitBox.Activate(_attackDamage, attackSize);
         }
         yield return new WaitForSeconds(0.2f);
 
