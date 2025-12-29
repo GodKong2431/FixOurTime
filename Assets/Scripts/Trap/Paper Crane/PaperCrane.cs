@@ -38,5 +38,6 @@ public class PaperCrane : DamageableTrapBase, IDamageable
     public void TakeDamage(float damage, float KnockbackForce, Vector3 hitPos)
     {
         _paperCraneSpawner.Release(gameObject);
+        SoundManager.Instance.PlaySFX("SFX_PaperCrane_Hit"); 
     }
 }
