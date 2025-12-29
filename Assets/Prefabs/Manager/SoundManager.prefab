@@ -50,7 +50,7 @@ MonoBehaviour:
   _sfxSource: {fileID: 3135592528176739169}
   _bgmVolume: 0.1
   _sfxVolume: 0.3
-  _mainBgmClip: {fileID: 8300000, guid: cee234c1df0da7342b4b1a0069055573, type: 3}
+  _mainBgmClip: {fileID: 0}
 --- !u!82 &8935311000346502642
 AudioSource:
   m_ObjectHideFlags: 0
