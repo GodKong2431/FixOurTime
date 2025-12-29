@@ -27,6 +27,11 @@ public class ConcreteObject : MonoBehaviour
         _col.isTrigger = false;
     }
 
+    private void OnEnable()
+    {
+        SoundManager.Instance.PlaySFX("SFX_Boss1_ThrowConcrete");
+    }
+
     public void Initialize(bool isHorizontal, Vector3 mapCenter, Boss1Data data)
     {
         _data = data;
@@ -65,7 +70,7 @@ public class ConcreteObject : MonoBehaviour
             yield return null;
         }
         transform.position = _targetPos;
-
+        SoundManager.Instance.PlaySFX("SFX_Boss1_ConcreteLock");
         _isMoving = false;
 
         // 먼지 이펙트 재생

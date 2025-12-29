@@ -30,6 +30,11 @@ public class ScrapObject : MonoBehaviour
         Destroy(gameObject, data.ScrapLifeTime); // 안전장치
     }
 
+    private void OnEnable()
+    {
+        SoundManager.Instance.PlaySFX("SFX_Boss1_ThrowMetal");
+    }
+
     private void Update()
     {
         transform.Translate(_dir * _speed * Time.deltaTime);
@@ -51,6 +56,7 @@ public class ScrapObject : MonoBehaviour
         else if (!_isFragment && collision.CompareTag("Wall"))
         {
             Split();
+            SoundManager.Instance.PlaySFX("SFX_Boss1_MetalSmash");
             Destroy(gameObject);
         }
         // 3. 파편일 경우에는 벽(태그), 바닥(레이어) 충돌 시 튕김

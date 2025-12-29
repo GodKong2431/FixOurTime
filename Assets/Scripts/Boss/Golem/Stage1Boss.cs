@@ -384,6 +384,7 @@ public class Stage1Boss : BossBase
     protected override void Die()
     {
         StopAllCoroutines();
+        SoundManager.Instance.PlaySFX("SFX_Boss1_WeakPointSmash");
         if (_wallFistObject) _wallFistObject.gameObject.SetActive(false);
         if (_floorFistObject) _floorFistObject.gameObject.SetActive(false);
         if (_weaknessObject) _weaknessObject.gameObject.SetActive(false);

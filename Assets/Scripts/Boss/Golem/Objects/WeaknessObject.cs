@@ -41,12 +41,13 @@ public class WeaknessObject : MonoBehaviour, IDamageable
            
             _bossBase.TakeDamage(damage);
 
-
+            
             Debug.Log($"<color=red>[약점 격파]</color> 보스 남은 체력: {_bossBase.CurrentHp}");
         }
-
+        
         // 피격 애니메이션 트리거 발동
         _animator.SetTrigger("OnHit");
+        SoundManager.Instance.PlaySFX("SFX_Boss1_WeakPointHit");
         _animator.SetBool("IsExposed", false);
 
         // 중복 피격 방지를 위해 즉시 콜라이더 비활성화
