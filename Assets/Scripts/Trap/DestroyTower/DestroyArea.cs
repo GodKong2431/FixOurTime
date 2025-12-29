@@ -56,12 +56,6 @@ public class DestsroyArea : MonoBehaviour
         );
     }
 
-
-    private void Start()
-    {
-        transform.position = new Vector2(transform.position.x, GameManager.Instance.Player.transform.position.y - offset);
-    }
-
     GameObject CreatePixel()
     {
         GameObject obj = Instantiate(_piecePrefab[Random.Range(0, _piecePrefab.Length)]);
@@ -176,5 +170,21 @@ public class DestsroyArea : MonoBehaviour
             _moveSpeed *= _mulSpeed;
             collision.gameObject.SetActive(false);
         }
+    }
+
+    public void ResetPosition()
+    {
+        if (GameManager.Instance == null || GameManager.Instance.Player == null)
+            return;
+
+        float playerY = GameManager.Instance.Player.transform.position.y;
+
+        // 플레이어 발밑 offset 위치로 즉시 이동
+        transform.position = new Vector3(transform.position.x, playerY - offset, 0);
+
+        // 아이템으로 빨라졌던 속도도 초기값으로 리셋
+        _moveSpeed = 0.5f;
+
+        Debug.Log("인스펙터 이벤트를 통해 DestroyArea 위치가 리셋되었습니다.");
     }
 }
