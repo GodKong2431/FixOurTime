@@ -7,6 +7,10 @@ public class ScrapObject : MonoBehaviour
     private float _damage;
     private Boss1Data _data; // 데이터 저장
 
+
+    [Header("파편 이미지 설정")]
+    [SerializeField] private Sprite[] _fragmentSprites; // 나사, 너트, 볼트 이미지 배열
+
     private bool _isFragment; // 파편 여부
     private int _bounceCount = 0; // 튕긴 횟수
     public void Initialize(Vector3 dir, Boss1Data data, bool isFragment = false)
@@ -16,6 +20,12 @@ public class ScrapObject : MonoBehaviour
         _speed = data.ScrapSpeed;
         _damage = isFragment ? data.ScrapFragDamage : data.ScrapDamage;
         _isFragment = isFragment;
+
+        // 파편이라면 저장해둔 스프라이트 중 하나로 랜덤 변경
+        if (_isFragment && _fragmentSprites != null && _fragmentSprites.Length > 0)
+        {
+            GetComponent<SpriteRenderer>().sprite = _fragmentSprites[Random.Range(0, _fragmentSprites.Length)];
+        }
 
         Destroy(gameObject, data.ScrapLifeTime); // 안전장치
     }
@@ -76,6 +86,9 @@ public class ScrapObject : MonoBehaviour
 
     private void Split()
     {
+        float offset = 1.0f; 
+        Vector3 spawnPos = transform.position - (_dir.normalized * offset);
+
         // 반대 방향 x축 계산
         float reflectX = _dir.x > 0 ? -1f : 1f;
 
@@ -90,10 +103,11 @@ public class ScrapObject : MonoBehaviour
 
         foreach(var d in dirs)
         {
-            GameObject frag = Instantiate(gameObject, transform.position, Quaternion.identity);
-            frag.transform.localScale = transform.localScale * 0.5f; // 크기 절반
+            GameObject frag = Instantiate(gameObject, spawnPos, Quaternion.identity);
 
-            //파편 생성 
+            frag.transform.localScale = transform.localScale * 1.0f;
+
+            // 파편 생성
             frag.GetComponent<ScrapObject>().Initialize(d, _data, true);
         }
     }

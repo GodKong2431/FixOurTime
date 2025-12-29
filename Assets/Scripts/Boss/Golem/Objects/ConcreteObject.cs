@@ -116,8 +116,26 @@ public class ConcreteObject : MonoBehaviour
             // 1. 컴포넌트 찾기
             if (collision.gameObject.TryGetComponent(out IDamageable target))
             {
-                // collision.otherCollider : 나(Concrete)의 콜라이더 중 부딪힌 
-                bool isHeadHit = (collision.otherCollider == _headCollider);
+                bool isHeadHit = false;
+
+                if (collision.otherCollider == _headCollider)
+                {
+                    isHeadHit = true;
+                }
+                else
+                {
+                    // 
+                    int contactCount = collision.contactCount;
+                    for (int i = 0; i < contactCount; i++)
+                    {
+                        ContactPoint2D contact = collision.GetContact(i);
+                        if (contact.collider == _headCollider)
+                        {
+                            isHeadHit = true;
+                            break;
+                        }
+                    }
+                }
 
                 float dmg = isHeadHit ? _data.ConcreteDamage : _data.ConcreteSideDamage;
                 float kb = _data.ConcreteKnockback;
