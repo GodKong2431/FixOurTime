@@ -89,10 +89,3 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.33333334
-    functionName: EndAttack
-    data: 
-    objectReferenceParameter: {fileID: 312940663367777358, guid: 399c980154248fc41b541233f493a29b, type: 3}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
