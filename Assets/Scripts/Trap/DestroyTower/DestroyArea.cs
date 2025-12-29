@@ -164,11 +164,10 @@ public class DestsroyArea : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Tilemap")) return;
 
         if (collision.TryGetComponent(out Player player))
         {
-            player.TakeDamage(9999999,0,transform.position);
+            SceneChanger.Instance.ChangeScene("stage4", true);
             return;
         }
 

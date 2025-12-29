@@ -18156,7 +18156,7 @@ GameObject:
   - component: {fileID: 1189559895}
   m_Layer: 0
   m_Name: DestroyArea
-  m_TagString: Untagged
+  m_TagString: DestroyArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18276,6 +18276,7 @@ MonoBehaviour:
   _maxPoolSize: 200
   _moveSpeed: 0.5
   _mulSpeed: 10
+  offset: 20
 --- !u!212 &1189559895
 SpriteRenderer:
   m_ObjectHideFlags: 0

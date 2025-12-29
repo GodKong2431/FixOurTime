@@ -9,6 +9,7 @@ TagManager:
   - Ground
   - BossGround
   - Tilemap
+  - DestroyArea
   layers:
   - Default
   - TransparentFX

@@ -674,6 +674,8 @@ public class Player : MonoBehaviour,IDamageable,IBindable
         CinemachinCamManager.Instance.LoadCamPos(data.camPos);
 
         SetState(new IdleState());
+
+        OnPlayerRespawn?.Invoke();
     }
 
     //체크포인트에서 호출시킬 메서드
@@ -706,6 +708,16 @@ public class Player : MonoBehaviour,IDamageable,IBindable
     //부활
     public void Respawn()
     {
+        string currentScene = SceneManager.GetActiveScene().name;
+
+        if (currentScene == "stage4")
+        {
+            Debug.Log("stage4에서 사망: 씬을 새로 로드합니다.");
+            // 저장된 위치에서 시작
+            SceneChanger.Instance.ChangeScene(currentScene, true);
+            return; // 일반 부활 로직을 타지 않도록 종료
+        }
+
         GameData data = GameDataManager.Load();
 
         _currentHp = data.maxHp;

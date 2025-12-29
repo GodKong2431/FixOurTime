@@ -11,20 +11,20 @@ public class ItemObject : MonoBehaviour
 
     private void Start()
     {
-        _player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        _player = GameManager.Instance.Player;
+
+        OnPlayerRespawnCheck();
     }
     public void OnPlayerRespawnCheck()
     {
+        GameData data = GameDataManager.Load();
 
-    }
-    private void CheckAlreadyCollected()
-    {
         if (_player == null) return;
 
         bool isCollected = false;
         switch (_itemType)
         {
-            case ItemType.SecondHand: isCollected = _player.HasSecondHand;break;
+            case ItemType.SecondHand: isCollected = _player.HasSecondHand; break;
             case ItemType.MinuteHand: isCollected = _player.HasMinuteHand; break;
             case ItemType.HourHand: isCollected = _player.HasHourHand; break;
         }
@@ -44,22 +44,13 @@ public class ItemObject : MonoBehaviour
         {
             ApplyEffect(_player);
             _player.CollectItem(_itemType);//이 아이템 수집했다 플래그 갱신용
+
+            //먹자마자 세이브 데이터를 갱신해야 리로드 시 다시 안 나타남
+            GameData data = GameDataManager.Load();
+            _player.SavePlayerState(data); // 현재 플레이어의 상태(아이템 유무)를 data 객체에 기록
+            GameDataManager.Save(data);    // JSON 파일로 저장
+
             gameObject.SetActive(false); 
-
-            //붕괴속도조절
-            if (_itemType == ItemType.HourHand)
-            {
-                //붕괴속도 2배 증가
-            }
-
-            
-
-            //붕괴구역에 아이템 닿으면
-            //if (other.CompareTag("붕괴구역"))
-            //{
-            //    //게임오버 설정
-            //    
-            //}
         }
     }
     private void ApplyEffect(Player player)
