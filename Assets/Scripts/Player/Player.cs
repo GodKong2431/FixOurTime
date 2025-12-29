@@ -54,6 +54,7 @@ public class Player : MonoBehaviour,IDamageable,IBindable
     [SerializeField] float _attackCooldown = 1.0f;
     [SerializeField] LayerMask _attackTargetLayer;
     float _nextAttackTime = 0; //다음공격 가능한 시간
+    private Coroutine _attackCoroutine;
 
     [Header("가속설정")]
     [SerializeField] float _accelerationGravity = 2.0f;
@@ -121,6 +122,14 @@ public class Player : MonoBehaviour,IDamageable,IBindable
     public readonly int animAttack = Animator.StringToHash("DoAttack");
     public readonly int animFalling = Animator.StringToHash("IsFalling");
     public readonly int animHit = Animator.StringToHash("DoHit");
+
+    public const string PlayerAttack = "SFX_Player_Attack";
+    public const string PlayerJump = "SFX_Player_Jump";
+    public const string PlayerDoubleJump = "SFX_Player_DoubleJump";
+    public const string PlayerLand = "SFX_Player_Land";
+    public const string PlayerDash = "SFX_Player_Dash";
+    public const string PlayerHit = "SFX_Player_Hit";
+    public const string WallBump = "SFX_Player_WallBump";
 
     //프로퍼티
     public int AirJumpCount => _airJumpCount;
@@ -218,6 +227,15 @@ public class Player : MonoBehaviour,IDamageable,IBindable
         HandleDebuffs();
         _currentState.Execute(this);
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        string layerName = LayerMask.LayerToName(collision.gameObject.layer);
+        
+        if(layerName =="Wall"||layerName == "Ground")
+        {
+            SoundManager.Instance.PlaySFX(WallBump);
+        }
+    }
     public void SetState(IState<Player> newState)
     {
         if (_currentState == newState) return;
@@ -249,6 +267,7 @@ public class Player : MonoBehaviour,IDamageable,IBindable
     {
         if (_pauseButton != null && _pauseButton.interactable)
         {
+            SoundManager.Instance.PlaySFX("SFX_UI_ButtonClick");
             _pauseButton.onClick.Invoke();
             Debug.Log("일시정지 실행");
         }
@@ -258,6 +277,7 @@ public class Player : MonoBehaviour,IDamageable,IBindable
     {
         if (_resumeButton != null && _resumeButton.interactable)
         {
+            SoundManager.Instance.PlaySFX("SFX_UI_Back");
             _resumeButton.onClick.Invoke();
             Debug.Log("게임 재개 실행");
         }
@@ -339,6 +359,14 @@ public class Player : MonoBehaviour,IDamageable,IBindable
 
     public void StartAttack()
     {
+        if (_attackCoroutine != null)
+            StopCoroutine(_attackCoroutine);
+
+        _attackCoroutine = StartCoroutine(AttackCoroutine());
+    }
+
+    private IEnumerator AttackCoroutine()
+    {
         _attackHitBoxSpriteRenderer.flipX = _spr.flipX == false ? false : true;
 
         if (_attackHitBox != null)
@@ -350,19 +378,19 @@ public class Player : MonoBehaviour,IDamageable,IBindable
             Vector2 attSize = GetComponent<CapsuleCollider2D>().size;
             _attackHitBox.Activate(_attackDamage, attSize);
         }
+        yield return new WaitForSeconds(0.2f);
+
+        if (_attackHitBox != null)
+        {
+            _attackHitBox.Deactivate();
+        }
     }
+
     public void UpdateAttackProgress(float progress)
     {
         if(_attackHitBox != null)
         {
             _attackHitBox.UpdateEffect(progress);
-        }
-    }
-    public void EndAttack()
-    {
-        if( _attackHitBox != null)
-        {
-            _attackHitBox.Deactivate();
         }
     }
 
@@ -460,6 +488,8 @@ public class Player : MonoBehaviour,IDamageable,IBindable
         //넉백포스가 있어야만 피격발생하게
         if (KnockbackForce > 0f && !(_currentState is HitState))
         {
+            SoundManager.Instance.PlaySFX(Player.PlayerHit);
+
             if (_isInfiniteJumpEnabled)
             {
                 _isInfiniteJumpLocked = true;
@@ -733,4 +763,6 @@ public class Player : MonoBehaviour,IDamageable,IBindable
 
         _bindCoroutine = null;
     }
+
+    
 }

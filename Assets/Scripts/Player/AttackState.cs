@@ -15,6 +15,8 @@ public class AttackState : IState<Player>
         //공격중 이동 못하게
         _player.Rb.linearVelocity = Vector2.zero;
 
+        SoundManager.Instance.PlaySFX(Player.PlayerAttack);
+
     }
 
     public void Exit(Player _player)

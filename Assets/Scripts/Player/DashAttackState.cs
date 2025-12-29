@@ -47,6 +47,7 @@ public class DashAttackState : IState<Player>
         _player.Rb.linearVelocity = Vector2.zero;
 
         _player.Rb.AddForce(_dashDir * _player.DashSpeed, ForceMode2D.Impulse);
+        SoundManager.Instance.PlaySFX(Player.PlayerDash);
     }
 
     public void Exit(Player _player)
@@ -92,6 +93,8 @@ public class DashAttackState : IState<Player>
 
         Vector2 bounceDir = (Vector2.up + hit).normalized;
         _player.Rb.AddForce(bounceDir * _player.BounceForce, ForceMode2D.Impulse);
+
+        SoundManager.Instance.PlaySFX("SFX_Player_AttackToWall");
 
         _player.SetState(new FallState());
     }

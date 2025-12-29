@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 public class AttackHitBox : MonoBehaviour
 {
     SpriteRenderer _spr;
@@ -49,6 +50,13 @@ public class AttackHitBox : MonoBehaviour
             target.TakeDamage(_damage, 5f, transform.parent.position);
 
             //흔들림넣을거면 매니저호출
+        }
+
+        string layerName = LayerMask.LayerToName(collision.gameObject.layer);
+
+        if (layerName == "Wall" || layerName == "Ground")
+        {
+            SoundManager.Instance.PlaySFX("SFX_Player_AttackToWall");
         }
     }
 
