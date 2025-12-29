@@ -28,7 +28,7 @@ public class SoundManager : SingleTon<SoundManager>
     public float SFXVolume => _sfxVolume; 
 
 
-    #region Unity LifeCycle 
+    #region 유니티 생명주기 
 
     protected override void Awake() 
     { 
@@ -50,7 +50,7 @@ public class SoundManager : SingleTon<SoundManager>
     } 
     #endregion 
 
-    #region Init 
+    #region 초기화 
     private void RefreshCamera() 
     { 
         if (_mainCamera == null) 
@@ -82,7 +82,7 @@ public class SoundManager : SingleTon<SoundManager>
     } 
     #endregion 
 
-    #region UI Volume 
+    #region UI 볼륨
     public void UpdateBgmVolume(float volume) 
     { 
         _bgmVolume = volume; 
@@ -176,7 +176,7 @@ public class SoundManager : SingleTon<SoundManager>
     } 
     #endregion 
 
-    #region Camera Check (2D) 
+    #region 오브젝트 위치 체크 
     private bool IsInCameraView2D(Vector3 worldPos) 
     { 
         if (_mainCamera == null) return false; 
