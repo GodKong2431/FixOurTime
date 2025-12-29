@@ -95,6 +95,14 @@ public class SoundManager : SingleTon<SoundManager>
     #endregion 
 
     #region SFX 
+
+    public void PlaySFXOneShot(string clipName)
+    {
+        if (!_soundDict.TryGetValue(clipName, out var clip)) return;
+
+        _sfxSource.PlayOneShot(clip, _sfxVolume);
+    }
+
     public void PlaySFX(string clipName) 
     { 
         if (!_soundDict.TryGetValue(clipName, out var clip)) return; 
