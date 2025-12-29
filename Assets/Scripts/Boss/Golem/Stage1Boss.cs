@@ -192,8 +192,16 @@ public class Stage1Boss : BossBase
             _floorFistObject.gameObject.SetActive(false);
         }
         if (_weaknessObject) 
-        { 
-            _weaknessObject.SetActive(false);
+        {
+            var weaknessScript = _weaknessObject.GetComponent<WeaknessObject>();
+            if (weaknessScript != null)
+            {
+                weaknessScript.SetIdleState();
+            }
+            else
+            {
+                _weaknessObject.SetActive(false);
+            }
         }
     }
 
@@ -356,7 +364,11 @@ public class Stage1Boss : BossBase
         }
         if (_weaknessObject)
         {
-            _weaknessObject.SetActive(false);
+            var weaknessScript = _weaknessObject.GetComponent<WeaknessObject>();
+            if (weaknessScript != null)
+                weaknessScript.SetIdleState();
+            else
+                _weaknessObject.SetActive(false);
         }
 
         // 2. 변수 초기화
@@ -374,7 +386,7 @@ public class Stage1Boss : BossBase
         StopAllCoroutines();
         if (_wallFistObject) _wallFistObject.gameObject.SetActive(false);
         if (_floorFistObject) _floorFistObject.gameObject.SetActive(false);
-
+        if (_weaknessObject) _weaknessObject.gameObject.SetActive(false);
         Debug.Log("Stage 1 보스 클리어!");
     }
 }

@@ -10,8 +10,11 @@ public class BossWeaknessState : BossState
         Stage1Boss boss = _baseBoss as Stage1Boss;
         if (boss != null && boss.WeaknessObject != null)
         {
-            boss.WeaknessObject.SetActive(true);
-            Debug.Log("약점 노출");
+            var weaknessScript = boss.WeaknessObject.GetComponent<WeaknessObject>();
+            if (weaknessScript != null)
+            {
+                weaknessScript.SetExposedState();
+            }
         }
     }
 
@@ -43,6 +46,13 @@ public class BossWeaknessState : BossState
     public override void Exit()
     {
         Stage1Boss _boss = _baseBoss as Stage1Boss;
-        _boss.WeaknessObject.SetActive(false);
+        if (_boss != null && _boss.WeaknessObject != null)
+        {
+            var weaknessScript = _boss.WeaknessObject.GetComponent<WeaknessObject>();
+            if (weaknessScript != null)
+            {
+                weaknessScript.SetIdleState();
+            }
+        }
     }
 }
