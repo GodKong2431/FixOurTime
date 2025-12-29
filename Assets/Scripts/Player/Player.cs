@@ -231,7 +231,7 @@ public class Player : MonoBehaviour,IDamageable,IBindable
     {
         string layerName = LayerMask.LayerToName(collision.gameObject.layer);
         
-        if(layerName =="Wall"||layerName == "Ground")
+        if(layerName =="Wall")
         {
             SoundManager.Instance.PlaySFX(WallBump);
         }
