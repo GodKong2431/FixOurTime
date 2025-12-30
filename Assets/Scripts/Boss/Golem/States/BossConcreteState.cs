@@ -69,6 +69,8 @@ public class BossConcreteState : BossState
             // (1) ¿¹ºñ µ¿ÀÛ À§Ä¡ °è»ê
             Vector3 telegraphPos = Vector3.Lerp(startPos, targetPos, 0.5f);
 
+            yield return new WaitForSeconds(_boss.BossData.PatternWaitTime);
+
             // (2) »ìÂ¦ Æ¢¾î³ª¿È
             yield return _boss.StartCoroutine(_boss.MoveBossTo(currentFist, telegraphPos, 0.2f));
 

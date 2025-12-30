@@ -45,6 +45,7 @@ public class BossWeaknessState : BossState
 
     public override void Exit()
     {
+
         Stage1Boss _boss = _baseBoss as Stage1Boss;
         if (_boss != null && _boss.WeaknessObject != null)
         {
