@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 [System.Serializable]
 public class GameData
@@ -15,11 +16,15 @@ public class GameData
     //씬 정보
     public string sceneName;
 
+    //캠위치 저장
     public Vector3 camPos;
 
     //엔딩 아이템 수집여부
     public bool hasSecondHand;
     public bool hasMinuteHand;
     public bool hasHourHand;
+
+    //이미 밟은 세이브 포인트들의 ID 리스트
+    public List<string> actSavePoints = new List<string>();
 
 }
