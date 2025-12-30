@@ -47,11 +47,6 @@ public class ItemObject : MonoBehaviour
 
             SoundManager.Instance.PlaySFX("SFX_ClockHand_Get");
 
-            //먹자마자 세이브 데이터를 갱신해야 리로드 시 다시 안 나타남
-            GameData data = GameDataManager.Load();
-            _player.SavePlayerState(data); // 현재 플레이어의 상태(아이템 유무)를 data 객체에 기록
-            GameDataManager.Save(data);    // JSON 파일로 저장
-
             gameObject.SetActive(false); 
         }
     }

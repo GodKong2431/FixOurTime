@@ -26,11 +26,6 @@ public class CinemachinCamManager : SingleTon<CinemachinCamManager>
         _mainCam = Camera.main;
         _activeCam = FindAnyObjectByType<CinemachineCamera>();
 
-        if(GameManager.Instance != null)
-        {
-            _player = GameManager.Instance.Player.transform;
-        }
-
         if (_activeCam != null)
         {
             // 노이즈 컴포넌트 가져오기
@@ -42,6 +37,7 @@ public class CinemachinCamManager : SingleTon<CinemachinCamManager>
             if (GameManager.Instance != null && GameManager.Instance.Player != null)
             {
                 _player = GameManager.Instance.Player.transform;
+                _activeCam.Follow = _player;
             }
 
             Debug.Log($"카메라 재연결완료 화면높이: {_screenHeight}");
