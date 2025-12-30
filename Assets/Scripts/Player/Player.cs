@@ -27,7 +27,7 @@ public class Player : MonoBehaviour,IDamageable,IBindable
     [SerializeField] LayerMask[] _groundLayer;
     [SerializeField] Transform _groundChecker;
     [SerializeField] float _groundCheckDistance = 0.1f;
-    [SerializeField] Vector2 _groundCheckerSize = new Vector2(0.8f, 0.1f);
+    [SerializeField] float _groundCheckerRadius = 0.4f;
     bool _isGrounded;
 
     [Header("차지 점프 설정")]
@@ -212,10 +212,9 @@ public class Player : MonoBehaviour,IDamageable,IBindable
     private void Update()
     {
         //땅체크
-        _isGrounded = Physics2D.BoxCast(
+        _isGrounded = Physics2D.CircleCast(
             _groundChecker.position,    //발사위치
-            _groundCheckerSize,
-            0f,
+            _groundCheckerRadius,
             Vector2.down,               //발사방향
             _groundCheckDistance,       //레이저길이
             _sortGroundLayer                //충돌대상체크
@@ -773,13 +772,15 @@ public class Player : MonoBehaviour,IDamageable,IBindable
     private void OnDrawGizmos()
     {
         Gizmos.color = _isGrounded ? Color.green : Color.red; //땅에닿으면 녹, 아니면 빨
-
-        Vector3 boxChecker = (Vector2)_groundChecker.position + Vector2.down * (_groundCheckDistance + _groundCheckerSize.y / 2f);
-
-        Gizmos.DrawWireCube(boxChecker, _groundCheckerSize);
-
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(_groundChecker.position, 0.05f);
+        //시작 원 그리기
+        Gizmos.DrawWireSphere(_groundChecker.position, _groundCheckerRadius);
+        //캐스트 끝나는 지점
+        Vector3 endPos = _groundChecker.position + Vector3.down * _groundCheckDistance;
+        //도착지점 원 그리기
+        Gizmos.DrawWireSphere(endPos, _groundCheckerRadius);
+        //두 원 사이를 잇는 선
+        Gizmos.DrawLine(_groundChecker.position + Vector3.left * _groundCheckerRadius, endPos + Vector3.left * _groundCheckerRadius);
+        Gizmos.DrawLine(_groundChecker.position + Vector3.right * _groundCheckerRadius, endPos + Vector3.right * _groundCheckerRadius);
     }
     
 

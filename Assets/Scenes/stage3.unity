@@ -20933,8 +20933,8 @@ MonoBehaviour:
   _startDelay: 3
   _leftDoor: {fileID: 1051595453}
   _rightDoor: {fileID: 1792862837}
-  _openDistance: 2
-  _openDuration: 1.5
+  _openDistance: 1
+  _openDuration: 5
   _shakeIntensity: 1.2
   _shakeFrequency: 2
   _targetShakeCam: {fileID: 1344186969}
