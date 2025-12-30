@@ -26,14 +26,27 @@ public class SavePoint : MonoBehaviour
         _isSaved = true;
         if(_collider != null) _collider.enabled = false;
     }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
+        HandleSave(other);
+    }
+
+    
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        HandleSave(other);
+    }
+
+    private void HandleSave(Collider2D other)
+    {
+        // 이미 저장된 포인트라면 계산하지 않음
         if (_isSaved) return;
 
         if (other.CompareTag("Player"))
         {
             Player player = other.GetComponent<Player>();
-            if(player != null)
+            if (player != null)
             {
                 SavePorcess(player);
             }
