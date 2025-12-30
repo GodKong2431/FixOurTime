@@ -53,6 +53,7 @@ public class SceneChanger : SingleTon<SceneChanger>
 
     private IEnumerator LoadStageCoroutine(string sceneName, bool useSavePos, bool playVideo)
     {
+        GameManager.Instance.ResetSceneState();
         _fadeCanvas.alpha = 1f;
         _fadeCanvas.gameObject.SetActive(true);
 

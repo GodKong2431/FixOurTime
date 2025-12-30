@@ -23418,7 +23418,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1362692478193546701, guid: e40ce7d4f07b8844991085eb2aaff939, type: 3}
       propertyPath: m_Size.x
-      value: 13.684726
+      value: 7.0291576
       objectReference: {fileID: 0}
     - target: {fileID: 1362692478193546701, guid: e40ce7d4f07b8844991085eb2aaff939, type: 3}
       propertyPath: m_Size.y
@@ -23426,11 +23426,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1362692478193546701, guid: e40ce7d4f07b8844991085eb2aaff939, type: 3}
       propertyPath: m_Offset.x
-      value: 1.5827279
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1362692478193546701, guid: e40ce7d4f07b8844991085eb2aaff939, type: 3}
       propertyPath: m_Offset.y
-      value: 1.2984703
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3103905565001957794, guid: e40ce7d4f07b8844991085eb2aaff939, type: 3}
       propertyPath: m_Name
@@ -23438,11 +23438,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7980538125359217384, guid: e40ce7d4f07b8844991085eb2aaff939, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.598277
+      value: -11.5
       objectReference: {fileID: 0}
     - target: {fileID: 7980538125359217384, guid: e40ce7d4f07b8844991085eb2aaff939, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -18.544018
+      value: -17.24
       objectReference: {fileID: 0}
     - target: {fileID: 7980538125359217384, guid: e40ce7d4f07b8844991085eb2aaff939, type: 3}
       propertyPath: m_LocalPosition.z
@@ -57639,7 +57639,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7303901205914570929, guid: 399c980154248fc41b541233f493a29b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.84
+      value: -16.74
       objectReference: {fileID: 0}
     - target: {fileID: 7303901205914570929, guid: 399c980154248fc41b541233f493a29b, type: 3}
       propertyPath: m_LocalPosition.y
