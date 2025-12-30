@@ -103,6 +103,7 @@ public class DestsroyArea : MonoBehaviour
     private void FixedUpdate()
     {
         transform.position += Vector3.up * _moveSpeed * Time.fixedDeltaTime;
+        SoundManager.Instance.PlaySFX("SFX_Stage4_Earthquake");
     }
 
     void Collapse(Vector3Int cell)

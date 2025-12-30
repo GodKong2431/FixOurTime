@@ -32,13 +32,12 @@ public class SoundManager : SingleTon<SoundManager>
     { 
         base.Awake(); 
         RefreshCamera(); 
-    } 
+    }
+
     private void Start() 
-    { 
-        _bgmSource.loop = true; 
+    {
+        InitSoundData();
         _bgmSource.volume = _bgmVolume; 
-        _bgmSource.Play(); 
-        InitSoundData(); 
     } 
     private void Update() 
     { 
@@ -57,6 +56,12 @@ public class SoundManager : SingleTon<SoundManager>
     {
         _soundData = CSVDataManager.Instance.Get<SoundTableData>("SoundTable");
 
+        if (_soundData == null || _soundData.rows == null || _soundData.rows.Count == 0)
+        {
+            Debug.LogError("[SoundManager] SoundTable 로드 실패");
+            return;
+        }
+
         foreach (var row in _soundData.rows)
         {
             string path = GetResourcePath(row);
@@ -70,6 +75,8 @@ public class SoundManager : SingleTon<SoundManager>
 
             _soundDict[row.name] = clip;
         }
+
+        Debug.Log($"[SoundManager] Loaded Sound Count : {_soundDict.Count}");
     }
     private string GetResourcePath(SoundTableData row)
     {
@@ -214,13 +221,16 @@ public class SoundManager : SingleTon<SoundManager>
     #endregion 
 
     #region 오브젝트 위치 체크 
-    private bool IsInCameraView2D(Vector3 worldPos) 
-    { 
-        if (_mainCamera == null) return false; 
+    private bool IsInCameraView2D(Vector3 worldPos)
+    {
+        if (_mainCamera == null)
+            return true; // 빌드에서 SFX 무음 방지
 
-        Vector3 viewPos = _mainCamera.WorldToViewportPoint(worldPos); 
+        Vector3 viewPos = _mainCamera.WorldToViewportPoint(worldPos);
 
-        return viewPos.z > 0 && viewPos.x >= 0f && viewPos.x <= 1f && viewPos.y >= 0f && viewPos.y <= 1f; 
-    } 
+        return viewPos.z > 0 &&
+               viewPos.x >= 0f && viewPos.x <= 1f &&
+               viewPos.y >= 0f && viewPos.y <= 1f;
+    }
     #endregion 
 }

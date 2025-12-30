@@ -14,66 +14,65 @@ using UnityEngine;
 
 public class CSVDataManager : SingleTon<CSVDataManager>
 {
-    string _csvSOPath = "Assets/Resources/CSV/CSVSO";
-
-    string[] _files;
-
-    private Dictionary<string, SOBase> CSVMap = new();
+    private readonly Dictionary<string, SOBase> _csvMap = new();
 
     protected override void Awake()
     {
         base.Awake();
-        _files = GetCSVFileNames(_csvSOPath);
-        CSVSOMapping();
-
-        //var a = Get<ItemTableData>("ItemTable");
-        //Debug.Log(a[201011].itemdesc);
+        LoadAllCSVSO();
     }
 
+    /// <summary>
+    /// Resources/CSV/CSVSO 안에 있는 모든 CSV ScriptableObject 로드
+    /// </summary>
+    private void LoadAllCSVSO()
+    {
+        _csvMap.Clear();
+
+        SOBase[] tables = Resources.LoadAll<SOBase>("CSV/CSVSO");
+
+        if (tables == null || tables.Length == 0)
+        {
+            Debug.LogError("[CSVDataManager] CSV SO를 하나도 못 불러왔습니다.");
+            return;
+        }
+
+        foreach (var table in tables)
+        {
+            if (_csvMap.ContainsKey(table.name))
+            {
+                Debug.LogWarning($"[CSVDataManager] 중복 CSV 이름 : {table.name}");
+                continue;
+            }
+
+            _csvMap.Add(table.name, table);
+        }
+
+        Debug.Log($"[CSVDataManager] CSV Loaded Count : {_csvMap.Count}");
+    }
+
+    /// <summary>
+    /// CSV 테이블 가져오기
+    /// </summary>
     public TableSOBase<T> Get<T>(string csvTableName)
         where T : TableBase
     {
-        if(CSVMap[csvTableName] is TableSOBase<T>)
+        if (!_csvMap.TryGetValue(csvTableName, out var soBase))
         {
-            TableSOBase<T> result = CSVMap[csvTableName] as TableSOBase<T>;
-            if(result.RowDictInt == null)
-                result.BuildIndex();
-
-            return result;
-        }
-
-        return null;
-    }
-
-    public string[] GetCSVFileNames(string folderPath)
-    {
-        if (!Directory.Exists(folderPath))
+            Debug.LogError($"[CSVDataManager] CSV 테이블 없음 : {csvTableName}");
             return null;
-
-        string[] files = Directory.GetFiles(folderPath, "*.asset");
-        string[] result = new string[files.Length];
-
-        for (int i = 0; i < files.Length; i++)
-        {
-            result[i] = Path.GetFileNameWithoutExtension(files[i]);
         }
 
-        return result;
-    }
-
-    public void CSVSOMapping()
-    {
-        if(_files == null)
-            return;
-
-        foreach (string file in _files)
+        if (soBase is not TableSOBase<T> table)
         {
-            SOBase tableSO = Resources.Load<SOBase>($"CSV/CSVSO/{file}");
-
-            if (tableSO != null)
-            {
-                CSVMap[file] = tableSO;
-            }
+            Debug.LogError($"[CSVDataManager] CSV 타입 불일치 : {csvTableName}");
+            return null;
         }
+
+        // 인덱스 빌드 안 돼 있으면 자동 생성
+        if (table.RowDictInt == null)
+            table.BuildIndex();
+
+        return table;
     }
 }
