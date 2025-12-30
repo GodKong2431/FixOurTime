@@ -63,7 +63,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 70
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -145,8 +145,8 @@ TextureImporter:
         y: 234
         width: 214
         height: 229
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5328263, y: 0.20041773}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -167,8 +167,8 @@ TextureImporter:
         y: 191
         width: 288
         height: 268
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.53414845, y: 0.24115144}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -185,12 +185,12 @@ TextureImporter:
       name: "stage2_\uC5EC\uC6B0\uC810\uD504_2"
       rect:
         serializedVersion: 2
-        x: 587
-        y: 176
-        width: 239
-        height: 287
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 554
+        y: 174
+        width: 235
+        height: 285
+      alignment: 9
+      pivot: {x: 0.51793575, y: 0.25141543}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -207,12 +207,12 @@ TextureImporter:
       name: "stage2_\uC5EC\uC6B0\uC810\uD504_3"
       rect:
         serializedVersion: 2
-        x: 805
-        y: 4
-        width: 258
-        height: 461
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 845
+        y: 12
+        width: 216
+        height: 304
+      alignment: 9
+      pivot: {x: 0.69079816, y: 0.24118967}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -233,8 +233,8 @@ TextureImporter:
         y: 4
         width: 226
         height: 205
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.47927764, y: 0.32896847}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -251,7 +251,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 359f26b70026da048884f1eac37e8394
     internalID: 0
     vertices: []
     indices: 

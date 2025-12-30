@@ -5,15 +5,21 @@ using System.Collections.Generic;
 public class FoxController : MonoBehaviour, IDamageable
 {
     #region Inspector Fields
+    [Header("Animation")]
+    [SerializeField] private FoxAnimationController _animController;
+
+    [Header("Debug Settings")]
+    [Tooltip("체크하면 플레이어에게 공격당한 상황을 시뮬레이션 (TakeDamage 호출)")]
+    public bool _testHitTrigger = false;
+
     [Header("Prefabs & References")]
     [SerializeField] private GameObject _shadowAttackPrefab;
     [SerializeField] private GameObject _detectEffectPrefab;
-    [SerializeField] private Sprite _shadowSprite;
-    [SerializeField] private Sprite _normalSprite;
 
     [Header("Check Settings")]
     [SerializeField] private LayerMask _groundLayer;
-    [SerializeField] private LayerMask _targetLayer; // 공격 판정용
+    [SerializeField] private LayerMask _wallLayer;
+    [SerializeField] private LayerMask _targetLayer;
 
     [Header("Movement Settings")]
     [Tooltip("점프 전 준비 시간 (초)")]
@@ -26,9 +32,16 @@ public class FoxController : MonoBehaviour, IDamageable
     [SerializeField] private float _holdOffset = 0.8f;
 
     [Header("Shadow Mode Settings (Local)")]
-    [SerializeField] private Vector2 _shadowAttackSize = new Vector2(3.0f, 5.0f);
-    [SerializeField] private Vector2 _attackBoxOffset = new Vector2(0f, 2.5f);
-    [SerializeField] private float _attackDuration = 1.5f;
+    [Tooltip("광역 공격 범위 (가로, 세로)")]
+    [SerializeField] private Vector2 _shadowAttackSize = new Vector2(1.5f, 4.0f);
+    [Tooltip("공격 히트박스 중심 오프셋")]
+    [SerializeField] private Vector2 _attackBoxOffset = new Vector2(0f, 1.5f);
+
+    [Tooltip("경고 후 튀어나오기 전 딜레이 (초)")]
+    [SerializeField] private float _shadowExplosionDelay = 1.0f;
+
+    [Tooltip("땅에서 솟아오르는 애니메이션 시간 (초)")]
+    [SerializeField] private float _popUpDuration = 0.75f;
     #endregion
 
     #region Private Fields
@@ -58,11 +71,12 @@ public class FoxController : MonoBehaviour, IDamageable
     private FoxState _state = FoxState.Idle;
 
     private GimmickItemObject _targetItem;
-    private Color _originalColor;
     private float _gravityScale = 3f;
 
     private bool _isShadowMode = false;
     private GameObject _currentAttackInstance;
+
+    private float _groundedTimer = 0f;
     #endregion
 
     #region Unity Lifecycle
@@ -72,14 +86,39 @@ public class FoxController : MonoBehaviour, IDamageable
         _collider = GetComponent<Collider2D>();
         _rb = GetComponent<Rigidbody2D>();
 
-        if (_renderer != null) _originalColor = _renderer.color;
+        if (_animController == null) _animController = GetComponent<FoxAnimationController>();
+
         _rb.gravityScale = _gravityScale;
         _rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+        int absGround = LayerMask.NameToLayer("AbsolutelyGround");
+        if (absGround != -1) _groundLayer |= (1 << absGround);
+
+        if (_targetLayer.value == 0)
+        {
+            int pLayer = LayerMask.NameToLayer("Player");
+            if (pLayer != -1) _targetLayer = 1 << pLayer;
+        }
     }
 
     private void FixedUpdate()
     {
         if (!_isActive) return;
+
+        if (CheckGrounded())
+        {
+            _groundedTimer += Time.deltaTime;
+        }
+        else
+        {
+            _groundedTimer = 0f;
+        }
+
+        if (_testHitTrigger)
+        {
+            _testHitTrigger = false;
+            TakeDamage(10f, 0f, transform.position);
+        }
 
         if (_state == FoxState.Biting || _state == FoxState.ShadowChargingExplosion)
         {
@@ -90,7 +129,6 @@ public class FoxController : MonoBehaviour, IDamageable
         if (_state == FoxState.Retreat)
         {
             HandleRetreat();
-            UpdateVisuals();
             return;
         }
 
@@ -117,7 +155,6 @@ public class FoxController : MonoBehaviour, IDamageable
                 }
             }
         }
-        // 모든 추적 상태에서 동일한 MoveToTarget 로직 사용
         else if (_state == FoxState.ChasingBook && _targetItem != null)
         {
             MoveToTarget(_targetItem.transform.position, _boss.Data.FoxMoveSpeed);
@@ -128,12 +165,9 @@ public class FoxController : MonoBehaviour, IDamageable
         }
         else if (_state == FoxState.ShadowChasing && _player != null)
         {
-            // Boss2Data 사용
             float shadowSpeed = _boss.Data.FoxMoveSpeed * _boss.Data.FoxShadowSpeedMultiplier;
             MoveToTarget(_player.position, shadowSpeed);
         }
-
-        UpdateVisuals();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -165,13 +199,16 @@ public class FoxController : MonoBehaviour, IDamageable
         Gizmos.DrawWireSphere(transform.position, _biteRange);
 
         Gizmos.color = Color.yellow;
-        // _boss가 할당되지 않은 에디터 상태에서는 기본값 8.0f 등으로 표시하거나 예외처리
         float range = (_boss != null) ? _boss.Data.FoxDetectRange : 8.0f;
         Gizmos.DrawWireSphere(transform.position, range);
 
         Gizmos.color = new Color(0.5f, 0, 0.5f, 0.5f);
-        Vector3 boxCenter = transform.position + (Vector3)_attackBoxOffset;
+        Vector3 spawnPos = new Vector3(transform.position.x, 52f, 0f);
+        Vector3 boxCenter = spawnPos + (Vector3)_attackBoxOffset;
         Gizmos.DrawWireCube(boxCenter, _shadowAttackSize);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawRay(transform.position + Vector3.up * 0.5f, Vector3.right * (GetComponent<SpriteRenderer>().flipX ? -1 : 1) * 1.0f);
     }
     #endregion
 
@@ -182,6 +219,7 @@ public class FoxController : MonoBehaviour, IDamageable
         _isActive = true;
         _player = player;
         _isShadowMode = false;
+        _groundedTimer = 0f;
 
         if (_player == null)
         {
@@ -211,6 +249,14 @@ public class FoxController : MonoBehaviour, IDamageable
         gameObject.SetActive(true);
         EnablePhysics(true);
 
+        if (_renderer != null) _renderer.enabled = true;
+
+        if (_animController != null)
+        {
+            _animController.SetShadowMode(false);
+            _animController.ResetTriggers();
+        }
+
         StartCoroutine(AI_RoutineLoop());
     }
 
@@ -227,7 +273,6 @@ public class FoxController : MonoBehaviour, IDamageable
     {
         if (_state == FoxState.Biting)
         {
-            Debug.Log("FoxController: 피격당함 -> 그림자 모드로 변신");
             ForceReleasePlayer();
             StartCoroutine(StartShadowModeRoutine());
         }
@@ -274,8 +319,10 @@ public class FoxController : MonoBehaviour, IDamageable
                 }
 
                 float dist = Vector2.Distance(transform.position, _targetItem.transform.position);
-                // 도착 판정
-                if (dist <= 1.0f && CheckGrounded() && Mathf.Abs(_rb.linearVelocity.y) < 0.1f)
+
+                bool isJumping = (_state == FoxState.Jumping || _state == FoxState.PrepareJump);
+
+                if (!isJumping && dist <= 1.5f && CheckGrounded())
                 {
                     bookReached = true;
                 }
@@ -297,28 +344,16 @@ public class FoxController : MonoBehaviour, IDamageable
         _isShadowMode = true;
         _state = FoxState.Idle;
 
-        // 그림자 변신 연출
-        float t = 0;
-        Vector3 startScale = Vector3.one;
-        Vector3 endScale = new Vector3(1f, 0.2f, 1f);
-
-        while (t < 0.4f)
+        if (_animController != null)
         {
-            t += Time.deltaTime;
-            float ratio = t / 0.4f;
-            transform.localScale = Vector3.Lerp(startScale, endScale, ratio);
-            _renderer.color = Color.Lerp(_originalColor, Color.black, ratio);
-            yield return null;
+            _animController.SetShadowMode(true);
         }
-        transform.localScale = endScale;
-        _renderer.color = Color.black;
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.4f);
 
         TeleportToRandomSpawnPoint();
 
         _state = FoxState.ShadowChasing;
-        Debug.Log("FoxController: 그림자 추격 시작");
 
         while (_isActive && _isShadowMode)
         {
@@ -341,15 +376,22 @@ public class FoxController : MonoBehaviour, IDamageable
         _state = FoxState.ShadowChargingExplosion;
         _rb.linearVelocity = Vector2.zero;
 
-        // Boss2Data 사용
-        float delay = _boss.Data.FoxAoeDelay;
-        Debug.Log($"FoxController: 공격 준비. {delay}초 뒤 발동");
+        if (_animController != null) _animController.TriggerShadowExplosion();
 
-        Vector3 spawnPosition = GetGroundPosition(transform.position);
+        float delay = _shadowExplosionDelay;
 
+        float clampedX = Mathf.Clamp(transform.position.x, -12f, 4f);
+        Vector3 targetPos = new Vector3(clampedX, 52f, 0f);
+        Vector3 startPos = new Vector3(clampedX, 52f - 25f, 0f);
+
+        // 경고 이펙트
         if (_shadowAttackPrefab != null)
         {
-            _currentAttackInstance = Instantiate(_shadowAttackPrefab, spawnPosition, Quaternion.identity);
+            _currentAttackInstance = Instantiate(_shadowAttackPrefab, targetPos, Quaternion.identity);
+
+            Collider2D col = _currentAttackInstance.GetComponent<Collider2D>();
+            if (col != null) col.enabled = false;
+
             SetAlpha(_currentAttackInstance, 0.4f);
         }
 
@@ -363,35 +405,78 @@ public class FoxController : MonoBehaviour, IDamageable
 
         if (!_isActive) yield break;
 
+        // 여우 숨기기
+        if (_renderer != null) _renderer.enabled = false;
+        if (_collider != null) _collider.enabled = false;
+
         if (_currentAttackInstance != null) Destroy(_currentAttackInstance);
 
+        // 실제 공격 이펙트 생성
         if (_shadowAttackPrefab != null)
         {
-            _currentAttackInstance = Instantiate(_shadowAttackPrefab, spawnPosition, Quaternion.identity);
-            SetAlpha(_currentAttackInstance, 1.0f);
-        }
+            _currentAttackInstance = Instantiate(_shadowAttackPrefab, startPos, Quaternion.identity);
 
-        Debug.Log("FoxController: 여우 광역 공격");
-        Vector2 attackCenter = (Vector2)spawnPosition + _attackBoxOffset;
-
-        int layerMask = _targetLayer.value != 0 ? _targetLayer.value : -1;
-        Collider2D[] hits = Physics2D.OverlapBoxAll(attackCenter, _shadowAttackSize, 0f, layerMask);
-
-        foreach (var hit in hits)
-        {
-            IDamageable target = hit.GetComponent<IDamageable>();
-            if (target == null) target = hit.GetComponentInParent<IDamageable>();
-
-            if (target != null)
+            Collider2D col = _currentAttackInstance.GetComponent<Collider2D>();
+            if (col != null)
             {
-                // Boss2Data 사용
-                target.TakeDamage(_boss.Data.FoxAoeDamage, _boss.Data.FoxShadowKnockback, attackCenter);
-                Debug.Log($"FoxController: {hit.name}에게 광역 데미지 적용");
+                col.enabled = true;
+                col.isTrigger = false; // 물리적 넉백 활성화
             }
+
+            SetAlpha(_currentAttackInstance, 1.0f);
+
+            float emergeTime = _popUpDuration;
+            float t = 0f;
+
+            // 이미 데미지를 입은 대상 기록 (중복 피격 방지)
+            HashSet<int> damagedTargets = new HashSet<int>();
+
+            // 판정 준비
+            Vector2 attackCenter = (Vector2)targetPos + _attackBoxOffset;
+            int checkLayer = _targetLayer.value;
+            if (_player != null) checkLayer = 1 << _player.gameObject.layer;
+            else if (checkLayer == 0) checkLayer = LayerMask.GetMask("Player");
+
+            // 올라오는 동안 지속적으로 데미지 판정
+            while (t < emergeTime)
+            {
+                t += Time.deltaTime;
+                if (_currentAttackInstance != null)
+                {
+                    _currentAttackInstance.transform.position = Vector3.Lerp(startPos, targetPos, t / emergeTime);
+                }
+
+                // 이동 중에도 판정 수행 (범위를 약간 여유있게 잡음)
+                Collider2D[] hits = Physics2D.OverlapBoxAll(attackCenter, _shadowAttackSize * 1.1f, 0f, checkLayer);
+
+                foreach (var hit in hits)
+                {
+                    IDamageable target = hit.GetComponent<IDamageable>();
+                    if (target == null) target = hit.GetComponentInParent<IDamageable>();
+
+                    if (target != null)
+                    {
+                        int id = hit.gameObject.GetInstanceID();
+                        if (!damagedTargets.Contains(id))
+                        {
+                            damagedTargets.Add(id);
+
+                            float dmg = _boss != null ? _boss.Data.FoxAoeDamage : 70f;
+                            Debug.Log($"[ShadowAttack] 피격: {hit.name}, 데미지: {dmg}");
+
+                            Vector3 fakeHitPos = hit.transform.position + Vector3.down * 5.0f;
+                            target.TakeDamage(dmg, _boss != null ? _boss.Data.FoxShadowKnockback : 10f, fakeHitPos);
+                        }
+                    }
+                }
+
+                yield return null;
+            }
+
+            if (_currentAttackInstance != null) _currentAttackInstance.transform.position = targetPos;
         }
 
-        yield return new WaitForSeconds(_attackDuration);
-
+        // 이동 완료 후 즉시 제거
         if (_currentAttackInstance != null)
         {
             Destroy(_currentAttackInstance);
@@ -406,9 +491,6 @@ public class FoxController : MonoBehaviour, IDamageable
     private IEnumerator ChaseAndBiteRoutine()
     {
         _state = FoxState.ChasingPlayer;
-        Debug.Log("FoxController: 플레이어 추격 시작");
-
-        //  Boss2Data 사용
         float aggroRange = _boss.Data.FoxDetectRange;
 
         while (_isActive && _player != null)
@@ -419,7 +501,7 @@ public class FoxController : MonoBehaviour, IDamageable
 
             if (dist > aggroRange * 1.5f) break;
 
-            bool isStableGrounded = CheckGrounded() && Mathf.Abs(_rb.linearVelocity.y) < 0.1f;
+            bool isStableGrounded = CheckGrounded() && Mathf.Abs(_rb.linearVelocity.y) < 1.0f;
 
             if (dist <= _biteRange && isStableGrounded)
             {
@@ -436,6 +518,8 @@ public class FoxController : MonoBehaviour, IDamageable
         _rb.linearVelocity = Vector2.zero;
         _rb.bodyType = RigidbodyType2D.Kinematic;
 
+        if (_animController != null) _animController.TriggerBite();
+
         _collider.enabled = true;
         _collider.isTrigger = true;
 
@@ -443,11 +527,9 @@ public class FoxController : MonoBehaviour, IDamageable
         if (targetDamageable == null) targetDamageable = _player.GetComponentInParent<IDamageable>();
         if (targetDamageable == null) targetDamageable = _player.GetComponentInChildren<IDamageable>();
 
-        // Boss2Data 사용
         float initialDamage = _boss.Data.FoxBiteDamage;
         float dotDamage = _boss.Data.FoxBiteDotDamage;
 
-        Debug.Log($"FoxController: 물기 시작 (데미지: {initialDamage})");
         if (targetDamageable != null) targetDamageable.TakeDamage(initialDamage, 0, transform.position);
 
         float timer = 0f;
@@ -476,31 +558,34 @@ public class FoxController : MonoBehaviour, IDamageable
         _state = FoxState.Eating;
         _rb.linearVelocity = Vector2.zero;
 
+        if (_animController != null) _animController.SetEating(true);
+
         float elapsed = 0f;
-        // Boss2Data 사용 
         float eatDuration = _boss.Data.FoxEatDuration;
 
         while (elapsed < eatDuration)
         {
             elapsed += Time.deltaTime;
 
-            if (_isShadowMode) yield break;
+            if (_isShadowMode) break;
 
             if (CheckPlayerAggro())
             {
                 _state = FoxState.Idle;
-                yield break;
+                break;
             }
 
-            if (_targetItem == null || Vector2.Distance(transform.position, _targetItem.transform.position) > 1.2f)
+            if (_targetItem == null || Vector2.Distance(transform.position, _targetItem.transform.position) > 2.0f)
             {
                 _state = FoxState.ChasingBook;
-                yield break;
+                break;
             }
             yield return null;
         }
 
-        if (_targetItem != null)
+        if (_animController != null) _animController.SetEating(false);
+
+        if (_targetItem != null && _state == FoxState.Eating)
         {
             bool isCorrect = _targetItem.IsTarget;
             _boss.OnFoxEatItem(isCorrect);
@@ -516,9 +601,7 @@ public class FoxController : MonoBehaviour, IDamageable
             }
         }
     }
-    #endregion
 
-    #region Movement & Physics
     private void MoveToTarget(Vector3 targetPos, float speed)
     {
         if (!CheckGrounded()) return;
@@ -527,22 +610,20 @@ public class FoxController : MonoBehaviour, IDamageable
         float yDiff = targetPos.y - transform.position.y;
         float dirX = Mathf.Sign(xDiff);
 
-        // 우회 로직 강화: 목표가 아래에 있으면 수평 거리 상관없이 계속 길을 찾음
+        int obstacleMask = _groundLayer | _wallLayer;
+
         bool isTargetBelow = (yDiff < -1.0f);
 
         if (isTargetBelow)
         {
-            // 보는 방향으로 계속 전진
             float currentFacing = _renderer.flipX ? -1f : 1f;
             dirX = currentFacing;
 
-            // 진짜 벽(Trigger 아님)을 만나면 뒤로 돎
             Vector2 rayOrigin = (Vector2)transform.position + Vector2.up * 0.5f;
-            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * dirX, 1.0f, _groundLayer);
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * dirX, 1.0f, obstacleMask);
 
             if (hit.collider != null)
             {
-                // 타겟 아이템이나 플레이어가 아닐 때만 회전
                 GameObject targetObj = (_state == FoxState.ChasingPlayer) ? _player.gameObject : (_targetItem != null ? _targetItem.gameObject : null);
 
                 if (!hit.collider.isTrigger && hit.collider.gameObject != targetObj)
@@ -550,25 +631,40 @@ public class FoxController : MonoBehaviour, IDamageable
                     dirX *= -1f;
                 }
             }
+            else if (IsGapAhead(dirX))
+            {
+                RaycastHit2D hitAcross = Physics2D.Raycast(rayOrigin, Vector2.right * dirX, 2.5f, obstacleMask);
+                if (hitAcross.collider != null && !hitAcross.collider.isTrigger)
+                {
+                    dirX *= -1f;
+                }
+            }
         }
         else
         {
-            // 일반적인 경우: 가까우면 멈춤 (플레이어 추적 시에는 좀 더 바짝)
             float stopDist = (_state == FoxState.ChasingPlayer) ? 0.1f : 0.2f;
             if (Mathf.Abs(xDiff) < stopDist) dirX = 0;
         }
 
-        if (dirX != 0) _renderer.flipX = (dirX < 0);
+        if (dirX != 0)
+        {
+            bool isLeft = (dirX < 0);
+            if (_animController != null) _animController.Flip(isLeft);
+            else _renderer.flipX = isLeft;
+        }
 
         bool isHighTarget = yDiff > 0.6f;
         bool isGapAhead = IsGapAhead(dirX);
 
-        // 아래로 내려가는 중일 때는 낭떠러지를 만나도 점프하지 않고 그냥 떨어짐
-        bool needJump = isHighTarget || (isGapAhead && !isTargetBelow);
+        Vector2 checkOrigin = (Vector2)transform.position + Vector2.up * 0.5f;
+        RaycastHit2D wallHit = Physics2D.Raycast(checkOrigin, Vector2.right * dirX, 1.0f, obstacleMask);
+        bool isWallAhead = (wallHit.collider != null && !wallHit.collider.isTrigger);
 
-        if (needJump)
+        bool needJump = isHighTarget || (isGapAhead && !isTargetBelow) || (isWallAhead && !isTargetBelow);
+
+        if (needJump && _groundedTimer >= 1.0f)
         {
-            if (isHighTarget && Mathf.Abs(xDiff) > 2.5f && !isGapAhead)
+            if (isHighTarget && Mathf.Abs(xDiff) > 2.5f && !isGapAhead && !isWallAhead)
             {
                 _rb.linearVelocity = new Vector2(dirX * speed, _rb.linearVelocity.y);
             }
@@ -579,7 +675,6 @@ public class FoxController : MonoBehaviour, IDamageable
         }
         else
         {
-            // 평지 이동
             _rb.linearVelocity = new Vector2(dirX * speed, _rb.linearVelocity.y);
         }
     }
@@ -587,6 +682,9 @@ public class FoxController : MonoBehaviour, IDamageable
     private IEnumerator JumpRoutine(Vector3 targetPos)
     {
         _state = FoxState.PrepareJump;
+
+        if (_animController != null) _animController.TriggerJump();
+
         yield return new WaitForSeconds(_jumpDelay);
 
         if (!_isActive || _state != FoxState.PrepareJump) yield break;
@@ -598,7 +696,6 @@ public class FoxController : MonoBehaviour, IDamageable
         _state = FoxState.Jumping;
     }
 
-    // 바닥 체크 로직
     private bool CheckGrounded()
     {
         if (_collider == null)
@@ -621,11 +718,13 @@ public class FoxController : MonoBehaviour, IDamageable
         return !Physics2D.Raycast(origin, Vector2.down, 4.0f, _groundLayer);
     }
 
-
     private void HandleRetreat()
     {
         float dir = (transform.position.x >= 0) ? 1f : -1f;
-        _renderer.flipX = (dir < 0);
+
+        if (_animController != null) _animController.Flip(dir < 0);
+        else _renderer.flipX = (dir < 0);
+
         float retreatSpeed = _boss.Data.FoxMoveSpeed * 3.0f;
         if (CheckGrounded())
         {
@@ -638,17 +737,20 @@ public class FoxController : MonoBehaviour, IDamageable
     private Vector2 CalculateJumpVelocity(Vector3 start, Vector3 end)
     {
         float gravity = Mathf.Abs(Physics2D.gravity.y * _rb.gravityScale);
-        float apexY = Mathf.Max(start.y, end.y);
+        float apexY = Mathf.Max(start.y, end.y) + 0.5f;
         float dy = apexY - start.y;
         float vy = Mathf.Sqrt(2 * gravity * dy);
         float tUp = vy / gravity;
         float dyDown = apexY - end.y;
+        if (dyDown < 0) dyDown = 0;
         float tDown = Mathf.Sqrt(2 * dyDown / gravity);
         float totalTime = tUp + tDown;
         float dx = end.x - start.x;
         float vx = dx / totalTime;
+
         if (Mathf.Abs(dx) < 0.5f) vx = (dx >= 0 ? 1f : -1f) * 2.0f;
         vx = Mathf.Clamp(vx, -15f, 15f);
+
         return new Vector2(vx, vy);
     }
 
@@ -673,28 +775,6 @@ public class FoxController : MonoBehaviour, IDamageable
         SetTarget(FindRandomBook());
         if (_targetItem != null) transform.position = _targetItem.transform.position + Vector3.up * 1.0f;
         else transform.position = _boss.CenterPoint.position;
-    }
-
-    private void UpdateVisuals()
-    {
-        if (_state == FoxState.Jumping || _state == FoxState.PrepareJump)
-        {
-            transform.localScale = Vector3.one;
-            _renderer.sprite = _normalSprite;
-            _renderer.color = _originalColor;
-        }
-        else if (_isShadowMode)
-        {
-            transform.localScale = new Vector3(1f, 0.2f, 1f);
-            _renderer.sprite = _shadowSprite;
-            _renderer.color = Color.black;
-        }
-        else
-        {
-            transform.localScale = Vector3.one;
-            _renderer.sprite = _normalSprite;
-            _renderer.color = _originalColor;
-        }
     }
 
     private void SetTarget(GimmickItemObject item)
@@ -723,13 +803,10 @@ public class FoxController : MonoBehaviour, IDamageable
         return nearest;
     }
 
-    // Helper Methods
     private bool CheckPlayerAggro()
     {
         if (_player == null || !_isActive) return false;
         if (_state == FoxState.Retreat || _state == FoxState.Biting || _isShadowMode) return false;
-
-        // Boss2Data 사용
         float dist = Vector2.Distance(transform.position, _player.position);
         return dist <= _boss.Data.FoxDetectRange;
     }

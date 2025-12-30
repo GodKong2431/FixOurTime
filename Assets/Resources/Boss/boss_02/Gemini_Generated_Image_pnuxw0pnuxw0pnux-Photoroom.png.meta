@@ -138,12 +138,12 @@ TextureImporter:
       name: Gemini_Generated_Image_pnuxw0pnuxw0pnux-Photoroom_0
       rect:
         serializedVersion: 2
-        x: 52
+        x: 51
         y: 10
         width: 243
         height: 412
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.45358646, y: 0.36175588}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -164,8 +164,8 @@ TextureImporter:
         y: 11
         width: 230
         height: 409
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.46567422, y: 0.36763588}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -182,12 +182,12 @@ TextureImporter:
       name: Gemini_Generated_Image_pnuxw0pnuxw0pnux-Photoroom_2
       rect:
         serializedVersion: 2
-        x: 674
-        y: 11
+        x: 676
+        y: 8
         width: 230
         height: 410
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.556393, y: 0.381713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -204,12 +204,12 @@ TextureImporter:
       name: Gemini_Generated_Image_pnuxw0pnuxw0pnux-Photoroom_3
       rect:
         serializedVersion: 2
-        x: 984
+        x: 985
         y: 11
         width: 235
         height: 410
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.56719166, y: 0.38859022}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
