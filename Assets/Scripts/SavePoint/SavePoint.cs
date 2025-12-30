@@ -3,49 +3,55 @@ using UnityEngine;
 [RequireComponent (typeof(BoxCollider2D))]
 public class SavePoint : MonoBehaviour
 {
-    SpriteRenderer _spr;
-    BoxCollider2D _collider;
+    [Header("고유 ID(곂치지 않게 쓰기)")]
+    [SerializeField] string _savePointID;
 
+    BoxCollider2D _collider;
     private bool _isSaved = false;
 
-    private void Awake()
+    
+    private void Start()
     {
-        _spr = GetComponent<SpriteRenderer>();
         _collider = GetComponent<BoxCollider2D>();
-        _collider.isTrigger = true;
-    }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
+        GameData data = GameDataManager.Load();
+        if (data.actSavePoints.Contains(_savePointID))
         {
-            Player player = other.GetComponent<Player>();
-
-            if(player != null && !_isSaved)
-            {
-                player.CheckPoint(transform.position);
-                _isSaved = true;
-
-                Debug.Log("체크포인트 저장");
-            }
+            SetAsSaved();
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void SetAsSaved()
+    {
+        _isSaved = true;
+        if(_collider != null) _collider.enabled = false;
+    }
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (_isSaved) return;
 
-        if (collision.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            Player player = collision.GetComponent<Player>();
-
-            if (player != null && !_isSaved)
+            Player player = other.GetComponent<Player>();
+            if(player != null)
             {
-                player.CheckPoint(transform.position);
-                _isSaved = true;
-
-                Debug.Log("체크포인트 저장");
+                SavePorcess(player);
             }
         }
+    }
+
+    private void SavePorcess(Player player)
+    {
+        player.CheckPoint(transform.position);
+
+        GameData data = GameDataManager.Load();
+        if (!data.actSavePoints.Contains(_savePointID))
+        {
+            data.actSavePoints.Add(_savePointID);
+            GameDataManager.Save(data);
+        }
+
+        SetAsSaved();
+        Debug.Log($"{_savePointID} 이지점 저장 완료");
     }
 }
