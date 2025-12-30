@@ -1,25 +1,25 @@
 fileFormatVersion: 2
-guid: aaa84558ab249a046acbf0d1cffbf09e
+guid: 1a45759ccbafb1941be1713eac206389
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6271608353957055357
-    second: "stage2_\uC5EC\uC6B0\uC774\uB3D9_0"
+      213: 3310002292416464744
+    second: image-removebg-preview_0
   - first:
-      213: -699275422624860758
-    second: "stage2_\uC5EC\uC6B0\uC774\uB3D9_1"
+      213: 3465280639480317682
+    second: image-removebg-preview_1
   - first:
-      213: 786430303581172918
-    second: "stage2_\uC5EC\uC6B0\uC774\uB3D9_2"
+      213: 4337046748960614032
+    second: image-removebg-preview_2
   - first:
-      213: -4714219295596598250
-    second: "stage2_\uC5EC\uC6B0\uC774\uB3D9_3"
+      213: -5973860886773078451
+    second: image-removebg-preview_3
   - first:
-      213: 5479404942413779563
-    second: "stage2_\uC5EC\uC6B0\uC774\uB3D9_4"
+      213: 4296832259876389077
+    second: image-removebg-preview_4
   - first:
-      213: 6770710295503838688
-    second: "stage2_\uC5EC\uC6B0\uC774\uB3D9_5"
+      213: -5059381527521186713
+    second: image-removebg-preview_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -66,7 +66,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 70
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -141,133 +141,133 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "stage2_\uC5EC\uC6B0\uC774\uB3D9_0"
+      name: image-removebg-preview_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 36
-        width: 257
-        height: 311
-      alignment: 9
-      pivot: {x: 0.6079543, y: 0.37221265}
+        x: 48
+        y: 24
+        width: 240
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d7b8bfbc19a390750800000000000000
-      internalID: 6271608353957055357
+      spriteID: 867463d3c8d7fed20800000000000000
+      internalID: 3310002292416464744
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "stage2_\uC5EC\uC6B0\uC774\uB3D9_1"
+      name: image-removebg-preview_1
       rect:
         serializedVersion: 2
-        x: 298
-        y: 36
-        width: 245
-        height: 310
-      alignment: 9
-      pivot: {x: 0.6224237, y: 0.39427382}
+        x: 295
+        y: 24
+        width: 236
+        height: 172
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: aa5b84245bcab46f0800000000000000
-      internalID: -699275422624860758
+      spriteID: 2f6434bb166271030800000000000000
+      internalID: 3465280639480317682
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "stage2_\uC5EC\uC6B0\uC774\uB3D9_2"
+      name: image-removebg-preview_2
       rect:
         serializedVersion: 2
-        x: 590
-        y: 36
-        width: 241
-        height: 311
-      alignment: 9
-      pivot: {x: 0.61823297, y: 0.37853965}
+        x: 536
+        y: 24
+        width: 236
+        height: 164
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6b4fe85c136f9ea00800000000000000
-      internalID: 786430303581172918
+      spriteID: 0966f0e1a09403c30800000000000000
+      internalID: 4337046748960614032
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "stage2_\uC5EC\uC6B0\uC774\uB3D9_3"
+      name: image-removebg-preview_3
       rect:
         serializedVersion: 2
-        x: 866
-        y: 36
-        width: 247
-        height: 311
-      alignment: 9
-      pivot: {x: 0.61232543, y: 0.38095048}
+        x: 771
+        y: 77
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 61c2ca4178ab39eb0800000000000000
-      internalID: -4714219295596598250
+      spriteID: d466a42ac25981da0800000000000000
+      internalID: -5973860886773078451
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "stage2_\uC5EC\uC6B0\uC774\uB3D9_4"
+      name: image-removebg-preview_4
       rect:
         serializedVersion: 2
-        x: 1153
-        y: 36
-        width: 246
-        height: 312
-      alignment: 9
-      pivot: {x: 0.61582935, y: 0.3797297}
+        x: 800
+        y: 46
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b62d71593c1ca0c40800000000000000
-      internalID: 5479404942413779563
+      spriteID: 5d00f5dbc2a61ab30800000000000000
+      internalID: 4296832259876389077
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "stage2_\uC5EC\uC6B0\uC774\uB3D9_5"
+      name: image-removebg-preview_5
       rect:
         serializedVersion: 2
-        x: 1439
-        y: 36
-        width: 245
-        height: 312
-      alignment: 9
-      pivot: {x: 0.6377267, y: 0.382133}
+        x: 785
+        y: 37
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0ed1698142566fd50800000000000000
-      internalID: 6770710295503838688
+      spriteID: 76c2de47e4779c9b0800000000000000
+      internalID: -5059381527521186713
       vertices: []
       indices: 
       edges: []
@@ -276,7 +276,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 97ea3c186ae05b845bc95e2fbdb61126
+    spriteID: 4a369a86eec9172458535cd0327560dd
     internalID: 0
     vertices: []
     indices: 
@@ -286,12 +286,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "stage2_\uC5EC\uC6B0\uC774\uB3D9_0": 6271608353957055357
-      "stage2_\uC5EC\uC6B0\uC774\uB3D9_1": -699275422624860758
-      "stage2_\uC5EC\uC6B0\uC774\uB3D9_2": 786430303581172918
-      "stage2_\uC5EC\uC6B0\uC774\uB3D9_3": -4714219295596598250
-      "stage2_\uC5EC\uC6B0\uC774\uB3D9_4": 5479404942413779563
-      "stage2_\uC5EC\uC6B0\uC774\uB3D9_5": 6770710295503838688
+      image-removebg-preview_0: 3310002292416464744
+      image-removebg-preview_1: 3465280639480317682
+      image-removebg-preview_2: 4337046748960614032
+      image-removebg-preview_3: -5973860886773078451
+      image-removebg-preview_4: 4296832259876389077
+      image-removebg-preview_5: -5059381527521186713
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
