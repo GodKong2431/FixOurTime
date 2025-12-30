@@ -1,6 +1,0 @@
-﻿아이템ID,아이템 유형,판매 가능 여부,아이템 스트링키,아이템 설명 스트링키,아이템 그래픽 리소스 파일명,test
-id,itemtype,sellable,itemname,itemdesc,itemImgresource,test
-int,int,bool,string,string,string,string
-201011,1,1,item_toppingpiece_name_201011,item_toppingpiece_desc_201011,item_toppingpiece_img_201011,test1
-201012,1,0,item_powerstone_name_201012,item_powerstone_desc_201012,item_powerstone_img_201012,test2
-201013,1,0,item_tartessence_name_201013,item_tartessence_desc_201013,item_tartessence_img_201013,test3
