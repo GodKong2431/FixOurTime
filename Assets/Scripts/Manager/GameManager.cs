@@ -26,18 +26,6 @@ public class GameManager : SingleTon<GameManager>
         //필요시 게임시작후 플레이어 참조
     }
 
-    public void ResetSceneState()
-    {
-        IsSceneReady = false;
-        StartCoroutine(SceneReadyDelay());
-    }
-
-    private IEnumerator SceneReadyDelay()
-    {
-        yield return new WaitForSeconds(5f);
-        IsSceneReady = true;
-    }
-
     public void TogglePause()
     {
         _isPaused = !_isPaused;
