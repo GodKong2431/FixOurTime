@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3058123956540887218
 Transform:
   m_ObjectHideFlags: 0
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 20
   m_Sprite: {fileID: 7744222270261792314, guid: f42b0c838ce891d4088cfa18dc5eefe4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -202,7 +202,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8081231404409650943
 Transform:
   m_ObjectHideFlags: 0
@@ -264,7 +264,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 20
   m_Sprite: {fileID: 7580088511395848662, guid: f42b0c838ce891d4088cfa18dc5eefe4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -451,7 +451,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 4128885810209133312, guid: edc01f1f1b675c547b0df61d9936f251, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -488,9 +488,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DevilDarkSpearController
   _stayTime: 5
-  _devilDarkSpear: {fileID: 0}
-  boxSize: {x: 10, y: 1}
-  boxPos: {fileID: 0}
+  _devilDarkSpear: {fileID: 3599768482942535222}
+  boxSize: {x: 15, y: 5}
+  boxPos: {fileID: 2250025802982096542}
   boxOffset: {x: 0, y: 1}
 --- !u!114 &1912419988628477395
 MonoBehaviour:
@@ -506,10 +506,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DevilHandController
   _leftHand: {fileID: 8305980004501433055}
   _rightHand: {fileID: 7648827395162432715}
-  _verticalStartOffset: {x: 5, y: 10}
+  _verticalStartOffset: {x: 24, y: 5}
   _verticalReadyTime: 2
   _verticalAfterAttackTime: 2
-  _crossStartOffset: {x: 5, y: 10}
+  _crossStartOffset: {x: 24, y: 5}
   _crossReadyTime: 2
   _crossAfterAttackTime: 2
   _spiralStartOffsetX: {x: 10, y: 5}
@@ -530,8 +530,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DevilBlackHoleController
   _blackHolePrefab: {fileID: 200342055332908596, guid: f8fb91bcf20b9224fbe0ddb0b69be7c4, type: 3}
-  _devilCore: {fileID: 0}
-  _spawnPoint: {fileID: 0}
+  _devilCore: {fileID: 8674529067756949777}
+  _spawnPoint: {fileID: 2250025802982096542}
   _defaultDuration: 5
   _minScale: 0.5
   _maxScale: 30
@@ -552,11 +552,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1495183788641181140, guid: 9185c3dc5b472624d917582b39ed4293, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1998028217618570573, guid: 9185c3dc5b472624d917582b39ed4293, type: 3}
       propertyPath: m_SortingOrder
-      value: 10
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4384949128819114270, guid: 9185c3dc5b472624d917582b39ed4293, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4384949128819114270, guid: 9185c3dc5b472624d917582b39ed4293, type: 3}
+      propertyPath: m_Offset.y
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8946401146994646429, guid: 9185c3dc5b472624d917582b39ed4293, type: 3}
       propertyPath: m_LocalScale.x
@@ -576,7 +584,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8946401146994646429, guid: 9185c3dc5b472624d917582b39ed4293, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.7842541
+      value: -1.16
       objectReference: {fileID: 0}
     - target: {fileID: 8946401146994646429, guid: 9185c3dc5b472624d917582b39ed4293, type: 3}
       propertyPath: m_LocalPosition.z
@@ -620,3 +628,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8946401146994646429, guid: 9185c3dc5b472624d917582b39ed4293, type: 3}
   m_PrefabInstance: {fileID: 7138683673367716611}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3599768482942535222 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5973251564123022645, guid: 9185c3dc5b472624d917582b39ed4293, type: 3}
+  m_PrefabInstance: {fileID: 7138683673367716611}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 848b6414520da6f48acdf1e9c7bb9b0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DevilDarkSpear
+--- !u!114 &8674529067756949777 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1978114605192491538, guid: 9185c3dc5b472624d917582b39ed4293, type: 3}
+  m_PrefabInstance: {fileID: 7138683673367716611}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5f5581f09386fc439857ab93f0ae5fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DevilCore

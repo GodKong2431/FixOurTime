@@ -90,9 +90,13 @@ public class DevilHandController : MonoBehaviour
 
         yield return new WaitForSeconds(_crossReadyTime);
 
+        yield return new WaitUntil(() => !_leftHand.IsBusy && !_rightHand.IsBusy);
+
+        yield return new WaitForSeconds(_crossReadyTime);
+
         Vector2 down = Vector2.down;
-        Vector2 leftDir = Quaternion.Euler(0, 0, 45f) * down;
-        Vector2 rightDir = Quaternion.Euler(0, 0, -45f) * down;
+        Vector2 leftDir = Quaternion.Euler(0, 0, 65f) * down;
+        Vector2 rightDir = Quaternion.Euler(0, 0, -65f) * down;
 
         _leftHand.Attack(leftDir);
         _rightHand.Attack(rightDir);
@@ -115,8 +119,8 @@ public class DevilHandController : MonoBehaviour
     /// <returns></returns>
     public IEnumerator SpiralPattern()
     {
-        _leftHand.BeginPattern(new Vector2(-_spiralStartOffsetX.x, _spiralStartOffsetX.y - 10));
-        _rightHand.BeginPattern(new Vector2(_spiralStartOffsetX.x, -_spiralStartOffsetX.y - 10));
+        _leftHand.BeginPattern(new Vector2(-_spiralStartOffsetX.x, _spiralStartOffsetX.y - 5));
+        _rightHand.BeginPattern(new Vector2(_spiralStartOffsetX.x, -_spiralStartOffsetX.y - 5));
 
         yield return new WaitUntil(() => !_leftHand.IsBusy && !_rightHand.IsBusy);
 
@@ -124,8 +128,8 @@ public class DevilHandController : MonoBehaviour
 
         Vector2 center = ((Vector2)_leftHand.transform.position + (Vector2)_rightHand.transform.position) * 0.5f;
 
-        _leftHand.SpiralAttack(center, _spiraloffset, _spiralDuration);
-        _rightHand.SpiralAttack(center, _spiraloffset, _spiralDuration);
+        _leftHand.SpiralAttack(new Vector2(center.x + 5, center.y), _spiraloffset, _spiralDuration);
+        _rightHand.SpiralAttack(new Vector2(center.x - 5, center.y), _spiraloffset, _spiralDuration);
 
         // 회전 끝날 때까지 대기 (SpiralAttack은 내부적으로 duration만큼 돔)
         yield return new WaitUntil(() => !_leftHand.IsBusy && !_rightHand.IsBusy);
