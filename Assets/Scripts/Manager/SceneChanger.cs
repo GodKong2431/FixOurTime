@@ -98,7 +98,7 @@ public class SceneChanger : SingleTon<SceneChanger>
         }
 
         // 로드 후 1초 대기
-        yield return new WaitForSecondsRealtime(1f);
+        yield return new WaitForEndOfFrame();
 
         // 리커넥트 및 데이터 복구
         if (CinemachinCamManager.Instance != null)
