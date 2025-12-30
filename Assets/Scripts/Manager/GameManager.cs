@@ -18,18 +18,23 @@ public class GameManager : SingleTon<GameManager>
     bool _isPaused = false;
     public bool IsPaused => _isPaused;
 
-    public bool IsSceneReady { get; private set; }
+    public bool IsSceneReady { get; private set; } = false;
 
     protected override void Awake()
     {
         base.Awake();
         //필요시 게임시작후 플레이어 참조
     }
-    
 
-    private IEnumerator Start()
+    public void ResetSceneState()
     {
-        yield return null;   
+        IsSceneReady = false;
+        StartCoroutine(SceneReadyDelay());
+    }
+
+    private IEnumerator SceneReadyDelay()
+    {
+        yield return new WaitForSeconds(5f);
         IsSceneReady = true;
     }
 

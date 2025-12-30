@@ -148,10 +148,6 @@ public class CinemachinCamManager : SingleTon<CinemachinCamManager>
 
     public Vector3 GetCamPos()
     {
-        if (_activeCam == null)
-        {
-            return Vector3.zero;
-        }
         return _activeCam.transform.position;
     }
 }
