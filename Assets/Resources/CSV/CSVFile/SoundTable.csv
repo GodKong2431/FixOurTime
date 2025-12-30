@@ -21,6 +21,8 @@ int,string,SoundType
 307,SFX_Fountain_Cure,SFX
 308,SFX_ClockHand_Get,SFX
 309,SFX_Core_Activate,SFX
+310,SFX_Laser_Destroy,SFX
+311,SFX_Laser_Shot,SFX
 401,SFX_Boss1_ThrowMetal,SFX
 402,SFX_Boss1_MetalSmash,SFX
 403,SFX_Boss1_ConcreteLock,SFX
@@ -33,6 +35,14 @@ int,string,SoundType
 410,SFX_Boss2_Bite,SFX
 411,SFX_Boss2_Explosion,SFX
 412,SFX_Boss2_Book,SFX
+413,SFX_Boss3_FeatherFly,SFX
+414,SFX_Boss3_FeatherStuck,SFX
+415,SFX_Boss3_Burning,SFX
+416,SFX_Boss3_Whoosh,SFX
+417,SFX_Boss3_Slam,SFX
+418,SFX_Boss3_Blackhole,SFX
+419,SFX_Boss3_Spear,SFX
+420,SFX_Boss3_Hit,SFX
 501,SFX_Stage_Start,SFX
 502,SFX_Stage4_Earthquake,SFX
 503,SFX_Stage_ClearEventQuake,SFX
@@ -40,3 +50,5 @@ int,string,SoundType
 601,BGM_FixOurTime,BGM
 602,BGM_Stage1,BGM
 603,BGM_Stage2,BGM
+604,BGM_Stage3,BGM
+605,BGM_Stage4,BGM

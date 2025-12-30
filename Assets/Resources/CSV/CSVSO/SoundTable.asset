@@ -73,6 +73,12 @@ MonoBehaviour:
   - id: 309
     name: SFX_Core_Activate
     soundtype: 1
+  - id: 310
+    name: SFX_Laser_Destroy
+    soundtype: 1
+  - id: 311
+    name: SFX_Laser_Shot
+    soundtype: 1
   - id: 401
     name: SFX_Boss1_ThrowMetal
     soundtype: 1
@@ -109,6 +115,30 @@ MonoBehaviour:
   - id: 412
     name: SFX_Boss2_Book
     soundtype: 1
+  - id: 413
+    name: SFX_Boss3_FeatherFly
+    soundtype: 1
+  - id: 414
+    name: SFX_Boss3_FeatherStuck
+    soundtype: 1
+  - id: 415
+    name: SFX_Boss3_Burning
+    soundtype: 1
+  - id: 416
+    name: SFX_Boss3_Whoosh
+    soundtype: 1
+  - id: 417
+    name: SFX_Boss3_Slam
+    soundtype: 1
+  - id: 418
+    name: SFX_Boss3_Blackhole
+    soundtype: 1
+  - id: 419
+    name: SFX_Boss3_Spear
+    soundtype: 1
+  - id: 420
+    name: SFX_Boss3_Hit
+    soundtype: 1
   - id: 501
     name: SFX_Stage_Start
     soundtype: 1
@@ -129,4 +159,10 @@ MonoBehaviour:
     soundtype: 0
   - id: 603
     name: BGM_Stage2
+    soundtype: 0
+  - id: 604
+    name: BGM_Stage3
+    soundtype: 0
+  - id: 605
+    name: BGM_Stage4
     soundtype: 0
