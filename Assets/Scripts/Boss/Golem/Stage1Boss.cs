@@ -254,7 +254,7 @@ public class Stage1Boss : BossBase
 
         // === Phase 1 ===
         yield return ChangeState(new BossScrapState(this, 3));
-
+        yield return new WaitForSeconds(_bossData.PatternWaitTime);
         // 1페이즈 루프: 체력이 60% 이하가 될 때까지 [콘크리트 3회 -> 약점] 반복
         while (_currentHp > _bossData.Phase2HpThreshold)
         {
@@ -263,6 +263,7 @@ public class Stage1Boss : BossBase
             yield return ChangeState(new BossConcreteState(this, 3, true));
             // 약점 노출
             yield return ChangeState(new BossWeaknessState(this));
+            yield return new WaitForSeconds(_bossData.PhaseTransitionDelay);
         }
         Phase = 2;
 
@@ -279,7 +280,9 @@ public class Stage1Boss : BossBase
             yield return ChangeState(new BossConcreteState(this, 5, true));
             // 약점 노출
             yield return ChangeState(new BossWeaknessState(this));
+            
         }
+        yield return new WaitForSeconds(_bossData.PhaseTransitionDelay);
         Phase = 3;
         // === Phase 3 Loop ===
         while (_currentHp > 0)
@@ -293,6 +296,7 @@ public class Stage1Boss : BossBase
             yield return ChangeState(new BossScrapState(this, 2));
             yield return ChangeState(new BossConcreteState(this, 1, true));
             yield return ChangeState(new BossWeaknessState(this));
+            yield return new WaitForSeconds(_bossData.PhaseTransitionDelay);
         }
     }
 

@@ -5275,6 +5275,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5390484494698999564, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6442882665706202425, guid: a67b5d82f7e3f5e41a8cc22373f21ae6, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -16314,19 +16318,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3763386033236371798, guid: 52a12bd0ee9b83b4aba6878b40840a82, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.1
+      value: 21.49
       objectReference: {fileID: 0}
     - target: {fileID: 3763386033236371798, guid: 52a12bd0ee9b83b4aba6878b40840a82, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.2
+      value: 16.6
       objectReference: {fileID: 0}
     - target: {fileID: 4324019596894285300, guid: 52a12bd0ee9b83b4aba6878b40840a82, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -20
+      value: -30.2
       objectReference: {fileID: 0}
     - target: {fileID: 4324019596894285300, guid: 52a12bd0ee9b83b4aba6878b40840a82, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.3
+      value: 16.9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -72352,7 +72356,7 @@ MonoBehaviour:
   _testKillTrigger: 0
   _bossData:
     _bossMaxHp: 100
-    _craneSpawnInterval: 5
+    _craneSpawnInterval: 8
     _craneSpeedMultiplier: 1.2
     _basePlayerSpeed: 5
     _bindDuration: 3
@@ -72365,7 +72369,7 @@ MonoBehaviour:
     _bookDotDamage: 20
     _bookDurationAfterHit: 3
     _foxMoveSpeed: 6
-    _foxShadowSpeedMultiplier: 1.5
+    _foxShadowSpeedMultiplier: 1.2
     _foxSpawnDelay: 5
     _foxEatDuration: 3
     _foxDetectRange: 7
@@ -72376,7 +72380,7 @@ MonoBehaviour:
     _foxAoeDelay: 3
     _gimmickSuccessDamage: 20
     _itemHideDelay: 2
-    _gimmickInterval: 5
+    _gimmickInterval: 4
   _uiManager: {fileID: 865163532}
   _foxController: {fileID: 9127267322066878189}
   _craneSpawnPoints:
@@ -72684,7 +72688,7 @@ Transform:
   m_GameObject: {fileID: 3069320657646839824}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.18, y: -0.53, z: 0}
+  m_LocalPosition: {x: -13, y: 1.56, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -72760,9 +72764,9 @@ MonoBehaviour:
   _jumpDelay: 1
   _biteRange: 2.5
   _holdOffset: 1.5
-  _shadowAttackSize: {x: 35, y: 25}
-  _attackBoxOffset: {x: 0, y: 12.5}
-  _shadowExplosionDelay: 3
+  _shadowAttackSize: {x: 20, y: 12}
+  _attackBoxOffset: {x: 0, y: 6}
+  _shadowExplosionDelay: 4
   _popUpDuration: 0.5
   _state: 0
 --- !u!1660057539 &9223372036854775807
