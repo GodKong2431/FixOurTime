@@ -72688,7 +72688,7 @@ Transform:
   m_GameObject: {fileID: 3069320657646839824}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13, y: 1.56, z: 0}
+  m_LocalPosition: {x: -10.3, y: 1.99, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -72764,9 +72764,9 @@ MonoBehaviour:
   _jumpDelay: 1
   _biteRange: 2.5
   _holdOffset: 1.5
-  _shadowAttackSize: {x: 20, y: 12}
-  _attackBoxOffset: {x: 0, y: 6}
-  _shadowExplosionDelay: 4
+  _shadowAttackSize: {x: 30, y: 18}
+  _attackBoxOffset: {x: 0, y: 9}
+  _shadowExplosionDelay: 4.5
   _popUpDuration: 0.5
   _state: 0
 --- !u!1660057539 &9223372036854775807

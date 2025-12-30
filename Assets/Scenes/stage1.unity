@@ -32133,7 +32133,7 @@ MonoBehaviour:
     _concreteSpawnOffsetH: -10
     _concreteSpawnOffsetV: -10
     _concreteAttackDelay: 0.3
-    _weaknessDuration: 5
+    _weaknessDuration: 7.5
     _weaknessSuccessWaitTime: 2.5
     _bossMoveDuration: 0.5
     _bossAppearDistance: 4
