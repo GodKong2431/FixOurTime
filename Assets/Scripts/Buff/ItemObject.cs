@@ -45,6 +45,8 @@ public class ItemObject : MonoBehaviour
             ApplyEffect(_player);
             _player.CollectItem(_itemType);//이 아이템 수집했다 플래그 갱신용
 
+            SoundManager.Instance.PlaySFX("SFX_ClockHand_Get");
+
             //먹자마자 세이브 데이터를 갱신해야 리로드 시 다시 안 나타남
             GameData data = GameDataManager.Load();
             _player.SavePlayerState(data); // 현재 플레이어의 상태(아이템 유무)를 data 객체에 기록

@@ -1,22 +1,24 @@
+using System.Collections;
 using UnityEngine;
 
 public class ClockCore : MonoBehaviour, IDamageable
 {
-    Player _player;
-    private void Awake()
-    {
-        _player = GameManager.Instance.Player;
-    }
-
     public void TakeDamage(float damage, float KnockbackForce, Vector3 hitPos)
     {
-        if (_player.HasAllClockHands)
+        if (GameManager.Instance.Player.HasAllClockHands)
         {
-            SceneChanger.Instance.ChangeScene("EndingScene");
+            StartCoroutine(ClearGame());
         }
         else
         {
             Debug.Log("아이템 부족");
         }
+    }
+
+    private IEnumerator ClearGame()
+    {
+        SoundManager.Instance.PlaySFX("SFX_Core_Activate");
+        yield return new WaitForSeconds(10);
+        SceneChanger.Instance.ChangeScene("EndingScene");
     }
 }
