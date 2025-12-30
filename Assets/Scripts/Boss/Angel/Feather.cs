@@ -70,6 +70,7 @@ public class Feather : DamageableTrapBase
     private IEnumerator MoveDelay()
     {
         yield return new WaitForSeconds(_moveDelay);
+        SoundManager.Instance.PlaySFX("SFX_Boss3_FeatherFly");
         Destroy(gameObject, _lifeTime);
         while (true)
         {
@@ -86,6 +87,7 @@ public class Feather : DamageableTrapBase
         _stuck = true;
         _direction = Vector2.zero;
         transform.SetParent(target, true);
+        SoundManager.Instance.PlaySFXOneShot("SFX_Boss3_FeatherStuck");
 
         StartCoroutine(DestroyAndAlphaChange());
     }

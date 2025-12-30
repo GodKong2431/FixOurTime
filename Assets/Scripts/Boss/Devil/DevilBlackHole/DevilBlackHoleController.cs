@@ -39,6 +39,7 @@ public class DevilBlackHoleController : MonoBehaviour
     {
         _devilCore.SetBlackHoleActive(true);
         currentBlackHole = Instantiate(_blackHolePrefab,_spawnPoint.position,Quaternion.identity);
+        SoundManager.Instance.PlaySFX("SFX_Boss3_Blackhole");
 
         currentBlackHole.Initialize(_minScale,_maxScale,_growTime,_shrinkTime, _pullSpeed);
 

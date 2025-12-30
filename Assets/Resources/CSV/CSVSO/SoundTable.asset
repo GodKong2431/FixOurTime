@@ -166,3 +166,6 @@ MonoBehaviour:
   - id: 605
     name: BGM_Stage4
     soundtype: 0
+  - id: 606
+    name: BGM_Boss
+    soundtype: 0

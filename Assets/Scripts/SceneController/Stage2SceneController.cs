@@ -4,14 +4,24 @@ public class Stage2SceneController : MonoBehaviour
 {
     void Start()
     {
-        EnterStage2();
+        StartStage2BGM();
+        StratStageSFX();
     }
 
-    private void EnterStage2()
+    public void StartStage2BGM()
     {
         SoundManager.Instance.StopBGMWithFade(0);
         SoundManager.Instance.PlayBGMWithFade("BGM_Stage2");
+    }
+
+    public void StratStageSFX()
+    {
         SoundManager.Instance.PlaySFX("SFX_Stage_Start");
-        gameObject.SetActive(false);
+    }
+
+    public void PlayBossBGM()
+    {
+        SoundManager.Instance.StopBGMWithFade(0);
+        SoundManager.Instance.PlayBGMWithFade("BGM_Boss");
     }
 }

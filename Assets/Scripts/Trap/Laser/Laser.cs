@@ -88,6 +88,7 @@ public class Laser : DamageableTrapBase, IDamageable
             box.enabled = true;
             ShowLineRenderer(_warningLine, false);
             ShowLineRenderer(_laserLine, true);
+            SoundManager.Instance.PlaySFX("SFX_Laser_Shot");
 
             yield return _fireDur;
 
@@ -116,6 +117,7 @@ public class Laser : DamageableTrapBase, IDamageable
 
     public void TakeDamage(float damage, float KnockbackForce, Vector3 hitPos)
     {
+        SoundManager.Instance.PlaySFX("SFX_Laser_Destroy");
         Destroy(gameObject);
     }
 

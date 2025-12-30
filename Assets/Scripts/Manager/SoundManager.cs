@@ -149,6 +149,9 @@ public class SoundManager : SingleTon<SoundManager>
     #endregion
 
     #region BGM 
+
+
+
     public void PlayBGMWithFade(string clipName, float time = 3f)
     {
         StopCurrentBgmCoroutine();
@@ -208,39 +211,6 @@ public class SoundManager : SingleTon<SoundManager>
         }
     }
 
-    public void FadePlayBgm(string clipName, float fadeTime = 1f) 
-    { 
-        if (!_soundDict.TryGetValue(clipName, out var clip)) return; 
-
-        StopAllCoroutines(); 
-        StartCoroutine(FadeBgmCoroutine(clip, fadeTime)); 
-    } 
-    private IEnumerator FadeBgmCoroutine(AudioClip clip, float time) 
-    { 
-        float startVolume = _bgmSource.volume; 
-        float t = 0f; 
-
-        while (t < time) 
-        { 
-            t += Time.unscaledDeltaTime; 
-            _bgmSource.volume = Mathf.Lerp(startVolume, 0, t / time); 
-            yield return null; 
-        } 
-
-        _bgmSource.clip = clip; 
-        _bgmSource.volume = 0; 
-        _bgmSource.Play(); 
-        t = 0f; 
-
-        while (t < time) 
-        { 
-            t += Time.unscaledDeltaTime; 
-            _bgmSource.volume = Mathf.Lerp(0, _bgmVolume, t / time); 
-            yield return null; 
-        } 
-
-        _bgmSource.volume = _bgmVolume; 
-    } 
     #endregion 
 
     #region 오브젝트 위치 체크 

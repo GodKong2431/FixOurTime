@@ -95,6 +95,7 @@ public class DevilHand : DamageableTrapBase
         _hitGround = false;
         StopCurrentCoroutine();
         _moveCoroutine = StartCoroutine(AttackCoroutine(direction.normalized));
+        SoundManager.Instance.PlaySFX("SFX_Boss3_Whoosh");
     }
 
     private IEnumerator AttackCoroutine(Vector2 dir)
@@ -116,6 +117,7 @@ public class DevilHand : DamageableTrapBase
         Vector2 start = transform.position;
         Vector2 end = center;
         _moveCoroutine = StartCoroutine(SpiralAttackCoroutine(start, end, offset, duration));
+        SoundManager.Instance.PlaySFX("SFX_Boss3_Whoosh");
     }
 
     IEnumerator SpiralAttackCoroutine(Vector2 start, Vector2 end, float offset, float duration)
@@ -200,6 +202,7 @@ public class DevilHand : DamageableTrapBase
         if (other.CompareTag("BossGround"))
         {
             _hitGround = true;
+            SoundManager.Instance.PlaySFX("SFX_Boss3_Slam");
         }
     }
 

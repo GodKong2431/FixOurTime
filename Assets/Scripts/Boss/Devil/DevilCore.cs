@@ -105,5 +105,6 @@ public class DevilCore : MonoBehaviour, IDamageable
         }
 
         _boss.ApplyDamage(damage, KnockbackForce, hitPos);
+        SoundManager.Instance.PlaySFX("SFX_Boss3_Hit");
     }
 }

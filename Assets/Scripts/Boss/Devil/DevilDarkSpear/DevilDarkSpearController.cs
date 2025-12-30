@@ -84,6 +84,7 @@ public class DevilDarkSpearController : MonoBehaviour
         _isAttacking = true;
 
         _devilDarkSpear.AttackSpear();
+        SoundManager.Instance.PlaySFX("SFX_Boss3_Spear");
 
         float delay = (_data != null) ? _data.SpearReturnDelay : 3.0f;
         yield return new WaitForSeconds(delay);
