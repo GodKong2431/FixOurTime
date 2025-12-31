@@ -15,6 +15,11 @@ public class GimmickItemObject : MonoBehaviour, IDamageable
     // 공격 판정을 위한 콜라이더
     [SerializeField] private BoxCollider2D _collider;
 
+    private void Start()
+    {
+        SoundManager.Instance.PlaySFX("SFX_Boss2_Book");
+    }
+
     public void Initialize(Stage2Boss boss, Sprite sprite, bool isTarget)
     {
         _boss = boss;
@@ -31,6 +36,7 @@ public class GimmickItemObject : MonoBehaviour, IDamageable
     // 플레이어가 공격하면 아이템 획득
     public void TakeDamage(float damage, float knockback, Vector3 hitPos)
     {
+        SoundManager.Instance.PlaySFX("SFX_Boss2_BookHit");
         if (!_canInteract) return;
         CollectItem();
     }
@@ -38,6 +44,7 @@ public class GimmickItemObject : MonoBehaviour, IDamageable
     private void CollectItem()
     {
         _canInteract = false;
+
 
         // 플레이어가 먹음 -> 보스에게 결과 보고
         _boss.OnPlayerCollectItem(IsTarget, _renderer.sprite);
