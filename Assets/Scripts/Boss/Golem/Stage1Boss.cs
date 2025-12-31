@@ -190,12 +190,12 @@ public class Stage1Boss : BossBase
         }
         if (_wallFistObject)
         {
-            _originWallPos = _wallFistObject.position; // 기존 변수 활용
+            _originWallPos = _wallFistObject.position;
             _wallFistObject.gameObject.SetActive(false);
         }
         if (_floorFistObject)
         {
-            _originFloorPos = _floorFistObject.position; // 기존 변수 활용
+            _originFloorPos = _floorFistObject.position;
             _floorFistObject.gameObject.SetActive(false);
         }
         if (_weaknessObject) 
@@ -250,6 +250,10 @@ public class Stage1Boss : BossBase
             yield return StartCoroutine(MoveBossWithShake(_introBodyObject, appearPos, 3.0f, 0.05f));
 
             // 포효하거나 대기하는 연출 시간 
+            if (CinemachinCamManager.Instance != null && _targetShakeCam != null)
+            {
+                CinemachinCamManager.Instance.ShakeTargetCamera(_targetShakeCam, _shakeIntensity, _shakeFrequency, _shakeDuration);
+            }
             yield return new WaitForSeconds(3.0f);
             
             // 퇴장
@@ -322,10 +326,6 @@ public class Stage1Boss : BossBase
 
             // 2. 진동 (랜덤 오프셋)
             // insideUnitCircle을 사용하여 X, Y축으로 흔들림 (Z축 유지)
-            if (CinemachinCamManager.Instance != null && _targetShakeCam != null)
-            {
-                CinemachinCamManager.Instance.ShakeTargetCamera(_targetShakeCam, _shakeIntensity, _shakeFrequency, _shakeDuration);
-            }
             Vector3 shakeOffset = (Vector3)(Random.insideUnitCircle * shakePower);
 
             // 3. 최종 위치 적용
