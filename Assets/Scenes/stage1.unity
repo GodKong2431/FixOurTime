@@ -28675,6 +28675,10 @@ PrefabInstance:
       propertyPath: _collider
       value: 
       objectReference: {fileID: 256341313}
+    - target: {fileID: 3166520600974297821, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3244494443211372358, guid: 6e45dbc89cbb66947a35e962c42ce5c5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.9314778
@@ -32352,6 +32356,10 @@ MonoBehaviour:
   _scrapPrefab: {fileID: 7145188956452611248, guid: 5e02387c94b53bb46876c1979cecf324, type: 3}
   _concreteHPrefab: {fileID: 1523689871022744349, guid: 6aab5bdaf365b85478eed806bc60f1ff, type: 3}
   _concreteVPrefab: {fileID: 1523689871022744349, guid: a979e42353db8b745af8d629985474af, type: 3}
+  _shakeIntensity: 1.2
+  _shakeFrequency: 2
+  _shakeDuration: 2
+  _targetShakeCam: {fileID: 105387381}
 --- !u!4 &8261216008975372431
 Transform:
   m_ObjectHideFlags: 0
