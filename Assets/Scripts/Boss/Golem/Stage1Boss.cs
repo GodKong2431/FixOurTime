@@ -1,7 +1,8 @@
-using UnityEngine;
+
 using System.Collections;
-using NUnit.Framework;
 using System.Collections.Generic;
+using Unity.Cinemachine;
+using UnityEngine;
 
 // 인스펙터에서 수정 가능하도록 Serializable 추가
 [System.Serializable]
@@ -150,6 +151,12 @@ public class Stage1Boss : BossBase
     [SerializeField] private GameObject _scrapPrefab;
     [SerializeField] private GameObject _concreteHPrefab;
     [SerializeField] private GameObject _concreteVPrefab;
+
+    [Header("진동 설정")]
+    [SerializeField] float _shakeIntensity = 1.2f;
+    [SerializeField] float _shakeFrequency = 2.0f;
+    [SerializeField] float _shakeDuration = 2f;
+    [SerializeField] private CinemachineCamera _targetShakeCam;
 
     private List<ConcreteObject> _activeConcretes = new List<ConcreteObject>();
     private bool _isActivated = false;
@@ -315,6 +322,10 @@ public class Stage1Boss : BossBase
 
             // 2. 진동 (랜덤 오프셋)
             // insideUnitCircle을 사용하여 X, Y축으로 흔들림 (Z축 유지)
+            if (CinemachinCamManager.Instance != null && _targetShakeCam != null)
+            {
+                CinemachinCamManager.Instance.ShakeTargetCamera(_targetShakeCam, _shakeIntensity, _shakeFrequency, _shakeDuration);
+            }
             Vector3 shakeOffset = (Vector3)(Random.insideUnitCircle * shakePower);
 
             // 3. 최종 위치 적용
