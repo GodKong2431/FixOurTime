@@ -1,0 +1,439 @@
+fileFormatVersion: 2
+guid: d99b2d76fe98fdf4bb40772eab5a96ac
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7775147770192671128
+    second: Group 29_0
+  - first:
+      213: 7108321848833093959
+    second: Group 29_1
+  - first:
+      213: -9136557097390222172
+    second: Group 29_2
+  - first:
+      213: -8844508973884643066
+    second: Group 29_3
+  - first:
+      213: 6345924081297468545
+    second: Group 29_4
+  - first:
+      213: -8949915989954985420
+    second: Group 29_5
+  - first:
+      213: -2796541483092344904
+    second: Group 29_6
+  - first:
+      213: -1531892303104971021
+    second: Group 29_7
+  - first:
+      213: -3428694385988804057
+    second: Group 29_8
+  - first:
+      213: -5605957976869869768
+    second: Group 29_9
+  - first:
+      213: 4023872534673725664
+    second: Group 29_10
+  - first:
+      213: -7167236619668881659
+    second: Group 29_11
+  - first:
+      213: 2415685407207694136
+    second: Group 29_12
+  - first:
+      213: 3947580298475479836
+    second: Group 29_13
+  - first:
+      213: 6779611813346444061
+    second: Group 29_14
+  - first:
+      213: -1685090455473735596
+    second: Group 29_15
+  - first:
+      213: -6370650944129172974
+    second: Group 29_16
+  - first:
+      213: 3814914041930890979
+    second: Group 29_17
+  - first:
+      213: -8533490029791705228
+    second: Group 29_18
+  - first:
+      213: -7491739688321724601
+    second: Group 29_19
+  - first:
+      213: -7485210882276000060
+    second: Group 29_20
+  - first:
+      213: 3411161069978804450
+    second: Group 29_21
+  - first:
+      213: 8796636926517916537
+    second: Group 29_22
+  - first:
+      213: 8774116971703321414
+    second: Group 29_23
+  - first:
+      213: -2028029681154396925
+    second: Group 29_24
+  - first:
+      213: -2092465855965546583
+    second: Group 29_25
+  - first:
+      213: -6255457313916212989
+    second: Group 29_26
+  - first:
+      213: -4697116376184983990
+    second: Group 29_27
+  - first:
+      213: -674960337388758240
+    second: Group 29_28
+  - first:
+      213: 8645965046665356026
+    second: Group 29_29
+  - first:
+      213: -8166714564575370949
+    second: Group 29_30
+  - first:
+      213: 5222757308753361445
+    second: Group 29_31
+  - first:
+      213: -5774422054404402249
+    second: Group 29_32
+  - first:
+      213: -7503341197600721625
+    second: Group 29_33
+  - first:
+      213: 1797563840900218826
+    second: Group 29_34
+  - first:
+      213: 616522606944828930
+    second: Group 29_35
+  - first:
+      213: -6670846202370771413
+    second: Group 29_36
+  - first:
+      213: -3906608641074924801
+    second: Group 29_37
+  - first:
+      213: 2062368205591910811
+    second: Group 29_38
+  - first:
+      213: -659939740111326485
+    second: Group 29_39
+  - first:
+      213: 7256168657033110437
+    second: Group 29_40
+  - first:
+      213: -3324055995941958969
+    second: Group 29_41
+  - first:
+      213: 6020453420336918301
+    second: Group 29_42
+  - first:
+      213: -7797844495030706611
+    second: Group 29_43
+  - first:
+      213: 5398867622092695261
+    second: Group 29_44
+  - first:
+      213: 3589916861445255920
+    second: Group 29_45
+  - first:
+      213: -1810918926233693417
+    second: Group 29_46
+  - first:
+      213: 4824122327447619488
+    second: Group 29_47
+  - first:
+      213: -8385211257607825150
+    second: Group 29_48
+  - first:
+      213: 4797753978161474481
+    second: Group 29_49
+  - first:
+      213: 2917378159135599453
+    second: Group 29_50
+  - first:
+      213: -922165445430646700
+    second: Group 29_51
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Group 29_0
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 343
+        width: 3324
+        height: 1904
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8913186d3bfd6eb60800000000000000
+      internalID: 7775147770192671128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Group 29_1
+      rect:
+        serializedVersion: 2
+        x: 3708
+        y: 1194
+        width: 7
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74138dc5f05d5a260800000000000000
+      internalID: 7108321848833093959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Group 29_2
+      rect:
+        serializedVersion: 2
+        x: 4394
+        y: 366
+        width: 3335
+        height: 1899
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a45bfb3abd643180800000000000000
+      internalID: -9136557097390222172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Group 29_3
+      rect:
+        serializedVersion: 2
+        x: 8287
+        y: 282
+        width: 3338
+        height: 1901
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 609e9dec2fdf14580800000000000000
+      internalID: -8844508973884643066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Group 29_4
+      rect:
+        serializedVersion: 2
+        x: 11959
+        y: 185
+        width: 3320
+        height: 1901
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18c255d6450411850800000000000000
+      internalID: 6345924081297468545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Group 29_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1022
+        width: 4
+        height: 109
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 432052963d28bc380800000000000000
+      internalID: -8949915989954985420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 457d7e3c6776f794fbad227ec2275671
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Group 29_0: 7775147770192671128
+      Group 29_1: 7108321848833093959
+      Group 29_2: -9136557097390222172
+      Group 29_3: -8844508973884643066
+      Group 29_4: 6345924081297468545
+      Group 29_5: -8949915989954985420
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
