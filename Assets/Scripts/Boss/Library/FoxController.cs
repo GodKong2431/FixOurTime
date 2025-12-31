@@ -381,8 +381,8 @@ public class FoxController : MonoBehaviour, IDamageable
         float delay = _shadowExplosionDelay;
 
         float clampedX = Mathf.Clamp(transform.position.x, -12f, 4f);
-        Vector3 targetPos = new Vector3(clampedX, 52f, 0f);
-        Vector3 startPos = new Vector3(clampedX, 52f - 25f, 0f);
+        Vector3 targetPos = transform.position;
+        Vector3 startPos = targetPos + Vector3.down * 25f;
 
         // 경고 이펙트
         if (_shadowAttackPrefab != null)
