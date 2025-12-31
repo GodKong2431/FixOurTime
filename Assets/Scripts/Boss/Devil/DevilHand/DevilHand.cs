@@ -113,6 +113,7 @@ public class DevilHand : DamageableTrapBase
             transform.position += (Vector3)(dir * _attackSpeed * Time.deltaTime);
             yield return null;
         }
+        _canDealDamage = false;
         _moveCoroutine = null; // 공격 끝
     }
 
@@ -169,6 +170,7 @@ public class DevilHand : DamageableTrapBase
 
     private IEnumerator ReturnCoroutine()
     {
+        _canDealDamage = false;
         while (_bossTransform != null)
         {
             // 로컬 좌표(_returnPos)를 월드 좌표로 변환하여 이동
@@ -208,7 +210,6 @@ public class DevilHand : DamageableTrapBase
 
     protected override void OnTriggerEnter2D(Collider2D other)
     {
-        base.OnTriggerEnter2D(other);
         if (other.CompareTag("BossGround"))
         {
             _hitGround = true;
