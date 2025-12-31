@@ -9,6 +9,7 @@ public class TitleSceneController : MonoBehaviour
 
     private void EnterTitle()
     {
+        SoundManager.Instance.StopBGMWithFade(0);
         SoundManager.Instance.PlayBGMWithFade("BGM_FixOurTime");
     }
 }
