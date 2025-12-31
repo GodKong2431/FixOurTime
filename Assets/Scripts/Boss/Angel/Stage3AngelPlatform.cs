@@ -47,8 +47,7 @@ public class Stage3AngelPlatform : MonoBehaviour
 
     private void Start()
     {
-        if(_moveOn)
-            _moveCoroutine = StartCoroutine(MovePlatform());
+        StartMovePlatform();
     }
 
     void LateUpdate()
@@ -153,6 +152,12 @@ public class Stage3AngelPlatform : MonoBehaviour
             StopCoroutine(_moveCoroutine);
 
         StartCoroutine(OutMoveCoroutine());
+    }
+
+    public void StartMovePlatform()
+    {
+        if (_moveOn)
+            _moveCoroutine = StartCoroutine(MovePlatform());
     }
 
     IEnumerator OutMoveCoroutine()
