@@ -100,6 +100,11 @@ public class SoundManager : SingleTon<SoundManager>
 
     #region SFX 
 
+    public void StopSFX()
+    {
+
+    }
+
     //여러번 중복으로 호출가능한 메서드
     public void PlaySFXOneShot(string clipName)
     {

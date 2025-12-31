@@ -52,3 +52,4 @@ int,string,SoundType
 603,BGM_Stage2,BGM
 604,BGM_Stage3,BGM
 605,BGM_Stage4,BGM
+606,BGM_Boss,BGM
