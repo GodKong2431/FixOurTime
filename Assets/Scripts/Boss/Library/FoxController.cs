@@ -421,6 +421,7 @@ public class FoxController : MonoBehaviour, IDamageable
         // 실제 공격 이펙트 (솟아오름)
         if (_shadowAttackPrefab != null)
         {
+            SoundManager.Instance.PlaySFX("SFX_Boss2_Explosion");
             _currentAttackInstance = Instantiate(_shadowAttackPrefab, startPos, Quaternion.identity);
 
             Collider2D col = _currentAttackInstance.GetComponent<Collider2D>();
@@ -578,6 +579,8 @@ public class FoxController : MonoBehaviour, IDamageable
 
         while (_state == FoxState.Biting && _player != null)
         {
+            SoundManager.Instance.PlaySFX("SFX_Boss2_Bite");
+
             Vector3 holdPosition = transform.position + new Vector3(facingDir * _holdOffset, 0, 0);
             _player.position = holdPosition;
 
@@ -606,6 +609,7 @@ public class FoxController : MonoBehaviour, IDamageable
 
         while (elapsed < eatDuration)
         {
+            SoundManager.Instance.PlaySFX("SFX_Boss2_BookBite");
             elapsed += Time.deltaTime;
 
             if (_isShadowMode) break;
