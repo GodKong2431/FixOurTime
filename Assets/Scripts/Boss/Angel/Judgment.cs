@@ -32,6 +32,11 @@ public class Judgment : DamageableTrapBase
 
     public void StartJudgment(Vector2 pos)
     {
+        if (!gameObject.activeInHierarchy)
+        {
+            gameObject.SetActive(true);
+        }
+
         Vector2 stratpos = GetRandomPos();
 
         _judgmentLine.enabled = true;

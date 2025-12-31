@@ -185,5 +185,7 @@ public class Stage3AngelPlatform : MonoBehaviour
         StopAllCoroutines();
         gameObject.SetActive(true); // 다시 켜기
         transform.position = _initPos; // 초기 위치로 이동
+
+        StartMovePlatform();
     }
 }
