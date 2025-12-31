@@ -44,6 +44,7 @@ public class MajorBookObject : MonoBehaviour
         yield return StartCoroutine(AimRoutine());
         yield return new WaitForSeconds(_boss.Data.BookFireDelay);
 
+        SoundManager.Instance.PlaySFX("SFX_Boss2_BookThrow");
         // 1차 돌진 실행 (벽에 닿을 때까지)
         yield return StartCoroutine(MoveUntilCollision());
 
@@ -55,6 +56,8 @@ public class MajorBookObject : MonoBehaviour
         yield return StartCoroutine(AimRoutine());
         yield return new WaitForSeconds(0.2f);
 
+
+        SoundManager.Instance.PlaySFX("SFX_Boss2_BookThrow");
         // 2차 돌진 실행
         yield return StartCoroutine(MoveUntilCollision());
 
@@ -79,6 +82,8 @@ public class MajorBookObject : MonoBehaviour
                 // 벽에 닿으면 멈추되, 살짝 뒤로 물러나서 다음 레이캐스트가 바로 닿지 않게 함
                 transform.position = hit.point + (hit.normal * 0.1f);
                 _isMoving = false;
+
+                SoundManager.Instance.PlaySFX("SFX_Boss2_BookHit");
 
                 if (_animator != null) _animator.speed = 0f;
                 yield break;
@@ -159,6 +164,8 @@ public class MajorBookObject : MonoBehaviour
 
         if (collision.CompareTag("Player") && collision.TryGetComponent(out IDamageable target))
         {
+            SoundManager.Instance.PlaySFX("SFX_Boss2_BookHit");
+
             target.TakeDamage(_boss.Data.BookDirectDamage, _boss.Data.BookKnockback, transform.position);
             Destroy(gameObject);
         }
