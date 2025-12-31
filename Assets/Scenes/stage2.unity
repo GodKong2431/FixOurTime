@@ -22951,6 +22951,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SavePoint
       objectReference: {fileID: 0}
+    - target: {fileID: 6457675775421434886, guid: e40ce7d4f07b8844991085eb2aaff939, type: 3}
+      propertyPath: _savePointID
+      value: savePoint_3
+      objectReference: {fileID: 0}
     - target: {fileID: 7980538125359217384, guid: e40ce7d4f07b8844991085eb2aaff939, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.598277
@@ -36525,6 +36529,10 @@ PrefabInstance:
     - target: {fileID: 3103905565001957794, guid: e40ce7d4f07b8844991085eb2aaff939, type: 3}
       propertyPath: m_Name
       value: SavePoint (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6457675775421434886, guid: e40ce7d4f07b8844991085eb2aaff939, type: 3}
+      propertyPath: _savePointID
+      value: savePoint_4
       objectReference: {fileID: 0}
     - target: {fileID: 7980538125359217384, guid: e40ce7d4f07b8844991085eb2aaff939, type: 3}
       propertyPath: m_LocalPosition.x
