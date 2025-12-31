@@ -72765,9 +72765,10 @@ MonoBehaviour:
   _biteRange: 2.5
   _holdOffset: 1.5
   _shadowAttackSize: {x: 30, y: 18}
-  _attackBoxOffset: {x: 0, y: 9}
+  _attackBoxOffset: {x: 0, y: 7.7}
   _shadowExplosionDelay: 4.5
   _popUpDuration: 0.5
+  _attackDuration: 1
   _state: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

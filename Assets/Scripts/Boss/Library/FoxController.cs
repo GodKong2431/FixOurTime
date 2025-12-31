@@ -34,14 +34,18 @@ public class FoxController : MonoBehaviour, IDamageable
     [Header("Shadow Mode Settings (Local)")]
     [Tooltip("광역 공격 범위 (가로, 세로)")]
     [SerializeField] private Vector2 _shadowAttackSize = new Vector2(1.5f, 4.0f);
+
     [Tooltip("공격 히트박스 중심 오프셋")]
-    [SerializeField] private Vector2 _attackBoxOffset = new Vector2(0f, 1.5f);
+    [SerializeField] private Vector2 _attackBoxOffset = new Vector2(0f, 0f);
 
     [Tooltip("경고 후 튀어나오기 전 딜레이 (초)")]
     [SerializeField] private float _shadowExplosionDelay = 1.0f;
 
     [Tooltip("땅에서 솟아오르는 애니메이션 시간 (초)")]
     [SerializeField] private float _popUpDuration = 0.75f;
+
+    [Tooltip("공격이 완전히 올라온 후 유지되는 시간 (초)")]
+    [SerializeField] private float _attackDuration = 1.0f; 
     #endregion
 
     #region Private Fields
@@ -203,7 +207,8 @@ public class FoxController : MonoBehaviour, IDamageable
         Gizmos.DrawWireSphere(transform.position, range);
 
         Gizmos.color = new Color(0.5f, 0, 0.5f, 0.5f);
-        Vector3 spawnPos = new Vector3(transform.position.x, 52f, 0f);
+
+        Vector3 spawnPos = transform.position;
         Vector3 boxCenter = spawnPos + (Vector3)_attackBoxOffset;
         Gizmos.DrawWireCube(boxCenter, _shadowAttackSize);
 
@@ -250,6 +255,7 @@ public class FoxController : MonoBehaviour, IDamageable
         EnablePhysics(true);
 
         if (_renderer != null) _renderer.enabled = true;
+        if (_rb != null) _rb.simulated = true;
 
         if (_animController != null)
         {
@@ -381,7 +387,7 @@ public class FoxController : MonoBehaviour, IDamageable
         float delay = _shadowExplosionDelay;
 
         float clampedX = Mathf.Clamp(transform.position.x, -12f, 4f);
-        Vector3 targetPos = transform.position;
+        Vector3 targetPos = new Vector3(clampedX, transform.position.y, 0f);
         Vector3 startPos = targetPos + Vector3.down * 25f;
 
         // 경고 이펙트
@@ -408,10 +414,11 @@ public class FoxController : MonoBehaviour, IDamageable
         // 여우 숨기기
         if (_renderer != null) _renderer.enabled = false;
         if (_collider != null) _collider.enabled = false;
+        if (_rb != null) _rb.simulated = false;
 
         if (_currentAttackInstance != null) Destroy(_currentAttackInstance);
 
-        // 실제 공격 이펙트 생성
+        // 실제 공격 이펙트 (솟아오름)
         if (_shadowAttackPrefab != null)
         {
             _currentAttackInstance = Instantiate(_shadowAttackPrefab, startPos, Quaternion.identity);
@@ -420,7 +427,7 @@ public class FoxController : MonoBehaviour, IDamageable
             if (col != null)
             {
                 col.enabled = true;
-                col.isTrigger = false; // 물리적 넉백 활성화
+                col.isTrigger = true;
             }
 
             SetAlpha(_currentAttackInstance, 1.0f);
@@ -428,25 +435,25 @@ public class FoxController : MonoBehaviour, IDamageable
             float emergeTime = _popUpDuration;
             float t = 0f;
 
-            // 이미 데미지를 입은 대상 기록 (중복 피격 방지)
             HashSet<int> damagedTargets = new HashSet<int>();
 
-            // 판정 준비
-            Vector2 attackCenter = (Vector2)targetPos + _attackBoxOffset;
             int checkLayer = _targetLayer.value;
-            if (_player != null) checkLayer = 1 << _player.gameObject.layer;
-            else if (checkLayer == 0) checkLayer = LayerMask.GetMask("Player");
+            if (_player != null) checkLayer |= (1 << _player.gameObject.layer);
+            if (checkLayer == 0) checkLayer = LayerMask.GetMask("Player", "Default");
 
-            // 올라오는 동안 지속적으로 데미지 판정
+            // [1] 올라오는 동안 판정
             while (t < emergeTime)
             {
                 t += Time.deltaTime;
+                Vector3 currentPos = Vector3.Lerp(startPos, targetPos, t / emergeTime);
+
                 if (_currentAttackInstance != null)
                 {
-                    _currentAttackInstance.transform.position = Vector3.Lerp(startPos, targetPos, t / emergeTime);
+                    _currentAttackInstance.transform.position = currentPos;
                 }
 
-                // 이동 중에도 판정 수행 (범위를 약간 여유있게 잡음)
+                // 이동하는 공격체에 판정 박스 따라가기
+                Vector2 attackCenter = (Vector2)currentPos + _attackBoxOffset;
                 Collider2D[] hits = Physics2D.OverlapBoxAll(attackCenter, _shadowAttackSize * 1.1f, 0f, checkLayer);
 
                 foreach (var hit in hits)
@@ -462,7 +469,7 @@ public class FoxController : MonoBehaviour, IDamageable
                             damagedTargets.Add(id);
 
                             float dmg = _boss != null ? _boss.Data.FoxAoeDamage : 70f;
-                            Debug.Log($"[ShadowAttack] 피격: {hit.name}, 데미지: {dmg}");
+                            Debug.Log($"[ShadowAttack] 타격 성공: {hit.name}, 데미지: {dmg}");
 
                             Vector3 fakeHitPos = hit.transform.position + Vector3.down * 5.0f;
                             target.TakeDamage(dmg, _boss != null ? _boss.Data.FoxShadowKnockback : 10f, fakeHitPos);
@@ -474,9 +481,43 @@ public class FoxController : MonoBehaviour, IDamageable
             }
 
             if (_currentAttackInstance != null) _currentAttackInstance.transform.position = targetPos;
+
+            // [2] 올라온 상태에서 일정 시간 유지 
+            float stayTimer = 0f;
+            while (stayTimer < _attackDuration)
+            {
+                stayTimer += Time.deltaTime;
+
+                // 유지되는 동안에도 판정 박스는 계속 작동 (뒤늦게 들어온 플레이어 피격)
+                if (_currentAttackInstance != null)
+                {
+                    Vector2 attackCenter = (Vector2)_currentAttackInstance.transform.position + _attackBoxOffset;
+                    Collider2D[] hits = Physics2D.OverlapBoxAll(attackCenter, _shadowAttackSize * 1.1f, 0f, checkLayer);
+
+                    foreach (var hit in hits)
+                    {
+                        IDamageable target = hit.GetComponent<IDamageable>();
+                        if (target == null) target = hit.GetComponentInParent<IDamageable>();
+
+                        if (target != null)
+                        {
+                            int id = hit.gameObject.GetInstanceID();
+                            // damagedTargets를 공유하므로 이미 맞은 플레이어는 다시 맞지 않음
+                            if (!damagedTargets.Contains(id))
+                            {
+                                damagedTargets.Add(id);
+
+                                float dmg = _boss != null ? _boss.Data.FoxAoeDamage : 70f;
+                                Vector3 fakeHitPos = hit.transform.position + Vector3.down * 5.0f;
+                                target.TakeDamage(dmg, _boss != null ? _boss.Data.FoxShadowKnockback : 10f, fakeHitPos);
+                            }
+                        }
+                    }
+                }
+                yield return null;
+            }
         }
 
-        // 이동 완료 후 즉시 제거
         if (_currentAttackInstance != null)
         {
             Destroy(_currentAttackInstance);
