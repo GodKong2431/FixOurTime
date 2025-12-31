@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abe8caa5d19440f41a03279a74c6e630, type: 3}
+  m_Script: {fileID: 11500000, guid: 6235125684d50b745801d0c73c32b7c9, type: 3}
   m_Name: SoundTable
   m_EditorClassIdentifier: Assembly-CSharp::SoundTable
   rows:

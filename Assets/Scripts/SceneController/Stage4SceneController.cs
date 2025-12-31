@@ -16,7 +16,6 @@ public class Stage4SceneController : MonoBehaviour
 
     public void StratStageSFX()
     {
-        SoundManager.Instance.StopBGMWithFade(0);
         SoundManager.Instance.PlaySFX("SFX_Stage_Start");
     }
 }
