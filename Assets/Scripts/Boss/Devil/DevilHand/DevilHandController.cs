@@ -149,4 +149,10 @@ public class DevilHandController : MonoBehaviour
         if (_leftHand != null) _leftHand.ForceReturn();
         if (_rightHand != null) _rightHand.ForceReturn();
     }
+
+    public void SetHandsDamageActive(bool isActive)
+    {
+        if (_leftHand != null) _leftHand.SetDamageActive(isActive);
+        if (_rightHand != null) _rightHand.SetDamageActive(isActive);
+    }
 }

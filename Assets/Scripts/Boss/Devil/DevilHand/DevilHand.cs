@@ -16,6 +16,8 @@ public class DevilHand : DamageableTrapBase
     private Coroutine _moveCoroutine;
     private bool _hitGround;
 
+    private bool _canDealDamage = true;
+
     // 외부에서 손이 움직이는 중인지 확인하는 프로퍼티
     public bool IsBusy => _moveCoroutine != null;
 
@@ -27,7 +29,10 @@ public class DevilHand : DamageableTrapBase
             _returnPos = transform.localPosition;
         }
     }
-
+    public void SetDamageActive(bool isActive)
+    {
+        _canDealDamage = isActive;
+    }
     public void Configure(float moveSpeed, float attackSpeed, int damage)
     {
         _moveSpeed = moveSpeed;
@@ -44,6 +49,8 @@ public class DevilHand : DamageableTrapBase
         gameObject.SetActive(true);
         _startOffset = startOffset;
         _hitGround = false;
+
+        _canDealDamage = true;
 
         StopCurrentCoroutine(); // 기존 동작 정지
 
@@ -93,6 +100,7 @@ public class DevilHand : DamageableTrapBase
     public void Attack(Vector2 direction)
     {
         _hitGround = false;
+        _canDealDamage = true;
         StopCurrentCoroutine();
         _moveCoroutine = StartCoroutine(AttackCoroutine(direction.normalized));
         SoundManager.Instance.PlaySFX("SFX_Boss3_Whoosh");
@@ -113,6 +121,7 @@ public class DevilHand : DamageableTrapBase
     /// </summary>
     public void SpiralAttack(Vector2 center, float offset, float duration)
     {
+        _canDealDamage = true;
         StopCurrentCoroutine();
         Vector2 start = transform.position;
         Vector2 end = center;
@@ -153,6 +162,7 @@ public class DevilHand : DamageableTrapBase
     public void MoveToReturnPos()
     {
         _hitGround = false;
+        _canDealDamage = false;
         StopCurrentCoroutine();
         _moveCoroutine = StartCoroutine(ReturnCoroutine());
     }
@@ -204,10 +214,16 @@ public class DevilHand : DamageableTrapBase
             _hitGround = true;
             SoundManager.Instance.PlaySFX("SFX_Boss3_Slam");
         }
+
+        if (_canDealDamage)
+        {
+            base.OnTriggerEnter2D(other);
+        }
     }
 
     public void ForceReturn()
     {
+        _canDealDamage = false;
         StopCurrentCoroutine();
         // 부모가 존재할 때만 복귀 시도
         if (_bossTransform != null)

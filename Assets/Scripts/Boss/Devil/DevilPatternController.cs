@@ -81,6 +81,8 @@ public class DevilPatternController : MonoBehaviour
     IEnumerator PatternA()
     {
         Debug.Log("패턴 A");
+        if (_handPattern != null) _handPattern.SetHandsDamageActive(false);
+
         yield return StartCoroutine(_blackHoleController.BlackHoleCoroutine());
         yield return _delay;
         yield return StartCoroutine(_handPattern.CrossPattern());
@@ -114,6 +116,8 @@ public class DevilPatternController : MonoBehaviour
     IEnumerator PatternC()
     {
         Debug.Log("패턴 C");
+
+        if(_handPattern != null) _handPattern.SetHandsDamageActive(false);
         Coroutine bh = StartCoroutine(_blackHoleController.BlackHoleCoroutine());
         Coroutine spear = StartCoroutine(_darkSpearController.CallDarkSpear());
 
