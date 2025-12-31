@@ -609,7 +609,7 @@ public class FoxController : MonoBehaviour, IDamageable
 
         while (elapsed < eatDuration)
         {
-            SoundManager.Instance.PlaySFX("SFX_Boss2_BookBite");
+            SoundManager.Instance.PlaySFX("SFX_Boss2_Bookbite");
             elapsed += Time.deltaTime;
 
             if (_isShadowMode) break;
