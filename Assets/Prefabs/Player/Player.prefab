@@ -390,8 +390,8 @@ MonoBehaviour:
   - serializedVersion: 2
     m_Bits: 536870912
   _groundChecker: {fileID: 7884480922022477730}
-  _groundCheckDistance: -0.35
-  _groundCheckerSize: {x: 0.8, y: 0.9}
+  _groundCheckDistance: 0.2
+  _groundCheckerRadius: 0.4
   _minJumpForce: 5
   _maxJempForce: 15
   _maxChargeTime: 1
